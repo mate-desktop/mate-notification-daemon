@@ -63,11 +63,7 @@ get_work_area (NotifyStack  *stack,
         int             result;
         int             disp_screen;
 
-	#if GTK_CHECK_VERSION(3, 0, 0)
-		workarea = XInternAtom(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), "_NET_WORKAREA", True);
-	#else
-		workarea = XInternAtom(GDK_DISPLAY(), "_NET_WORKAREA", True);
-	#endif
+	workarea = XInternAtom(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), "_NET_WORKAREA", True);
 
 
         disp_screen = GDK_SCREEN_XNUMBER (stack->screen);
@@ -82,39 +78,21 @@ get_work_area (NotifyStack  *stack,
                 return FALSE;
 
 
-	#if GTK_CHECK_VERSION(3, 0, 0)
+	win = XRootWindow(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), disp_screen);
 
-		win = XRootWindow(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), disp_screen);
+	result = XGetWindowProperty(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()),
+		win,
+		workarea,
+		0,
+		max_len,
+		False,
+		AnyPropertyType,
+		&type,
+		&format,
+		&num,
+		&leftovers,
+		&ret_workarea);
 
-		result = XGetWindowProperty(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()),
-									win,
-									workarea,
-									0,
-									max_len,
-									False,
-									AnyPropertyType,
-									&type,
-									&format,
-									&num,
-									&leftovers,
-									&ret_workarea);
-	#else
-
-		win = XRootWindow(GDK_DISPLAY(), disp_screen);
-
-		result = XGetWindowProperty(GDK_DISPLAY(),
-									win,
-									workarea,
-									0,
-									max_len,
-									False,
-									AnyPropertyType,
-									&type,
-									&format,
-									&num,
-									&leftovers,
-									&ret_workarea);
-	#endif
 
         if (result != Success
             || type == None
