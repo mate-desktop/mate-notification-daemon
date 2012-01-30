@@ -6,16 +6,19 @@ arch=(i686 x86_64)
 license=('GPL' 'LGPL')
 depends=('libmatenotify' 'libwnck' 'gtk2')
 makedepends=('intltool')
+conflicts=('notification-daemon')
 provides=('notification-daemon')
-url="http://matsusoft.com.ar/projects"
+url="http://matsusoft.com.ar/projects/mate/"
 groups=('mate')
 options=('!libtool' '!emptydirs')
 install=mate-notification-daemon.install
-source=(http://sourceforge.net/projects/matede/files/${pkgver}/${pkgname}.tar.gz/download)
-sha256sums=('36db424b077488a5786fedf5ea8d15d2c93656b94ba99de0db607e7ceb280767')
+source=()
+sha256sums=()
+
+
 
 build() {
-    cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/../../../"
 
     ./autogen.sh \
         --prefix=/usr \
@@ -29,7 +32,7 @@ build() {
 }
 
 package() {
-    cd "${srcdir}/${pkgname}"
+    cd "${srcdir}/../../../"
 
     make MATECONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 DESTDIR="${pkgdir}" install || return 1
 
