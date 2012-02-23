@@ -1,43 +1,147 @@
-# Dutch translation for notification-daemon
-# Copyright (C) 2006 Christian Hammond
-# This file is distributed under the same license as the notification-daemon package.
-#
-# Wouter Bolsterlee <uws+mate@xs4all.nl>, 2006.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Michael Steenbeek <m.o.steenbeek@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: svn trunk\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-02-15 03:02-0800\n"
-"PO-Revision-Date: 2006-04-27 10:57+0200\n"
-"Last-Translator: Wouter Bolsterlee <uws+mate@xs4all.nl>\n"
-"Language-Team: Dutch <vertaling@vrijschrift.org>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/Perberos/Mate-Desktop-Environment/issues\n"
+"POT-Creation-Date: 2012-01-02 13:44+0100\n"
+"PO-Revision-Date: 2012-02-07 13:57+0000\n"
+"Last-Translator: Michael Steenbeek <m.o.steenbeek@gmail.com>\n"
+"Language-Team: Dutch (http://www.transifex.net/projects/p/MATE/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../data/notification-daemon.schemas.in.h:1
+#: ../data/mate-notification-daemon.schemas.in.h:1
 msgid "Current theme"
 msgstr "Huidige thema"
 
-#: ../data/notification-daemon.schemas.in.h:2
+#: ../data/mate-notification-daemon.schemas.in.h:2
+msgid "Default Sound"
+msgstr "Standaardgeluid"
+
+#: ../data/mate-notification-daemon.schemas.in.h:3
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr ""
+msgstr "Standaard popuplocatie op het werkblad voor stapelnotificaties. Toegestane waardes: \"top_left\",\"top_right\",\"bottom_left\" en \"bottom_right\""
 
-#: ../data/notification-daemon.schemas.in.h:3
+#: ../data/mate-notification-daemon.schemas.in.h:4
 msgid "Popup location"
-msgstr ""
+msgstr "Popuplocatie"
 
-#: ../data/notification-daemon.schemas.in.h:4
+#: ../data/mate-notification-daemon.schemas.in.h:5
+msgid "Sound Enabled"
+msgstr "Geluid ingeschakeld"
+
+#: ../data/mate-notification-daemon.schemas.in.h:6
+msgid ""
+"The default sound file used unless a notification supplies the 'sound-file' "
+"or 'suppress-sound' hint. Leave empty for no default sound."
+msgstr "Het standaardgeluid tenzij een notificatie de hint 'sound-file' of 'suppress-sound' meegeeft. Leeglaten voor geen standaardgeluid."
+
+#: ../data/mate-notification-daemon.schemas.in.h:7
 msgid "The theme used when displaying notifications."
 msgstr "Het thema dat voor de berichtweergave wordt gebruikt."
 
-#: ../src/capplet/notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr ""
+#: ../data/mate-notification-daemon.schemas.in.h:8
+msgid "Turns on and off sound support for notifications."
+msgstr "Schakelt geluidsondersteuning bij notificaties aan en uit."
 
-#: ../src/capplet/notification-properties.desktop.in.h:2
+#: ../src/capplet/mate-notification-properties.c:237
+msgid "Slider"
+msgstr "Schuif"
+
+#: ../src/capplet/mate-notification-properties.c:241
+msgid "Standard theme"
+msgstr "Standaardthema"
+
+#: ../src/capplet/mate-notification-properties.c:312
+msgid "Error initializing libmatenotify"
+msgstr "Fout bij het initialiseren van libmatenotify"
+
+#: ../src/capplet/mate-notification-properties.c:325
+msgid "Notification Test"
+msgstr "Notificatietest"
+
+#: ../src/capplet/mate-notification-properties.c:325
+msgid "Just a test"
+msgstr "Gewoon een test"
+
+#: ../src/capplet/mate-notification-properties.c:329
+#, c-format
+msgid "Error while displaying notification: %s"
+msgstr "Fout tijdens het weergeven van notificatie: %s"
+
+#: ../src/capplet/mate-notification-properties.c:384
+#, c-format
+msgid "Could not load user interface file: %s"
+msgstr "Kon gebruikersinterface bestand niet laden: %s"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
+msgid "Pop-Up Notifications"
+msgstr "Popupnotificaties"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr ""
+msgstr "Stel uw popupnotificatievoorkeuren in"
+
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "<b>General Options</b>"
+msgstr "<b>Algemene opties</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "Bottom Left"
+msgstr "Linksonder"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "Bottom Right"
+msgstr "Rechtsonder"
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "Notification Settings"
+msgstr "Notificatie-instellingen"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "P_osition:"
+msgstr "P_ositie:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Top Left"
+msgstr "Linksboven"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Right"
+msgstr "Rechtsboven"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "_Preview"
+msgstr "_Preview"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "_Theme:"
+msgstr "_Thema:"
+
+#: ../src/daemon/daemon.c:1300
+#, c-format
+msgid "Exceeded maximum number of notifications"
+msgstr "Maximum aantal notificaties overschreden"
+
+#: ../src/daemon/daemon.c:1556
+#, c-format
+msgid "%u is not a valid notification ID"
+msgstr "%u is geen geldig notificatie-ID"
+
+#: ../src/daemon/sound.c:36
+msgid "Notification"
+msgstr "Notificatie"
