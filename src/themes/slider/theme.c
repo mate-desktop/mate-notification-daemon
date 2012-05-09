@@ -910,5 +910,5 @@ gboolean get_always_stack(GtkWidget* nw)
 
 gboolean theme_check_init(unsigned int major_ver, unsigned int minor_ver, unsigned int micro_ver)
 {
-	return major_ver == 0 && (minor_ver > 3 || (minor_ver == 3 && micro_ver >= 2));
+	return major_ver == NOTIFICATION_DAEMON_MAJOR_VERSION && minor_ver == NOTIFICATION_DAEMON_MINOR_VERSION && micro_ver == NOTIFICATION_DAEMON_MICRO_VERSION;
 }

@@ -3,7 +3,7 @@ dnl Process this file with autoconf to create configure.
 dnl ################################################################
 dnl # Initialize autoconf
 dnl ################################################################
-AC_INIT([mate-notification-daemon], [1.2.0], [http://www.mate-desktop.org])
+AC_INIT([mate-notification-daemon], [1.3.0], [http://www.mate-desktop.org])
 AC_PREREQ(2.63)
 
 AC_CONFIG_HEADERS([config.h])
@@ -13,8 +13,8 @@ AC_CONFIG_MACRO_DIR([macros])
 dnl ################################################################
 dnl # Version information
 dnl ################################################################
-NOTIFICATION_DAEMON_MAJOR_VERSION=0
-NOTIFICATION_DAEMON_MINOR_VERSION=5
+NOTIFICATION_DAEMON_MAJOR_VERSION=1
+NOTIFICATION_DAEMON_MINOR_VERSION=3
 NOTIFICATION_DAEMON_MICRO_VERSION=0
 NOTIFICATION_DAEMON_DEVEL_VERSION=0
 
@@ -257,6 +257,8 @@ src/Makefile
 src/daemon/Makefile
 src/capplet/Makefile
 src/themes/Makefile
+src/themes/coco/Makefile
+src/themes/nodoka/Makefile
 src/themes/slider/Makefile
 src/themes/standard/Makefile
 ])
