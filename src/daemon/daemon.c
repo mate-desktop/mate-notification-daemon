@@ -1035,6 +1035,49 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_path(const char* path)
 	return pixbuf;
 }
 
+static GdkPixbuf* _notify_daemon_scale_pixbuf(GdkPixbuf *pixbuf, gboolean no_stretch_hint)
+{
+	int pw;
+	int ph;
+	float scale_factor_x = 1.0;
+	float scale_factor_y = 1.0;
+	float scale_factor = 1.0;
+
+	pw = gdk_pixbuf_get_width (pixbuf);
+	ph = gdk_pixbuf_get_height (pixbuf);
+
+	/* Determine which dimension requires the smallest scale. */
+	scale_factor_x = (float) IMAGE_SIZE / (float) pw;
+	scale_factor_y = (float) IMAGE_SIZE / (float) ph;
+
+	if (scale_factor_x > scale_factor_y)
+	{
+		scale_factor = scale_factor_y;
+	}
+	else
+	{
+		scale_factor = scale_factor_x;
+	}
+
+	/* always scale down, allow to disable scaling up */
+	if (scale_factor < 1.0 || !no_stretch_hint)
+	{
+		int scale_x;
+		int scale_y;
+
+		scale_x = (int) (pw * scale_factor);
+		scale_y = (int) (ph * scale_factor);
+		return gdk_pixbuf_scale_simple (pixbuf,
+										scale_x,
+										scale_y,
+										GDK_INTERP_BILINEAR);
+	}
+	else
+	{
+		return g_object_ref (pixbuf);
+	}
+}
+
 static void window_clicked_cb(GtkWindow* nw, GdkEventButton* button, NotifyDaemon* daemon)
 {
 	if (daemon->priv->url_clicked_lock)
@@ -1446,8 +1489,13 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 	if (pixbuf != NULL)
 	{
-		theme_set_notification_icon (nw, pixbuf);
+		GdkPixbuf *scaled;
+		scaled = NULL;
+		scaled = _notify_daemon_scale_pixbuf (pixbuf, TRUE);
+		theme_set_notification_icon (nw, scaled);
 		g_object_unref (G_OBJECT (pixbuf));
+		if (scaled != NULL)
+			g_object_unref (scaled);
 	}
 
 	if (window_xid != None && !theme_get_always_stack (nw))
