@@ -322,7 +322,7 @@ static void notification_properties_dialog_preview(NotificationAppletDialog* dia
 		dialog->preview = NULL;
 	}
 
-	dialog->preview = notify_notification_new(_("Notification Test"), _("Just a test"), "mate-util", NULL);
+	dialog->preview = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information", NULL);
 
 	if (!notify_notification_show(dialog->preview, &error))
 	{
