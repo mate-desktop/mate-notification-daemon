@@ -232,7 +232,15 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 				theme_name = get_theme_name(filename);
 
 				/* FIXME: other solution than hardcode? */
-				if (g_str_equal(theme_name, "slider"))
+				if (g_str_equal(theme_name, "coco"))
+				{
+					theme_label = g_strdup(_("Coco"));
+				}
+				else if (g_str_equal(theme_name, "nodoka"))
+				{
+					theme_label = g_strdup(_("Nodoka"));
+				}
+				else if (g_str_equal(theme_name, "slider"))
 				{
 					theme_label = g_strdup(_("Slider"));
 				}
