@@ -113,9 +113,11 @@ dnl ---------------------------------------------------------------------------
 REQ_GLIB_VERSION=2.18.0
 REQ_DBUS_VERSION=0.78
 REQ_LIBCANBERRA_GTK_VERSION=0.4
+PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 pkg_modules="
 	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED, \
 	glib-2.0 >= $REQ_GLIB_VERSION, \
+        $GMODULE_ADD \
 	dbus-1 >= $REQ_DBUS_VERSION, \
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
         libcanberra-gtk >= $REQ_LIBCANBERRA_GTK_VERSION, \
