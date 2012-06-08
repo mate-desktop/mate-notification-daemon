@@ -122,7 +122,7 @@ pkg_modules="
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
         libcanberra-gtk >= $REQ_LIBCANBERRA_GTK_VERSION, \
 	mateconf-2.0, \
-	libwnck-1.0 \
+	libmatewnck \
         x11 \
 "
 PKG_CHECK_MODULES(NOTIFICATION_DAEMON, $pkg_modules)

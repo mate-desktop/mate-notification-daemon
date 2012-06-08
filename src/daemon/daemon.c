@@ -42,8 +42,7 @@
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
 
-#define WNCK_I_KNOW_THIS_IS_UNSTABLE
-#include <libwnck/libwnck.h>
+#include <libmatewnck/libmatewnck.h>
 
 #include "daemon.h"
 #include "engines.h"
@@ -1160,36 +1159,36 @@ static gboolean screensaver_active(GtkWidget* nw)
 
 static gboolean fullscreen_window_exists(GtkWidget* nw)
 {
-	WnckScreen* wnck_screen;
-	WnckWorkspace* wnck_workspace;
+	MatewnckScreen* matewnck_screen;
+	MatewnckWorkspace* matewnck_workspace;
 	GList* l;
 
 	#if (GDK_PIXBUF_MAJOR == 2) && (GDK_PIXBUF_MINOR < 22)
-		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_window_get_screen(gtk_widget_get_window(nw))));
+		matewnck_screen = matewnck_screen_get(GDK_SCREEN_XNUMBER(gdk_window_get_screen(gtk_widget_get_window(nw))));
 	#else
-		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_drawable_get_screen(GDK_DRAWABLE(GTK_WIDGET(nw)->window))));
+		matewnck_screen = matewnck_screen_get(GDK_SCREEN_XNUMBER(gdk_drawable_get_screen(GDK_DRAWABLE(GTK_WIDGET(nw)->window))));
 	#endif
 
-    wnck_screen_force_update (wnck_screen);
+    matewnck_screen_force_update (matewnck_screen);
 
-	wnck_workspace = wnck_screen_get_active_workspace (wnck_screen);
+	matewnck_workspace = matewnck_screen_get_active_workspace (matewnck_screen);
 
-	for (l = wnck_screen_get_windows_stacked (wnck_screen); l != NULL; l = l->next)
+	for (l = matewnck_screen_get_windows_stacked (matewnck_screen); l != NULL; l = l->next)
 	{
-		WnckWindow *wnck_win = (WnckWindow *) l->data;
+		MatewnckWindow *matewnck_win = (MatewnckWindow *) l->data;
 
-		if (wnck_window_is_on_workspace (wnck_win, wnck_workspace) && wnck_window_is_fullscreen (wnck_win) && wnck_window_is_active (wnck_win))
+		if (matewnck_window_is_on_workspace (matewnck_win, matewnck_workspace) && matewnck_window_is_fullscreen (matewnck_win) && matewnck_window_is_active (matewnck_win))
 		{
 			/*
 			 * Sanity check if the window is _really_ fullscreen to
-			 * work around a bug in libwnck that doesn't get all
+			 * work around a bug in libmatewnck that doesn't get all
 			 * unfullscreen events.
 			 */
-			int sw = wnck_screen_get_width (wnck_screen);
-			int sh = wnck_screen_get_height (wnck_screen);
+			int sw = matewnck_screen_get_width (matewnck_screen);
+			int sh = matewnck_screen_get_height (matewnck_screen);
 			int x, y, w, h;
 
-			wnck_window_get_geometry (wnck_win, &x, &y, &w, &h);
+			matewnck_window_get_geometry (matewnck_win, &x, &y, &w, &h);
 
 			if (sw == w && sh == h)
 			{
