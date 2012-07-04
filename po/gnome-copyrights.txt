@@ -1,0 +1,224 @@
+========== ar.po ==========
+# Arabic translations for notification-daemon package.
+# Copyright (C) 2007 THE notification-daemon'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Djihed Afifi <djihed@gmail.com>, 2007.
+#
+
+
+
+
+========== cs.po ==========
+# Czech translation for notification-daemon.
+# Copyright (C) 2010 the author(s) of notification-daemon.
+# This file is distributed under the same license as the notification-daemon package.
+# Petr Kovar <pknbe@volny.cz>, 2010.
+
+
+
+
+========== da.po ==========
+# Danish translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Joe Hansen (joedalton2@yahoo.dk), 2010.
+#
+
+
+
+
+========== de.po ==========
+# German translation for notification-daemon
+# Copyright (C) 2006 Christian Hammond
+# This file is distributed under the same license as the notification-daemon package.
+# Florian Steinel <steinel@pootle.wordforge.org.flonet.net>, 2007.
+# Mario Blättermann <mariobl@gnome.org>, 2010.
+#
+
+
+
+
+========== el.po ==========
+# Greek translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Kostas Papadimas <pkst@gmx.net>, 2010.
+#
+
+
+
+
+========== es.po ==========
+# translation of notification-daemon.po.master.po to Español
+# Spanish translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Jorge González <jorgegonz@svn.gnome.org>, 2010.
+
+
+
+
+========== et.po ==========
+# Estonian translation for notification-daemon.
+# Copyright (C) 2010 Free Software Foundation, Inc.
+# This file is distributed under the same license as the notification-daemon package.
+# Rene Pärts <rene87@hot.ee>, 2010.
+#
+
+
+
+
+========== fr.po ==========
+# French translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+#
+# Claude Paroz <claude@2xlibre.net>, 2010.
+#
+
+
+
+
+========== gl.po ==========
+# Galician translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Fran Diéguez <frandieguez@ubuntu.com>, 2010.
+#
+
+
+
+
+========== hu.po ==========
+# Hungarian translation for notification-daemon
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the notification-daemon package.
+#
+# Gabor Kelemen <kelemeng at mate dot hu>, 2010.
+
+
+
+
+========== it.po ==========
+# Italian translation for notification-daemon package.
+# Copyright (C) 2007, 2008, 2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the notification-daemon package.
+# Luca Ferretti <elle.uca@libero.it>, 2007, 2008, 2009
+#
+
+
+
+
+========== ja.po ==========
+# $notification-daemon ja.po.
+# Copyright (C) 2006,2007,2009 Free Software Foundation, Inc.
+# This file is distributed under the same license as the notification-daemon package.
+# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2006,2007,2009.
+#
+
+
+
+
+========== lt.po ==========
+# Lithuanian translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Aurimas Černius <aurisc4@gmail.com>, 2010.
+
+
+
+
+========== nb.po ==========
+# Norwegian bokmål translation of notification-daemon.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Kjartan Maraas <kmaraas@broadpark.no>, 2010.
+#
+
+
+
+
+========== nl.po ==========
+# Dutch translation for notification-daemon
+# Copyright (C) 2006 Christian Hammond
+# This file is distributed under the same license as the notification-daemon package.
+#
+# Wouter Bolsterlee <uws+mate@xs4all.nl>, 2006.
+#
+
+
+
+
+========== pa.po ==========
+# Punjabi translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+#
+# A S Alam <aalam@users.sf.net>, 2010.
+
+
+
+
+========== pl.po ==========
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Aviary.pl
+# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
+# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
+# matepl@aviary.pl
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+
+========== pt_BR.po ==========
+# Brazilian Portuguese translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# Henrique P. Machado <hpmachado@gnome.org>, 2010.
+# André Gondim <andregondim@ubuntu.com>, 2010.
+#
+
+
+
+
+========== ru.po ==========
+# Russian translation for notification-daemon
+# Copyright (c) (c) 2006 Canonical Ltd, and Rosetta Contributors 2006
+# This file is distributed under the same license as the notification-daemon package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2006.
+#
+
+
+
+
+========== sl.po ==========
+# Slovenian translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+#
+# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010.
+#
+
+
+
+
+========== sv.po ==========
+# Swedish translation for notification-daemon.
+# Copyright (C) 2006-2010 Free Software Foundation
+# This file is distributed under the same license as the galago package.
+# Daniel Nylander <po@danielnylander.se>, 2006, 2010.
+#
+
+
+
+
+========== zh_CN.po ==========
+# Chinese (China) translation for notification-daemon.
+# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
+# This file is distributed under the same license as the notification-daemon package.
+# YunQiang Su <wzssyqa@gmail.com>, 2010.
+#
+
+
+
+
