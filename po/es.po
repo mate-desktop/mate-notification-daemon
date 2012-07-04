@@ -1,109 +1,151 @@
-# translation of notification-daemon.po.master.po to Español
-# Spanish translation for notification-daemon.
-# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
-# This file is distributed under the same license as the notification-daemon package.
-# Jorge González <jorgegonz@svn.gnome.org>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+#   <lutusq@lutusq.jazztel.es>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: notification-daemon.po.master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?"
-"product=notification-daemon&component=general\n"
-"POT-Creation-Date: 2010-02-07 05:36+0000\n"
-"PO-Revision-Date: 2010-02-15 11:30+0100\n"
-"Last-Translator: Jorge González <jorgegonz@svn.gnome.org>\n"
-"Language-Team: Español <mate-es-list@gnome.org>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2012-07-04 15:34+0200\n"
+"PO-Revision-Date: 2012-07-04 13:34+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: Spanish (Castilian) (http://www.transifex.com/projects/p/MATE/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: ../data/notification-daemon.schemas.in.h:1
-msgid "Current theme"
-msgstr "Tema actual"
-
-#: ../data/notification-daemon.schemas.in.h:2
-msgid "Default Sound"
-msgstr "Sonido predeterminado"
-
-#: ../data/notification-daemon.schemas.in.h:3
-msgid ""
-"Default popup location on the workspace for stack notifications. Allowed "
-"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr ""
-"Ubicación predeterminada de la ventana emergente en el área de trabajo para "
-"la pila de notificaciones. Los valores permitidos son: «top_left», "
-"«top_right», «bottom_left» y «bottom_right»"
-
-#: ../data/notification-daemon.schemas.in.h:4
+#: ../data/mate-notification-daemon.schemas.in.h:1
 msgid "Popup location"
 msgstr "Ubicación de la ventana emergente"
 
-#: ../data/notification-daemon.schemas.in.h:5
-msgid "Sound Enabled"
-msgstr "Sonido activado"
-
-#: ../data/notification-daemon.schemas.in.h:6
+#: ../data/mate-notification-daemon.schemas.in.h:2
 msgid ""
-"The default sound file used unless a notification supplies the 'sound-file' "
-"or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr ""
-"El archivo de sonido predeterminado que usar a no ser que la notificación "
-"proporcione las opciones «sound-file» o «suppress-sound». Déjelo vacío para no "
-"tener sonido predeterminado."
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr "Ubicación predeterminada de la ventana emergente en el área de trabajo para la pila de notificaciones. Los valores permitidos son: «top_left», «top_right», «bottom_left» y «bottom_right»"
 
-#: ../data/notification-daemon.schemas.in.h:7
+#: ../data/mate-notification-daemon.schemas.in.h:3
+msgid "Current theme"
+msgstr "Tema actual"
+
+#: ../data/mate-notification-daemon.schemas.in.h:4
 msgid "The theme used when displaying notifications."
 msgstr "El tema usado al mostrar las notificaciones."
 
-#: ../data/notification-daemon.schemas.in.h:8
+#: ../data/mate-notification-daemon.schemas.in.h:5
+msgid "Sound Enabled"
+msgstr "Sonido activado"
+
+#: ../data/mate-notification-daemon.schemas.in.h:6
 msgid "Turns on and off sound support for notifications."
 msgstr "Activar y desactivar el soporte de sonido para las notificaciones."
 
-#: ../src/capplet/mate-notification-properties.c:293
+#: ../data/mate-notification-daemon.schemas.in.h:7
+msgid "Default Sound"
+msgstr "Sonido predeterminado"
+
+#: ../data/mate-notification-daemon.schemas.in.h:8
+msgid ""
+"The default sound file used unless a notification supplies the 'sound-file' "
+"or 'suppress-sound' hint. Leave empty for no default sound."
+msgstr "El archivo de sonido predeterminado que usar a no ser que la notificación proporcione las opciones «sound-file» o «suppress-sound». Déjelo vacío para no tener sonido predeterminado."
+
+#: ../src/capplet/mate-notification-properties.c:237
+msgid "Coco"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:241
+msgid "Nodoka"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:245
 msgid "Slider"
 msgstr "Deslizador"
 
-#: ../src/capplet/mate-notification-properties.c:295
+#: ../src/capplet/mate-notification-properties.c:249
 msgid "Standard theme"
 msgstr "Tema estándar"
 
-#: ../src/capplet/mate-notification-properties.c:391
+#: ../src/capplet/mate-notification-properties.c:320
 msgid "Error initializing libmatenotify"
 msgstr "Error al iniciar libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:403
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Notification Test"
 msgstr "Prueba de notificación"
 
-#: ../src/capplet/mate-notification-properties.c:404
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Just a test"
 msgstr "Simplemente una prueba"
 
-#: ../src/capplet/mate-notification-properties.c:411
+#: ../src/capplet/mate-notification-properties.c:337
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Error al mostrar la notificación: %s"
 
-#: ../src/capplet/mate-notification-properties.c:472
+#: ../src/capplet/mate-notification-properties.c:392
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "No se pudo cargar el archivo de interfaz de usuario: %s"
 
-#: ../src/capplet/notification-properties.desktop.in.h:1
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
 msgstr "Notificaciones emergentes"
 
-#: ../src/capplet/notification-properties.desktop.in.h:2
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
 msgstr "Configurar las preferencias de sus notificaciones emergentes"
 
-#: ../src/daemon/daemon.c:1237
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "Notification Settings"
+msgstr "Configuración de notificaciones"
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "<b>General Options</b>"
+msgstr "<b>Opciones generales</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "P_osition:"
+msgstr "P_osción:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "_Theme:"
+msgstr "_Tema:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Preview"
+msgstr "Vista _Previa"
+
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Top Left"
+msgstr "Arriba a la izquierda"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Right"
+msgstr "Arriba a la derecha"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Bottom Left"
+msgstr "Abajo a la izquierda"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Bottom Right"
+msgstr "Abajo a la derecha"
+
+#: ../src/daemon/daemon.c:1342
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Se excedió el número máximo de notificaciones"
 
-#: ../src/daemon/daemon.c:1468
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no es un ID de notificación válido"
@@ -111,36 +153,3 @@ msgstr "%u no es un ID de notificación válido"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Notificación"
-
-#~ msgid "Top Left"
-#~ msgstr "Arriba a la izquierda"
-
-#~ msgid "Top Right"
-#~ msgstr "Arriba a la derecha"
-
-#~ msgid "Bottom Left"
-#~ msgstr "Abajo a la izquierda"
-
-#~ msgid "Bottom Right"
-#~ msgstr "Abajo a la derecha"
-
-#~ msgid "Unable to locate glade file '%s'"
-#~ msgstr "No se pudo localizar el archivo glade «%s»"
-
-#~ msgid "      "
-#~ msgstr "      "
-
-#~ msgid "<b>General Options</b>"
-#~ msgstr "<b>Opciones generales</b>"
-
-#~ msgid "Notification Settings"
-#~ msgstr "Ajustes de las notificaciones"
-
-#~ msgid "P_osition:"
-#~ msgstr "_Posición:"
-
-#~ msgid "_Preview"
-#~ msgstr "Vista _previa"
-
-#~ msgid "_Theme:"
-#~ msgstr "_Tema:"

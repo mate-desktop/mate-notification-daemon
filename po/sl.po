@@ -1,101 +1,151 @@
-# Slovenian translation for notification-daemon.
-# Copyright (C) 2010 notification-daemon's COPYRIGHT HOLDER
-# This file is distributed under the same license as the notification-daemon package.
-#
-# Andrej Žnidaršič <andrej.znidarsic@gmail.com>, 2010.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+#   <marko.chamillionaire@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: notification-daemon master\n"
-"Report-Msgid-Bugs-To: http://bugzilla.gnome.org/enter_bug.cgi?product=notification-daemon&component=general\n"
-"POT-Creation-Date: 2010-02-11 22:36+0000\n"
-"PO-Revision-Date: 2010-04-24 08:10+0100\n"
-"Last-Translator: Matej Urbančič <mateju@svn.gnome.org>\n"
-"Language-Team: Slovenian <mate-si@googlegroups.com>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2012-07-04 15:34+0200\n"
+"PO-Revision-Date: 2012-07-04 13:34+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: Slovenian (http://www.transifex.com/projects/p/MATE/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n%100==4 ? 3 : 0);\n"
-"X-Poedit-Language: Slovenian\n"
-"X-Poedit-Country: SLOVENIA\n"
-"X-Poedit-SourceCharset: utf-8\n"
+"Language: sl\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3)\n"
 
-#: ../data/notification-daemon.schemas.in.h:1
-msgid "Current theme"
-msgstr "Trenutna tema"
-
-#: ../data/notification-daemon.schemas.in.h:2
-msgid "Default Sound"
-msgstr "Privzeti zvok"
-
-#: ../data/notification-daemon.schemas.in.h:3
-msgid "Default popup location on the workspace for stack notifications. Allowed values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Privzeti položaj pojavnega obvestila na delovni površini za sklad obvestil. Dovoljene vrednosti:  \"top_left\",\"top_right\",\"bottom_left\" in \"bottom_right\""
-
-#: ../data/notification-daemon.schemas.in.h:4
+#: ../data/mate-notification-daemon.schemas.in.h:1
 msgid "Popup location"
 msgstr "Položaj pojavnega obvestila"
 
-#: ../data/notification-daemon.schemas.in.h:5
-msgid "Sound Enabled"
-msgstr "Zvok je omogočen"
+#: ../data/mate-notification-daemon.schemas.in.h:2
+msgid ""
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr "Privzeti položaj pojavnega obvestila na delovni površini za sklad obvestil. Dovoljene vrednosti:  \"top_left\",\"top_right\",\"bottom_left\" in \"bottom_right\""
 
-#: ../data/notification-daemon.schemas.in.h:6
-msgid "The default sound file used unless a notification supplies the 'sound-file' or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "Uporabljena je privzeta zvočna datoteka, razen če obvestilo zagotovi namig 'zvočna-datoteka' ali 'prepreči-zvok'. Pustite prazno za onemogočenje privzetega zvoka."
+#: ../data/mate-notification-daemon.schemas.in.h:3
+msgid "Current theme"
+msgstr "Trenutna tema"
 
-#: ../data/notification-daemon.schemas.in.h:7
+#: ../data/mate-notification-daemon.schemas.in.h:4
 msgid "The theme used when displaying notifications."
 msgstr "Tema za prikaz obvestil."
 
-#: ../data/notification-daemon.schemas.in.h:8
+#: ../data/mate-notification-daemon.schemas.in.h:5
+msgid "Sound Enabled"
+msgstr "Zvok je omogočen"
+
+#: ../data/mate-notification-daemon.schemas.in.h:6
 msgid "Turns on and off sound support for notifications."
 msgstr "Vklopi in izklopi zvočno podporo obvestil."
 
-#: ../src/capplet/mate-notification-properties.c:293
+#: ../data/mate-notification-daemon.schemas.in.h:7
+msgid "Default Sound"
+msgstr "Privzeti zvok"
+
+#: ../data/mate-notification-daemon.schemas.in.h:8
+msgid ""
+"The default sound file used unless a notification supplies the 'sound-file' "
+"or 'suppress-sound' hint. Leave empty for no default sound."
+msgstr "Uporabljena je privzeta zvočna datoteka, razen če obvestilo zagotovi namig 'zvočna-datoteka' ali 'prepreči-zvok'. Pustite prazno za onemogočenje privzetega zvoka."
+
+#: ../src/capplet/mate-notification-properties.c:237
+msgid "Coco"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:241
+msgid "Nodoka"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:245
 msgid "Slider"
 msgstr "Drsnik"
 
-#: ../src/capplet/mate-notification-properties.c:295
+#: ../src/capplet/mate-notification-properties.c:249
 msgid "Standard theme"
 msgstr "Običajna tema"
 
-#: ../src/capplet/mate-notification-properties.c:391
+#: ../src/capplet/mate-notification-properties.c:320
 msgid "Error initializing libmatenotify"
 msgstr "Napaka med zaganjanjem libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:403
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Notification Test"
 msgstr "Preizkus obvestila"
 
-#: ../src/capplet/mate-notification-properties.c:404
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Just a test"
 msgstr "Samo preizkus"
 
-#: ../src/capplet/mate-notification-properties.c:411
+#: ../src/capplet/mate-notification-properties.c:337
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Napaka med prikazovanjem obvestila: %s"
 
-#: ../src/capplet/mate-notification-properties.c:472
+#: ../src/capplet/mate-notification-properties.c:392
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Ni mogoče naložiti datoteke uporabniškega vmesnika: %s"
 
-#: ../src/capplet/notification-properties.desktop.in.h:1
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
 msgstr "Pojavna obvestila"
 
-#: ../src/capplet/notification-properties.desktop.in.h:2
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
 msgstr "Nastavitev možnosti pojavnih obvestil "
 
-#: ../src/daemon/daemon.c:1237
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "Notification Settings"
+msgstr "Nastavitve obvestil"
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "<b>General Options</b>"
+msgstr "<b>Splošne možnosti</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "      "
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "P_osition:"
+msgstr "P_ozicija:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "_Theme:"
+msgstr "_Tema:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Preview"
+msgstr "_Predogled"
+
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Top Left"
+msgstr "Zgoraj levo"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Right"
+msgstr "Zgoraj desno"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Bottom Left"
+msgstr "Spodaj levo"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Bottom Right"
+msgstr "Spodaj desno"
+
+#: ../src/daemon/daemon.c:1342
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Največje število obvestil je preseženo"
 
-#: ../src/daemon/daemon.c:1468
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ni veljaven ID obvestila"
@@ -103,39 +153,3 @@ msgstr "%u ni veljaven ID obvestila"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Obvestilo"
-
-#~ msgid "Top Left"
-#~ msgstr "Zgoraj levo"
-
-#~ msgid "Top Right"
-#~ msgstr "Zgoraj desno"
-
-#~ msgid "Bottom Left"
-#~ msgstr "Spodaj levo"
-
-#~ msgid "Bottom Right"
-#~ msgstr "Spodaj desno"
-
-#~ msgid "Unable to locate glade file '%s'"
-#~ msgstr "Glade datoteke '%s' ni mogoče najti"
-
-#~ msgid "      "
-#~ msgstr "      "
-
-#~ msgid "<b>General Options</b>"
-#~ msgstr "<b>Splošne možnosti</b>"
-
-#~ msgid "Notification Settings"
-#~ msgstr "Nastavitve obvestil"
-
-#~ msgid "P_osition:"
-#~ msgstr "P_oložaj:"
-
-#~ msgid "_Preview"
-#~ msgstr "_Predogled"
-
-#~ msgid "_Theme:"
-#~ msgstr "_Tema:"
-
-#~ msgid "Ubuntu theme"
-#~ msgstr "Tema Ubuntu"

@@ -7,11 +7,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/Perberos/Mate-Desktop-Environment/issues\n"
-"POT-Creation-Date: 2012-01-02 13:44+0100\n"
-"PO-Revision-Date: 2012-01-06 01:52+0000\n"
-"Last-Translator: Asier Iturralde Sarasola <asier.iturralde@gmail.com>\n"
-"Language-Team: Basque (http://www.transifex.net/projects/p/MATE/language/eu/)\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2012-07-04 15:34+0200\n"
+"PO-Revision-Date: 2012-07-04 13:34+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: Basque (http://www.transifex.com/projects/p/MATE/language/eu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -19,67 +19,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../data/mate-notification-daemon.schemas.in.h:1
-msgid "Current theme"
-msgstr "Uneko gaia"
+msgid "Popup location"
+msgstr "Laster-leihoen kokalekua"
 
 #: ../data/mate-notification-daemon.schemas.in.h:2
-msgid "Default Sound"
-msgstr "Soinu lehenetsia"
-
-#: ../data/mate-notification-daemon.schemas.in.h:3
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
 
+#: ../data/mate-notification-daemon.schemas.in.h:3
+msgid "Current theme"
+msgstr "Uneko gaia"
+
 #: ../data/mate-notification-daemon.schemas.in.h:4
-msgid "Popup location"
-msgstr "Laster-leihoen kokalekua"
+msgid "The theme used when displaying notifications."
+msgstr "Jakinarazpenak bistaratzean erabiltzen den gaia"
 
 #: ../data/mate-notification-daemon.schemas.in.h:5
 msgid "Sound Enabled"
 msgstr "Soinua gaituta"
 
 #: ../data/mate-notification-daemon.schemas.in.h:6
+msgid "Turns on and off sound support for notifications."
+msgstr ""
+
+#: ../data/mate-notification-daemon.schemas.in.h:7
+msgid "Default Sound"
+msgstr "Soinu lehenetsia"
+
+#: ../data/mate-notification-daemon.schemas.in.h:8
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
 msgstr ""
 
-#: ../data/mate-notification-daemon.schemas.in.h:7
-msgid "The theme used when displaying notifications."
-msgstr "Jakinarazpenak bistaratzean erabiltzen den gaia"
-
-#: ../data/mate-notification-daemon.schemas.in.h:8
-msgid "Turns on and off sound support for notifications."
+#: ../src/capplet/mate-notification-properties.c:237
+msgid "Coco"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:237
+#: ../src/capplet/mate-notification-properties.c:241
+msgid "Nodoka"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:245
 msgid "Slider"
 msgstr "Graduatzailea"
 
-#: ../src/capplet/mate-notification-properties.c:241
+#: ../src/capplet/mate-notification-properties.c:249
 msgid "Standard theme"
 msgstr "Gai estandarra"
 
-#: ../src/capplet/mate-notification-properties.c:312
+#: ../src/capplet/mate-notification-properties.c:320
 msgid "Error initializing libmatenotify"
 msgstr "Errorea libmatenotify hasieratzean"
 
-#: ../src/capplet/mate-notification-properties.c:325
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Notification Test"
 msgstr "Jakinarazpen proba"
 
-#: ../src/capplet/mate-notification-properties.c:325
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Just a test"
 msgstr "Proba bat baino ez"
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:337
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Errorea jakinarazpena bistaratzean: %s"
 
-#: ../src/capplet/mate-notification-properties.c:384
+#: ../src/capplet/mate-notification-properties.c:392
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Ezin izan da erabiltzaile-interfaze fitxategia kargatu: %s"
@@ -93,28 +101,28 @@ msgid "Set your pop-up notification preferences"
 msgstr "Ezarri laster-leiho jakinarazpenen hobespenak"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
-msgid "      "
-msgstr "      "
+msgid "Notification Settings"
+msgstr "Jakinarazpenen ezarpenak"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "<b>General Options</b>"
 msgstr "<b>Aukera orokorrak</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
-msgid "Bottom Left"
-msgstr "Behean ezkerrean"
+msgid "      "
+msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "Bottom Right"
-msgstr "Behean eskuinean"
+msgid "P_osition:"
+msgstr "K_okalekua:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
-msgid "Notification Settings"
-msgstr "Jakinarazpenen ezarpenak"
+msgid "_Theme:"
+msgstr "_Gaia"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
-msgid "P_osition:"
-msgstr "K_okalekua"
+msgid "_Preview"
+msgstr "_Aurrebista"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Top Left"
@@ -125,19 +133,19 @@ msgid "Top Right"
 msgstr "Goian eskuinean"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
-msgid "_Preview"
-msgstr "_Aurrebista"
+msgid "Bottom Left"
+msgstr "Behean ezkerrean"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
-msgid "_Theme:"
-msgstr "_Gaia"
+msgid "Bottom Right"
+msgstr "Behean eskuinean"
 
-#: ../src/daemon/daemon.c:1300
+#: ../src/daemon/daemon.c:1342
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Gehienezko jakinarazpen kopurua gainditu da"
 
-#: ../src/daemon/daemon.c:1556
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ez da baliozko jakinarazpen ID bat"

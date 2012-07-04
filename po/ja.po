@@ -1,140 +1,154 @@
-# $notification-daemon ja.po.
-# Copyright (C) 2006,2007,2009 Free Software Foundation, Inc.
-# This file is distributed under the same license as the notification-daemon package.
-# Takeshi AIHANA <takeshi.aihana@gmail.com>, 2006,2007,2009.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: notification-daemon Ver0.4.0\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2009-01-24 23:37+0900\n"
-"PO-Revision-Date: 2009-01-24 23:37+0900\n"
-"Last-Translator: Takeshi AIHANA <takeshi.aihana@gmail.com>\n"
-"Language-Team: Japanese <gnome-translation@gnome.gr.jp>\n"
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"POT-Creation-Date: 2012-07-04 15:34+0200\n"
+"PO-Revision-Date: 2012-07-04 13:34+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0\n"
 
-#: ../data/notification-daemon.schemas.in.h:1
-msgid "Current theme"
-msgstr "現在使用しているテーマ"
-
-#: ../data/notification-daemon.schemas.in.h:2
-msgid "Default Sound"
-msgstr "デフォルトのサウンド"
-
-#: ../data/notification-daemon.schemas.in.h:3
-msgid ""
-"Default popup location on the workspace for stack notifications. Allowed "
-"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr ""
-"通知情報を積み重ねてポップアップ表示するデフォルトの場所です。指定可能な値: "
-"\"top_left\"、\"top_right\"、\"bottom_left\"、\"bottom_right\""
-
-#: ../data/notification-daemon.schemas.in.h:4
+#: ../data/mate-notification-daemon.schemas.in.h:1
 msgid "Popup location"
 msgstr "ポップアップ表示する場所"
 
-#: ../data/notification-daemon.schemas.in.h:5
-msgid "Sound Enabled"
-msgstr "サウンドを有効にするかどうか"
-
-#: ../data/notification-daemon.schemas.in.h:6
+#: ../data/mate-notification-daemon.schemas.in.h:2
 msgid ""
-"The default sound file used unless a notification supplies the 'sound-file' "
-"or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr ""
-"'sound-file' または 'suppress-sound' で通知する場合を除いて、デフォルトで使用"
-"するサウンド・ファイルです。デフォルトのサウンドを指定しない場合は何も入力せ"
-"ずに空のままにしておいて下さい。"
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr "通知情報を積み重ねてポップアップ表示するデフォルトの場所です。指定可能な値: \"top_left\"、\"top_right\"、\"bottom_left\"、\"bottom_right\""
 
-#: ../data/notification-daemon.schemas.in.h:7
+#: ../data/mate-notification-daemon.schemas.in.h:3
+msgid "Current theme"
+msgstr "現在使用しているテーマ"
+
+#: ../data/mate-notification-daemon.schemas.in.h:4
 msgid "The theme used when displaying notifications."
 msgstr "通知ダイアログを表示する際に使用するテーマです。"
 
-#: ../data/notification-daemon.schemas.in.h:8
+#: ../data/mate-notification-daemon.schemas.in.h:5
+msgid "Sound Enabled"
+msgstr "サウンドを有効にするかどうか"
+
+#: ../data/mate-notification-daemon.schemas.in.h:6
 msgid "Turns on and off sound support for notifications."
 msgstr "通知時にサウンドを鳴らすかどうかを指定します。"
 
-#: ../src/capplet/mate-notification-properties.c:79
-msgid "Top Left"
-msgstr "左上隅"
+#: ../data/mate-notification-daemon.schemas.in.h:7
+msgid "Default Sound"
+msgstr "デフォルトのサウンド"
 
-#: ../src/capplet/mate-notification-properties.c:80
-msgid "Top Right"
-msgstr "右上隅"
+#: ../data/mate-notification-daemon.schemas.in.h:8
+msgid ""
+"The default sound file used unless a notification supplies the 'sound-file' "
+"or 'suppress-sound' hint. Leave empty for no default sound."
+msgstr "'sound-file' または 'suppress-sound' で通知する場合を除いて、デフォルトで使用するサウンド・ファイルです。デフォルトのサウンドを指定しない場合は何も入力せずに空のままにしておいて下さい。"
 
-#: ../src/capplet/mate-notification-properties.c:81
-msgid "Bottom Left"
-msgstr "左下隅"
+#: ../src/capplet/mate-notification-properties.c:237
+msgid "Coco"
+msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:82
-msgid "Bottom Right"
-msgstr "右下隅"
+#: ../src/capplet/mate-notification-properties.c:241
+msgid "Nodoka"
+msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:327
-msgid "Ubuntu theme"
-msgstr "Ubuntu のテーマ"
+#: ../src/capplet/mate-notification-properties.c:245
+msgid "Slider"
+msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:249
 msgid "Standard theme"
 msgstr "標準のテーマ"
 
-#: ../src/capplet/mate-notification-properties.c:422
+#: ../src/capplet/mate-notification-properties.c:320
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify の初期化に失敗しました"
 
-#: ../src/capplet/mate-notification-properties.c:435
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Notification Test"
 msgstr "ポップアップ通知のテスト"
 
-#: ../src/capplet/mate-notification-properties.c:436
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Just a test"
 msgstr "テスト中です"
 
-#: ../src/capplet/mate-notification-properties.c:443
+#: ../src/capplet/mate-notification-properties.c:337
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "ポップアップ通知に失敗しました: %s"
 
-#: ../src/capplet/mate-notification-properties.c:500
+#: ../src/capplet/mate-notification-properties.c:392
 #, c-format
-msgid "Unable to locate glade file '%s'"
-msgstr ".glade ファイルを特定できません: %s"
+msgid "Could not load user interface file: %s"
+msgstr ""
 
-#: ../src/capplet/notification-properties.desktop.in.h:1
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
 msgstr "ポップアップ通知の設定"
 
-#: ../src/capplet/notification-properties.desktop.in.h:2
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
 msgstr "ポップアップして通知する方法を設定します"
 
-#: ../src/capplet/notification-properties.glade.h:1
-msgid "      "
-msgstr "      "
-
-#: ../src/capplet/notification-properties.glade.h:2
-msgid "<b>General Options</b>"
-msgstr "<b>全般のオプション</b>"
-
-#: ../src/capplet/notification-properties.glade.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
 msgstr "ポップアップ通知の設定"
 
-#: ../src/capplet/notification-properties.glade.h:4
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "<b>General Options</b>"
+msgstr "<b>全般のオプション</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
 msgstr "位置(_O):"
 
-#: ../src/capplet/notification-properties.glade.h:5
-msgid "_Preview"
-msgstr "プレビューする(_P)"
-
-#: ../src/capplet/notification-properties.glade.h:6
+#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
 msgstr "テーマ(_T):"
 
-#: ../src/daemon/daemon.c:1362
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Preview"
+msgstr "プレビューする(_P)"
+
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Top Left"
+msgstr "左上隅"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Right"
+msgstr "右上隅"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Bottom Left"
+msgstr "左下隅"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Bottom Right"
+msgstr "右下隅"
+
+#: ../src/daemon/daemon.c:1342
+#, c-format
+msgid "Exceeded maximum number of notifications"
+msgstr ""
+
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u は妥当な通知 ID ではありません"
+
+#: ../src/daemon/sound.c:36
+msgid "Notification"
+msgstr ""
