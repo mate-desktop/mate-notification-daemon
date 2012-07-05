@@ -1,3 +1,161 @@
+commit 306d7aca16e3ec6498414be1d289bb9e708a6259
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Wed Jul 4 15:37:59 2012 +0200
+
+    sync translations with transifex
+
+ po/LINGUAS  |    9 +++
+ po/af.po    |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/ar.po    |  161 ++++++++++++++++++++++++++++++++++++++++++++--------
+ po/ast.po   |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/ca.po    |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/cs.po    |  177 ++++++++++++++++++++++++++++++----------------------------
+ po/da.po    |  142 ++++++++++++++++++++++++++++++----------------
+ po/de.po    |   92 ++++++++++++++++--------------
+ po/el.po    |  147 ++++++++++++++++++++++++++++++------------------
+ po/es.po    |  177 ++++++++++++++++++++++++++++++----------------------------
+ po/es_CL.po |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/et.po    |  121 +++++++++++++++++++++++++++++----------
+ po/eu.po    |   90 ++++++++++++++++--------------
+ po/fr.po    |  169 ++++++++++++++++++++++++++++++-------------------------
+ po/gl.po    |  151 +++++++++++++++++++++++++------------------------
+ po/he.po    |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/hu.po    |  154 +++++++++++++++++++++++++-------------------------
+ po/id.po    |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/it.po    |  107 +++++++++++++++++------------------
+ po/ja.po    |  170 +++++++++++++++++++++++++++++--------------------------
+ po/lt.po    |  152 +++++++++++++++++++++++++------------------------
+ po/nb.po    |  126 ++++++++++++++++++++++++++++-------------
+ po/nl.po    |   92 ++++++++++++++++--------------
+ po/pa.po    |  153 +++++++++++++++++++++++++-------------------------
+ po/pl.po    |  156 +++++++++++++++++++++++++--------------------------
+ po/pt.po    |  155 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/pt_BR.po |  151 +++++++++++++++++++++++++------------------------
+ po/ru.po    |  179 ++++++++++++++++++++++++++++++----------------------------
+ po/sl.po    |  180 ++++++++++++++++++++++++++++++++---------------------------
+ po/sv.po    |  168 ++++++++++++++++++++++++++++++++-----------------------
+ po/tr.po    |  154 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/uk.po    |  154 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ po/zh_CN.po |  149 +++++++++++++++++++++++++------------------------
+ 33 files changed, 3308 insertions(+), 1458 deletions(-)
+
+commit eb124c09f7431ff65510faeb8328b2f96cd20dca
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Wed Jul 4 15:35:43 2012 +0200
+
+    add gnome copyrights file
+
+ po/gnome-copyrights.txt |  224 +++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 224 insertions(+)
+
+commit 6f9d49a3a1a6981f0cc09ae30d63505585e60c76
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Fri Jun 8 11:46:35 2012 +0200
+
+    port to libmatewnck
+
+ configure.ac              |    2 +-
+ distro/archlinux/PKGBUILD |    2 +-
+ src/daemon/daemon.c       |   29 ++++++++++++++---------------
+ 3 files changed, 16 insertions(+), 17 deletions(-)
+
+commit 3695f8d4564daf9a2149e9fb956b55f265a4257b
+Merge: 73f4151 941db15
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Wed May 16 03:40:02 2012 -0700
+
+    Merge pull request #5 from MDykstra/master
+    
+    backward compatible dependency on gmodule-2.0
+
+commit 941db158dd9b8feba94c9b2b6367ae255539ff2f
+Author: Marcel Dijkstra <marcel.dykstra@gmail.com>
+Date:   Wed May 16 12:39:01 2012 +0200
+
+    only depend on gmodule-2.0 if it exists
+
+ configure.ac |    2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 73f4151156db00b2a0239fe45042588ae548ef3e
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sun May 13 17:39:11 2012 +0200
+
+    make new themes names translatable
+
+ src/capplet/mate-notification-properties.c |   10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+commit 969f937d75533119f617feecce1cfbb43cc528c8
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sat May 12 16:19:29 2012 +0200
+
+    bump version to 1.3.1
+
+ configure.ac |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit ba4a0d842f8e9c5beffc25ca62b72bf7a86c83fb
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sat May 12 16:18:40 2012 +0200
+
+    scale icon if size is greater than IMAGE_SIZE
+
+ src/daemon/daemon.c |   50 +++++++++++++++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 49 insertions(+), 1 deletion(-)
+
+commit b915b2e6dcc1ff03f8768bd8f28b877ec28ed372
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sat May 12 16:18:18 2012 +0200
+
+    fix icon in preview dialog
+
+ src/capplet/mate-notification-properties.c |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit b67c6422995a9459548f478aa61a4dd3ec0437c0
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Wed May 9 18:03:07 2012 +0200
+
+    add coco (notify-osd like) and nodoka (from fedora) themes, start 1.3 release
+
+ AUTHORS                          |    7 +
+ configure.ac                     |    8 +-
+ src/themes/Makefile.am           |    2 +-
+ src/themes/coco/Makefile.am      |    9 +
+ src/themes/coco/coco-theme.c     |  629 +++++++++++++++++++++++
+ src/themes/nodoka/Makefile.am    |    9 +
+ src/themes/nodoka/nodoka-theme.c | 1032 ++++++++++++++++++++++++++++++++++++++
+ src/themes/slider/theme.c        |    2 +-
+ 8 files changed, 1693 insertions(+), 5 deletions(-)
+
+commit 07a45e51f10d27b201004b661812eed107c5d831
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Thu Feb 23 15:31:56 2012 +0100
+
+    update translations (de, eu, nl)
+    eu is a new translation
+
+ po/LINGUAS         |    1 +
+ po/Makefile.in.in~ |  217 ----------------------------------------------------
+ po/de.po           |  144 +++++++++++++++++-----------------
+ po/eu.po           |  147 +++++++++++++++++++++++++++++++++++
+ po/nl.po           |  148 +++++++++++++++++++++++++++++------
+ 5 files changed, 347 insertions(+), 310 deletions(-)
+
+commit 03d844827da69b46f7a9791c46e544954242b0ba
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Wed Feb 22 21:19:55 2012 -0500
+
+    Preparing for 1.2 release
+
+ AUTHORS      |   51 +++++-----
+ ChangeLog    |  291 +++++++++++++++++++++++++++++++++++++++++++++++++++-------
+ README       |    1 +
+ autogen.sh   |    4 +-
+ configure.ac |    2 +-
+ 5 files changed, 288 insertions(+), 61 deletions(-)
+
 commit b203c311dc9e5edf1f62c4e3170a0f76a2b9643e
 Author: Perberos <perberos@gmail.com>
 Date:   Mon Jan 30 13:14:50 2012 -0300
@@ -5,7 +163,7 @@ Date:   Mon Jan 30 13:14:50 2012 -0300
     set patch on archlinux script
 
  distro/archlinux/PKGBUILD |   13 ++++++++-----
- 1 files changed, 8 insertions(+), 5 deletions(-)
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
 commit c68c4c34bfc601ad735d50e6f7482df5762ab7ce
 Author: Steve Zesch <stevezesch2@gmail.com>
@@ -14,7 +172,7 @@ Date:   Tue Jan 10 14:25:04 2012 -0500
     Changed mate.gr.jp to gnome.gr.jp as requested in issue #86
 
  po/ja.po |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 7155750255a6594e816095c3c0b5fbf49cad096e
 Author: Stefano Karapetsas <stefano@karapetsas.com>
@@ -23,7 +181,7 @@ Date:   Mon Jan 2 16:28:04 2012 +0100
     updated it translation
 
  po/it.po |  127 ++++++++++++++++++++++++++++++++++----------------------------
- 1 files changed, 70 insertions(+), 57 deletions(-)
+ 1 file changed, 70 insertions(+), 57 deletions(-)
 
 commit 456dc22287e3135a2702f5759af375c5606e8715
 Author: Perberos <perberos@gmail.com>
@@ -31,8 +189,8 @@ Date:   Sun Jan 1 18:46:00 2012 -0300
 
     GDK_DISPLAY() is deprecated
 
- src/daemon/stack.c |   54 +++++++++++++++------------------------------------
- 1 files changed, 16 insertions(+), 38 deletions(-)
+ src/daemon/stack.c |   50 ++++++++++++++------------------------------------
+ 1 file changed, 14 insertions(+), 36 deletions(-)
 
 commit ec315ced4c463abe0db561867e54454a370c269c
 Author: Stefano Karapetsas <stefano@karapetsas.com>
@@ -41,7 +199,7 @@ Date:   Mon Jan 2 00:40:10 2012 +0100
     missing 'G', or we was using a DonkeyKong library??
 
  src/daemon/daemon.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 commit 14c8b0f4b9a366ca4c4b5a5aa63a91ab2ac03f7c
 Merge: f6b5b7e c8dadc4
@@ -59,7 +217,7 @@ Date:   Wed Dec 28 15:20:37 2011 -0500
     Shouldn't conflict with notification-daemon.
 
  distro/archlinux/PKGBUILD |    1 -
- 1 files changed, 0 insertions(+), 1 deletions(-)
+ 1 file changed, 1 deletion(-)
 
 commit f6b5b7eb3f0214f93a8540ee85da60b8e8aef036
 Author: Stefano Karapetsas <stefano@karapetsas.com>
@@ -69,7 +227,7 @@ Date:   Sat Dec 10 00:53:40 2011 +0100
 
  AUTHORS      |    1 +
  configure.ac |    2 +-
- 2 files changed, 2 insertions(+), 1 deletions(-)
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
 commit a4f57728a5cd402beb0325e321981cbb1ef19307
 Author: Stefano Karapetsas <stefano@karapetsas.com>
@@ -97,7 +255,7 @@ Date:   Sat Dec 10 00:51:47 2011 +0100
  src/themes/Makefile.in          |  616 -----------
  src/themes/slider/Makefile.in   |  604 -----------
  src/themes/standard/Makefile.in |  600 -----------
- 20 files changed, 0 insertions(+), 13918 deletions(-)
+ 20 files changed, 13918 deletions(-)
 
 commit d818374ac01d031988c1252d02c329a2c8cc9a1e
 Author: Steve Zesch <stevezesch2@gmail.com>
@@ -265,4 +423,4 @@ Date:   Thu Dec 1 22:49:12 2011 -0300
  src/themes/standard/Makefile.am                    |   11 +
  src/themes/standard/Makefile.in                    |  600 ++
  src/themes/standard/theme.c                        | 1049 +++
- 149 files changed, 52862 insertions(+), 0 deletions(-)
+ 149 files changed, 52862 insertions(+)
