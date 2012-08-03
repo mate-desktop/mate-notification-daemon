@@ -24,22 +24,20 @@
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <gtk/gtk.h>
-#include <mateconf/mateconf-client.h>
+#include <gio/gio.h>
 #include <string.h>
 #include <libmatenotify/notify.h>
 
 #include "stack.h"
 
-#define MATECONF_KEY_DAEMON "/apps/mate-notification-daemon"
-#define MATECONF_KEY_THEME MATECONF_KEY_DAEMON "/theme"
-#define MATECONF_KEY_POPUP_LOCATION MATECONF_KEY_DAEMON "/popup_location"
-
-#define N_LISTENERS 2
+#define GSETTINGS_SCHEMA "org.mate.NotificationDaemon"
+#define GSETTINGS_KEY_THEME "theme"
+#define GSETTINGS_KEY_POPUP_LOCATION "popup-location"
 
 #define NOTIFICATION_UI_FILE "mate-notification-properties.ui"
 
 typedef struct {
-	MateConfClient* client;
+	GSettings* gsettings;
 
 	GtkWidget* dialog;
 	GtkWidget* position_combo;
@@ -47,10 +45,6 @@ typedef struct {
 	GtkWidget* preview_button;
 
 	NotifyNotification* preview;
-
-	guint listeners[N_LISTENERS];
-	int n_listeners;
-	int expected_listeners;
 } NotificationAppletDialog;
 
 enum {
@@ -66,19 +60,14 @@ enum {
 	N_COLUMNS_THEME
 };
 
-static void notification_properties_location_notify(MateConfClient* client, guint cnx_id, MateConfEntry* entry, NotificationAppletDialog* dialog)
+static void notification_properties_location_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
 {
 	GtkTreeModel* model;
 	GtkTreeIter iter;
 	const char* location;
 	gboolean valid;
 
-	if (!entry->value || entry->value->type != MATECONF_VALUE_STRING)
-	{
-		return;
-	}
-
-	location = mateconf_value_get_string(entry->value);
+	location = g_settings_get_string(dialog->gsettings, key);
 
 	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->position_combo));
 	valid = gtk_tree_model_get_iter_first(model, &iter);
@@ -114,7 +103,7 @@ static void notification_properties_location_changed(GtkComboBox* widget, Notifi
 
 	gtk_tree_model_get(model, &iter, NOTIFY_POSITION_NAME, &location, -1);
 
-	mateconf_client_set_string(dialog->client, MATECONF_KEY_POPUP_LOCATION, location, NULL);
+	g_settings_set_string (dialog->gsettings, GSETTINGS_KEY_POPUP_LOCATION, location);
 	g_free(location);
 }
 
@@ -128,7 +117,7 @@ static void notification_properties_dialog_setup_positions(NotificationAppletDia
 	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->position_combo));
 	g_signal_connect(dialog->position_combo, "changed", G_CALLBACK(notification_properties_location_changed), dialog);
 
-	location = mateconf_client_get_string(dialog->client, MATECONF_KEY_POPUP_LOCATION, NULL);
+	location = g_settings_get_string(dialog->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid; valid = gtk_tree_model_iter_next(model, &iter))
 	{
@@ -146,19 +135,13 @@ static void notification_properties_dialog_setup_positions(NotificationAppletDia
 		g_free(key);
 	}
 
-	dialog->listeners[dialog->n_listeners] = mateconf_client_notify_add(dialog->client, MATECONF_KEY_POPUP_LOCATION, (MateConfClientNotifyFunc) notification_properties_location_notify, dialog, NULL, NULL);
-	dialog->n_listeners++;
+	g_signal_connect (dialog->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (notification_properties_location_notify), dialog);
 	g_free(location);
 }
 
-static void notification_properties_theme_notify(MateConfClient* client, guint cnx_id, MateConfEntry* entry, NotificationAppletDialog* dialog)
+static void notification_properties_theme_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
 {
-	if (!entry->value || entry->value->type != MATECONF_VALUE_STRING)
-	{
-		return;
-	}
-
-	const char* theme = mateconf_value_get_string(entry->value);
+	const char* theme = g_settings_get_string(dialog->gsettings, key);
 
 	GtkTreeModel* model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->theme_combo));
 
@@ -195,7 +178,7 @@ static void notification_properties_theme_changed(GtkComboBox* widget, Notificat
 	}
 
 	gtk_tree_model_get(model, &iter, NOTIFY_THEME_NAME, &theme, -1);
-	mateconf_client_set_string(dialog->client, MATECONF_KEY_THEME, theme, NULL);
+	g_settings_set_string(dialog->gsettings, GSETTINGS_KEY_THEME, theme);
 	g_free(theme);
 }
 
@@ -267,8 +250,7 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 		g_warning("Error opening themes dir");
 	}
 
-
-	theme = mateconf_client_get_string(dialog->client, MATECONF_KEY_THEME, NULL);
+	theme = g_settings_get_string(dialog->gsettings, GSETTINGS_KEY_THEME);
 
 	for (valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL(store), &iter); valid; valid = gtk_tree_model_iter_next(GTK_TREE_MODEL(store), &iter))
 	{
@@ -286,8 +268,7 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 		g_free(key);
 	}
 
-	dialog->listeners[dialog->n_listeners] = mateconf_client_notify_add(dialog->client, MATECONF_KEY_THEME, (MateConfClientNotifyFunc) notification_properties_theme_notify, dialog, NULL, NULL);
-	dialog->n_listeners++;
+	g_signal_connect (dialog->gsettings, "changed::" GSETTINGS_KEY_THEME, G_CALLBACK (notification_properties_theme_notify), dialog);
 	g_free(theme);
 }
 
@@ -408,16 +389,11 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	g_signal_connect(dialog->dialog, "response", G_CALLBACK(notification_properties_dialog_response), dialog);
 	g_signal_connect(dialog->dialog, "destroy", G_CALLBACK(notification_properties_dialog_destroyed), dialog);
 
-	dialog->client = mateconf_client_get_default();
-	mateconf_client_add_dir(dialog->client, MATECONF_KEY_DAEMON, MATECONF_CLIENT_PRELOAD_ONELEVEL, NULL);
-
-	dialog->expected_listeners = N_LISTENERS;
-	dialog->n_listeners = 0;
+	dialog->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
 	notification_properties_dialog_setup_themes(dialog);
 	notification_properties_dialog_setup_positions(dialog);
 
-	g_assert(dialog->n_listeners == dialog->expected_listeners);
 	gtk_widget_show(dialog->dialog);
 
 	dialog->preview = NULL;
@@ -431,25 +407,6 @@ static void notification_properties_dialog_finalize(NotificationAppletDialog* di
 	{
 		gtk_widget_destroy(dialog->dialog);
 		dialog->dialog = NULL;
-	}
-
-	if (dialog->client != NULL)
-	{
-		int i;
-
-		for (i = 0; i < dialog->n_listeners; i++)
-		{
-			if (dialog->listeners[i])
-			{
-				mateconf_client_notify_remove(dialog->client, dialog->listeners[i]);
-				dialog->listeners[i] = 0;
-			}
-		}
-
-		dialog->n_listeners = 0;
-		mateconf_client_remove_dir(dialog->client, MATECONF_KEY_DAEMON, NULL);
-		g_object_unref(dialog->client);
-		dialog->client = NULL;
 	}
 
 	if (dialog->preview)

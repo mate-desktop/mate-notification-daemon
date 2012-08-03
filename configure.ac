@@ -3,7 +3,7 @@ dnl Process this file with autoconf to create configure.
 dnl ################################################################
 dnl # Initialize autoconf
 dnl ################################################################
-AC_INIT([mate-notification-daemon], [1.4.0], [http://www.mate-desktop.org])
+AC_INIT([mate-notification-daemon], [1.5.0], [http://www.mate-desktop.org])
 AC_PREREQ(2.63)
 
 AC_CONFIG_HEADERS([config.h])
@@ -111,17 +111,18 @@ dnl ---------------------------------------------------------------------------
 dnl Requirements for the daemon
 dnl ---------------------------------------------------------------------------
 REQ_GLIB_VERSION=2.18.0
+REQ_GIO_VERSION=2.25.0
 REQ_DBUS_VERSION=0.78
 REQ_LIBCANBERRA_GTK_VERSION=0.4
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 pkg_modules="
 	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED, \
 	glib-2.0 >= $REQ_GLIB_VERSION, \
+	gio-2.0 >= $REQ_GIO_VERSION, \
         $GMODULE_ADD \
 	dbus-1 >= $REQ_DBUS_VERSION, \
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
         libcanberra-gtk >= $REQ_LIBCANBERRA_GTK_VERSION, \
-	mateconf-2.0, \
 	libmatewnck \
         x11 \
 "
@@ -132,7 +133,7 @@ AC_SUBST(NOTIFICATION_DAEMON_LIBS)
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the setup tool
 dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gtk+-$GTK_API_VERSION >= $GTK_REQUIRED mateconf-2.0 libmatenotify dbus-1 dbus-glib-1)
+PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GIO_VERSION gtk+-$GTK_API_VERSION >= $GTK_REQUIRED libmatenotify dbus-1 dbus-glib-1)
 AC_SUBST(NOTIFICATION_CAPPLET_CFLAGS)
 AC_SUBST(NOTIFICATION_CAPPLET_LIBS)
 
@@ -151,12 +152,11 @@ AM_CONDITIONAL(HAVE_GDK, test "x$have_gdk" = "xyes")
 AC_SUBST(GDK_CFLAGS)
 AC_SUBST(GDK_LIBS)
 
-AM_MATECONF_SOURCE_2
-AC_PATH_PROG(MATECONFTOOL, mateconftool-2, no)
+dnl
+dnl Enable gsettigns schema macros
+dnl
 
-if test "x$MATECONFTOOL" = "xno"; then
-	AC_MSG_ERROR([mateconftool-2 executable not found in your path - should be installed with Gconf])
-fi
+GLIB_GSETTINGS
 
 dnl
 dnl Check the D-BUS version.

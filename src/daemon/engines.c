@@ -23,7 +23,6 @@
 
 #include "config.h"
 
-#include <mateconf/mateconf-client.h>
 #include "daemon.h"
 #include "engines.h"
 
@@ -155,7 +154,7 @@ static void theme_engine_unref(ThemeEngine* engine)
 	}
 }
 
-static void theme_changed_cb(MateConfClient* client, guint cnxn_id, MateConfEntry* entry, gpointer user_data)
+static void theme_changed_cb(GSettings *settings, gchar *key, gpointer user_data)
 {
 	if (active_engine == NULL)
 	{
@@ -172,15 +171,13 @@ static ThemeEngine* get_theme_engine(void)
 {
 	if (active_engine == NULL)
 	{
-		MateConfClient* client = mateconf_client_get_default();
-		char* enginename = mateconf_client_get_string(client, MATECONF_KEY_THEME, NULL);
+		GSettings* gsettings = g_settings_new (GSETTINGS_SCHEMA);
+		char* enginename = g_settings_get_string(gsettings, GSETTINGS_KEY_THEME);
 
 		if (theme_prop_notify_id == 0)
 		{
-			theme_prop_notify_id = mateconf_client_notify_add(client, MATECONF_KEY_THEME, theme_changed_cb, NULL, NULL, NULL);
+			theme_prop_notify_id = g_signal_connect (gsettings, "changed::" GSETTINGS_KEY_THEME, G_CALLBACK (theme_changed_cb), NULL);
 		}
-
-		g_object_unref(client);
 
 		if (enginename == NULL)
 		{

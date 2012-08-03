@@ -1,0 +1,24 @@
+<schemalist>
+  <schema id="org.mate.NotificationDaemon" path="/org/mate/notification-daemon/">
+    <key name="popup-location" type="s">
+      <default>'bottom_right'</default>
+      <summary>Popup location</summary>
+      <description>Default popup location on the workspace for stack notifications. Allowed values: "top_left","top_right","bottom_left" and "bottom_right"</description>
+    </key>
+    <key name="theme" type="s">
+      <default>'default'</default>
+      <summary>Current theme</summary>
+      <description>The theme used when displaying notifications.</description>
+    </key>
+    <key name="sound-enabled" type="b">
+      <default>true</default>
+      <summary>Sound Enabled</summary>
+      <description>Turns on and off sound support for notifications.</description>
+    </key>
+    <key name="default-sound" type="s">
+      <default>''</default>
+      <summary>Default Sound</summary>
+      <description>The default sound file used unless a notification supplies the 'sound-file' or 'suppress-sound' hint.  Leave empty for no default sound.</description>
+    </key>
+  </schema>
+</schemalist>

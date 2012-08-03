@@ -24,18 +24,18 @@
 #ifndef NOTIFY_DAEMON_H
 #define NOTIFY_DAEMON_H
 
-#include <mateconf/mateconf-client.h>
 #include <glib.h>
 #include <glib-object.h>
+#include <gio/gio.h>
 
 #include <dbus/dbus-glib.h>
 #include <dbus/dbus-glib-lowlevel.h>
 
-#define MATECONF_KEY_DAEMON         "/apps/mate-notification-daemon"
-#define MATECONF_KEY_THEME          MATECONF_KEY_DAEMON "/theme"
-#define MATECONF_KEY_POPUP_LOCATION MATECONF_KEY_DAEMON "/popup_location"
-#define MATECONF_KEY_SOUND_ENABLED  MATECONF_KEY_DAEMON "/sound_enabled"
-#define MATECONF_KEY_DEFAULT_SOUND  MATECONF_KEY_DAEMON "/default_sound"
+#define GSETTINGS_SCHEMA             "org.mate.NotificationDaemon"
+#define GSETTINGS_KEY_THEME          "theme"
+#define GSETTINGS_KEY_POPUP_LOCATION "popup-location"
+#define GSETTINGS_KEY_SOUND_ENABLED  "sound-enabled"
+#define GSETTINGS_KEY_DEFAULT_SOUND  "default-sound"
 
 #define NOTIFY_TYPE_DAEMON (notify_daemon_get_type())
 #define NOTIFY_DAEMON(obj) \
@@ -70,6 +70,7 @@ typedef struct _NotifyDaemonPrivate NotifyDaemonPrivate;
 
 struct _NotifyDaemon {
 	GObject parent;
+	GSettings* gsettings;
 
 	/*< private > */
 	NotifyDaemonPrivate* priv;
@@ -94,8 +95,6 @@ gboolean notify_daemon_close_notification_handler(NotifyDaemon* daemon, guint id
 gboolean notify_daemon_get_capabilities(NotifyDaemon* daemon, char*** out_caps);
 
 gboolean notify_daemon_get_server_information(NotifyDaemon* daemon, char** out_name, char** out_vendor, char** out_version, char** out_spec_ver);
-
-MateConfClient* get_mateconf_client(void);
 
 #ifdef __cplusplus
 }

@@ -16,21 +16,11 @@ iconscalable_DATA = icons/scalable/mate-notification-properties.svg
 servicedir   = $(DBUS_SERVICES_DIR)
 service_DATA = org.freedesktop.mate.Notifications.service
 
-schemasdir       = $(MATECONF_SCHEMA_FILE_DIR)
-schemas_in_files = mate-notification-daemon.schemas.in
-schemas_DATA     = $(schemas_in_files:.schemas.in=.schemas)
-
-@INTLTOOL_SCHEMAS_RULE@
-
-if MATECONF_SCHEMAS_INSTALL
-install-data-local:
-	MATECONF_CONFIG_SOURCE=$(MATECONF_SCHEMA_CONFIG_SOURCE) $(MATECONFTOOL) --makefile-install-rule $(schemas_DATA)
-else
-install-data-local:
-endif
+gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
+@GSETTINGS_RULES@
 
 EXTRA_DIST = \
-	$(schemas_in_files) \
+	$(gsettings_SCHEMAS) \
 	$(service_DATA) \
 	$(icon16_DATA) \
 	$(icon22_DATA) \
@@ -38,9 +28,6 @@ EXTRA_DIST = \
 	$(icon32_DATA) \
 	$(icon48_DATA) \
 	$(iconscalable_DATA)
-
-CLEANFILES = $(schemas_DATA)
-
 
 gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
 

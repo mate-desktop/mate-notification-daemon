@@ -105,8 +105,6 @@ struct _NotifyDaemonPrivate {
 	GHashTable* notification_hash;
 	gboolean url_clicked_lock;
 
-	guint mateconf_cnxn;
-
 	NotifyStackLocation stack_location;
 	NotifyScreen** screens;
 	int n_screens;
@@ -318,15 +316,13 @@ static void create_screens(NotifyDaemon* daemon)
 	}
 }
 
-static void on_popup_location_changed(MateConfClient* client, guint cnxn_id, MateConfEntry* entry, NotifyDaemon* daemon)
+static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDaemon* daemon)
 {
 	NotifyStackLocation stack_location;
 	const char* slocation;
-	MateConfValue* value;
 	int i;
 
-	value = mateconf_entry_get_value(entry);
-	slocation = (value != NULL ? mateconf_value_get_string(value) : NULL);
+	slocation = g_settings_get_string(daemon->gsettings, key);
 
 	if (slocation != NULL && *slocation != '\0')
 	{
@@ -334,7 +330,7 @@ static void on_popup_location_changed(MateConfClient* client, guint cnxn_id, Mat
 	}
 	else
 	{
-		mateconf_client_set_string(client, MATECONF_KEY_POPUP_LOCATION, popup_stack_locations[POPUP_STACK_DEFAULT_INDEX].identifier, NULL);
+		g_settings_set_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION, popup_stack_locations[POPUP_STACK_DEFAULT_INDEX].identifier);
 
 		stack_location = NOTIFY_STACK_LOCATION_DEFAULT;
 	}
@@ -356,7 +352,6 @@ static void on_popup_location_changed(MateConfClient* client, guint cnxn_id, Mat
 
 static void notify_daemon_init(NotifyDaemon* daemon)
 {
-	MateConfClient* client;
 	char* location;
 
 	daemon->priv = G_TYPE_INSTANCE_GET_PRIVATE(daemon, NOTIFY_TYPE_DAEMON, NotifyDaemonPrivate);
@@ -366,15 +361,13 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 
 	add_exit_timeout(daemon);
 
-	client = mateconf_client_get_default();
-	mateconf_client_add_dir(client, MATECONF_KEY_DAEMON, MATECONF_CLIENT_PRELOAD_NONE, NULL);
+	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
-	location = mateconf_client_get_string(client, MATECONF_KEY_POPUP_LOCATION, NULL);
+	location = g_settings_get_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 	daemon->priv->stack_location = get_stack_location_from_string(location);
 	g_free(location);
 
-	daemon->priv->mateconf_cnxn = mateconf_client_notify_add(client, MATECONF_KEY_POPUP_LOCATION, (MateConfClientNotifyFunc) on_popup_location_changed, daemon, NULL, NULL);
-	g_object_unref(client);
+	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
 
 	daemon->priv->n_screens = 0;
 	daemon->priv->screens = NULL;
@@ -421,13 +414,8 @@ static void destroy_screens(NotifyDaemon* daemon)
 static void notify_daemon_finalize(GObject* object)
 {
 	NotifyDaemon* daemon;
-	MateConfClient* client;
 
 	daemon = NOTIFY_DAEMON(object);
-
-	client = mateconf_client_get_default();
-	mateconf_client_notify_remove(client, daemon->priv->mateconf_cnxn);
-	g_object_unref(client);
 
 	if (g_hash_table_size(daemon->priv->monitored_window_hash) > 0)
 	{
@@ -1333,7 +1321,7 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	gboolean sound_enabled;
 	gint i;
 	GdkPixbuf* pixbuf;
-	MateConfClient* mateconf_client;
+	GSettings* gsettings;
 
 	if (g_hash_table_size (priv->notification_hash) > MAX_NOTIFICATIONS)
 	{
@@ -1402,9 +1390,9 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	}
 
 	/* Deal with sound hints */
-	mateconf_client = mateconf_client_get_default ();
-	sound_enabled = mateconf_client_get_bool (mateconf_client, MATECONF_KEY_SOUND_ENABLED, NULL);
-	g_object_unref (mateconf_client);
+	gsettings = g_settings_new (GSETTINGS_SCHEMA);
+	sound_enabled = g_settings_get_boolean (gsettings, GSETTINGS_KEY_SOUND_ENABLED);
+	g_object_unref (gsettings);
 
 	data = (GValue *) g_hash_table_lookup (hints, "suppress-sound");
 
