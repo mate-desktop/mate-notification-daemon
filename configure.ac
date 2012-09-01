@@ -153,7 +153,7 @@ AC_SUBST(GDK_CFLAGS)
 AC_SUBST(GDK_LIBS)
 
 dnl
-dnl Enable gsettigns schema macros
+dnl Enable gsettings schema macros
 dnl
 
 GLIB_GSETTINGS
