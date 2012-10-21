@@ -1,12 +1,12 @@
 <schemalist>
   <schema id="org.mate.NotificationDaemon" path="/org/mate/notification-daemon/">
     <key name="popup-location" type="s">
-      <default>'bottom_right'</default>
+      <default>'top_right'</default>
       <summary>Popup location</summary>
       <description>Default popup location on the workspace for stack notifications. Allowed values: "top_left","top_right","bottom_left" and "bottom_right"</description>
     </key>
     <key name="theme" type="s">
-      <default>'default'</default>
+      <default>'nodoka'</default>
       <summary>Current theme</summary>
       <description>The theme used when displaying notifications.</description>
     </key>
