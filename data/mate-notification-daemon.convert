@@ -1,0 +1,5 @@
+[org.mate.NotificationDaemon]
+popup-location = /apps/mate-notification-daemon/popup_location
+theme = /apps/mate-notification-daemon/theme
+sound-enabled = /apps/mate-notification-daemon/sound_enabled
+default-sound = /apps/mate-notification-daemon/default_sound
