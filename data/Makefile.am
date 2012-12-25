@@ -19,8 +19,12 @@ service_DATA = org.freedesktop.mate.Notifications.service
 gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
 @GSETTINGS_RULES@
 
+convertdir = $(datadir)/MateConf/gsettings
+convert_DATA = mate-notification-daemon.convert
+
 EXTRA_DIST = \
 	$(gsettings_SCHEMAS) \
+	$(convert_DATA) \
 	$(service_DATA) \
 	$(icon16_DATA) \
 	$(icon22_DATA) \
