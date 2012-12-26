@@ -7,7 +7,7 @@ AM_CPPFLAGS = $(THEME_CFLAGS)
 
 libslider_la_SOURCES = theme.c
 
-libslider_la_LDFLAGS = -module -avoid-version
+libslider_la_LDFLAGS = -module -avoid-version -no-undefined
 libslider_la_LIBADD =	\
 	$(THEME_LIBS)	\
 	$(NULL)
