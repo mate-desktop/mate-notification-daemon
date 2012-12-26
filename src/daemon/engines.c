@@ -56,12 +56,9 @@ static ThemeEngine* active_engine = NULL;
 static ThemeEngine* load_theme_engine(const char *name)
 {
 	ThemeEngine* engine;
-	char* filename;
 	char* path;
 
-	filename = g_strdup_printf("lib%s.so", name);
-	path = g_build_filename(ENGINES_DIR, filename, NULL);
-	g_free (filename);
+	path = g_module_build_path (ENGINES_DIR, name);
 
 	engine = g_new0(ThemeEngine, 1);
 	engine->ref_count = 1;
@@ -113,7 +110,7 @@ static ThemeEngine* load_theme_engine(const char *name)
 
 		if (engine->module != NULL && !g_module_close (engine->module))
 		{
-			g_warning("%s: %s", filename, g_module_error());
+			g_warning("%s: %s", name, g_module_error());
 		}
 
 		g_free(engine);

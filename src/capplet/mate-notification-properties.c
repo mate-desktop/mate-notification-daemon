@@ -23,6 +23,7 @@
 
 #include <glib/gi18n.h>
 #include <glib.h>
+#include <gmodule.h>
 #include <gtk/gtk.h>
 #include <gio/gio.h>
 #include <string.h>
@@ -186,7 +187,7 @@ static gchar* get_theme_name(const gchar* filename)
 {
 	/* TODO: Remove magic numbers. Strip "lib" and ".so" */
 	gchar* result = g_strdup(filename + 3);
-	result[strlen(result) - 3] = '\0';
+	result[strlen(result) - strlen("." G_MODULE_SUFFIX)] = '\0';
 	return result;
 }
 
@@ -210,7 +211,7 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 	{
 		while ((filename = g_dir_read_name(dir)))
 		{
-			if (g_str_has_prefix(filename, "lib") && g_str_has_suffix(filename, ".so"))
+			if (g_str_has_suffix(filename, "." G_MODULE_SUFFIX))
 			{
 				theme_name = get_theme_name(filename);
 
