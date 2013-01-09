@@ -99,7 +99,6 @@ typedef struct {
 struct _NotifyDaemonPrivate {
 	guint next_id;
 	guint timeout_source;
-	guint exit_timeout_source;
 	GHashTable* idle_reposition_notify_ids;
 	GHashTable* monitored_window_hash;
 	GHashTable* notification_hash;
@@ -148,35 +147,6 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 	g_signal_handlers_disconnect_by_func(nt->nw, _notification_destroyed_cb, nt->daemon);
 	gtk_widget_destroy(GTK_WIDGET(nt->nw));
 	g_free(nt);
-}
-
-static gboolean do_exit(gpointer user_data)
-{
-	//g_debug("Exiting due to inactivity");
-	exit(1);
-
-	return FALSE;
-}
-
-static void add_exit_timeout(NotifyDaemon* daemon)
-{
-    if (daemon->priv->exit_timeout_source > 0)
-    {
-		return;
-	}
-
-	daemon->priv->exit_timeout_source = g_timeout_add_seconds(IDLE_SECONDS, do_exit, NULL);
-}
-
-static void remove_exit_timeout(NotifyDaemon* daemon)
-{
-	if (daemon->priv->exit_timeout_source == 0)
-	{
-		return;
-	}
-
-	g_source_remove(daemon->priv->exit_timeout_source);
-	daemon->priv->exit_timeout_source = 0;
 }
 
 static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, int monitor_num)
@@ -359,8 +329,6 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->priv->next_id = 1;
 	daemon->priv->timeout_source = 0;
 
-	add_exit_timeout(daemon);
-
 	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
 	location = g_settings_get_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
@@ -421,8 +389,6 @@ static void notify_daemon_finalize(GObject* object)
 	{
 		gdk_window_remove_filter(NULL, (GdkFilterFunc) _notify_x11_filter, daemon);
 	}
-
-	remove_exit_timeout(daemon);
 
 	g_hash_table_destroy(daemon->priv->monitored_window_hash);
 	g_hash_table_destroy(daemon->priv->idle_reposition_notify_ids);
@@ -521,11 +487,6 @@ static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_no
 		}
 
 		g_hash_table_remove(priv->notification_hash, &id);
-
-		if (g_hash_table_size(daemon->priv->notification_hash) == 0)
-		{
-			add_exit_timeout(daemon);
-		}
 	}
 }
 
@@ -743,11 +704,6 @@ static gboolean _check_expiration(NotifyDaemon* daemon)
 	if (!has_more_timeouts)
 	{
 		daemon->priv->timeout_source = 0;
-
-		if (g_hash_table_size (daemon->priv->notification_hash) == 0)
-		{
-			add_exit_timeout(daemon);
-		}
 	}
 
 	return has_more_timeouts;
@@ -825,7 +781,6 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 	_calculate_timeout(daemon, nt, timeout);
 
 	g_hash_table_insert(priv->notification_hash, g_memdup(&id, sizeof(guint)), nt);
-	remove_exit_timeout(daemon);
 
 	return nt;
 }
