@@ -1511,9 +1511,21 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 		theme_set_notification_arrow (nw, FALSE, 0, 0);
 
-		gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
-		screen_num = gdk_screen_get_number (screen);
-		monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
+        // If the "use-active-monitor" gsettings key is set to TRUE, then
+        // get the monitor the pointer is at. Otherwise, get the monitor
+        // number the user has set in gsettings.
+        if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
+        {
+            gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
+            screen_num = gdk_screen_get_number (screen);
+            monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
+        }
+        else
+        {
+            screen = gdk_display_get_default_screen(gdk_display_get_default());
+            screen_num = gdk_screen_get_number(screen);
+            monitor_num = g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
+        }
 
 		if (monitor_num >= priv->screens[screen_num]->n_stacks)
 		{
