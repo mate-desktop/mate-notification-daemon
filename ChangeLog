@@ -1,3 +1,213 @@
+commit 276eae936334c109ffa6b2e3199f97b1885dfa62
+Merge: 4a1eb4d 61d109a
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Sun Jan 20 14:00:54 2013 -0500
+
+    Merged.
+
+commit 4a1eb4d4d53baf0c34d1c7ecf8cce1a74a93db50
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Sun Jan 20 13:54:48 2013 -0500
+
+    Removed unused code.
+
+ src/capplet/mate-notification-properties.c |    2 --
+ 1 file changed, 2 deletions(-)
+
+commit 193ba3d4a28b7930bf66bf51ca2e9a0ecfc61edf
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Sun Jan 20 13:53:58 2013 -0500
+
+    Backend now supports selecting which monitor to display a notification on.
+
+ src/daemon/daemon.c |   18 +++++++++++++++---
+ src/daemon/daemon.h |    2 ++
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+
+commit 5618708514ac34257e9ba93af96e9ef32a4ad0c2
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Sun Jan 20 13:52:47 2013 -0500
+
+    Added "use-active-monitor" and "monitor-number" keys to gschema.
+
+ data/org.mate.NotificationDaemon.gschema.xml |   10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+commit fdb4b281f45e012005f01a6bc430e2a3f9875c17
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Thu Jan 17 14:21:48 2013 -0500
+
+    Can now select which monitor to display a notification on.
+    
+    mate-notification-properties now offers the user the option to
+    to display notifications on the active monitor (previous
+    default behavior) or to display them on a specific monitor.
+
+ src/capplet/mate-notification-properties.c  |  200 ++++++++++++++++++++-
+ src/capplet/mate-notification-properties.ui |  258 +++++++++++++++++----------
+ 2 files changed, 360 insertions(+), 98 deletions(-)
+
+commit 61d109a6e5794cf393d1f9d5bebda10f8efce902
+Author: Yaakov Selkowitz <yselkowitz@users.sourceforge.net>
+Date:   Tue Dec 25 21:50:14 2012 -0600
+
+    Fix engine loading portability
+    
+    Use GModule APIs for determining engine filenames.  Also, link with
+    the -no-undefined flag, required on PE platforms.
+
+ src/capplet/mate-notification-properties.c |    5 +++--
+ src/daemon/engines.c                       |    7 ++-----
+ src/themes/coco/Makefile.am                |    2 +-
+ src/themes/nodoka/Makefile.am              |    2 +-
+ src/themes/slider/Makefile.am              |    2 +-
+ src/themes/standard/Makefile.am            |    2 +-
+ 6 files changed, 9 insertions(+), 11 deletions(-)
+
+commit 2f0f21bde5e00fc0abb3379ffb9f23574e9508ad
+Author: Yaakov Selkowitz <yselkowitz@users.sourceforge.net>
+Date:   Tue Dec 25 22:14:36 2012 -0600
+
+    Remove gettext and libtool files
+
+ ABOUT-NLS             |  393 --
+ ltmain.sh             | 9655 -------------------------------------------------
+ macros/codeset.m4     |   23 -
+ macros/gettext.m4     |  523 ---
+ macros/glibc21.m4     |   32 -
+ macros/iconv.m4       |   96 -
+ macros/intltool.m4    |  216 --
+ macros/isc-posix.m4   |   24 -
+ macros/lcmessage.m4   |   32 -
+ macros/lib-ld.m4      |   97 -
+ macros/lib-link.m4    |  521 ---
+ macros/lib-prefix.m4  |  148 -
+ macros/libtool.m4     | 7982 ----------------------------------------
+ macros/ltoptions.m4   |  384 --
+ macros/ltsugar.m4     |  123 -
+ macros/ltversion.m4   |   23 -
+ macros/lt~obsolete.m4 |   98 -
+ macros/progtest.m4    |   59 -
+ 18 files changed, 20429 deletions(-)
+
+commit ef8c9fcc148c2f71440943efb1b344ce25880735
+Merge: 4f219a3 ab9c099
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Mon Dec 24 16:34:01 2012 -0800
+
+    Merge pull request #8 from cygwinports/master
+    
+    Add mateconf-gsettings-data-convert file
+
+commit ab9c0996314fbda9643e884181ca708d61bd0c67
+Author: Yaakov Selkowitz <yselkowitz@users.sourceforge.net>
+Date:   Mon Dec 24 18:04:14 2012 -0600
+
+    Add mateconf-gsettings-data-convert file
+
+ data/Makefile.am                      |    4 ++++
+ data/mate-notification-daemon.convert |    5 +++++
+ 2 files changed, 9 insertions(+)
+
+commit 4f219a36db5f32014b2d44ac5f2f77f7ab5852c8
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sun Oct 21 11:29:54 2012 +0200
+
+    change default settings
+    default theme is Nodoka
+    default position is on top right (panel notification area is on top right too)
+
+ data/org.mate.NotificationDaemon.gschema.xml |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 85fb7f06d06ea1647995e84cd96e9214c11a53dc
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Sat Sep 1 20:57:43 2012 +0200
+
+    fix typo in configure.ac
+
+ configure.ac |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 2d7e34441f4d33dc1edb5e9871b66b4977069bae
+Author: Stefano Karapetsas <stefano@karapetsas.com>
+Date:   Fri Aug 3 12:26:32 2012 +0200
+
+    migrate to GSettings
+
+ configure.ac                                 |   16 +++---
+ data/Makefile.am                             |   19 ++-----
+ data/mate-notification-daemon.schemas.in     |   53 ------------------
+ data/org.mate.NotificationDaemon.gschema.xml |   24 +++++++++
+ src/capplet/mate-notification-properties.c   |   75 ++++++--------------------
+ src/daemon/daemon.c                          |   32 ++++-------
+ src/daemon/daemon.h                          |   15 +++---
+ src/daemon/engines.c                         |   11 ++--
+ 8 files changed, 72 insertions(+), 173 deletions(-)
+
+commit 597a9064e4d2df85d53726928e576a9be53d22fb
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Tue Jul 31 20:11:25 2012 -0400
+
+    Fixed incorrect fsf address. Closes issue #6.
+
+ intl/bindtextdom.c                         |    2 +-
+ intl/dcgettext.c                           |    2 +-
+ intl/dcigettext.c                          |    2 +-
+ intl/dcngettext.c                          |    2 +-
+ intl/dgettext.c                            |    2 +-
+ intl/dngettext.c                           |    2 +-
+ intl/eval-plural.h                         |    2 +-
+ intl/explodename.c                         |    2 +-
+ intl/finddomain.c                          |    2 +-
+ intl/gettext.c                             |    2 +-
+ intl/gettextP.h                            |    2 +-
+ intl/gmo.h                                 |    2 +-
+ intl/hash-string.h                         |    2 +-
+ intl/intl-compat.c                         |    2 +-
+ intl/l10nflist.c                           |    2 +-
+ intl/libgnuintl.h                          |    2 +-
+ intl/loadinfo.h                            |    2 +-
+ intl/loadmsgcat.c                          |    2 +-
+ intl/localcharset.c                        |    2 +-
+ intl/localealias.c                         |    2 +-
+ intl/localename.c                          |    2 +-
+ intl/ngettext.c                            |    2 +-
+ intl/os2compat.c                           |    2 +-
+ intl/os2compat.h                           |    2 +-
+ intl/osdep.c                               |    2 +-
+ intl/plural-exp.c                          |    2 +-
+ intl/plural-exp.h                          |    2 +-
+ intl/plural.c                              |    6 +++---
+ intl/textdomain.c                          |    2 +-
+ src/capplet/mate-notification-properties.c |    4 ++--
+ src/daemon/daemon.c                        |    4 ++--
+ src/daemon/daemon.h                        |    4 ++--
+ src/daemon/engines.c                       |    4 ++--
+ src/daemon/engines.h                       |    4 ++--
+ src/daemon/sound.c                         |    4 ++--
+ src/daemon/sound.h                         |    4 ++--
+ src/daemon/stack.c                         |    4 ++--
+ src/daemon/stack.h                         |    4 ++--
+ src/themes/slider/theme.c                  |    4 ++--
+ src/themes/standard/theme.c                |    4 ++--
+ 40 files changed, 53 insertions(+), 53 deletions(-)
+
+commit 90229ab4ea11be5c7c8220f89455b702700ffa7a
+Author: Steve Zesch <stevezesch2@gmail.com>
+Date:   Thu Jul 5 14:29:27 2012 -0400
+
+    Preparing for 1.4 release.
+
+ ChangeLog              |  178 +++++++++++++++++++++++++++++++++++++++++++++---
+ configure.ac           |    2 +-
+ distro/ubuntu/build    |   35 ----------
+ distro/ubuntu/postinst |   11 ---
+ distro/ubuntu/postrm   |    8 ---
+ distro/ubuntu/preinst  |    8 ---
+ distro/ubuntu/prerm    |   11 ---
+ 7 files changed, 169 insertions(+), 84 deletions(-)
+
 commit 306d7aca16e3ec6498414be1d289bb9e708a6259
 Author: Stefano Karapetsas <stefano@karapetsas.com>
 Date:   Wed Jul 4 15:37:59 2012 +0200
