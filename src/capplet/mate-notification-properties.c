@@ -128,8 +128,6 @@ static void notification_properties_monitor_notify(GSettings *settings, gchar *k
 
 	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->monitor_combo));
 
-	//g_signal_connect(dialog->monitor_combo, "changed", G_CALLBACK(notification_properties_monitor_changed), dialog);
-	
 	monitor_number = g_settings_get_int(dialog->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
 	
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid; valid = gtk_tree_model_iter_next(model, &iter))
