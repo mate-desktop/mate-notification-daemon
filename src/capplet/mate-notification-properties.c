@@ -579,10 +579,7 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
         gtk_widget_set_sensitive(dialog->monitor_label, TRUE);
 	}
 
-
-    g_fprintf(stderr, "1111111111111\n");
 	gtk_widget_show_all(dialog->dialog);
-    g_fprintf(stderr, "222222222222\n");
 
 	dialog->preview = NULL;
 
