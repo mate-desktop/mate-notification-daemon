@@ -1,0 +1,34 @@
+<schemalist gettext-domain="@GETTEXT_PACKAGE@">
+  <schema id="org.mate.NotificationDaemon" path="/org/mate/notification-daemon/">
+    <key name="popup-location" type="s">
+      <default>'top_right'</default>
+      <_summary>Popup location</_summary>
+      <_description>Default popup location on the workspace for stack notifications. Allowed values: "top_left","top_right","bottom_left" and "bottom_right"</_description>
+    </key>
+    <key name="use-active-monitor" type="b">
+      <default>true</default>
+      <_summary>Use Active Monitor</_summary>
+      <_description>Display the notification on the active monitor.</_description>
+    </key>
+    <key name="monitor-number" type="i">
+      <default>0</default>
+      <_summary>Monitor</_summary>
+      <_description>Monitor to display the notification. Allowed values: -1 (display on active monitor) and 0 to n - 1 where n is the number of monitors.</_description>
+    </key>
+    <key name="theme" type="s">
+      <default>'nodoka'</default>
+      <_summary>Current theme</_summary>
+      <_description>The theme used when displaying notifications.</_description>
+    </key>
+    <key name="sound-enabled" type="b">
+      <default>true</default>
+      <_summary>Sound Enabled</_summary>
+      <_description>Turns on and off sound support for notifications.</_description>
+    </key>
+    <key name="default-sound" type="s">
+      <default>''</default>
+      <_summary>Default Sound</_summary>
+      <_description>The default sound file used unless a notification supplies the 'sound-file' or 'suppress-sound' hint.  Leave empty for no default sound.</_description>
+    </key>
+  </schema>
+</schemalist>
