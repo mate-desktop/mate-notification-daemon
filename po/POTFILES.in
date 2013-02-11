@@ -1,4 +1,4 @@
-data/mate-notification-daemon.schemas.in
+data/org.mate.NotificationDaemon.gschema.xml.in.in
 src/capplet/mate-notification-properties.c
 src/capplet/mate-notification-properties.desktop.in
 [type: gettext/glade]src/capplet/mate-notification-properties.ui
