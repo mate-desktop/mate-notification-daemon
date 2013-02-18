@@ -28,7 +28,7 @@
 #include <gdk/gdk.h>
 #include <gio/gio.h>
 #include <string.h>
-#include <libmatenotify/notify.h>
+#include <libnotify/notify.h>
 
 #include "stack.h"
 
@@ -472,7 +472,7 @@ static void notification_properties_dialog_preview(NotificationAppletDialog* dia
 		dialog->preview = NULL;
 	}
 
-	dialog->preview = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information", NULL);
+	dialog->preview = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information");
 
 	if (!notify_notification_show(dialog->preview, &error))
 	{
