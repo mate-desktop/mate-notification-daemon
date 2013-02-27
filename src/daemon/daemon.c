@@ -1558,7 +1558,10 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		sync_notification_position (daemon, nw, window_xid);
 	}
 
-	if (!screensaver_active (GTK_WIDGET (nw)) && !fullscreen_window_exists (GTK_WIDGET (nw)))
+	/* If there is no timeout, show the notification also if screensaver
+	 * is active or there are fullscreen windows
+	 */
+	if (!nt->has_timeout || (!screensaver_active (GTK_WIDGET (nw)) && !fullscreen_window_exists (GTK_WIDGET (nw))))
 	{
 		theme_show_notification (nw);
 
