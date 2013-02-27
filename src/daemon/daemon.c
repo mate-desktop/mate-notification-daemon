@@ -160,8 +160,8 @@ static gboolean do_exit(gpointer user_data)
 
 static void add_exit_timeout(NotifyDaemon* daemon)
 {
-    if (daemon->priv->exit_timeout_source > 0)
-    {
+	if (daemon->priv->exit_timeout_source > 0)
+	{
 		return;
 	}
 
@@ -244,7 +244,7 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 	}
 }
 
-static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen    *screen)
+static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen *screen)
 {
 	NotifyScreen* nscreen;
 	int screen_num;
@@ -1157,7 +1157,7 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 		matewnck_screen = matewnck_screen_get(GDK_SCREEN_XNUMBER(gdk_drawable_get_screen(GDK_DRAWABLE(GTK_WIDGET(nw)->window))));
 	#endif
 
-    matewnck_screen_force_update (matewnck_screen);
+	matewnck_screen_force_update (matewnck_screen);
 
 	matewnck_workspace = matewnck_screen_get_active_workspace (matewnck_screen);
 
@@ -1511,21 +1511,21 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 		theme_set_notification_arrow (nw, FALSE, 0, 0);
 
-        // If the "use-active-monitor" gsettings key is set to TRUE, then
-        // get the monitor the pointer is at. Otherwise, get the monitor
-        // number the user has set in gsettings.
-        if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
-        {
-            gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
-            screen_num = gdk_screen_get_number (screen);
-            monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
-        }
-        else
-        {
-            screen = gdk_display_get_default_screen(gdk_display_get_default());
-            screen_num = gdk_screen_get_number(screen);
-            monitor_num = g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
-        }
+		/* If the "use-active-monitor" gsettings key is set to TRUE, then
+		 * get the monitor the pointer is at. Otherwise, get the monitor
+		 * number the user has set in gsettings. */
+		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
+		{
+			gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
+			screen_num = gdk_screen_get_number (screen);
+			monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
+		}
+		else
+		{
+			screen = gdk_display_get_default_screen(gdk_display_get_default());
+			screen_num = gdk_screen_get_number(screen);
+			monitor_num = g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
+		}
 
 		if (monitor_num >= priv->screens[screen_num]->n_stacks)
 		{
