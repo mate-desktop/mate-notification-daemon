@@ -6,6 +6,6 @@ Icon=mate-notification-properties
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=MATE;GTK;Settings;DesktopSettings;
+Categories=GTK;Settings;DesktopSettings;
 OnlyShowIn=MATE;
 
