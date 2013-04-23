@@ -12,6 +12,8 @@ desktopdir = $(datadir)/applications
 desktop_in_files = mate-notification-properties.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
+man_MANS = mate-notification-properties.1
+
 INCLUDES = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src/daemon \
@@ -21,6 +23,6 @@ INCLUDES = \
 	-DNOTIFICATION_UIDIR=\"$(datadir)/mate-notification-daemon\"
 
 CLEANFILES = $(desktop_DATA)
-EXTRA_DIST = $(ui_DATA) $(pixmap_DATA) $(desktop_in_files)
+EXTRA_DIST = $(ui_DATA) $(pixmap_DATA) $(desktop_in_files) $(man_MANS)
 
 -include $(top_srcdir)/git.mk
