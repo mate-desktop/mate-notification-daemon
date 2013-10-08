@@ -18,7 +18,7 @@ notificationdaemon-dbus-glue.h: notificationdaemon.xml
 	dbus-binding-tool --mode=glib-server --prefix=notification_daemon \
 		$(srcdir)/notificationdaemon.xml > notificationdaemon-dbus-glue.h
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	$(NOTIFICATION_DAEMON_CFLAGS) \
 	-DENGINES_DIR=\"$(libdir)/mate-notification-daemon/engines\"
