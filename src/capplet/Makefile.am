@@ -14,7 +14,7 @@ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
 
 man_MANS = mate-notification-properties.1
 
-INCLUDES = \
+AM_CPPFLAGS = \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src/daemon \
 	$(NOTIFICATION_CAPPLET_CFLAGS) \
