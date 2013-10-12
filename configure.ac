@@ -41,7 +41,7 @@ AC_DEFINE_UNQUOTED(NOTIFICATION_DAEMON_VERSION, "$NOTIFICATION_DAEMON_VERSION",
 dnl ################################################################
 dnl # Initialize automake
 dnl ################################################################
-AM_INIT_AUTOMAKE([1.10 no-dist-gzip dist-bzip2])
+AM_INIT_AUTOMAKE([1.9 tar-ustar dist-xz foreign])
 AM_MAINTAINER_MODE
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
 
