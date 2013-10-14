@@ -3,90 +3,110 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Rezső Páder <rezso@rezso.net>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2012-07-04 15:34+0200\n"
-"PO-Revision-Date: 2012-07-04 13:34+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"POT-Creation-Date: 2013-02-11 01:15+0100\n"
+"PO-Revision-Date: 2013-03-11 16:42+0000\n"
+"Last-Translator: Rezső Páder <rezso@rezso.net>\n"
+"Language-Team: Hungarian (http://www.transifex.com/projects/p/MATE/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/mate-notification-daemon.schemas.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
 msgstr "Felbukkanás helye"
 
-#: ../data/mate-notification-daemon.schemas.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "A munkaterületen felbukkanó veremértesítések felbukkanásának alapértelmezett helye. A lehetséges értékek: „top_left” (bal felső), top_right” (jobb felső), „bottom_left (bal alsó) és „bottom_right” (jobb alsó)."
 
-#: ../data/mate-notification-daemon.schemas.in.h:3
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Use Active Monitor"
+msgstr "Az aktív monitor használata"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr "Értesítés megjelenítése az aktív monitoron"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+msgid "Monitor"
+msgstr "Monitor"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr "A monitor, ahol az értesítés megjenik. Megengedett értékek: -1 (aktív monitor), és 0 - n-1, ahol 'n' a monitorok száma."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
 msgstr "Jelenlegi téma"
 
-#: ../data/mate-notification-daemon.schemas.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "Az értesítések megjelenítéséhez használt téma."
 
-#: ../data/mate-notification-daemon.schemas.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
 msgstr "Hang engedélyezve"
 
-#: ../data/mate-notification-daemon.schemas.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "Be- illetve kikapcsolja az értesítések hangját."
 
-#: ../data/mate-notification-daemon.schemas.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
 msgstr "Alapértelmezett hang"
 
-#: ../data/mate-notification-daemon.schemas.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
 msgstr "Az alapértelmezett hangfájl kerül felhasználásra, hacsak az értesítés nem adja meg a „sound-file” vagy „suppress-sound” tippet. Hagyja üresen, ha alapértelmezetten nem kíván hangot hallani."
 
-#: ../src/capplet/mate-notification-properties.c:237
+#: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr ""
+msgstr "Kókusz"
 
-#: ../src/capplet/mate-notification-properties.c:241
+#: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:245
+#: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
 msgstr "Csúszka"
 
-#: ../src/capplet/mate-notification-properties.c:249
+#: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
 msgstr "Alapértelmezett téma"
 
-#: ../src/capplet/mate-notification-properties.c:320
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "Hiba a libmatenotify előkészítése közben"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "Értesítésteszt"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "Csak egy próba"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Hiba az értesítés megjelenítésekor: %s"
 
-#: ../src/capplet/mate-notification-properties.c:392
+#: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "A felhasználóifelület-fájl nem tölthető be: %s"
@@ -104,42 +124,46 @@ msgid "Notification Settings"
 msgstr "Értesítések beállításai"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
-msgid "<b>General Options</b>"
-msgstr "<b>Általános beállítások</b>"
-
-#: ../src/capplet/mate-notification-properties.ui.h:3
-msgid "      "
-msgstr "      "
-
-#: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "P_osition:"
-msgstr "P_ozíció:"
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
-msgid "_Theme:"
-msgstr "_Téma:"
-
-#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Preview"
 msgstr "_Előnézet"
 
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>Általános beállítások</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "P_osition:"
+msgstr "P_ozíció:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Theme:"
+msgstr "_Téma:"
+
 #: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "_Monitor:"
+msgstr "_Monitor:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
 msgstr "Bal oldalon, felül"
 
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
 msgstr "Jobb oldalon, felül"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
 msgstr "Bal oldalon, alul"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
 msgstr "Jobb oldalon, alul"
 
-#: ../src/daemon/daemon.c:1342
+#: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Az értesítések maximális száma túllépve"

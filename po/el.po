@@ -3,91 +3,112 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-#   <vlahavas@gmail.com>, 2012.
+# Efstathios Iosifidis <iefstathios@gmail.com>, 2013
+# geost <george.stefanakis@gmail.com>, 2012
+# gapan <vlahavas@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2012-07-04 15:34+0200\n"
-"PO-Revision-Date: 2012-07-04 13:34+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"POT-Creation-Date: 2013-02-11 01:15+0100\n"
+"PO-Revision-Date: 2013-07-07 20:58+0000\n"
+"Last-Translator: Efstathios Iosifidis <iefstathios@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/MATE/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../data/mate-notification-daemon.schemas.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
 msgstr "Τοποθεσία αναδυομένου"
 
-#: ../data/mate-notification-daemon.schemas.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "Προεπιλεγμένη τοποθεσία αναδυόμενης ειδοποίησης στο χώρο εργασίας. Οι επιτρεπόμενες τιμές είναι \"top_left\",\"top_right\",\"bottom_left\" και \"bottom_right\""
 
-#: ../data/mate-notification-daemon.schemas.in.h:3
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Use Active Monitor"
+msgstr "Χρήση Ενεργής Οθόνης"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr "Προβολή ειδοποίησης στην ενεργή οθόνη."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+msgid "Monitor"
+msgstr "Οθόνη"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr "Οθόνη προβολής ειδοποίησης. Επιτρεπόμενες τιμές: -1 (προβολή σε ενεργή οθόνη) και 0 έως n - 1 όπου n είναι ο αριθμός των οθονών."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
 msgstr "Τρέχον θέμα"
 
-#: ../data/mate-notification-daemon.schemas.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "Το θέμα που χρησιμοποιείται κατά την εμφάνιση ειδοποιήσεων."
 
-#: ../data/mate-notification-daemon.schemas.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
 msgstr "Ήχος ενεργός"
 
-#: ../data/mate-notification-daemon.schemas.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "Ενεργοποιεί ή απενεργοποιεί την υποστήριξη ήχου για τις ειδοποιήσεις."
 
-#: ../data/mate-notification-daemon.schemas.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
 msgstr "Προεπιλεγμένος ήχος"
 
-#: ../data/mate-notification-daemon.schemas.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
 msgstr "Το προεπιλεγμένο αρχείο ήχου που θα χρησιμοποιείται εκτός και αν η ειδοποίηση παρέχει την δική της ρύθμιση 'αρχείου ήχουe' ή 'απόκρυψης ήχου'. Αφήστε το κενό για κανένα προεπιλεγμένο ήχο."
 
-#: ../src/capplet/mate-notification-properties.c:237
+#: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr ""
+msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:241
+#: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:245
+#: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
 msgstr "Μπάρα κύλισης"
 
-#: ../src/capplet/mate-notification-properties.c:249
+#: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
 msgstr "Τυπικό θέμα"
 
-#: ../src/capplet/mate-notification-properties.c:320
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "Σφάλμα ενεργοποίησης libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "Δοκιμή ειδοποίησης"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "Αυτό είναι μια δοκιμή"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Σφάλμα εμφάνισης ειδοποιήσεων: %s"
 
-#: ../src/capplet/mate-notification-properties.c:392
+#: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Αδυναμία φόρτωσης αρχείου περιβάλλοντος χρήσης: %s"
@@ -105,42 +126,46 @@ msgid "Notification Settings"
 msgstr "Ρυθμίσεις ειδοποιήσεων"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
-msgid "<b>General Options</b>"
-msgstr "<b>Γενικές επιλογές</b>"
-
-#: ../src/capplet/mate-notification-properties.ui.h:3
-msgid "      "
-msgstr ""
-
-#: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "P_osition:"
-msgstr "Θέ_ση:"
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
-msgid "_Theme:"
-msgstr "_Θέμα:"
-
-#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Preview"
 msgstr "_Προεπισκόπηση"
 
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>Γενικές επιλογές</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "P_osition:"
+msgstr "Θέ_ση:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Theme:"
+msgstr "_Θέμα:"
+
 #: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "_Monitor:"
+msgstr "_Οθόνη:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
 msgstr "Πάνω αριστερά"
 
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
 msgstr "Κάτω δεξιά"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
 msgstr "Κάτω αριστερά"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
 msgstr "Κάτω δεξιά"
 
-#: ../src/daemon/daemon.c:1342
+#: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Έγινε υπέρβαση του μέγιστου αριθμού ειδοποιήσεων"

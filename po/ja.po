@@ -7,86 +7,105 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2012-07-04 15:34+0200\n"
-"PO-Revision-Date: 2012-07-04 13:34+0000\n"
+"POT-Creation-Date: 2013-02-11 01:15+0100\n"
+"PO-Revision-Date: 2013-02-11 00:15+0000\n"
 "Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/MATE/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ja\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../data/mate-notification-daemon.schemas.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
 msgstr "ポップアップ表示する場所"
 
-#: ../data/mate-notification-daemon.schemas.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "通知情報を積み重ねてポップアップ表示するデフォルトの場所です。指定可能な値: \"top_left\"、\"top_right\"、\"bottom_left\"、\"bottom_right\""
 
-#: ../data/mate-notification-daemon.schemas.in.h:3
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Use Active Monitor"
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+msgid "Monitor"
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
 msgstr "現在使用しているテーマ"
 
-#: ../data/mate-notification-daemon.schemas.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "通知ダイアログを表示する際に使用するテーマです。"
 
-#: ../data/mate-notification-daemon.schemas.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
 msgstr "サウンドを有効にするかどうか"
 
-#: ../data/mate-notification-daemon.schemas.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "通知時にサウンドを鳴らすかどうかを指定します。"
 
-#: ../data/mate-notification-daemon.schemas.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
 msgstr "デフォルトのサウンド"
 
-#: ../data/mate-notification-daemon.schemas.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
 msgstr "'sound-file' または 'suppress-sound' で通知する場合を除いて、デフォルトで使用するサウンド・ファイルです。デフォルトのサウンドを指定しない場合は何も入力せずに空のままにしておいて下さい。"
 
-#: ../src/capplet/mate-notification-properties.c:237
+#: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:241
+#: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:245
+#: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:249
+#: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
 msgstr "標準のテーマ"
 
-#: ../src/capplet/mate-notification-properties.c:320
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify の初期化に失敗しました"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "ポップアップ通知のテスト"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "テスト中です"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "ポップアップ通知に失敗しました: %s"
 
-#: ../src/capplet/mate-notification-properties.c:392
+#: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr ""
@@ -104,42 +123,46 @@ msgid "Notification Settings"
 msgstr "ポップアップ通知の設定"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
-msgid "<b>General Options</b>"
-msgstr "<b>全般のオプション</b>"
-
-#: ../src/capplet/mate-notification-properties.ui.h:3
-msgid "      "
-msgstr "      "
-
-#: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "P_osition:"
-msgstr "位置(_O):"
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
-msgid "_Theme:"
-msgstr "テーマ(_T):"
-
-#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Preview"
 msgstr "プレビューする(_P)"
 
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>全般のオプション</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "      "
+msgstr "      "
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "P_osition:"
+msgstr "位置(_O):"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Theme:"
+msgstr "テーマ(_T):"
+
 #: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "_Monitor:"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
 msgstr "左上隅"
 
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
 msgstr "右上隅"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
 msgstr "左下隅"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
 msgstr "右下隅"
 
-#: ../src/daemon/daemon.c:1342
+#: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr ""
