@@ -37,6 +37,8 @@ EXTRA_DIST = \
 	$(icon48_DATA) \
 	$(iconscalable_DATA)
 
+CLEANFILES = $(gsettings_SCHEMAS)
+
 gtk_update_icon_cache = $(UPDATE_ICON_CACHE) -f -t $(datadir)/icons/hicolor
 
 install-data-hook: update-icon-cache
