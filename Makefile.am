@@ -4,7 +4,7 @@ SUBDIRS = data po src
 ACLOCAL_AMFLAGS  = -I macros ${ACLOCAL_FLAGS}
 
 EXTRA_DIST = \
-	AUTHORS NEWS INSTALL COPYING README \
+	AUTHORS NEWS COPYING README \
 	ChangeLog \
 	autogen.sh \
 	configure.ac \
