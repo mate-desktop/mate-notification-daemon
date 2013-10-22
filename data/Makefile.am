@@ -27,7 +27,7 @@ convertdir = $(datadir)/MateConf/gsettings
 convert_DATA = mate-notification-daemon.convert
 
 EXTRA_DIST = \
-	$(gsettings_SCHEMAS_in_in) \
+	$(gsettings_SCHEMAS).in.in \
 	$(convert_DATA) \
 	$(service_DATA) \
 	$(icon16_DATA) \
