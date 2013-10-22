@@ -16,6 +16,8 @@ $(OBJECTS): libtool
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status --recheck
 
+DISTCHECK_CONFIGURE_FLAGS = --disable-icon-update
+
 DISTCLEANFILES = \
 	intltool-extract \
 	intltool-merge \
