@@ -4,7 +4,7 @@ SUBDIRS = data po src
 ACLOCAL_AMFLAGS  = -I macros ${ACLOCAL_FLAGS}
 
 EXTRA_DIST = \
-	AUTHORS NEWS INSTALL COPYING README \
+	AUTHORS NEWS COPYING README \
 	ChangeLog \
 	autogen.sh \
 	configure.ac \
@@ -15,6 +15,8 @@ EXTRA_DIST = \
 $(OBJECTS): libtool
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status --recheck
+
+DISTCHECK_CONFIGURE_FLAGS = --disable-icon-update
 
 DISTCLEANFILES = \
 	intltool-extract \

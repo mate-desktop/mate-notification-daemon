@@ -27,7 +27,7 @@ convertdir = $(datadir)/MateConf/gsettings
 convert_DATA = mate-notification-daemon.convert
 
 EXTRA_DIST = \
-	$(gsettings_SCHEMAS_in_in) \
+	$(gsettings_SCHEMAS).in.in \
 	$(convert_DATA) \
 	$(service_DATA) \
 	$(icon16_DATA) \
@@ -37,12 +37,14 @@ EXTRA_DIST = \
 	$(icon48_DATA) \
 	$(iconscalable_DATA)
 
-gtk_update_icon_cache = gtk-update-icon-cache -f -t $(datadir)/icons/hicolor
+CLEANFILES = $(gsettings_SCHEMAS)
+
+gtk_update_icon_cache = $(UPDATE_ICON_CACHE) -f -t $(datadir)/icons/hicolor
 
 install-data-hook: update-icon-cache
 uninstall-hook: update-icon-cache
 update-icon-cache:
-	@-if test -z "$(DESTDIR)"; then \
+	@-if test -z "$(DESTDIR)" && ICON_UPDATE; then \
 		echo "Updating Gtk icon cache."; \
 		$(gtk_update_icon_cache); \
 	else \
