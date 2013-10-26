@@ -95,9 +95,11 @@ AC_MSG_RESULT([$with_gtk])
 case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
        GTK_REQUIRED=2.18.0
+       LIBWNCK_API_VERSION=1.0
        ;;
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.0.0
+       LIBWNCK_API_VERSION=3.0
        ;;
 esac
 
@@ -123,7 +125,7 @@ pkg_modules="
 	dbus-1 >= $REQ_DBUS_VERSION, \
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
         libcanberra-gtk >= $REQ_LIBCANBERRA_GTK_VERSION, \
-	libwnck-1.0 \
+	libwnck-$LIBWNCK_API_VERSION \
         x11 \
 "
 PKG_CHECK_MODULES(NOTIFICATION_DAEMON, $pkg_modules)
