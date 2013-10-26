@@ -1152,7 +1152,7 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 	WnckWorkspace* wnck_workspace;
 	GList* l;
 
-	#if (GDK_PIXBUF_MAJOR == 2) && (GDK_PIXBUF_MINOR < 22)
+	#if GTK_CHECK_VERSION (3, 0, 0) || ((GDK_PIXBUF_MAJOR == 2) && (GDK_PIXBUF_MINOR < 22))
 		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_window_get_screen(gtk_widget_get_window(nw))));
 	#else
 		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_drawable_get_screen(GDK_DRAWABLE(GTK_WIDGET(nw)->window))));
