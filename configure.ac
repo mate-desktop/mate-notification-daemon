@@ -96,10 +96,12 @@ case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
        GTK_REQUIRED=2.18.0
        LIBWNCK_API_VERSION=1.0
+       LIBCANBERRA_API_VERSION=
        ;;
   3.0) GTK_API_VERSION=3.0
        GTK_REQUIRED=3.0.0
        LIBWNCK_API_VERSION=3.0
+       LIBCANBERRA_API_VERSION=3
        ;;
 esac
 
@@ -124,7 +126,7 @@ pkg_modules="
         $GMODULE_ADD \
 	dbus-1 >= $REQ_DBUS_VERSION, \
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
-        libcanberra-gtk >= $REQ_LIBCANBERRA_GTK_VERSION, \
+        libcanberra-gtk$LIBCANBERRA_API_VERSION >= $REQ_LIBCANBERRA_GTK_VERSION, \
 	libwnck-$LIBWNCK_API_VERSION \
         x11 \
 "
@@ -140,7 +142,7 @@ AC_SUBST(NOTIFICATION_CAPPLET_CFLAGS)
 AC_SUBST(NOTIFICATION_CAPPLET_LIBS)
 
 gdk_modules="
-	gdk-2.0 >= $GTK_REQUIRED, \
+	gdk-$GTK_API_VERSION >= $GTK_REQUIRED, \
 	gdk-pixbuf-2.0 >= $GTK_REQUIRED \
 "
 PKG_CHECK_MODULES(GDK, $gdk_modules, have_gdk=yes,
