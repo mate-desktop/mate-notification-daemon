@@ -8,4 +8,4 @@ Type=Application
 StartupNotify=true
 Categories=GTK;Settings;DesktopSettings;
 OnlyShowIn=MATE;
-
+Keywords=MATE;Notification;Theme;
