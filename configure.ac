@@ -68,8 +68,7 @@ LT_INIT
 dnl ---------------------------------------------------------------------------
 dnl i18n stuff
 dnl ---------------------------------------------------------------------------
-IT_PROG_INTLTOOL([0.40.0])
-
+AM_GNU_GETTEXT
 AC_SUBST([GETTEXT_PACKAGE], [mate-notification-daemon])
 AM_GNU_GETTEXT_VERSION([0.11])
 AM_GLIB_GNU_GETTEXT
