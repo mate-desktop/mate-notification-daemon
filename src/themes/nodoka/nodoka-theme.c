@@ -27,6 +27,10 @@
 
 #include <gtk/gtk.h>
 
+#if GTK_CHECK_VERSION(3, 0, 0)
+ 	#define GTK_WIDGET_VISIBLE(w) gtk_widget_get_visible(w)
+#endif
+
 /* Define basic nodoka types */
 typedef void (*ActionInvokedCb)(GtkWindow *nw, const char *key);
 typedef void (*UrlClickedCb)(GtkWindow *nw, const char *url);
@@ -117,8 +121,13 @@ get_notification_arrow_type(GtkWidget *nw)
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	int screen_height;
 
+#if GTK_CHECK_VERSION(3, 0, 0)
+	screen_height = gdk_screen_get_height(
+		gdk_window_get_screen(gtk_widget_get_window(nw)));
+#else
 	screen_height = gdk_screen_get_height(
 		gdk_drawable_get_screen(GDK_DRAWABLE(nw->window)));
+#endif
 
 	if (windata->arrow.position.y + windata->height + DEFAULT_ARROW_HEIGHT >
 		screen_height)
@@ -140,21 +149,41 @@ set_arrow_parameters (WindowData *windata)
 	int x,y;
 	GtkArrowType arrow_type;
 
+#if GTK_CHECK_VERSION(3, 0, 0)
 	screen_height = gdk_screen_get_height(
-		gdk_drawable_get_screen(GDK_DRAWABLE(windata->win->window)));
+		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
 	screen_width = gdk_screen_get_width(
-		gdk_drawable_get_screen(GDK_DRAWABLE(windata->win->window)));
+		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
+#else
+	screen_height = gdk_screen_get_height(
+		gdk_window_get_screen(GDK_DRAWABLE(windata->win->window)));
+	screen_width = gdk_screen_get_width(
+		gdk_window_get_screen(GDK_DRAWABLE(windata->win->window)));
+#endif
 
 
 	/* Set arrow offset */
+#if GTK_CHECK_VERSION(3, 0, 0)
+	GtkAllocation alloc;
+	gtk_widget_get_allocation(windata->win, &alloc);
+#endif
+
 	if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
+#if GTK_CHECK_VERSION(3, 0, 0)
+		DEFAULT_ARROW_OFFSET + alloc.width) > 
+#else
 		DEFAULT_ARROW_OFFSET + windata->win->allocation.width) > 
+#endif
 			screen_width)
 	{
 		windata->arrow.offset = windata->arrow.position.x - 
 					DEFAULT_ARROW_SKEW - 
 					(screen_width - 
+#if GTK_CHECK_VERSION(3, 0, 0)
+						alloc.width);
+#else
 						windata->win->allocation.width);
+#endif
 	}
 	else if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
 		DEFAULT_ARROW_OFFSET < 0))
@@ -173,10 +202,19 @@ set_arrow_parameters (WindowData *windata)
 		windata->arrow.position.x += 6;
 	}
 	else if (windata->arrow.offset + DEFAULT_ARROW_WIDTH + 6 > 
+#if GTK_CHECK_VERSION(3, 0, 0)
+			alloc.width)
+#else
 			windata->win->allocation.width)
+#endif
 	{
+#if GTK_CHECK_VERSION(3, 0, 0)
+		windata->arrow.offset = alloc.width - 6 - 
+					DEFAULT_ARROW_WIDTH;
+#else
 		windata->arrow.offset = windata->win->allocation.width - 6 - 
 					DEFAULT_ARROW_WIDTH;
+#endif
 		windata->arrow.position.x -= 6;
 	}
 
@@ -201,14 +239,30 @@ set_arrow_parameters (WindowData *windata)
 			break;
 		case GTK_ARROW_DOWN:
 			windata->arrow.point_begin.y = 
+#if GTK_CHECK_VERSION(3, 0, 0)
+				alloc.height - 
+#else
 				windata->win->allocation.height - 
+#endif
 					DEFAULT_ARROW_HEIGHT;
 			windata->arrow.point_middle.y = 
+#if GTK_CHECK_VERSION(3, 0, 0)
+				alloc.height;
+#else
 				windata->win->allocation.height;
+#endif
 			windata->arrow.point_end.y = 
+#if GTK_CHECK_VERSION(3, 0, 0)
+				alloc.height - 
+#else
 				windata->win->allocation.height - 
+#endif
 					DEFAULT_ARROW_HEIGHT;
+#if GTK_CHECK_VERSION(3, 0, 0)
+			y = windata->arrow.position.y - alloc.height;
+#else
 			y = windata->arrow.position.y - windata->win->allocation.height;
+#endif
 			break;
 		default:
 			g_assert_not_reached();
@@ -491,12 +545,32 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 
 static gboolean
 paint_window(GtkWidget *widget,
+#if GTK_CHECK_VERSION (3, 0, 0)
+			 cairo_t *cr,
+#else
 			 GdkEventExpose *event,
+#endif
 			 WindowData *windata)
 {
+	cairo_t *context;
+	cairo_surface_t *surface;
+#if GTK_CHECK_VERSION(3, 0, 0)
+	cairo_t *cr2;
+	GtkAllocation alloc;
+
+	gtk_widget_get_allocation(windata->win, &alloc);
+#else
+	cairo_t *cr;
+#endif
+
 	if (windata->width == 0) {
+#if GTK_CHECK_VERSION(3, 0, 0)
+		windata->width = alloc.width;
+		windata->height = alloc.height;
+#else
 		windata->width = windata->win->allocation.width;
 		windata->height = windata->win->allocation.height;
+#endif
 	}
 	
 	if (windata->arrow.has_arrow)
@@ -504,6 +578,28 @@ paint_window(GtkWidget *widget,
 
 	if (!(windata->enable_transparency))
 	{
+#if GTK_CHECK_VERSION (3, 0, 0)
+			surface = cairo_surface_create_similar (cairo_get_target (cr),
+													CAIRO_CONTENT_COLOR_ALPHA,
+													windata->width,
+													windata->height);
+
+/*
+			cr2 = cairo_create (surface);
+			/* transparent background * /
+			cairo_rectangle (cr2, 0, 0, windata->width, windata->height);
+			cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0);
+			cairo_fill (cr2);
+			cairo_destroy (cr2);
+*/
+
+			cairo_save (cr);
+			cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
+			cairo_set_source_surface (cr, surface, 0, 0);
+			cairo_paint (cr);
+			cairo_restore (cr);
+			cairo_surface_destroy(surface);
+#else
 			GdkPixmap *mask;
 			cairo_t *mask_cr;
 			mask = gdk_pixmap_new (NULL, windata->width, 
@@ -528,26 +624,36 @@ paint_window(GtkWidget *widget,
 						       (GdkBitmap *) mask, 0,0);
 			gdk_pixmap_unref (mask);
 			cairo_destroy (mask_cr);
+#endif
 	}
 
-	cairo_t *context;
-	cairo_surface_t *surface;
-	cairo_t *cr;
-
+#if GTK_CHECK_VERSION(3, 0, 0)
+	context = gdk_cairo_create(gtk_widget_get_window(widget));
+	gtk_widget_get_allocation(widget, &alloc);
+#else
 	context = gdk_cairo_create(widget->window);
+#endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 	surface = cairo_surface_create_similar(cairo_get_target(context),
 										   CAIRO_CONTENT_COLOR_ALPHA,
+#if GTK_CHECK_VERSION(3, 0, 0)
+										   alloc.width,
+										   alloc.height);
+	cairo_set_source_surface (cr, surface, 0, 0);
+#else
 										   widget->allocation.width,
 										   widget->allocation.height);
 	cr = cairo_create(surface);
+#endif
 
 	fill_background(widget, windata, cr);
 	draw_border(widget, windata, cr);
 	draw_stripe(widget, windata, cr);
 
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	cairo_destroy(cr);
+#endif
 	cairo_set_source_surface(context, surface, 0, 0);
 	cairo_paint(context);
 	cairo_surface_destroy(surface);
@@ -572,29 +678,58 @@ configure_event_cb(GtkWidget *nw,
 }
 
 static gboolean
-countdown_expose_cb(GtkWidget *pie, GdkEventExpose *event,
+countdown_expose_cb(GtkWidget *pie,
+#if GTK_CHECK_VERSION (3, 0, 0)
+					cairo_t *cr,
+#else
+					GdkEventExpose *event,
+#endif
 					WindowData *windata)
 {
 	cairo_t *context;
 	cairo_surface_t *surface;
-	cairo_t *cr;
 
+#if GTK_CHECK_VERSION(3, 0, 0)
+	context = gdk_cairo_create(gtk_widget_get_window(pie));
+	GtkAllocation alloc;
+	gtk_widget_get_allocation(pie, &alloc);
+#else
 	context = gdk_cairo_create(pie->window);
+	cairo_t *cr;
+#endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 	surface = cairo_surface_create_similar(cairo_get_target(context),
 										   CAIRO_CONTENT_COLOR_ALPHA,
+										   #if GTK_CHECK_VERSION(3, 0, 0)
+										   alloc.width,
+										   alloc.height);
+										   #else
 										   pie->allocation.width,
 										   pie->allocation.height);
+										   #endif
+#if GTK_CHECK_VERSION(3, 0, 0)
+	cairo_set_source_surface (cr, surface, 0, 0);
+#else
 	cr = cairo_create(surface);
+#endif
 
+
+#if GTK_CHECK_VERSION(3, 0, 0)
+	cairo_translate (cr, -alloc.x, -alloc.y);
+	fill_background (pie, windata, cr);
+	cairo_translate (cr, alloc.x, alloc.y);
+#else
 	cairo_translate (cr, -pie->allocation.x, -pie->allocation.y);
 	fill_background (pie, windata, cr);
 	cairo_translate (cr, pie->allocation.x, pie->allocation.y);
+#endif
 	
 	draw_pie (pie, windata, cr);
 
+#if !GTK_CHECK_VERSION(3, 0, 0)
 	cairo_destroy(cr);
+#endif
 	cairo_set_source_surface(context, surface, 0, 0);
 	cairo_paint(context);
 	cairo_surface_destroy(surface);
@@ -654,7 +789,11 @@ create_notification(UrlClickedCb url_clicked)
 	GtkWidget *alignment;
 	AtkObject *atkobj;
 	WindowData *windata;
+#if GTK_CHECK_VERSION(3, 0, 0)
+	GdkVisual *visual;
+#else
 	GdkColormap *colormap;
+#endif
 	GdkScreen *screen;
 
 	windata = g_new0(WindowData, 1);
@@ -666,6 +805,16 @@ create_notification(UrlClickedCb url_clicked)
 
 	windata->enable_transparency = FALSE;
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
+#if GTK_CHECK_VERSION(3, 0, 0)
+	visual = gdk_screen_get_rgba_visual(screen);
+
+	if (visual != NULL)
+	{
+		gtk_widget_set_visual(win, visual);
+		if (gdk_screen_is_composited(screen))
+			windata->enable_transparency = TRUE;
+	}
+#else
 	colormap = gdk_screen_get_rgba_colormap(screen);
 
 	if (colormap != NULL)
@@ -674,6 +823,7 @@ create_notification(UrlClickedCb url_clicked)
 		if (gdk_screen_is_composited(screen))
 			windata->enable_transparency = TRUE;
 	}
+#endif
 
 	gtk_window_set_title(GTK_WINDOW(win), "Notification");
 	gtk_widget_add_events(win, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
@@ -703,8 +853,13 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_container_add(GTK_CONTAINER(drawbox), main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	g_signal_connect(G_OBJECT(main_vbox), "draw",
+					 G_CALLBACK(paint_window), windata);
+#else
 	g_signal_connect(G_OBJECT(main_vbox), "expose_event",
 					 G_CALLBACK(paint_window), windata);
+#endif
 
 	windata->top_spacer = gtk_image_new();
 	gtk_box_pack_start(GTK_BOX(main_vbox), windata->top_spacer,
@@ -902,8 +1057,13 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
 		gtk_widget_set_size_request(windata->pie_countdown,
 									PIE_WIDTH, PIE_HEIGHT);
+#if GTK_CHECK_VERSION (3, 0, 0)
+		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw",
+						 G_CALLBACK(countdown_expose_cb), windata);
+#else
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "expose_event",
 						 G_CALLBACK(countdown_expose_cb), windata);
+#endif
 	}
 
 	button = gtk_button_new();
@@ -918,7 +1078,11 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 	buf = g_strdup_printf("stock_%s", key);
 	pixbuf = gtk_icon_theme_load_icon(
 		gtk_icon_theme_get_for_screen(
+#if GTK_CHECK_VERSION(3, 0, 0)
+			gdk_window_get_screen(gtk_widget_get_window(GTK_WIDGET(nw)))),
+#else
 			gdk_drawable_get_screen(GTK_WIDGET(nw)->window)),
+#endif
 		buf, 16, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
 	g_free(buf);
 
@@ -955,7 +1119,11 @@ clear_notification_actions(GtkWindow *nw)
 
 	gtk_widget_hide(windata->actions_box);
 	gtk_container_foreach(GTK_CONTAINER(windata->actions_box),
+#if GTK_CHECK_VERSION(3, 0, 0)
+						  (GtkCallback)g_object_unref, NULL);
+#else
 						  (GtkCallback)gtk_object_destroy, NULL);
+#endif
 }
 
 /* Move notification window */
