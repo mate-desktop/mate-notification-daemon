@@ -3,76 +3,75 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pygmalion, 2014
-# vitorgatti <vitorgatti@yahoo.com.br>, 2012
+# samson <sambelet@yahoo.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-01-11 17:14+0000\n"
-"Last-Translator: Pygmalion\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
+"PO-Revision-Date: 2013-04-02 18:25+0000\n"
+"Last-Translator: samson <sambelet@yahoo.com>\n"
+"Language-Team: Amharic (http://www.transifex.com/projects/p/MATE/language/am/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
+"Language: am\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Localização da pop-up"
+msgstr "የብቅ ባይ አካባቢ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Localização padrão para notificações pop-up empilhadas. Valores permitidos: \"top_left\", \"top_right\", \"bottom_left\" e \"bottom_right\""
+msgstr "ነባር የብቅ ባይ አካባቢ በስራ ቦታ ላይ ማስታወቂያዎችን ለማከማቻ ፡ የተፈቀዱ ዋጋዎች : \"ላይ_በግራ\",\"ላይ_በቀኝ\",\"ታች_በግራ\" እና \"ታች_በቀኝ\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "ንቁ መቆጣጠሪያ ተጠቀም "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar a notificação no monitor ativo."
+msgstr "ማስታወቂያውን በንቁ መቆጣጠሪያ ላይ ማሳያ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr "መቆጣጠሪያ"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr ""
+msgstr "ማስታወቂያዎቹ የሚታዩባቸው መመልከቻዎች ፡ የተፈቀዱ ዋጋዎች : -1 (በንቁ መመልከቻው ላይ ማሳያ) እና 0 ወደ n - 1 where n የመመልከቻው ቁጥር ነው "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema atual"
+msgstr "የአሁኑ ገጽታ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "O tema usado ao exibir notificações."
+msgstr "ማስታወቂያዎችን በሚያሳይ ጊዜ የሚጠቀመው ገጽታዎች "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Som Habilitado"
+msgstr "ዽምፅ ተችሏል "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Liga ou desliga o suporte a som para notificações."
+msgstr "ለማስታወቂያዎች የድምፅ ድጋፍ ማብሪያ እና ማጥፊያ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Som Padrão"
+msgstr "ነባር ድምፅ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O arquivo de som padrão a ser usado a não ser que uma notificação forneça a dica \"sound-file\" ou \"suppress-sound\". Deixe em branco para nenhum som padrão."
+msgstr "ነባሩን ድምፅ ይጠቀማል ማስታወቂያው ሌላ ደፅ ካላቀረበ 'sound-file' ወይንም  'suppress-sound' hint. ነባር ድምፁን ካልፈለጉ ባዶ ይተውት "
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -84,96 +83,96 @@ msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Controle deslizante"
+msgstr "ተንሸራታች "
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema padrão"
+msgstr "መደበኛ ገጽታ "
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Erro ao inicializar libmatenotify"
+msgstr "ስህተት ተፈጥሯል libmatenotify በማስነሳት ላይ "
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Teste de Notificação"
+msgstr "ማስታወቂያ መሞከሪያ "
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Somente um teste"
+msgstr "ለሙከራ "
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Erro ao exibir notificação: %s"
+msgstr "ማስታወቂያ በማሳየት ላይ ስህተት ተፈጥሯል : %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Não foi possível carregar arquivo de interface: %s"
+msgstr "የተጠቃሚውን ገጽታ ፋይሎች መጫን አልተቻለም : %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notificações Pop-Up"
+msgstr "ብቅ-ባይ ማስታወቂያዎች "
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências de suas notificações pop-up"
+msgstr "የብቅ-ባይ ማስታወቂያዎች ምርጫ ማሰናጃ  "
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Teste de Notificação"
+msgstr "ማስታወቂያ ማሰናጃዎች  "
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Visualizar"
+msgstr "_ቅድመ እይታ "
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opções Gerais</b>"
+msgstr "<b>ባጠቃላይ ምርጫዎች</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
-msgstr "       "
+msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_osição:"
+msgstr "አ _ካባቢ :"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr "_ገጽታ :"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr "_መቆጣጠሪያ :"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "Superior Esquerdo"
+msgstr "ላይ በግራ "
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "Superior Direito"
+msgstr "ላይ በቀኝ "
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "Inferior Esquerda"
+msgstr "ታች በግራ "
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "Inferior Direita"
+msgstr "ታች በቀኝ "
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Excedido o número máximo de notificações"
+msgstr "ከፍተኛውን የማስታወቂያዎች ቁጥር አልፏል "
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u não é uma ID de notificação válida"
+msgstr "%u ዋጋ ያለው የማስታወቂያ ID አይደለም "
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificação"
+msgstr "ማስታወቂያ "

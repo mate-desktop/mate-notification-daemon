@@ -3,31 +3,30 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pygmalion, 2014
-# vitorgatti <vitorgatti@yahoo.com.br>, 2012
+# Sveinn í Felli <sv1@fellsnet.is>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-01-11 17:14+0000\n"
-"Last-Translator: Pygmalion\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
+"PO-Revision-Date: 2013-02-11 00:15+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Language-Team: Icelandic (http://www.transifex.com/projects/p/MATE/language/is/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: is\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Localização da pop-up"
+msgstr "Staðsetning sprettglugga"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Localização padrão para notificações pop-up empilhadas. Valores permitidos: \"top_left\", \"top_right\", \"bottom_left\" e \"bottom_right\""
+msgstr "Sjálfgefinn staður þar sem tilkynningar birtast. Leyfð gildi eru: \"top_left\",\"top_right\",\"bottom_left\" og \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
@@ -36,11 +35,11 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar a notificação no monitor ativo."
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
@@ -50,29 +49,29 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema atual"
+msgstr "Núverandi þema"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "O tema usado ao exibir notificações."
+msgstr "Þema sem notað er við birtingu tilkynninga."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Som Habilitado"
+msgstr "Hljóð virkt"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Liga ou desliga o suporte a som para notificações."
+msgstr "Slekkur og kveikir á hljóði fyrir tilkynningar."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Som Padrão"
+msgstr "Sjálfgefið hljóð"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O arquivo de som padrão a ser usado a não ser que uma notificação forneça a dica \"sound-file\" ou \"suppress-sound\". Deixe em branco para nenhum som padrão."
+msgstr "Sjálfgefin hljóðskrá sem er notuð nema tilkynningin tilgreini ‚sound-file‘ eða ‚suppress-sound‘. Hafðu þetta tómt ef þú vilt ekkert sjálfgefið hljóð."
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -84,96 +83,96 @@ msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Controle deslizante"
+msgstr "Sleði"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema padrão"
+msgstr "Staðlað þema"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Erro ao inicializar libmatenotify"
+msgstr "Villa við að frumstilla libmatenotify"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Teste de Notificação"
+msgstr "Prófun tilkynninga"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Somente um teste"
+msgstr "Bara að prófa"
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Erro ao exibir notificação: %s"
+msgstr "Villa við að birta tilkynningu: %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Não foi possível carregar arquivo de interface: %s"
+msgstr "Gat ekki hlaðið notandaviðmótsskrá: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notificações Pop-Up"
+msgstr "Tilkynningar í sprettglugga"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências de suas notificações pop-up"
+msgstr "Stilltu hvernig tilkynningarnar birtast"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Teste de Notificação"
+msgstr "Stillingar á tilkynningum"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Visualizar"
+msgstr "_Forskoðun"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opções Gerais</b>"
+msgstr "<b>Almennir valmöguleikar</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
-msgstr "       "
+msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_osição:"
+msgstr "_Staðsetning:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr "_Þema"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "Superior Esquerdo"
+msgstr "Efst til vinstri"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "Superior Direito"
+msgstr "Efst til hægri"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "Inferior Esquerda"
+msgstr "Neðst til vinstri"
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "Inferior Direita"
+msgstr "Neðst til hægri"
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Excedido o número máximo de notificações"
+msgstr "Mesta fjölda tilkynninga náð"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u não é uma ID de notificação válida"
+msgstr "%u er ekki gilt auðkenni á tilkynningu"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificação"
+msgstr "Tilkynning"

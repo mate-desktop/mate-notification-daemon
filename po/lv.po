@@ -3,76 +3,76 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pygmalion, 2014
-# vitorgatti <vitorgatti@yahoo.com.br>, 2012
+# Imants Liepiņš <imzzinator@gmail.com>, 2012
+# Rihards Priedītis <rprieditis@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-01-11 17:14+0000\n"
-"Last-Translator: Pygmalion\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
+"PO-Revision-Date: 2013-07-25 19:34+0000\n"
+"Last-Translator: Rihards Priedītis <rprieditis@gmail.com>\n"
+"Language-Team: Latvian (http://www.transifex.com/projects/p/MATE/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: lv\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Localização da pop-up"
+msgstr "Iznirstošo paziņojumu atrašanās vieta"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Localização padrão para notificações pop-up empilhadas. Valores permitidos: \"top_left\", \"top_right\", \"bottom_left\" e \"bottom_right\""
+msgstr "Iznirstošo paziņojumu noklusētā atrašanās vieta. Atļautās vērtības: \"top_left\",\"top_right\",\"bottom_left\" un \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Izmantot aktīvo displeju"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar a notificação no monitor ativo."
+msgstr "Attēlot paziņojumus aktīvajā displejā."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr "Displejs"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr ""
+msgstr "Displejs, kurā attēlot paziņojumus. Atļautās vērtības: -1 (attēlot aktīvajā displejā) un no 0 līdz n -1, kur n ir displeju skaits."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema atual"
+msgstr "Patreizējā tēma"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "O tema usado ao exibir notificações."
+msgstr "Paziņojumu attēlošanas tēma"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Som Habilitado"
+msgstr "Skaņa iespējota"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Liga ou desliga o suporte a som para notificações."
+msgstr "Ieslēdz un izslēdz skaņas atbalstu paziņojumiem."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Som Padrão"
+msgstr "Noklusējuma skaņa"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O arquivo de som padrão a ser usado a não ser que uma notificação forneça a dica \"sound-file\" ou \"suppress-sound\". Deixe em branco para nenhum som padrão."
+msgstr "Noklusētais skaņas fails, kurš tiks izmantots, ja paziņojums nenorādīs 'sound-file' vai 'suppress-sound'. Atstājiet tukšu, lai izmantotu noklusēto skaņu."
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -84,96 +84,96 @@ msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Controle deslizante"
+msgstr "Slider"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema padrão"
+msgstr "Standarta tēma"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Erro ao inicializar libmatenotify"
+msgstr "Kļūda, palaižot libmatenotify"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Teste de Notificação"
+msgstr "Paziņojuma pārbaude"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Somente um teste"
+msgstr "Tikai pārbaude"
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Erro ao exibir notificação: %s"
+msgstr "Kļūda, parādot paziņojumu: %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Não foi possível carregar arquivo de interface: %s"
+msgstr "Neizdevās ielādēt saskarnes failu: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notificações Pop-Up"
+msgstr "Uznirstošie paziņojumi"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências de suas notificações pop-up"
+msgstr "Iestatīt uznirstošos paziņojumus"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Teste de Notificação"
+msgstr "Paziņojumu Iestatījumi"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Visualizar"
+msgstr "_Priekšstatījums"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opções Gerais</b>"
+msgstr "<b>Pamata Iespējas</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
-msgstr "       "
+msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_osição:"
+msgstr "P_ozīcija"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr "_Tēma"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr "_Displejs:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "Superior Esquerdo"
+msgstr "Pa Kreisi Augšā"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "Superior Direito"
+msgstr "Pa Labi Augšā"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "Inferior Esquerda"
+msgstr "Pa Kreisi Apakšā"
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "Inferior Direita"
+msgstr "Pa Labi Apakšā"
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Excedido o número máximo de notificações"
+msgstr "Pārsniegts maksimāli pieļaujamais paziņojumu skaits"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u não é uma ID de notificação válida"
+msgstr "%u nav derīgs paziņojuma ID"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificação"
+msgstr "Paziņojums"

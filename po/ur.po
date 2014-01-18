@@ -3,31 +3,30 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Pygmalion, 2014
-# vitorgatti <vitorgatti@yahoo.com.br>, 2012
+# noureddin <noureddin@barid.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-01-11 17:14+0000\n"
-"Last-Translator: Pygmalion\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
+"PO-Revision-Date: 2013-06-03 11:40+0000\n"
+"Last-Translator: mauron\n"
+"Language-Team: Urdu (http://www.transifex.com/projects/p/MATE/language/ur/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: ur\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Localização da pop-up"
+msgstr "اطلاعات کا مقام"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Localização padrão para notificações pop-up empilhadas. Valores permitidos: \"top_left\", \"top_right\", \"bottom_left\" e \"bottom_right\""
+msgstr "مقام کار میں اطلاعات کا طے شُدہ مقام. ممکنہ قدرین ہیں: \"top_left\",\"top_right\",\"bottom_left\" اور \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
@@ -36,11 +35,11 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar a notificação no monitor ativo."
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
@@ -50,130 +49,130 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema atual"
+msgstr "حالیہ تھیم"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "O tema usado ao exibir notificações."
+msgstr "اطلاعات کے استعمال کے وقت استعمال ہونے والی تھیم."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Som Habilitado"
+msgstr "آواز فعال ہے"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Liga ou desliga o suporte a som para notificações."
+msgstr "اطلاعات کے لیے آواز کی معاونت فعال یا معطل کریں."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Som Padrão"
+msgstr "طے شُدہ آواز"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O arquivo de som padrão a ser usado a não ser que uma notificação forneça a dica \"sound-file\" ou \"suppress-sound\". Deixe em branco para nenhum som padrão."
+msgstr "جب تک کہ اطلاع 'sound-file' یا 'suppress-sound' فراہم نہیں کرتی طے شُدہ صوتی فائل استعمال ہوگی. غیر طے شُدہ کے لیے خالی چھوڑ دیں."
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr "Coco"
+msgstr "کوکو"
 
 #: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr "Nodoka"
+msgstr "نوڈوکا"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Controle deslizante"
+msgstr "سلائیڈر"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema padrão"
+msgstr "معیاری تھیم"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Erro ao inicializar libmatenotify"
+msgstr "libmatenotify کو چلانے میں غلطی"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Teste de Notificação"
+msgstr "اطلاع کی جانچ"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Somente um teste"
+msgstr "یہ محض ایک جانچ ہے۔"
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Erro ao exibir notificação: %s"
+msgstr "اطلاع دکھانے میں غلطی: %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Não foi possível carregar arquivo de interface: %s"
+msgstr "صارف مواجہ نہیں لادا جاسکتا: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notificações Pop-Up"
+msgstr "پوپ اپ اطلاعات"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências de suas notificações pop-up"
+msgstr "اطلاعات کی ترجیحات کا تعین کریں"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Teste de Notificação"
+msgstr "اطلاع کی ترتیبات"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Visualizar"
+msgstr "_معائنہ"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opções Gerais</b>"
+msgstr "<b>عمومی اختیارات</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
-msgstr "       "
+msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_osição:"
+msgstr "_مقام:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr "_تھیم:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "Superior Esquerdo"
+msgstr "اوپر بائیں"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "Superior Direito"
+msgstr "اوپر دائیں"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "Inferior Esquerda"
+msgstr "نیچے بائیں"
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "Inferior Direita"
+msgstr "نیچے دائیں"
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Excedido o número máximo de notificações"
+msgstr "اطلاعات کی زیادہ سے زیادہ حد سے تجاوز ہوگیا"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u não é uma ID de notificação válida"
+msgstr "%u موزوں اطلاعیہ شناخت نہیں"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificação"
+msgstr "اطلاع"
