@@ -714,7 +714,7 @@ set_notification_hints(GtkWindow *nw, GHashTable *hints)
 
 	value = (GValue *)g_hash_table_lookup(hints, "urgency");
 
-	if (value != NULL)
+	if (value != NULL && G_VALUE_HOLDS_UCHAR(value))
 	{
 		windata->urgency = g_value_get_uchar(value);
 
