@@ -141,7 +141,7 @@ AC_SUBST(NOTIFICATION_CAPPLET_LIBS)
 
 gdk_modules="
 	gdk-$GTK_API_VERSION >= $GTK_REQUIRED, \
-	gdk-pixbuf-2.0 >= $GTK_REQUIRED \
+	gdk-pixbuf-2.0 >= 2.18.0 \
 "
 PKG_CHECK_MODULES(GDK, $gdk_modules, have_gdk=yes,
 [
