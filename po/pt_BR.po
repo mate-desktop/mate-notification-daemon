@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Pygmalion, 2014
+# Pygmalion, 2014
 # vitorgatti <vitorgatti@yahoo.com.br>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-01-11 17:14+0000\n"
+"PO-Revision-Date: 2014-02-19 17:03+0000\n"
 "Last-Translator: Pygmalion\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +33,7 @@ msgstr "Localização padrão para notificações pop-up empilhadas. Valores per
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Utilizar monitor ativo"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
