@@ -1,0 +1,178 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# exoos <mince.lesovski@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-11 01:15+0100\n"
+"PO-Revision-Date: 2014-03-01 09:31+0000\n"
+"Last-Translator: exoos <mince.lesovski@gmail.com>\n"
+"Language-Team: Macedonian (http://www.transifex.com/projects/p/MATE/language/mk/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: mk\n"
+"Plural-Forms: nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;\n"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
+msgid "Popup location"
+msgstr "Локација на поп-ап известувањата"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
+msgid ""
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr "Стандардна поп-ап локација на работниот простор за известувања. Дозволени вредности: \"горе_лево\", \"горе_десно\", \"долу_лево\" и \"долу_десно\""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Use Active Monitor"
+msgstr "Користи го активниот екран"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr "Прикажи ги известувањата на активниот екран"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+msgid "Monitor"
+msgstr "Екран"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr "Екран за прикажување на известувањата. Дозволени вредности: -1 (прикажи на активниот екран) и 0 до n - 1 каде n е бројот на екрани.  "
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
+msgid "Current theme"
+msgstr "Тековна тема"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
+msgid "The theme used when displaying notifications."
+msgstr "Тема која се користи при прикажување на известувањата."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
+msgid "Sound Enabled"
+msgstr "Звукот е овозможен"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
+msgid "Turns on and off sound support for notifications."
+msgstr "Ја вклучува и исклучува подршката за звук на известувањата."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
+msgid "Default Sound"
+msgstr "Стандарден звук"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
+msgid ""
+"The default sound file used unless a notification supplies the 'sound-file' "
+"or 'suppress-sound' hint. Leave empty for no default sound."
+msgstr "Се користи стандардната датотека за звук освен ако известувањето доаѓа со 'датотека за звук' или 'задушен звук' навестување. Оставете празно за без стандарден звук."
+
+#: ../src/capplet/mate-notification-properties.c:327
+msgid "Coco"
+msgstr "Coco"
+
+#: ../src/capplet/mate-notification-properties.c:331
+msgid "Nodoka"
+msgstr "Nodoka"
+
+#: ../src/capplet/mate-notification-properties.c:335
+msgid "Slider"
+msgstr "Клизач"
+
+#: ../src/capplet/mate-notification-properties.c:339
+msgid "Standard theme"
+msgstr "Стандардна тема"
+
+#: ../src/capplet/mate-notification-properties.c:462
+msgid "Error initializing libmatenotify"
+msgstr "Грешка при стартување на libmatenotify"
+
+#: ../src/capplet/mate-notification-properties.c:475
+msgid "Notification Test"
+msgstr "Тест за известување"
+
+#: ../src/capplet/mate-notification-properties.c:475
+msgid "Just a test"
+msgstr "Само тест"
+
+#: ../src/capplet/mate-notification-properties.c:479
+#, c-format
+msgid "Error while displaying notification: %s"
+msgstr "Грешка при прикажување на известување: %s"
+
+#: ../src/capplet/mate-notification-properties.c:534
+#, c-format
+msgid "Could not load user interface file: %s"
+msgstr "Не може да се вчита датотеката за корисничкиот интерфејс: %s"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
+msgid "Pop-Up Notifications"
+msgstr "Поп-ап известувања"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
+msgid "Set your pop-up notification preferences"
+msgstr "Подеси ги нагодувањата за поп-ап известувањата"
+
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "Notification Settings"
+msgstr "подесувања за известувањата"
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "_Preview"
+msgstr "_Преглед"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>Општи опции</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "      "
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "P_osition:"
+msgstr "Местоположба:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Theme:"
+msgstr "_Тема:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "_Monitor:"
+msgstr "_Екран:"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Top Left"
+msgstr "Горе лево"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Top Right"
+msgstr "Горе десно"
+
+#: ../src/capplet/mate-notification-properties.ui.h:11
+msgid "Bottom Left"
+msgstr "Доле лево"
+
+#: ../src/capplet/mate-notification-properties.ui.h:12
+msgid "Bottom Right"
+msgstr "Доле десно"
+
+#: ../src/daemon/daemon.c:1330
+#, c-format
+msgid "Exceeded maximum number of notifications"
+msgstr "Максималниот број на известувања е надминат"
+
+#: ../src/daemon/daemon.c:1603
+#, c-format
+msgid "%u is not a valid notification ID"
+msgstr "%u не е важечки ID на известувањето"
+
+#: ../src/daemon/sound.c:36
+msgid "Notification"
+msgstr "Известување"
