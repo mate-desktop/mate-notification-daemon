@@ -3,133 +3,133 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# utalabi <utalabi@gmail.com>, 2013-2014
+# Sadgamaya <g.raghavan.g@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-03-22 16:21+0000\n"
-"Last-Translator: utalabi <utalabi@gmail.com>\n"
-"Language-Team: Sardinian (http://www.transifex.com/projects/p/MATE/language/sc/)\n"
+"PO-Revision-Date: 2014-03-09 05:09+0000\n"
+"Last-Translator: Sadgamaya <g.raghavan.g@gmail.com>\n"
+"Language-Team: Hindi (http://www.transifex.com/projects/p/MATE/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: sc\n"
+"Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Logu de sa bentana chi rupit"
+msgstr "पॉपअप स्थान"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Logu predefinidu de sa bentana chi rupit in su tretu de traballu pro sa pira de sas notìficas. Logos permitidos: \"top_left\",\"top_right\",\"bottom_left\" e \"bottom_right\""
+msgstr "कार्यस्थान पर स्टैक अधिसूचनाओं के लिए मूलभूत पॉपअप स्थान।अनुमित मान: \"top_left\",\"top_right\",\"bottom_left\" व \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr "Imprea su Mònitor Ativu "
+msgstr "सक्रिय मॉनिटर का उपयोग करें"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mustra sa notìfica in su mònitor ativu."
+msgstr "अधिसूचनाएं सक्रिय मॉनिटर पे दिखाएँ।"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Mònitor"
+msgstr "मॉनीटर"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Mònitor pro mustrare sa notìfica. Balores permìtidos: -1 (mustra in su mònitor ativu) e dae 0 a n - 1 ue n est su nùmeru de sos mònitors."
+msgstr "अधिसूचना प्रदर्शित करने के लिए मॉनिटर।अनुमित मान: -1 (सक्रिय मॉनिटर पे दिखाएँ) व 0 से n -1 तक, जहाँ n सक्रिय मॉनिटरों कि संख्या है।"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema currente"
+msgstr "वर्तमान थीम"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "Su tema usadu cando si mustrant sas notìficas."
+msgstr "अधिसूचना प्रदर्शित करते समय प्रयुक्त थीम."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Sonu ativu"
+msgstr "ध्वनि सक्षम"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Ativa o istuda sos sonos de sas notìficas "
+msgstr "अधिसूचनाओं  के लिए ध्वनि समर्थन ऑन व ऑफ करता है."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Sonu predefinidu"
+msgstr "मूलभूत ध्वनि"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "Su file de su sonu predefinidu impreadu a mancu chi una notìfica non torret s'imposta  'sound-file' o 'suppress-sound'. Lassare bòidu pro chi non s'impreet perunu sonu predefinidu."
+msgstr "मूलभूत ध्वनि फ़ाइल का उपयोग होगा जब तक कोई अधिसूचना 'sound-file' या  'suppress-sound' सहायक-सूचना उपलब्ध नहीं कराता।मूलभूत ध्वनि ना हो तो रिक्त छोड़ दें।"
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr "Coco"
+msgstr "कोको"
 
 #: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr "Nodoka"
+msgstr "नोडोका"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Lassinadore"
+msgstr "स्लाइडर"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema de règula"
+msgstr "मानक थीम"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Faddina in s'aprontare libmatenotify"
+msgstr "libmatenotify आरंभ करने में त्रुटि"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Proa de notìfica"
+msgstr "अधिसूचना परीक्षण"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Est una proa ebbia"
+msgstr "परीक्षण मात्र"
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Faddina in su mustrare sa notìfica: %s"
+msgstr "अधिसूचना प्रदर्शन में त्रुटि: %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Non si podet carrigare su file %s de s'interfache de impitadore"
+msgstr "उपयोक्ता अंतरफलक फ़ाइल को लोड नहीं कर सका: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notìfìcas chi rupint"
+msgstr "पॉप-अप अधिसूचना"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Sèbera sas preferèntzias pro sas notìficas chi rupint"
+msgstr "पॉप-अप अधिसूचना की वरीयताएँ नियत करें"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Sèberos pro sas Notìficas"
+msgstr "अधिसूचना सेटिंग्स"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Anteprima"
+msgstr "पूर्वावलोकन (_P)"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Preferèntzias generales</b>"
+msgstr "<b>सामान्य विकल्प</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
@@ -137,42 +137,42 @@ msgstr " "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_ositzione:"
+msgstr "स्थान (_O):"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema"
+msgstr "थीम (_T):"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Mònitor"
+msgstr "मॉनिटर (_M):"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "In Artu a Manca"
+msgstr "शीर्ष बायाँ"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "In Artu a Destra"
+msgstr "शीर्ष दायाँ"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "In Bassu a Manca"
+msgstr "निचलाबायाँ"
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "In Bassu a Destra"
+msgstr "निचलादायाँ"
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Subraprus de su nùmeru màssimu de notìficas "
+msgstr "अधिसूचनाओं कि अधिकतम संख्या पार हो गई है"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u no est unu ID de notìfica bàlidu"
+msgstr "%u वैध अधिसूचना आईडी नहीं है"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notìfica"
+msgstr "अधिसूचना"
