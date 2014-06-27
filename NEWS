@@ -1,2 +1,5 @@
+1.8.1
+  * Fix crash when active workspace us NULL
+
 1.8.0
   * Switch to libwnck
