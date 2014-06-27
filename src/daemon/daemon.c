@@ -1162,6 +1162,11 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 
 	wnck_workspace = wnck_screen_get_active_workspace (wnck_screen);
 
+	if (!wnck_workspace)
+	{
+		return FALSE;
+	}
+
 	for (l = wnck_screen_get_windows_stacked (wnck_screen); l != NULL; l = l->next)
 	{
 		WnckWindow *wnck_win = (WnckWindow *) l->data;
