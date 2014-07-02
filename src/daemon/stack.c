@@ -377,11 +377,6 @@ void notify_stack_remove_window(NotifyStack* stack, GtkWindow* nw)
 		stack->windows = g_list_delete_link(stack->windows, remove_l);
 	}
 
-	#if GTK_CHECK_VERSION(2, 20, 0)
-		if (gtk_widget_get_realized(GTK_WIDGET(nw)))
-			gtk_widget_unrealize(GTK_WIDGET(nw));
-	#else
-		if (GTK_WIDGET_REALIZED(GTK_WIDGET(nw)))
-			gtk_widget_unrealize(GTK_WIDGET(nw));
-	#endif
+	if (gtk_widget_get_realized(GTK_WIDGET(nw)))
+		gtk_widget_unrealize(GTK_WIDGET(nw));
 }
