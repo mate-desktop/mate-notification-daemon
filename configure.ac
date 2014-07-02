@@ -77,8 +77,6 @@ AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package n
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the themes
 dnl ---------------------------------------------------------------------------
-GTK_API_VERSION=2.0
-GTK_REQUIRED=2.18.0
 
 AC_MSG_CHECKING([which gtk+ version to compile against])
 AC_ARG_WITH([gtk],
@@ -92,7 +90,7 @@ AC_MSG_RESULT([$with_gtk])
 
 case "$with_gtk" in
   2.0) GTK_API_VERSION=2.0
-       GTK_REQUIRED=2.18.0
+       GTK_REQUIRED=2.24.0
        LIBWNCK_API_VERSION=1.0
        LIBCANBERRA_API_VERSION=
        ;;
@@ -112,15 +110,14 @@ AC_SUBST(THEME_LIBS)
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the daemon
 dnl ---------------------------------------------------------------------------
-REQ_GLIB_VERSION=2.18.0
-REQ_GIO_VERSION=2.25.0
+REQ_GLIB_VERSION=2.36.0
 REQ_DBUS_VERSION=0.78
 REQ_LIBCANBERRA_GTK_VERSION=0.4
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 pkg_modules="
 	gtk+-$GTK_API_VERSION >= $GTK_REQUIRED, \
 	glib-2.0 >= $REQ_GLIB_VERSION, \
-	gio-2.0 >= $REQ_GIO_VERSION, \
+	gio-2.0 >= $REQ_GLIB_VERSION, \
         $GMODULE_ADD \
 	dbus-1 >= $REQ_DBUS_VERSION, \
 	dbus-glib-1 >= $REQ_DBUS_VERSION, \
@@ -135,7 +132,7 @@ AC_SUBST(NOTIFICATION_DAEMON_LIBS)
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the setup tool
 dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GIO_VERSION gtk+-$GTK_API_VERSION >= $GTK_REQUIRED libnotify dbus-1 dbus-glib-1)
+PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GLIB_VERSION gtk+-$GTK_API_VERSION >= $GTK_REQUIRED libnotify dbus-1 dbus-glib-1)
 AC_SUBST(NOTIFICATION_CAPPLET_CFLAGS)
 AC_SUBST(NOTIFICATION_CAPPLET_LIBS)
 
