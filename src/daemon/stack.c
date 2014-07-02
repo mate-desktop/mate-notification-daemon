@@ -214,10 +214,17 @@ notify_stack_new (NotifyDaemon       *daemon,
 void
 notify_stack_destroy (NotifyStack *stack)
 {
+        GList* l;
+
         g_assert (stack != NULL);
 
         if (stack->update_id != 0) {
                 g_source_remove (stack->update_id);
+        }
+
+        for (l = stack->windows; l != NULL; l = l->next) {
+                GtkWindow *nw = GTK_WINDOW (l->data);
+                g_signal_handlers_disconnect_by_data(G_OBJECT(nw), stack);
         }
 
         g_list_free (stack->windows);
