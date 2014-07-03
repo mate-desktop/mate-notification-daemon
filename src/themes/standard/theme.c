@@ -734,11 +734,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
 	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
 	//gtk_widget_set_size_request(close_button, 20, 20);
-#if GTK_CHECK_VERSION(3, 0, 0)
 	g_signal_connect_swapped(G_OBJECT(close_button), "clicked", G_CALLBACK(g_object_unref), win);
-#else
-	g_signal_connect_swapped(G_OBJECT(close_button), "clicked", G_CALLBACK(gtk_widget_destroy), win);
-#endif
 
 	rcstyle = gtk_rc_style_new();
 	rcstyle->xthickness = rcstyle->ythickness = 0;
@@ -1051,11 +1047,7 @@ void clear_notification_actions(GtkWindow* nw)
 	windata->pie_countdown = NULL;
 
 	gtk_widget_hide(windata->actions_box);
-#if GTK_CHECK_VERSION(3, 0, 0)
 	gtk_container_foreach(GTK_CONTAINER(windata->actions_box), (GtkCallback) g_object_unref, NULL);
-#else
-	gtk_container_foreach(GTK_CONTAINER(windata->actions_box), (GtkCallback) gtk_object_destroy, NULL);
-#endif
 }
 
 void move_notification(GtkWidget* nw, int x, int y)
