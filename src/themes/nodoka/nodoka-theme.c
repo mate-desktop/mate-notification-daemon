@@ -27,10 +27,6 @@
 
 #include <gtk/gtk.h>
 
-#if GTK_CHECK_VERSION(3, 0, 0)
- 	#define GTK_WIDGET_VISIBLE(w) gtk_widget_get_visible(w)
-#endif
-
 /* Define basic nodoka types */
 typedef void (*ActionInvokedCb)(GtkWindow *nw, const char *key);
 typedef void (*UrlClickedCb)(GtkWindow *nw, const char *url);
@@ -315,9 +311,9 @@ update_content_hbox_visibility(WindowData *windata)
 	 * This is all a hack, but until we have a libview-style ContentBox,
 	 * it'll just have to do.
 	 */
-	if (GTK_WIDGET_VISIBLE(windata->icon) ||
-		GTK_WIDGET_VISIBLE(windata->body_label) ||
-		GTK_WIDGET_VISIBLE(windata->actions_box))
+	if (gtk_widget_get_visible(windata->icon) ||
+		gtk_widget_get_visible(windata->body_label) ||
+		gtk_widget_get_visible(windata->actions_box))
 	{
 		gtk_widget_show(windata->content_hbox);
 	}
@@ -1040,7 +1036,7 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 
 	g_assert(windata != NULL);
 
-	if (!GTK_WIDGET_VISIBLE(windata->actions_box))
+	if (!gtk_widget_get_visible(windata->actions_box))
 	{
 		GtkWidget *alignment;
 

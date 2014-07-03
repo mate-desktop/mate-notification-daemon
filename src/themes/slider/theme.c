@@ -77,10 +77,6 @@ enum {
 
 #define MAX_ICON_SIZE IMAGE_SIZE
 
-#if GTK_CHECK_VERSION(3, 0, 0)
-#define GTK_WIDGET_VISIBLE(w) gtk_widget_get_visible(w)
-#endif
-
 static void draw_round_rect(cairo_t* cr, gdouble aspect, gdouble x, gdouble y, gdouble corner_radius, gdouble width, gdouble height)
 {
 	gdouble radius = corner_radius / aspect;
@@ -340,7 +336,7 @@ static void destroy_windata(WindowData* windata)
 
 static void update_content_hbox_visibility(WindowData* windata)
 {
-	if (GTK_WIDGET_VISIBLE(windata->icon) || GTK_WIDGET_VISIBLE(windata->body_label) || GTK_WIDGET_VISIBLE(windata->actions_box))
+	if (gtk_widget_get_visible(windata->icon) || gtk_widget_get_visible(windata->body_label) || gtk_widget_get_visible(windata->actions_box))
 	{
 		gtk_widget_show(windata->content_hbox);
 	}
@@ -1006,7 +1002,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 
 	g_assert(windata != NULL);
 
-	if (!GTK_WIDGET_VISIBLE(windata->actions_box))
+	if (!gtk_widget_get_visible(windata->actions_box))
 	{
 		GtkWidget* alignment;
 

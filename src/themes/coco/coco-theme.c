@@ -585,11 +585,7 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 
 	g_assert(windata != NULL);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
-	if (gtk_widget_get_visible(windata->actions_box))
-#else 
-	if (!GTK_WIDGET_VISIBLE(windata->actions_box))
-#endif
+	if (!gtk_widget_get_visible(windata->actions_box))
 	{
 		GtkWidget *alignment;
 
