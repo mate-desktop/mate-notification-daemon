@@ -303,11 +303,7 @@ static void create_screens(NotifyDaemon* daemon)
 
 		daemon->priv->screens[i] = g_new0(NotifyScreen, 1);
 
-		#if GTK_CHECK_VERSION(3, 0, 0)
 			daemon->priv->screens[i]->workarea_atom = XInternAtom(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), "_NET_WORKAREA", True);
-		#else
-			daemon->priv->screens[i]->workarea_atom = XInternAtom(GDK_DISPLAY(), "_NET_WORKAREA", True);
-		#endif
 
 		gdkwindow = gdk_screen_get_root_window(screen);
 		gdk_window_add_filter(gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->priv->screens[i]);
@@ -1152,11 +1148,7 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 	WnckWorkspace* wnck_workspace;
 	GList* l;
 
-	#if GTK_CHECK_VERSION (3, 0, 0) || ((GDK_PIXBUF_MAJOR == 2) && (GDK_PIXBUF_MINOR < 22))
 		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_window_get_screen(gtk_widget_get_window(nw))));
-	#else
-		wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_drawable_get_screen(GDK_DRAWABLE(GTK_WIDGET(nw)->window))));
-	#endif
 
 	wnck_screen_force_update (wnck_screen);
 

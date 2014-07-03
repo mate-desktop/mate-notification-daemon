@@ -117,13 +117,8 @@ get_notification_arrow_type(GtkWidget *nw)
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	int screen_height;
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	screen_height = gdk_screen_get_height(
 		gdk_window_get_screen(gtk_widget_get_window(nw)));
-#else
-	screen_height = gdk_screen_get_height(
-		gdk_drawable_get_screen(GDK_DRAWABLE(nw->window)));
-#endif
 
 	if (windata->arrow.position.y + windata->height + DEFAULT_ARROW_HEIGHT >
 		screen_height)
@@ -145,41 +140,23 @@ set_arrow_parameters (WindowData *windata)
 	int x,y;
 	GtkArrowType arrow_type;
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	screen_height = gdk_screen_get_height(
 		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
 	screen_width = gdk_screen_get_width(
 		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
-#else
-	screen_height = gdk_screen_get_height(
-		gdk_window_get_screen(GDK_DRAWABLE(windata->win->window)));
-	screen_width = gdk_screen_get_width(
-		gdk_window_get_screen(GDK_DRAWABLE(windata->win->window)));
-#endif
-
 
 	/* Set arrow offset */
-#if GTK_CHECK_VERSION(3, 0, 0)
 	GtkAllocation alloc;
 	gtk_widget_get_allocation(windata->win, &alloc);
-#endif
 
 	if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
-#if GTK_CHECK_VERSION(3, 0, 0)
 		DEFAULT_ARROW_OFFSET + alloc.width) > 
-#else
-		DEFAULT_ARROW_OFFSET + windata->win->allocation.width) > 
-#endif
 			screen_width)
 	{
 		windata->arrow.offset = windata->arrow.position.x - 
 					DEFAULT_ARROW_SKEW - 
 					(screen_width - 
-#if GTK_CHECK_VERSION(3, 0, 0)
 						alloc.width);
-#else
-						windata->win->allocation.width);
-#endif
 	}
 	else if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
 		DEFAULT_ARROW_OFFSET < 0))
@@ -198,19 +175,10 @@ set_arrow_parameters (WindowData *windata)
 		windata->arrow.position.x += 6;
 	}
 	else if (windata->arrow.offset + DEFAULT_ARROW_WIDTH + 6 > 
-#if GTK_CHECK_VERSION(3, 0, 0)
 			alloc.width)
-#else
-			windata->win->allocation.width)
-#endif
 	{
-#if GTK_CHECK_VERSION(3, 0, 0)
 		windata->arrow.offset = alloc.width - 6 - 
 					DEFAULT_ARROW_WIDTH;
-#else
-		windata->arrow.offset = windata->win->allocation.width - 6 - 
-					DEFAULT_ARROW_WIDTH;
-#endif
 		windata->arrow.position.x -= 6;
 	}
 
@@ -235,30 +203,14 @@ set_arrow_parameters (WindowData *windata)
 			break;
 		case GTK_ARROW_DOWN:
 			windata->arrow.point_begin.y = 
-#if GTK_CHECK_VERSION(3, 0, 0)
 				alloc.height - 
-#else
-				windata->win->allocation.height - 
-#endif
 					DEFAULT_ARROW_HEIGHT;
 			windata->arrow.point_middle.y = 
-#if GTK_CHECK_VERSION(3, 0, 0)
 				alloc.height;
-#else
-				windata->win->allocation.height;
-#endif
 			windata->arrow.point_end.y = 
-#if GTK_CHECK_VERSION(3, 0, 0)
 				alloc.height - 
-#else
-				windata->win->allocation.height - 
-#endif
 					DEFAULT_ARROW_HEIGHT;
-#if GTK_CHECK_VERSION(3, 0, 0)
 			y = windata->arrow.position.y - alloc.height;
-#else
-			y = windata->arrow.position.y - windata->win->allocation.height;
-#endif
 			break;
 		default:
 			g_assert_not_reached();
@@ -550,23 +502,17 @@ paint_window(GtkWidget *widget,
 {
 	cairo_t *context;
 	cairo_surface_t *surface;
+	GtkAllocation alloc;
+	gtk_widget_get_allocation(windata->win, &alloc);
 #if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_t *cr2;
-	GtkAllocation alloc;
-
-	gtk_widget_get_allocation(windata->win, &alloc);
 #else
 	cairo_t *cr;
 #endif
 
 	if (windata->width == 0) {
-#if GTK_CHECK_VERSION(3, 0, 0)
 		windata->width = alloc.width;
 		windata->height = alloc.height;
-#else
-		windata->width = windata->win->allocation.width;
-		windata->height = windata->win->allocation.height;
-#endif
 	}
 	
 	if (windata->arrow.has_arrow)
@@ -582,7 +528,7 @@ paint_window(GtkWidget *widget,
 
 /*
 			cr2 = cairo_create (surface);
-			/* transparent background * /
+			/ * transparent background * /
 			cairo_rectangle (cr2, 0, 0, windata->width, windata->height);
 			cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0);
 			cairo_fill (cr2);
@@ -623,23 +569,17 @@ paint_window(GtkWidget *widget,
 #endif
 	}
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	context = gdk_cairo_create(gtk_widget_get_window(widget));
 	gtk_widget_get_allocation(widget, &alloc);
-#else
-	context = gdk_cairo_create(widget->window);
-#endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 	surface = cairo_surface_create_similar(cairo_get_target(context),
 										   CAIRO_CONTENT_COLOR_ALPHA,
-#if GTK_CHECK_VERSION(3, 0, 0)
 										   alloc.width,
 										   alloc.height);
+#if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_set_source_surface (cr, surface, 0, 0);
 #else
-										   widget->allocation.width,
-										   widget->allocation.height);
 	cr = cairo_create(surface);
 #endif
 
@@ -685,25 +625,18 @@ countdown_expose_cb(GtkWidget *pie,
 	cairo_t *context;
 	cairo_surface_t *surface;
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	context = gdk_cairo_create(gtk_widget_get_window(pie));
 	GtkAllocation alloc;
 	gtk_widget_get_allocation(pie, &alloc);
-#else
-	context = gdk_cairo_create(pie->window);
+#if !GTK_CHECK_VERSION(3, 0, 0)
 	cairo_t *cr;
 #endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 	surface = cairo_surface_create_similar(cairo_get_target(context),
 										   CAIRO_CONTENT_COLOR_ALPHA,
-										   #if GTK_CHECK_VERSION(3, 0, 0)
 										   alloc.width,
 										   alloc.height);
-										   #else
-										   pie->allocation.width,
-										   pie->allocation.height);
-										   #endif
 #if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_set_source_surface (cr, surface, 0, 0);
 #else
@@ -711,15 +644,9 @@ countdown_expose_cb(GtkWidget *pie,
 #endif
 
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_translate (cr, -alloc.x, -alloc.y);
 	fill_background (pie, windata, cr);
 	cairo_translate (cr, alloc.x, alloc.y);
-#else
-	cairo_translate (cr, -pie->allocation.x, -pie->allocation.y);
-	fill_background (pie, windata, cr);
-	cairo_translate (cr, pie->allocation.x, pie->allocation.y);
-#endif
 	
 	draw_pie (pie, windata, cr);
 
@@ -1074,11 +1001,7 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 	buf = g_strdup_printf("stock_%s", key);
 	pixbuf = gtk_icon_theme_load_icon(
 		gtk_icon_theme_get_for_screen(
-#if GTK_CHECK_VERSION(3, 0, 0)
 			gdk_window_get_screen(gtk_widget_get_window(GTK_WIDGET(nw)))),
-#else
-			gdk_drawable_get_screen(GTK_WIDGET(nw)->window)),
-#endif
 		buf, 16, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
 	g_free(buf);
 

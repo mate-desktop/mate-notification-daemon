@@ -171,11 +171,7 @@ paint_window(GtkWidget *widget,
 #endif
 
 	if (windata->width == 0) {
-#if GTK_CHECK_VERSION(3, 0, 0)
 		gtk_widget_get_allocation(windata->win, &allocation);
-#else
-		allocation = windata->win->allocation;
-#endif
 		windata->width = allocation.width;
 		windata->height = allocation.height;    
 	}
@@ -221,25 +217,17 @@ paint_window(GtkWidget *widget,
 #endif
 	}
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	context = gdk_cairo_create(gtk_widget_get_window(widget));
-#else 
-	context = gdk_cairo_create(widget->window);
-#endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	surface = cairo_surface_create_similar(cairo_get_target(context),
 										   CAIRO_CONTENT_COLOR_ALPHA,
 										   windata->width,
 										   windata->height);
+#if GTK_CHECK_VERSION (3, 0, 0)
 	cairo_set_source_surface (cr, surface, 0, 0);
 #else
-	surface = cairo_surface_create_similar(cairo_get_target(context),
-										   CAIRO_CONTENT_COLOR_ALPHA,
-										   widget->allocation.width,
-										   widget->allocation.height);
 	cr = cairo_create(surface);
 #endif
 
@@ -287,11 +275,7 @@ countdown_expose_cb(GtkWidget *pie,
 	cairo_t *cr;
 #endif
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	context = gdk_cairo_create(gtk_widget_get_window(pie));
-#else 
-	context = gdk_cairo_create(pie->window);
-#endif
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
 #if GTK_CHECK_VERSION (3, 0, 0)
@@ -622,11 +606,7 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 	buf = g_strdup_printf("stock_%s", key);
 	pixbuf = gtk_icon_theme_load_icon(
 		gtk_icon_theme_get_for_screen(
-#if GTK_CHECK_VERSION(3, 0, 0)
 			gdk_window_get_screen(gtk_widget_get_window(GTK_WIDGET(nw)))),
-#else 
-			gdk_drawable_get_screen(GTK_WIDGET(nw)->window)),
-#endif
 		buf, 16, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
 	g_free(buf);
 
