@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# brennus <jonas.ska@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-02-11 00:15+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"PO-Revision-Date: 2014-04-17 10:31+0000\n"
+"Last-Translator: brennus <jonas.ska@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/MATE/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr ""
+msgstr "Monitorius"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
@@ -144,7 +145,7 @@ msgstr "_Tema:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr ""
+msgstr "_Monitorius:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
