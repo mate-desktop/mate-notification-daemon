@@ -498,10 +498,8 @@ create_notification(UrlClickedCb url_clicked)
 	atkobj = gtk_widget_get_accessible(windata->body_label);
 	atk_object_set_description(atkobj, "Notification body text.");
 
-    /* Disabled for now */
 	alignment = gtk_alignment_new(1, 0.5, 0, 0);
 	gtk_widget_show(alignment);
-    gtk_widget_hide(alignment);
 	gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, TRUE, 0);
 
 	windata->actions_box = gtk_hbox_new(FALSE, 6);
