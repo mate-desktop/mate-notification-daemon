@@ -533,6 +533,9 @@ draw_border(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 static void
 draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 {
+	if (windata->timeout == 0)
+		return;
+
 	gdouble arc_angle = 1.0 - (gdouble)windata->remaining / (gdouble)windata->timeout;
 	cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
 	cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
