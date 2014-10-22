@@ -1,4 +1,5 @@
 1.8.1
+  * Bugfixes
   * Fix crash when active workspace us NULL
 
 1.8.0
