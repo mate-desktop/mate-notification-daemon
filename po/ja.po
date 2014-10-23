@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# ABE Tsunehiko, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-02-11 00:15+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"PO-Revision-Date: 2014-09-09 14:30+0000\n"
+"Last-Translator: ABE Tsunehiko\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/MATE/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,21 +31,21 @@ msgstr "通知情報を積み重ねてポップアップ表示するデフォル
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "アクティブモニターを使う"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "通知をアクティブモニターに表示します。"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr ""
+msgstr "モニター"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr ""
+msgstr "通知を表示するモニター。-1(アクティブモニターに表示)または0〜n-1のモニター番号を指定可能です。"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
@@ -74,15 +75,15 @@ msgstr "'sound-file' または 'suppress-sound' で通知する場合を除い�
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr ""
+msgstr "ココ"
 
 #: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr ""
+msgstr "ノドカ"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr ""
+msgstr "スライダー"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
@@ -108,7 +109,7 @@ msgstr "ポップアップ通知に失敗しました: %s"
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr ""
+msgstr "ユーザ・インタフェース・ファイルを読み込めませんでした: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
@@ -144,7 +145,7 @@ msgstr "テーマ(_T):"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr ""
+msgstr "モニター(_M):"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
@@ -165,7 +166,7 @@ msgstr "右下隅"
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "通知の最大数を超過しました"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
@@ -174,4 +175,4 @@ msgstr "%u は妥当な通知 ID ではありません"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr ""
+msgstr "通知"
