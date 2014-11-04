@@ -1077,8 +1077,9 @@ static void window_clicked_cb(GtkWindow* nw, GdkEventButton* button, NotifyDaemo
 static void url_clicked_cb(GtkWindow* nw, const char *url)
 {
 	NotifyDaemon* daemon;
-	char* escaped_url;
-	char* cmd = NULL;
+	gchar *escaped_url;
+	gchar *cmd = NULL;
+	gchar *found = NULL;
 
 	daemon = NW_GET_DAEMON(nw);
 
@@ -1087,15 +1088,15 @@ static void url_clicked_cb(GtkWindow* nw, const char *url)
 
 	escaped_url = g_shell_quote (url);
 
-	if (g_find_program_in_path ("gvfs-open") != NULL)
+	if ((found = g_find_program_in_path ("gvfs-open")) != NULL)
 	{
 		cmd = g_strdup_printf ("gvfs-open %s", escaped_url);
 	}
-	else if (g_find_program_in_path ("xdg-open") != NULL)
+	else if ((found = g_find_program_in_path ("xdg-open")) != NULL)
 	{
 		cmd = g_strdup_printf ("xdg-open %s", escaped_url);
 	}
-	else if (g_find_program_in_path ("firefox") != NULL)
+	else if ((found = g_find_program_in_path ("firefox")) != NULL)
 	{
 		cmd = g_strdup_printf ("firefox %s", escaped_url);
 	}
@@ -1104,6 +1105,7 @@ static void url_clicked_cb(GtkWindow* nw, const char *url)
 		g_warning ("Unable to find a browser.");
 	}
 
+	g_free (found);
 	g_free (escaped_url);
 
 	if (cmd != NULL)
