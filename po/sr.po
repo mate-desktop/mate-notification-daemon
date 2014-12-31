@@ -3,135 +3,133 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Carlos Moreira <crolidge@gmail.com>, 2013
-# Carlos Moreira <crolidge@gmail.com>, 2014
-# Sérgio Marques <smarquespt@gmail.com>, 2012
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-11-13 22:07+0000\n"
-"Last-Translator: Carlos Moreira <crolidge@gmail.com>\n"
-"Language-Team: Portuguese (http://www.transifex.com/projects/p/MATE/language/pt/)\n"
+"PO-Revision-Date: 2014-11-27 21:19+0000\n"
+"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
+"Language-Team: Serbian (http://www.transifex.com/projects/p/MATE/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sr\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
 msgid "Popup location"
-msgstr "Local do alerta"
+msgstr "Место облачића"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "O local pré-definido das notificações na área de trabalho. Os valores possíveis são: \"esquerda_superior\",\"direita_superior\",\"esquerda_inferior\" e \"direita_inferior\""
+msgstr "Основно место облачића на радном простору за обавештења смештаја. Допуштене вредности су: „top_left“ (горе лево), „top_right“ (горе десно), „bottom_left“ (доле лево) и „bottom_right“ (доле десно)"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr "Usar Monitor Ativo"
+msgstr "Користи радни екран"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar a notificação no monitor ativo."
+msgstr "Приказује обавештења на радном екрану."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr "Екран"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Monitor onde exibir a notificação. Valores permitidos: -1 (mostrar no monitor ativo) e de 0 até n - 1, onde n é o número de monitores."
+msgstr "Екран за приказивање обавештења. Допуштене вредности су: -1 (приказује на радном екрану) и од 0 до n-1 где је n број екрана."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr "Tema atual"
+msgstr "Тренутна тема"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "O tema utilizado para exibir as notificações."
+msgstr "Тема за коришћење приликом приказивања обавештења."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr "Sons ativos"
+msgstr "Звук је укључен"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Liga ou desliga o suporte de som das notificações."
+msgstr "Укључује и искључује подршку звука за обавештења."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr "Som pré-definido"
+msgstr "Основни звук"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O som padrão utilizado, exceto se a notificação fornecer o seu \"sound-file\" ou \"suppress-sound\". Deixe em branco para não utilizar o som padrão."
+msgstr "Основна датотека звука која се користи осим ако обавештење не доставља „sound-file“ (звучну датотеку) или „suppress-sound“ (потисни звук). Оставите празним ако нема основног звука."
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr "Coco"
+msgstr "Коко"
 
 #: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr "Nodoka"
+msgstr "Нодока"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Deslizador"
+msgstr "Клизач"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr "Tema padrão"
+msgstr "Уобичајена тема"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
-msgstr "Erro ao iniciar libmatenotify"
+msgstr "Грешка приликом покретања мејтове библиотеке обавештавања"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr "Teste da notificação"
+msgstr "Проба обавештења"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
-msgstr "Apenas um teste"
+msgstr "Испробава само"
 
 #: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Ocorreu um erro ao exibir a notificação: %s"
+msgstr "Грешка приказивања обавештења: %s"
 
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Não foi possível carregar o ficheiro da interface de utilizador: %s"
+msgstr "Не могу да учитам датотеку корисничког сучеља: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Pop-Up Notifications"
-msgstr "Notificações"
+msgstr "Обавештења облачића"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências das notificações"
+msgstr "Подесите ваше поставке обавештења облачића"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Definições de notificação"
+msgstr "Подешавања обавештења"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Antevisão"
+msgstr "_Претпреглед"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opções gerais</b>"
+msgstr "<b>Општи избори</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
@@ -139,42 +137,42 @@ msgstr "      "
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr "P_osição:"
+msgstr "_Положај:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr "_Тема:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr "_Екран:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
-msgstr "Esquerda superior"
+msgstr "Горе лево"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Top Right"
-msgstr "Direita superior"
+msgstr "Горе десно"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Left"
-msgstr "Esquerda inferior"
+msgstr "Доле лево"
 
 #: ../src/capplet/mate-notification-properties.ui.h:12
 msgid "Bottom Right"
-msgstr "Direita inferior"
+msgstr "Доле десно"
 
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Excedeu o número máximo de notificações"
+msgstr "Премашен је највећи број обавештења"
 
 #: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u não é uma identificação válida"
+msgstr "%u није исправан иб обавештења"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificação"
+msgstr "Обавештење"
