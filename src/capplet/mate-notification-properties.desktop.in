@@ -1,6 +1,6 @@
 [Desktop Entry]
-_Name=Pop-Up Notifications
-_Comment=Set your pop-up notification preferences
+_Name=Popup Notifications
+_Comment=Set your popup notification preferences
 Exec=mate-notification-properties
 Icon=mate-notification-properties
 Terminal=false
