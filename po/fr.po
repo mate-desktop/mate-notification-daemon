@@ -5,13 +5,14 @@
 # Translators:
 # mauron, 2013
 # mauron, 2012
+# Tubuntu <tubuntu@testimonium.be>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-02-11 16:35+0000\n"
-"Last-Translator: mauron\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-05 18:25+0000\n"
+"Last-Translator: Tubuntu <tubuntu@testimonium.be>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/MATE/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,12 +114,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Impossible de charger le fichier d'interface utilisateur : %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Bulles de notification"
+msgid "Popup Notifications"
+msgstr "Notifications d’événements"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Configurer les préférences des bulles de notification"
+msgid "Set your popup notification preferences"
+msgstr "Paramétrez vos préférences de notifications d’événements"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -169,7 +170,7 @@ msgstr "En bas à droite"
 msgid "Exceeded maximum number of notifications"
 msgstr "Nombre maximum de notifications atteint"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u n'est pas un ID de notification valable"

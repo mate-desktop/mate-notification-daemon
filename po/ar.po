@@ -3,16 +3,16 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# moceap <moceap@hotmail.com>, 2013
+# Mosaab Alzoubi <moceap@hotmail.com>, 2013
 # noureddin <noureddin@barid.com>, 2012
 # noureddin <noureddin@barid.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-10-05 15:09+0000\n"
-"Last-Translator: mauron\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 12:35+0000\n"
+"Last-Translator: infirit <infirit@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/MATE/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,12 +114,12 @@ msgid "Could not load user interface file: %s"
 msgstr "تعذَّر تحميل ملف واجهة المستخدم: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "تنبيهات منبثقة"
+msgid "Popup Notifications"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "حدد تفضيلات التنبيهات"
+msgid "Set your popup notification preferences"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -170,7 +170,7 @@ msgstr "أسفل يمين"
 msgid "Exceeded maximum number of notifications"
 msgstr "تجاوز العدد الأقصى للتنبيه"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ليس هوية تنبيه صالحة"

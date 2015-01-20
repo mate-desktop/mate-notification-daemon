@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# segfault <lukas.kvidera@seznam.cz>, 2013
+# Lukáš Kvídera <lukas.kvidera@seznam.cz>, 2013
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-04-24 20:56+0000\n"
-"Last-Translator: segfault <lukas.kvidera@seznam.cz>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 12:35+0000\n"
+"Last-Translator: infirit <infirit@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/MATE/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,12 +113,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Nelze načíst soubor rozložení uživatelského rozhraní: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Automaticky otevíraná oznámení"
+msgid "Popup Notifications"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Nastaví předvolby automaticky otevíraných oznámení"
+msgid "Set your popup notification preferences"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -169,7 +169,7 @@ msgstr "Spodní pravý"
 msgid "Exceeded maximum number of notifications"
 msgstr "Překročen maximální počet oznámení"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u není platným ID oznámení"

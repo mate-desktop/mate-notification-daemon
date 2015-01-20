@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Ivar Smolin <okul@linux.ee>, 2014
+# Ivar Smolin <okul@linux.ee>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-07-31 06:20+0000\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-01 21:10+0000\n"
 "Last-Translator: Ivar Smolin <okul@linux.ee>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/MATE/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -112,12 +112,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Kasutajaliidese faili pole võimalik laadida: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
+msgid "Popup Notifications"
 msgstr "Hüpikteavitused"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Hüpikteavituse eelistuste määramine"
+msgid "Set your popup notification preferences"
+msgstr "Hüpikteavituste eelistuste määramine"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -168,7 +168,7 @@ msgstr "All paremal"
 msgid "Exceeded maximum number of notifications"
 msgstr "Suurim teavituste arv on ületatud"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ei ole kehtiv teavituse ID"

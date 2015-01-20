@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# abuyop <abuyop@gmail.com>, 2013
+# abuyop <abuyop@gmail.com>, 2013,2015
 # Puretech <terjemah.puretech@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-08-12 04:04+0000\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-09 00:40+0000\n"
 "Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/MATE/language/ms/)\n"
 "MIME-Version: 1.0\n"
@@ -113,11 +113,11 @@ msgid "Could not load user interface file: %s"
 msgstr "Tidak dapat memuatkan fail antaramuka pengguna:%s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
+msgid "Popup Notifications"
 msgstr "Pemberitahuan Timbul"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
+msgid "Set your popup notification preferences"
 msgstr "Tetapkan keutamaan pemberitahuan timbul anda"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
@@ -169,7 +169,7 @@ msgstr "Bawah kanan"
 msgid "Exceeded maximum number of notifications"
 msgstr "Melebihi bilangan maksimum pemberitahuan"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u bukan ID pemberitahuan yang sah"

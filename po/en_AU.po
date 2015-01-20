@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Michael Findlay <keltoiboy@gmail.com>, 2012
-# Michael Findlay <keltoiboy@gmail.com>, 2012-2013
+# Michael Findlay <keltoiboy@gmail.com>, 2012-2013,2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-09-05 04:34+0000\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-13 07:17+0000\n"
 "Last-Translator: Michael Findlay <keltoiboy@gmail.com>\n"
 "Language-Team: English (Australia) (http://www.transifex.com/projects/p/MATE/language/en_AU/)\n"
 "MIME-Version: 1.0\n"
@@ -113,12 +113,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Could not load user interface file: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Pop-Up Notifications"
+msgid "Popup Notifications"
+msgstr "Popup Notifications"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Set your pop-up notification preferences"
+msgid "Set your popup notification preferences"
+msgstr "Set your popup notification preferences"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -169,7 +169,7 @@ msgstr "Bottom Right"
 msgid "Exceeded maximum number of notifications"
 msgstr "Exceeded maximum number of notifications"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u is not a valid notification ID"

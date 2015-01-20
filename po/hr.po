@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-05-17 12:40+0000\n"
-"Last-Translator: Mislav E. Lukšić <meluksic@yahoo.com>\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 12:35+0000\n"
+"Last-Translator: infirit <infirit@gmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/MATE/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,12 +112,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Nije bilo moguće učitati korisničku datoteku sučelja: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Skočne obavijesti"
+msgid "Popup Notifications"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Postavi svoje prilagodbe skočnih obavijesti"
+msgid "Set your popup notification preferences"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -168,7 +168,7 @@ msgstr "Dolje desno"
 msgid "Exceeded maximum number of notifications"
 msgstr "Prekoračen je najviši mogući broj obavijesti"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nije ispravni označivač obavijesti"

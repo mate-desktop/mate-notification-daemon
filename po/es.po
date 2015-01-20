@@ -3,16 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Adolfo Jayme Barrientos <fitoschido@ubuntu.com>, 2013
+# Adolfo Jayme Barrientos <fito@libreoffice.org>, 2013
+# Emiliano Fascetti, 2014
 # Lluís Tusquellas <lutusq@gmail.com>, 2012
 # Lluís Tusquellas <lutusq@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-05-08 05:39+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitoschido@ubuntu.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 21:08+0000\n"
+"Last-Translator: Emiliano Fascetti\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/MATE/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,11 +115,11 @@ msgid "Could not load user interface file: %s"
 msgstr "No se pudo cargar el archivo de interfaz de usuario: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
+msgid "Popup Notifications"
 msgstr "Notificaciones emergentes"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
+msgid "Set your popup notification preferences"
 msgstr "Configurar las preferencias de sus notificaciones emergentes"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
@@ -170,7 +171,7 @@ msgstr "Abajo a la derecha"
 msgid "Exceeded maximum number of notifications"
 msgstr "Se excedió el número máximo de notificaciones"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no es un ID de notificación válido"

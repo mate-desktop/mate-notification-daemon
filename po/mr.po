@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-03-31 12:12+0000\n"
-"Last-Translator: Vaibhav S Dalvi <vaibhav.dlv@gmail.com>\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 12:35+0000\n"
+"Last-Translator: infirit <infirit@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/MATE/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -112,12 +112,12 @@ msgid "Could not load user interface file: %s"
 msgstr "वापरकर्ता संवाद फाइल लोड करण्यास अशक्य: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "पॉपअप सूचना"
+msgid "Popup Notifications"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "तुमच्या पॉपअप सूचना पसंती सेट करा"
+msgid "Set your popup notification preferences"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -168,7 +168,7 @@ msgstr "खाली ऊजवी"
 msgid "Exceeded maximum number of notifications"
 msgstr ""
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u वैध सूचना ID नाही"

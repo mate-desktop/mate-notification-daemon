@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Aldo Oliveira <america103@gmail.com>, 2015
 # Marcio Andre Padula <padula1000@gmail.com>, 2014
 # Marcus Vinícius Marques, 2014
 # Marcus Vinícius Marques, 2014
@@ -11,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-05-10 21:03+0000\n"
-"Last-Translator: Marcio Andre Padula <padula1000@gmail.com>\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-03 13:32+0000\n"
+"Last-Translator: Aldo Oliveira <america103@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,16 +116,16 @@ msgid "Could not load user interface file: %s"
 msgstr "Não foi possível carregar arquivo de interface: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Notificações Pop-Up"
+msgid "Popup Notifications"
+msgstr "Notificações pop-up"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Defina as preferências de suas notificações pop-up"
+msgid "Set your popup notification preferences"
+msgstr "Defina suas preferências de notificação pop-up"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Teste de Notificação"
+msgstr "Configurações de Notificação"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
@@ -171,7 +172,7 @@ msgstr "Inferior Direita"
 msgid "Exceeded maximum number of notifications"
 msgstr "Excedido o número máximo de notificações"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u não é uma ID de notificação válida"

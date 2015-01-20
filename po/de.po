@@ -5,14 +5,15 @@
 # Translators:
 # guyfawkes <a.dawtjan@gmx.de>, 2013
 # crazyd <lebendig2002@yahoo.de>, 2012
-# Tobias Bannert, 2014
+# Tobias Bannert <tobannert@gmail.com>, 2014-2015
+# Xpistian <xpistianbecker2@web.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-05-16 01:26+0000\n"
-"Last-Translator: Tobias Bannert\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-01-01 18:38+0000\n"
+"Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/MATE/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,12 +115,12 @@ msgid "Could not load user interface file: %s"
 msgstr "Benutzerschnittstellendatei konnte nicht geladen werden: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "Aufspringbenachrichtigungen"
+msgid "Popup Notifications"
+msgstr "Benachrichtigungseinblendungen"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "Die Einstellungen der Aufspringbenachrichtigungen einstellen"
+msgid "Set your popup notification preferences"
+msgstr "Benachrichtigungseinblendungen einstellen"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -170,7 +171,7 @@ msgstr "Unten Rechts"
 msgid "Exceeded maximum number of notifications"
 msgstr "Maximale Anzahl an Benachrichtigungen wurde überschritten"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ist keine gültige Kennung für eine Benachrichtigung"

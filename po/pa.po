@@ -6,10 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: https://github.com/mate-desktop/\n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2013-02-11 00:15+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2014-12-31 12:35+0000\n"
+"Last-Translator: infirit <infirit@gmail.com>\n"
 "Language-Team: Panjabi (Punjabi) (http://www.transifex.com/projects/p/MATE/language/pa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,12 +111,12 @@ msgid "Could not load user interface file: %s"
 msgstr "ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਫਾਇਲ ਲੋਡ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
-msgstr "ਪੋਪਅੱਪ ਨੋਟੀਫਿਕੇਸ਼ਨ"
+msgid "Popup Notifications"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
-msgstr "ਆਪਣੀ ਪੋਪ-ਅੱਪ ਨੋਟੀਫਿਕੇਸ਼ਨ ਪਸੰਦ ਸੈੱਟਅੱਪ ਕਰੋ"
+msgid "Set your popup notification preferences"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -167,7 +167,7 @@ msgstr "ਤਲ ਸੱਜੇ"
 msgid "Exceeded maximum number of notifications"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ ਤੋਂ ਵੱਧ ਗਈ"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ਢੁੱਕਵਾਂ ਨੋਟੀਫਿਕੇਸ਼ਨ ID ਨਹੀਂ ਹੈ"
