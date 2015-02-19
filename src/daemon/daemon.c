@@ -360,11 +360,11 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 
 	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
+	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
+
 	location = g_settings_get_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 	daemon->priv->stack_location = get_stack_location_from_string(location);
 	g_free(location);
-
-	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
 
 	daemon->priv->n_screens = 0;
 	daemon->priv->screens = NULL;

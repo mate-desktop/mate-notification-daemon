@@ -169,13 +169,13 @@ static ThemeEngine* get_theme_engine(void)
 	if (active_engine == NULL)
 	{
 		GSettings* gsettings = g_settings_new (GSETTINGS_SCHEMA);
-		char* enginename = g_settings_get_string(gsettings, GSETTINGS_KEY_THEME);
 
 		if (theme_prop_notify_id == 0)
 		{
 			theme_prop_notify_id = g_signal_connect (gsettings, "changed::" GSETTINGS_KEY_THEME, G_CALLBACK (theme_changed_cb), NULL);
 		}
 
+		char* enginename = g_settings_get_string(gsettings, GSETTINGS_KEY_THEME);
 		if (enginename == NULL)
 		{
 			active_engine = load_theme_engine("standard");
