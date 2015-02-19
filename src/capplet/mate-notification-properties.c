@@ -167,9 +167,10 @@ static void notification_properties_dialog_setup_positions(NotificationAppletDia
 	GtkTreeModel* model;
 	GtkTreeIter iter;
 
-	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->position_combo));
+	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (notification_properties_position_notify), dialog);
 	g_signal_connect(dialog->position_combo, "changed", G_CALLBACK(notification_properties_location_changed), dialog);
 
+	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->position_combo));
 	location = g_settings_get_string(dialog->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid; valid = gtk_tree_model_iter_next(model, &iter))
@@ -188,7 +189,6 @@ static void notification_properties_dialog_setup_positions(NotificationAppletDia
 		g_free(key);
 	}
 
-	g_signal_connect (dialog->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (notification_properties_position_notify), dialog);
 	g_free(location);
 }
 
@@ -227,6 +227,7 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
 	
 	gtk_combo_box_set_model(GTK_COMBO_BOX (dialog->monitor_combo), GTK_TREE_MODEL (store));
 	
+	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_MONITOR_NUMBER, G_CALLBACK (notification_properties_monitor_notify), dialog);
 	cur_monitor_number = g_settings_get_int(dialog->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
 
 	for (valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL (store), &iter); valid; valid = gtk_tree_model_iter_next(GTK_TREE_MODEL (store), &iter))
@@ -243,7 +244,6 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
 	g_object_unref(store);
 
 	g_signal_connect(dialog->monitor_combo, "changed", G_CALLBACK(notification_properties_monitor_changed), dialog);
-	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_MONITOR_NUMBER, G_CALLBACK (notification_properties_monitor_notify), dialog);
 }
 
 static void notification_properties_theme_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
@@ -311,6 +311,8 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 	store = gtk_list_store_new(N_COLUMNS_THEME, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
 
 	gtk_combo_box_set_model(GTK_COMBO_BOX(dialog->theme_combo), GTK_TREE_MODEL(store));
+
+	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_THEME, G_CALLBACK (notification_properties_theme_notify), dialog);
 	g_signal_connect(dialog->theme_combo, "changed", G_CALLBACK(notification_properties_theme_changed), dialog);
 
 	if ((dir = g_dir_open(ENGINES_DIR, 0, NULL)))
@@ -375,7 +377,6 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 		g_free(key);
 	}
 
-	g_signal_connect (dialog->gsettings, "changed::" GSETTINGS_KEY_THEME, G_CALLBACK (notification_properties_theme_notify), dialog);
 	g_free(theme);
 }
 
@@ -560,8 +561,9 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 
 	g_signal_connect(dialog->dialog, "response", G_CALLBACK(notification_properties_dialog_response), dialog);
 	g_signal_connect(dialog->dialog, "destroy", G_CALLBACK(notification_properties_dialog_destroyed), dialog);
+
+	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_USE_ACTIVE_MONITOR, G_CALLBACK (notification_properties_checkbox_notify), dialog);
 	g_signal_connect(dialog->active_checkbox, "toggled", G_CALLBACK(notification_properties_checkbox_toggled), dialog);
-	g_signal_connect (dialog->gsettings, "changed::" GSETTINGS_KEY_USE_ACTIVE_MONITOR, G_CALLBACK (notification_properties_checkbox_notify), dialog);
 
 	notification_properties_dialog_setup_themes(dialog);
 	notification_properties_dialog_setup_positions(dialog);
