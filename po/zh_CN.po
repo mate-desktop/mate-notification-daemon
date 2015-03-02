@@ -5,13 +5,14 @@
 # Translators:
 # Christopher Meng <cickumqt@gmail.com>, 2012
 # Wylmer Wang <wantinghard@gmail.com>, 2013
+# 白铭骢 <jeffbaichina@members.fsf.org>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-31 13:34+0100\n"
-"PO-Revision-Date: 2014-12-31 12:35+0000\n"
-"Last-Translator: infirit <infirit@gmail.com>\n"
+"PO-Revision-Date: 2015-02-21 17:41+0000\n"
+"Last-Translator: 白铭骢 <jeffbaichina@members.fsf.org>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/MATE/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,11 +115,11 @@ msgstr "无法加载用户界面文件：%s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr ""
+msgstr "弹出通知"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "设置弹出通知首选项"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
