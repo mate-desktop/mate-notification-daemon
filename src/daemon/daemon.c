@@ -342,7 +342,7 @@ static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDae
 	{
 		int j;
 
-		for (j = 0; j < daemon->priv->n_screens; j++)
+		for (j = 0; j < daemon->priv->screens[i]->n_stacks; j++)
 		{
 			NotifyStack* stack;
 			stack = daemon->priv->screens[i]->stacks[j];
@@ -399,7 +399,7 @@ static void destroy_screens(NotifyDaemon* daemon)
 		gdkwindow = gdk_screen_get_root_window(screen);
 		gdk_window_remove_filter(gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->priv->screens[i]);
 
-		for (j = 0; i < daemon->priv->screens[i]->n_stacks; j++)
+		for (j = 0; j < daemon->priv->screens[i]->n_stacks; j++)
 		{
 			notify_stack_destroy(daemon->priv->screens[i]->stacks[j]);
 			daemon->priv->screens[i]->stacks[j] = NULL;
