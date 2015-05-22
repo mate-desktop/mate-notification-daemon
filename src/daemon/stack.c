@@ -301,7 +301,11 @@ notify_stack_shift_notifications (NotifyStack *stack,
                 GtkRequisition  req;
 
                 if (nw == NULL || nw2 != nw) {
+#if GTK_CHECK_VERSION (3, 0, 0)
+                        gtk_widget_get_preferred_size (GTK_WIDGET (nw2), NULL, &req);
+#else
                         gtk_widget_size_request (GTK_WIDGET (nw2), &req);
+#endif
 
                         translate_coordinates (stack->location,
                                                &workarea,
@@ -362,7 +366,11 @@ void notify_stack_add_window(NotifyStack* stack, GtkWindow* nw, gboolean new_not
 	GtkRequisition  req;
 	gint            x, y;
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_widget_get_preferred_size(GTK_WIDGET(nw), NULL, &req);
+#else
 	gtk_widget_size_request(GTK_WIDGET(nw), &req);
+#endif
 	notify_stack_shift_notifications(stack, nw, NULL, req.width, req.height + NOTIFY_STACK_SPACING, &x, &y);
 	theme_move_notification(nw, x, y);
 

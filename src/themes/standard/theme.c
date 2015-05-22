@@ -718,6 +718,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(hbox), windata->summary_label, TRUE, TRUE, 0);
 	gtk_misc_set_alignment(GTK_MISC(windata->summary_label), 0, 0);
 	gtk_label_set_line_wrap(GTK_LABEL(windata->summary_label), TRUE);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->summary_label), PANGO_WRAP_WORD_CHAR);
+#endif
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
 	atk_object_set_description(atkobj, "Notification summary text.");
@@ -770,6 +773,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, TRUE, TRUE, 0);
 	gtk_misc_set_alignment(GTK_MISC(windata->body_label), 0, 0);
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->body_label), PANGO_WRAP_WORD_CHAR);
+#endif
 	g_signal_connect(G_OBJECT(windata->body_label), "activate-link", G_CALLBACK(activate_link), windata);
 
 	atkobj = gtk_widget_get_accessible(windata->body_label);
