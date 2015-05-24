@@ -469,7 +469,12 @@ create_notification(UrlClickedCb url_clicked)
 	windata->summary_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->summary_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->summary_label, FALSE, FALSE, 0);
+#if GTK_CHECK_VERSION (3, 15, 2)
+	gtk_label_set_xalign (GTK_LABEL (windata->summary_label), 0.0);
+	gtk_label_set_yalign (GTK_LABEL (windata->summary_label), 0.0);
+#else
 	gtk_misc_set_alignment(GTK_MISC(windata->summary_label), 0, 0);
+#endif
 	gtk_label_set_line_wrap(GTK_LABEL(windata->summary_label), TRUE);
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
@@ -477,7 +482,12 @@ create_notification(UrlClickedCb url_clicked)
 
 	windata->body_label = gtk_label_new(NULL);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, FALSE, FALSE, 0);
+#if GTK_CHECK_VERSION (3, 15, 2)
+	gtk_label_set_xalign (GTK_LABEL (windata->body_label), 0.0);
+	gtk_label_set_yalign (GTK_LABEL (windata->body_label), 0.0);
+#else
 	gtk_misc_set_alignment(GTK_MISC(windata->body_label), 0, 0);
+#endif
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
 	g_signal_connect(G_OBJECT(windata->body_label), "activate-link",
                          G_CALLBACK(activate_link), windata);
@@ -616,13 +626,22 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 		GtkWidget *image = gtk_image_new_from_pixbuf(pixbuf);
 		gtk_widget_show(image);
 		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
+#if GTK_CHECK_VERSION (3, 15, 2)
+		gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
+		gtk_widget_set_valign (image, GTK_ALIGN_CENTER);
+#else
 		gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.5);
+#endif
 	}
 
 	label = gtk_label_new(NULL);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
+#if GTK_CHECK_VERSION (3, 15, 2)
+	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
+#else
 	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+#endif
 	buf = g_strdup_printf("<small>%s</small>", text);
 	gtk_label_set_markup(GTK_LABEL(label), buf);
 	g_free(buf);
