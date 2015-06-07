@@ -253,8 +253,8 @@ AC_SUBST([AM_CXXFLAGS])
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
-data/mate-notification-daemon.desktop.in
 data/mate-notification-daemon-autostart.desktop.in
+data/mate-notification-daemon.desktop.in
 po/Makefile.in
 src/Makefile
 src/daemon/Makefile
