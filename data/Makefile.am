@@ -12,9 +12,16 @@ icon32_DATA = icons/32x32/mate-notification-properties.png
 icon48_DATA = icons/48x48/mate-notification-properties.png
 iconscalable_DATA = icons/scalable/mate-notification-properties.svg
 
+@INTLTOOL_DESKTOP_RULE@
+autostartdir= $(sysconfdir)/xdg/autostart
+autostart_in_in_files = mate-notification-daemon-autostart.desktop.in.in
+autostart_in_files = mate-notification-daemon-autostart.desktop.in
+autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
 
-servicedir   = $(DBUS_SERVICES_DIR)
-service_DATA = org.freedesktop.mate.Notifications.service
+desktopdir          = $(datadir)/applications
+desktop_in_in_files = mate-notification-daemon.desktop.in.in
+desktop_in_files    = mate-notification-daemon.desktop.in
+desktop_DATA        = $(desktop_in_files:.desktop.in=.desktop)
 
 gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
 @INTLTOOL_XML_NOMERGE_RULE@
@@ -28,8 +35,9 @@ convert_DATA = mate-notification-daemon.convert
 
 EXTRA_DIST = \
 	$(gsettings_SCHEMAS).in.in \
+	$(autostart_in_in_files) \
+	$(desktop_in_in_files) \
 	$(convert_DATA) \
-	$(service_DATA) \
 	$(icon16_DATA) \
 	$(icon22_DATA) \
 	$(icon24_DATA) \
@@ -37,7 +45,9 @@ EXTRA_DIST = \
 	$(icon48_DATA) \
 	$(iconscalable_DATA)
 
-CLEANFILES = $(gsettings_SCHEMAS)
+CLEANFILES = $(gsettings_SCHEMAS) \
+	$(autostart_DATA) \
+	$(desktop_DATA)
 
 gtk_update_icon_cache = $(UPDATE_ICON_CACHE) -f -t $(datadir)/icons/hicolor
 

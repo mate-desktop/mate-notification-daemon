@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=MATE Notification Daemon
+_Comment=Display notifications
+Exec=@LIBEXECDIR@/mate-notification-daemon
+Terminal=false
+Type=Application
+OnlyShowIn=MATE;
+NoDisplay=true
