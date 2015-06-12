@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Aris S. Ripandi <inactive+riespandi@transifex.com>, 2012
-# Gregori, 2013
+# Ibnu Daru AJi, 2013
+# La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2015
 # Rendiyono Wahyu Saputro <rendi.7936@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-31 13:34+0100\n"
-"PO-Revision-Date: 2015-01-04 03:42+0000\n"
-"Last-Translator: Rendiyono Wahyu Saputro <rendi.7936@gmail.com>\n"
+"PO-Revision-Date: 2015-04-08 14:58+0000\n"
+"Last-Translator: La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/MATE/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -73,7 +74,7 @@ msgstr "Suara Standar"
 msgid ""
 "The default sound file used unless a notification supplies the 'sound-file' "
 "or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "Menggunakan suara default kecuali diberikan pemberitahuan 'file-suara' atau 'hilangkan-suara'. Kosongkan untuk tidak menggunakan suara."
+msgstr "Menggunakan suara default kecuali diberikan pemberitahuan 'berkas-suara' atau 'hilangkan-suara'. Kosongkan untuk tidak menggunakan suara."
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -111,7 +112,7 @@ msgstr "Galat sewaktu menampilkan pemberitahuan: %s"
 #: ../src/capplet/mate-notification-properties.c:534
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "Tidak dapat memuat antar muka file: %s"
+msgstr "Tidak dapat memuat berkas antarmuka: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"

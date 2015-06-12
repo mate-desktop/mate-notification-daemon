@@ -4,13 +4,14 @@
 # 
 # Translators:
 # corneliu.e <corneliueva@yahoo.com>, 2014
+# Daniel <danny34ever@yahoo.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-11 01:15+0100\n"
-"PO-Revision-Date: 2014-12-07 15:54+0000\n"
-"Last-Translator: corneliu.e <corneliueva@yahoo.com>\n"
+"POT-Creation-Date: 2014-12-31 13:34+0100\n"
+"PO-Revision-Date: 2015-04-21 14:39+0000\n"
+"Last-Translator: Daniel <danny34ever@yahoo.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/MATE/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +32,11 @@ msgstr ""
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Folosește monitorul activ"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "Afișează notificarea pe monitorul activ."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
 msgid "Monitor"
@@ -49,7 +50,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
 msgid "Current theme"
-msgstr ""
+msgstr "Temă curentă"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
 msgid "The theme used when displaying notifications."
@@ -57,7 +58,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
 msgid "Sound Enabled"
-msgstr ""
+msgstr "Sunet activat"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
 msgid "Turns on and off sound support for notifications."
@@ -65,7 +66,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
 msgid "Default Sound"
-msgstr ""
+msgstr "Sunet implicit"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
 msgid ""
@@ -75,19 +76,19 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr ""
+msgstr "Coco"
 
 #: ../src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr ""
+msgstr "Glisor"
 
 #: ../src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
-msgstr ""
+msgstr "Temă standard"
 
 #: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
@@ -95,7 +96,7 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
-msgstr ""
+msgstr "Test notificare"
 
 #: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
@@ -112,11 +113,11 @@ msgid "Could not load user interface file: %s"
 msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
-msgid "Pop-Up Notifications"
+msgid "Popup Notifications"
 msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
-msgid "Set your pop-up notification preferences"
+msgid "Set your popup notification preferences"
 msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
@@ -129,7 +130,7 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr ""
+msgstr "<b>Opțiuni generale</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "      "
@@ -137,15 +138,15 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
-msgstr ""
+msgstr "P_oziție:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Theme:"
-msgstr ""
+msgstr "_Temă:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "_Monitor:"
-msgstr ""
+msgstr "_Monitor:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Left"
@@ -166,9 +167,9 @@ msgstr "Dreapta jos"
 #: ../src/daemon/daemon.c:1330
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "Numărul maxim de notificări a fost depașit"
 
-#: ../src/daemon/daemon.c:1603
+#: ../src/daemon/daemon.c:1606
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr ""
