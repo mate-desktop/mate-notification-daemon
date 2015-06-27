@@ -88,8 +88,8 @@ typedef struct {
 	guint id;
 	GtkWindow* nw;
 	Window src_window_xid;
-	guint has_timeout: 1;
-	guint paused: 1;
+	gboolean has_timeout;
+	gboolean paused;
 } NotifyTimeout;
 
 typedef struct {
