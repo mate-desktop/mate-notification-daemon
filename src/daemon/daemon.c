@@ -182,20 +182,20 @@ static gboolean do_exit(gpointer user_data)
 
 static void add_exit_timeout(NotifyDaemon* daemon)
 {
+	g_assert_nonnull(daemon);
+
 	if (daemon->priv->exit_timeout_source > 0)
-	{
 		return;
-	}
 
 	daemon->priv->exit_timeout_source = g_timeout_add_seconds(IDLE_SECONDS, do_exit, NULL);
 }
 
 static void remove_exit_timeout(NotifyDaemon* daemon)
 {
+	g_assert_nonnull(daemon);
+
 	if (daemon->priv->exit_timeout_source == 0)
-	{
 		return;
-	}
 
 	g_source_remove(daemon->priv->exit_timeout_source);
 	daemon->priv->exit_timeout_source = 0;
