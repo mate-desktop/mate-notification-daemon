@@ -174,9 +174,7 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 
 static gboolean do_exit(gpointer user_data)
 {
-	//g_debug("Exiting due to inactivity");
-	exit(1);
-
+	exit(0);
 	return FALSE;
 }
 
