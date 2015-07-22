@@ -281,38 +281,24 @@ countdown_expose_cb(GtkWidget *pie,
 {
 	cairo_t *context;
 	cairo_surface_t *surface;
-#if GTK_CHECK_VERSION (3, 0, 0)
 	GtkAllocation alloc; 
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	cairo_t *cr;
 #endif
 
 	context = gdk_cairo_create(gtk_widget_get_window(pie));
 
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
-#if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_widget_get_allocation(pie, &alloc);
 	surface = cairo_surface_create_similar(cairo_get_target(context),
-										   CAIRO_CONTENT_COLOR_ALPHA,
-										   alloc.width,
-										   alloc.height); 
-#else
-	surface = cairo_surface_create_similar(cairo_get_target(context),
-										   CAIRO_CONTENT_COLOR_ALPHA,
-										   pie->allocation.width,
-										   pie->allocation.height);
-#endif
+					       CAIRO_CONTENT_COLOR_ALPHA,
+					       alloc.width,
+					       alloc.height);
 	cr = cairo_create(surface);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
 	cairo_translate (cr, -alloc.x, -alloc.y);
 	fill_background (pie, windata, cr);
 	cairo_translate (cr, alloc.x, alloc.y);
-#else 
-	cairo_translate (cr, -pie->allocation.x, -pie->allocation.y);
-	fill_background (pie, windata, cr);
-	cairo_translate (cr, pie->allocation.x, pie->allocation.y);
-#endif
 	draw_pie (pie, windata, cr);
 
 #if !GTK_CHECK_VERSION(3, 0, 0)
