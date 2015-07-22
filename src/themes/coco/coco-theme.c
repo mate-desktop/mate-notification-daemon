@@ -650,7 +650,7 @@ clear_notification_actions(GtkWindow *nw)
 
 	gtk_widget_hide(windata->actions_box);
 	gtk_container_foreach(GTK_CONTAINER(windata->actions_box),
-						  (GtkCallback)g_object_unref, NULL);
+						  (GtkCallback)gtk_widget_destroy, NULL);
 }
 
 /* Move notification window */

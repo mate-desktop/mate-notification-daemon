@@ -1069,7 +1069,7 @@ void clear_notification_actions(GtkWindow* nw)
 	windata->pie_countdown = NULL;
 
 	gtk_widget_hide(windata->actions_box);
-	gtk_container_foreach(GTK_CONTAINER(windata->actions_box), (GtkCallback) g_object_unref, NULL);
+	gtk_container_foreach(GTK_CONTAINER(windata->actions_box), (GtkCallback) gtk_widget_destroy, NULL);
 }
 
 void move_notification(GtkWidget* widget, int x, int y)
