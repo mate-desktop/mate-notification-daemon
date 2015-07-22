@@ -1025,7 +1025,11 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_path(const char* path)
 
 			pixbuf = gtk_icon_theme_load_icon (theme, path, icon_size, GTK_ICON_LOOKUP_USE_BUILTIN, NULL);
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+			g_object_unref (icon_info);
+#else
 			gtk_icon_info_free (icon_info);
+#endif
 		}
 
 		if (pixbuf == NULL)
