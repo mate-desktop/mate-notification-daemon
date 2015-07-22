@@ -1123,25 +1123,13 @@ static GdkPixbuf* _notify_daemon_scale_pixbuf(GdkPixbuf *pixbuf, gboolean no_str
 {
 	int pw;
 	int ph;
-	float scale_factor_x = 1.0;
-	float scale_factor_y = 1.0;
 	float scale_factor = 1.0;
 
 	pw = gdk_pixbuf_get_width (pixbuf);
 	ph = gdk_pixbuf_get_height (pixbuf);
 
 	/* Determine which dimension requires the smallest scale. */
-	scale_factor_x = (float) IMAGE_SIZE / (float) pw;
-	scale_factor_y = (float) IMAGE_SIZE / (float) ph;
-
-	if (scale_factor_x > scale_factor_y)
-	{
-		scale_factor = scale_factor_y;
-	}
-	else
-	{
-		scale_factor = scale_factor_x;
-	}
+	scale_factor = (float) IMAGE_SIZE / (float) MAX(pw, ph);
 
 	/* always scale down, allow to disable scaling up */
 	if (scale_factor < 1.0 || !no_stretch_hint)
