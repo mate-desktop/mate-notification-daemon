@@ -175,7 +175,7 @@ paint_window(GtkWidget *widget,
 	cairo_t *context;
 	GtkAllocation allocation;
 #if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_t *cr;
+	cairo_t *cr = gdk_cairo_create (event->window);
 #endif
 
 	if (windata->width == 0) {
@@ -186,7 +186,6 @@ paint_window(GtkWidget *widget,
 
 	if (!(windata->enable_transparency))
 	{
-#if GTK_CHECK_VERSION (3, 0, 0)
 		surface = cairo_surface_create_similar (cairo_get_target (cr),
 							CAIRO_CONTENT_COLOR_ALPHA,
 							windata->width,
@@ -206,27 +205,6 @@ paint_window(GtkWidget *widget,
 
 		cairo_restore (cr);
 		cairo_surface_destroy(surface);
-#else
-		GdkPixmap *mask;
-		cairo_t *mask_cr;
-		mask = gdk_pixmap_new (NULL, windata->width,
-				       windata->height, 1);
-		mask_cr = gdk_cairo_create ((GdkDrawable *) mask);
-		cairo_set_operator (mask_cr, CAIRO_OPERATOR_CLEAR);
-		cairo_paint (mask_cr);
-
-		cairo_set_operator (mask_cr, CAIRO_OPERATOR_OVER);
-		cairo_set_source_rgba (mask_cr, 1, 1, 1, 1);
-		nodoka_rounded_rectangle (mask_cr, 0, 0,
-					  windata->width,
-					  windata->height,
-					  6);
-		cairo_fill (mask_cr);
-		gdk_window_shape_combine_mask (windata->win->window,
-					       (GdkBitmap *) mask, 0,0);
-		gdk_pixmap_unref (mask);
-		cairo_destroy (mask_cr);
-#endif
 	}
 
 	context = gdk_cairo_create(gtk_widget_get_window(widget));
