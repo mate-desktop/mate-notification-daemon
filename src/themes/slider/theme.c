@@ -533,7 +533,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	GtkWidget* image;
 	GtkWidget* alignment;
 	AtkObject* atkobj;
+#if !GTK_CHECK_VERSION(3, 0, 0)
 	GtkRcStyle* rcstyle;
+#endif
 	WindowData* windata;
 #if GTK_CHECK_VERSION(3, 0, 0)
 	GdkVisual *visual;
@@ -651,10 +653,12 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
 	g_signal_connect_swapped(G_OBJECT(close_button), "clicked", G_CALLBACK(gtk_widget_destroy), win);
 
+#if !GTK_CHECK_VERSION(3, 0, 0)
 	rcstyle = gtk_rc_style_new();
 	rcstyle->xthickness = rcstyle->ythickness = 0;
 	gtk_widget_modify_style(close_button, rcstyle);
 	g_object_unref(rcstyle);
+#endif
 
 	atkobj = gtk_widget_get_accessible(close_button);
 	atk_action_set_description(ATK_ACTION(atkobj), 0, "Closes the notification.");
