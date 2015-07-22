@@ -108,8 +108,12 @@ struct _NotifyDaemonPrivate {
 	gboolean url_clicked_lock;
 
 	NotifyStackLocation stack_location;
+#if GTK_CHECK_VERSION (3, 8, 0)
+	NotifyScreen* screen;
+#else
 	NotifyScreen** screens;
 	int n_screens;
+#endif
 };
 
 typedef struct {
@@ -201,8 +205,12 @@ static void remove_exit_timeout(NotifyDaemon* daemon)
 
 static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, int monitor_num)
 {
+#if GTK_CHECK_VERSION (3, 8, 0)
+	NotifyScreen* nscreen = daemon->priv->screen;
+#else
 	int screen_num = gdk_screen_get_number(screen);
 	NotifyScreen* nscreen = daemon->priv->screens[screen_num];
+#endif
 
 	nscreen->stacks[monitor_num] = notify_stack_new(daemon, screen, monitor_num, daemon->priv->stack_location);
 }
@@ -210,12 +218,18 @@ static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, in
 static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 {
 	NotifyScreen* nscreen;
+#if !GTK_CHECK_VERSION (3, 8, 0)
 	int screen_num;
+#endif
 	int n_monitors;
 	int i;
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+	nscreen = daemon->priv->screen;
+#else
 	screen_num = gdk_screen_get_number(screen);
 	nscreen = daemon->priv->screens[screen_num];
+#endif
 
 	n_monitors = gdk_screen_get_n_monitors(screen);
 
@@ -267,11 +281,17 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen *screen)
 {
 	NotifyScreen* nscreen;
+#if !GTK_CHECK_VERSION (3, 8, 0)
 	int screen_num;
+#endif
 	int i;
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+	nscreen = daemon->priv->screen;
+#else
 	screen_num = gdk_screen_get_number(screen);
 	nscreen = daemon->priv->screens[screen_num];
+#endif
 
 	nscreen->n_stacks = gdk_screen_get_n_monitors(screen);
 
@@ -300,6 +320,31 @@ static GdkFilterReturn screen_xevent_filter(GdkXEvent* xevent, GdkEvent* event, 
 	return GDK_FILTER_CONTINUE;
 }
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+static void create_screen(NotifyDaemon* daemon)
+{
+    GdkDisplay *display;
+    GdkScreen  *screen;
+    GdkWindow  *gdkwindow;
+
+	g_assert(daemon->priv->screen == NULL);
+
+	display = gdk_display_get_default();
+	screen = gdk_display_get_default_screen (display);
+
+	g_signal_connect(screen, "monitors-changed", G_CALLBACK(on_screen_monitors_changed), daemon);
+
+	daemon->priv->screen = g_new0(NotifyScreen, 1);
+
+	daemon->priv->screen->workarea_atom = XInternAtom(GDK_DISPLAY_XDISPLAY (display), "_NET_WORKAREA", True);
+
+	gdkwindow = gdk_screen_get_root_window(screen);
+	gdk_window_add_filter(gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->priv->screen);
+	gdk_window_set_events(gdkwindow, gdk_window_get_events(gdkwindow) | GDK_PROPERTY_CHANGE_MASK);
+
+	create_stacks_for_screen(daemon, screen);
+}
+#else
 static void create_screens(NotifyDaemon* daemon)
 {
 	GdkDisplay* display;
@@ -331,6 +376,7 @@ static void create_screens(NotifyDaemon* daemon)
 		create_stacks_for_screen(daemon, gdk_display_get_screen(display, i));
 	}
 }
+#endif
 
 static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDaemon* daemon)
 {
@@ -353,6 +399,17 @@ static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDae
 
 	daemon->priv->stack_location = stack_location;
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+    NotifyScreen *nscreen;
+
+	nscreen = daemon->priv->screen;
+	for (i = 0; i < nscreen->n_stacks; i++)
+	{
+		NotifyStack* stack;
+		stack = nscreen->stacks[i];
+		notify_stack_set_location(stack, stack_location);
+	}
+#else
 	for (i = 0; i < daemon->priv->n_screens; i++)
 	{
 		int j;
@@ -364,6 +421,7 @@ static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDae
 			notify_stack_set_location(stack, stack_location);
 		}
 	}
+#endif
 }
 
 static void notify_daemon_init(NotifyDaemon* daemon)
@@ -385,16 +443,50 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->priv->stack_location = get_stack_location_from_string(location);
 	g_free(location);
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+	daemon->priv->screen = NULL;
+
+	create_screen(daemon);
+#else
 	daemon->priv->n_screens = 0;
 	daemon->priv->screens = NULL;
 
 	create_screens(daemon);
+#endif
 
 	daemon->priv->idle_reposition_notify_ids = g_hash_table_new(NULL, NULL);
 	daemon->priv->monitored_window_hash = g_hash_table_new(NULL, NULL);
 	daemon->priv->notification_hash = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (GDestroyNotify) _notify_timeout_destroy);
 }
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+static void destroy_screen(NotifyDaemon* daemon)
+{
+	GdkDisplay *display;
+	GdkScreen  *screen;
+	GdkWindow  *gdkwindow;
+	gint        i;
+
+	display = gdk_display_get_default();
+	screen = gdk_display_get_default_screen (display);
+
+	g_signal_handlers_disconnect_by_func (screen,
+										  G_CALLBACK (on_screen_monitors_changed),
+										  daemon);
+
+	gdkwindow = gdk_screen_get_root_window (screen);
+	gdk_window_remove_filter (gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->priv->screen);
+	for (i = 0; i < daemon->priv->screen->n_stacks; i++) {
+		 g_clear_object (&daemon->priv->screen->stacks[i]);
+	}
+
+	g_free (daemon->priv->screen->stacks);
+	daemon->priv->screen->stacks = NULL;
+
+	g_free(daemon->priv->screen);
+	daemon->priv->screen = NULL;
+}
+#else
 static void destroy_screens(NotifyDaemon* daemon)
 {
 	GdkDisplay* display;
@@ -426,6 +518,7 @@ static void destroy_screens(NotifyDaemon* daemon)
 	g_free(daemon->priv->screens);
 	daemon->priv->screens = NULL;
 }
+#endif
 
 static void notify_daemon_finalize(GObject* object)
 {
@@ -444,7 +537,11 @@ static void notify_daemon_finalize(GObject* object)
 	g_hash_table_destroy(daemon->priv->idle_reposition_notify_ids);
 	g_hash_table_destroy(daemon->priv->notification_hash);
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+	destroy_screen(daemon);
+#else
 	destroy_screens(daemon);
+#endif
 
 	g_free(daemon->priv);
 
@@ -1528,7 +1625,9 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	else
 	{
 		int monitor_num;
+#if !GTK_CHECK_VERSION (3, 8, 0)
 		int screen_num;
+#endif
 		GdkScreen* screen;
 		gint x, y;
 
@@ -1540,24 +1639,40 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
 		{
 			gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
+#if !GTK_CHECK_VERSION (3, 8, 0)
 			screen_num = gdk_screen_get_number (screen);
+#endif
 			monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
 		}
 		else
 		{
 			screen = gdk_display_get_default_screen(gdk_display_get_default());
+#if !GTK_CHECK_VERSION (3, 8, 0)
 			screen_num = gdk_screen_get_number(screen);
+#endif
 			monitor_num = g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
 		}
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+		if (monitor_num >= priv->screen->n_stacks)
+#else
 		if (monitor_num >= priv->screens[screen_num]->n_stacks)
+#endif
 		{
 			/* screw it - dump it on the last one we'll get
 			 a monitors-changed signal soon enough*/
+#if GTK_CHECK_VERSION (3, 8, 0)
+			monitor_num = priv->screen->n_stacks - 1;
+#else
 			monitor_num = priv->screens[screen_num]->n_stacks - 1;
+#endif
 		}
 
+#if GTK_CHECK_VERSION (3, 8, 0)
+		notify_stack_add_window (priv->screen->stacks[monitor_num], nw, new_notification);
+#else
 		notify_stack_add_window (priv->screens[screen_num]->stacks[monitor_num], nw, new_notification);
+#endif
 	}
 
 	if (id == 0)
