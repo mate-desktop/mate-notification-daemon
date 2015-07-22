@@ -882,13 +882,21 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 
 	if (body != NULL && *body != '\0')
 	{
+#if GTK_CHECK_VERSION (3, 0, 0)
+		gtk_widget_get_preferred_size (windata->iconbox, NULL, &req);
+#else
 		gtk_widget_size_request(windata->iconbox, &req);
+#endif
 		/* -1: border width for
 		 * -6: spacing for hbox */
 		gtk_widget_set_size_request(windata->body_label, WIDTH - (1 * 2) - (10 * 2) - req.width - 6, -1);
 	}
 
-	gtk_widget_size_request(windata->close_button, &req);
+#if GTK_CHECK_VERSION (3, 0, 0)
+		gtk_widget_get_preferred_size (windata->close_button, NULL, &req);
+#else
+		gtk_widget_size_request(windata->close_button, &req);
+#endif
 	/* -1: main_vbox border width
 	 * -10: vbox border width
 	 * -6: spacing for hbox */
