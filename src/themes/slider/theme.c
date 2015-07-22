@@ -77,6 +77,11 @@ enum {
 
 #define MAX_ICON_SIZE IMAGE_SIZE
 
+#if GTK_CHECK_VERSION (3, 2, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
+#endif
+
 static void draw_round_rect(cairo_t* cr, gdouble aspect, gdouble x, gdouble y, gdouble corner_radius, gdouble width, gdouble height)
 {
 	gdouble radius = corner_radius / aspect;

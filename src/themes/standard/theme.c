@@ -103,6 +103,11 @@ enum {
 #define BACKGROUND_OPACITY    0.92
 #define BOTTOM_GRADIENT_HEIGHT 30
 
+#if GTK_CHECK_VERSION (3, 2, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
+#endif
+
 static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
 	GtkStyle* style;

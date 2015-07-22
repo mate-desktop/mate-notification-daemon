@@ -100,6 +100,11 @@ enum
 #define BACKGROUND_OPACITY    0.92
 #define GRADIENT_CENTER 0.7
 
+#if GTK_CHECK_VERSION (3, 2, 0)
+#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
+#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
+#endif
+
 /* Support Nodoka Functions */
 
 /* Handle clicking on link */
