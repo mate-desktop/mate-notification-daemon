@@ -184,7 +184,7 @@ static gboolean do_exit(gpointer user_data)
 
 static void add_exit_timeout(NotifyDaemon* daemon)
 {
-	g_assert_nonnull(daemon);
+	g_assert (daemon != NULL);
 
 	if (daemon->priv->exit_timeout_source > 0)
 		return;
@@ -194,7 +194,7 @@ static void add_exit_timeout(NotifyDaemon* daemon)
 
 static void remove_exit_timeout(NotifyDaemon* daemon)
 {
-	g_assert_nonnull(daemon);
+	g_assert (daemon != NULL);
 
 	if (daemon->priv->exit_timeout_source == 0)
 		return;
