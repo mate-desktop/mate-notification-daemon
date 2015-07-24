@@ -106,7 +106,7 @@ enum
 static gboolean
 activate_link (GtkLabel *label, const char *url, WindowData *windata)
 {
-	windata->url_clicked (windata->win, url);
+	windata->url_clicked (GTK_WINDOW (windata->win), url);
 	return TRUE;
 }
 
