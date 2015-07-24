@@ -172,65 +172,46 @@ paint_window(GtkWidget *widget,
 	     WindowData *windata)
 {
 	cairo_surface_t *surface;
-	cairo_t *context;
+	cairo_t *cr2;
 	GtkAllocation allocation;
 #if !GTK_CHECK_VERSION (3, 0, 0)
 	cairo_t *cr = gdk_cairo_create (event->window);
 #endif
 
-	if (windata->width == 0) {
+	if (windata->width == 0 || windata->height == 0) {
 		gtk_widget_get_allocation(windata->win, &allocation);
 		windata->width = allocation.width;
 		windata->height = allocation.height;
 	}
 
-	if (!(windata->enable_transparency))
-	{
-		surface = cairo_surface_create_similar (cairo_get_target (cr),
-							CAIRO_CONTENT_COLOR_ALPHA,
-							windata->width,
-							windata->height);
-
-		cairo_save (cr);
-		cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-		cairo_set_source_surface (cr, surface, 0, 0);
-		cairo_paint (cr);
-
-		cairo_set_source_rgba (cr, 1, 1, 1, 1);
-		nodoka_rounded_rectangle (cr, 0, 0,
-					  windata->width,
-					  windata->height,
-					  6);
-		cairo_fill (cr);
-
-		cairo_restore (cr);
-		cairo_surface_destroy(surface);
-	}
-
-	context = gdk_cairo_create(gtk_widget_get_window(widget));
-
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
-
-	surface = cairo_surface_create_similar(cairo_get_target(context),
+	surface = cairo_surface_create_similar(cairo_get_target(cr),
 					       CAIRO_CONTENT_COLOR_ALPHA,
 					       windata->width,
 					       windata->height);
-#if GTK_CHECK_VERSION (3, 0, 0)
+
+	cr2 = cairo_create (surface);
+
+	/* transparent background */
+	cairo_rectangle (cr2, 0, 0, windata->width, windata->height);
+	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0);
+	cairo_fill (cr2);
+
+	nodoka_rounded_rectangle (cr2, 0, 0, windata->width , windata->height, 6);
+	fill_background(widget, windata, cr2);
+	cairo_fill (cr2);
+
+	cairo_destroy (cr2);
+
+	cairo_save (cr);
+	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_surface (cr, surface, 0, 0);
-#else
-	cr = cairo_create(surface);
-#endif
+	cairo_paint (cr);
+	cairo_restore (cr);
 
-	fill_background(widget, windata, cr);
-
+	cairo_surface_destroy (surface);
 #if !GTK_CHECK_VERSION (3, 0, 0)
 	cairo_destroy(cr);
 #endif
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
-	cairo_surface_destroy(surface);
-	cairo_destroy(context);
-
 	return FALSE;
 }
 
@@ -257,35 +238,41 @@ countdown_expose_cb(GtkWidget *pie,
 #endif
 					WindowData *windata)
 {
-	cairo_t *context;
-	cairo_surface_t *surface;
-	GtkAllocation alloc; 
 #if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_t *cr;
+	cairo_t *cr = gdk_cairo_create (event->window);
 #endif
+	cairo_t *cr2;
+	cairo_surface_t *surface;
+	GtkAllocation alloc;
 
-	context = gdk_cairo_create(gtk_widget_get_window(pie));
+	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
-	gtk_widget_get_allocation(pie, &alloc);
-	surface = cairo_surface_create_similar(cairo_get_target(context),
-					       CAIRO_CONTENT_COLOR_ALPHA,
-					       alloc.width,
-					       alloc.height);
-	cr = cairo_create(surface);
+	gtk_widget_get_allocation (pie, &alloc);
 
-	cairo_translate (cr, -alloc.x, -alloc.y);
-	fill_background (pie, windata, cr);
-	cairo_translate (cr, alloc.x, alloc.y);
-	draw_pie (pie, windata, cr);
+	surface = cairo_surface_create_similar (cairo_get_target (cr),
+						CAIRO_CONTENT_COLOR_ALPHA,
+						alloc.width,
+						alloc.height);
 
+	cr2 = cairo_create (surface);
+
+	cairo_translate (cr2, -alloc.x, -alloc.y);
+	fill_background (pie, windata, cr2);
+	cairo_translate (cr2, alloc.x, alloc.y);
+	draw_pie (pie, windata, cr2);
+	cairo_fill (cr2);
+
+	cairo_destroy (cr2);
+
+	cairo_save (cr);
+	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_paint (cr);
+	cairo_restore (cr);
+
+	cairo_surface_destroy (surface);
 #if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_destroy(cr);
+	cairo_destroy (cr);
 #endif
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
-	cairo_surface_destroy(surface);
-	cairo_destroy(context);
 	return TRUE;
 }
 
