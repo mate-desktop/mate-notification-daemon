@@ -958,7 +958,7 @@ static gboolean countdown_expose_cb(GtkWidget* pie, GdkEventExpose* event, Windo
 #endif
 
 	style = gtk_widget_get_style(windata->win);
-	context = gdk_cairo_create(GTK_WINDOW(gtk_widget_get_window(windata->pie_countdown)));
+	context = gdk_cairo_create(GDK_WINDOW(gtk_widget_get_window(windata->pie_countdown)));
 	GtkAllocation alloc;
 	gtk_widget_get_allocation(pie, &alloc);
 	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);

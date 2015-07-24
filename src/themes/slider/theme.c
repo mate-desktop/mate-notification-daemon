@@ -928,7 +928,7 @@ static gboolean on_countdown_expose(GtkWidget* pie, GdkEventExpose* event, Windo
 	cairo_surface_t* surface;
 	double r, g, b;
 
-	context = gdk_cairo_create(gtk_widget_get_window(GDK_WINDOW(windata->pie_countdown)));
+	context = gdk_cairo_create(GDK_WINDOW(gtk_widget_get_window(windata->pie_countdown)));
 #if GTK_CHECK_VERSION(3, 0, 0)
 	style = gtk_widget_get_style_context(windata->win);
 #else
