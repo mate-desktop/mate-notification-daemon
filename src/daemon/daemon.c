@@ -135,31 +135,11 @@ static void monitor_notification_source_windows(NotifyDaemon* daemon, NotifyTime
 
 G_DEFINE_TYPE(NotifyDaemon, notify_daemon, G_TYPE_OBJECT);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-static void
-notify_daemon_get_preferred_width (GtkWidget *widget,
-                                   gint *min_width,
-                                   gint *nat_width)
-{
-        if (nat_width != NULL) {
-            *nat_width = WIDTH;
-        }
-}
-#endif
-
 static void notify_daemon_class_init(NotifyDaemonClass* daemon_class)
 {
 	GObjectClass* object_class = G_OBJECT_CLASS(daemon_class);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-    GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (daemon_class);
-#endif
-
 	object_class->finalize = notify_daemon_finalize;
-
-#if GTK_CHECK_VERSION (3, 0, 0)
-    widget_class->get_preferred_width = notify_daemon_get_preferred_width;
-#endif
 
 	g_type_class_add_private(daemon_class, sizeof(NotifyDaemonPrivate));
 }
