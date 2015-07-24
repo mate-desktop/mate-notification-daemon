@@ -221,7 +221,7 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
         AC_MSG_RESULT(yes)
         WARNINGCFLAGS="\
         -Wchar-subscripts -Wmissing-declarations \
-        -Wcast-align -Wsign-compare -Wp,-D_FORTIFY_SOURCE=2 \
+        -Wcast-align -Wsign-compare -U_FORTIFY_SOURCE -Wp,-D_FORTIFY_SOURCE=2 \
         $WARNINGCFLAGS"
 
         for option in -Wno-strict-aliasing; do
