@@ -441,7 +441,7 @@ static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
 
 	if (windata->has_arrow)
 	{
-		int i;
+		size_t i;
 
 		create_border_with_arrow(windata->win, windata);
 
