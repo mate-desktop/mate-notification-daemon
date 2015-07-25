@@ -276,6 +276,16 @@ countdown_expose_cb(GtkWidget *pie,
 	return TRUE;
 }
 
+static gboolean on_configure_event (GtkWidget* widget, GdkEventConfigure* event, WindowData* windata)
+{
+	windata->width = event->width;
+	windata->height = event->height;
+
+	gtk_widget_queue_draw (widget);
+
+	return FALSE;
+}
+
 static void
 action_clicked_cb(GtkWidget *w, GdkEventButton *event,
 				  ActionInvokedCb action_cb)
@@ -395,6 +405,8 @@ create_notification(UrlClickedCb url_clicked)
 	g_signal_connect(G_OBJECT(main_vbox), "expose_event",
 					 G_CALLBACK(paint_window), windata);
 #endif
+
+	g_signal_connect (G_OBJECT (win), "configure-event", G_CALLBACK (on_configure_event), windata);
 
     padding = gtk_alignment_new(0, 0, 0, 0);
 	gtk_widget_show(padding);
