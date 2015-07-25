@@ -43,7 +43,7 @@ typedef struct {
 	GtkWidget* pie_countdown;
 
 	gboolean has_arrow;
-	gboolean enable_transparency;
+	gboolean composited;
 
 	int point_x;
 	int point_y;
@@ -129,7 +129,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	style = gtk_widget_get_style(widget);
 	background_color = &style->base[GTK_STATE_NORMAL];
 
-	if (windata->enable_transparency)
+	if (windata->composited)
 	{
 		cairo_set_source_rgba(cr, background_color->red / 65535.0, background_color->green / 65535.0, background_color->blue / 65535.0, BACKGROUND_OPACITY);
 	}
@@ -634,7 +634,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	win = gtk_window_new(GTK_WINDOW_POPUP);
 	windata->win = win;
 
-	windata->enable_transparency = FALSE;
+	windata->composited = FALSE;
 
 
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
@@ -648,7 +648,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 		if (gdk_screen_is_composited(screen))
 		{
-			windata->enable_transparency = TRUE;
+			windata->composited = TRUE;
 		}
 	}
 #else
@@ -657,7 +657,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	if (colormap != NULL && gdk_screen_is_composited(screen))
 	{
 		gtk_widget_set_colormap(win, colormap);
-		windata->enable_transparency = TRUE;
+		windata->composited = TRUE;
 	}
 #endif
 
