@@ -305,7 +305,7 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 
 	cairo_translate (cr, x, y);
 
-	GdkRectangle rect;
+	cairo_rectangle_int_t rect;
 	rect.x = 0;
 	rect.width = w;
 	if (arrow_up)
@@ -603,47 +603,45 @@ configure_event_cb(GtkWidget *nw,
 static gboolean
 countdown_expose_cb(GtkWidget *pie,
 #if GTK_CHECK_VERSION (3, 0, 0)
-					cairo_t *cr,
+		    cairo_t *cr,
 #else
-					GdkEventExpose *event,
+		    GdkEventExpose *event,
 #endif
-					WindowData *windata)
+		    WindowData *windata)
 {
-	cairo_t *context;
+#if !GTK_CHECK_VERSION(3, 0, 0)
+	cairo_t *cr = gdk_cairo_create (event->window);
+#endif
+	cairo_t *cr2;
 	cairo_surface_t *surface;
-
-	context = gdk_cairo_create(gtk_widget_get_window(pie));
 	GtkAllocation alloc;
-	gtk_widget_get_allocation(pie, &alloc);
-#if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_t *cr;
-#endif
 
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
-	surface = cairo_surface_create_similar(cairo_get_target(context),
-										   CAIRO_CONTENT_COLOR_ALPHA,
-										   alloc.width,
-										   alloc.height);
-#if GTK_CHECK_VERSION(3, 0, 0)
+	gtk_widget_get_allocation (windata->win, &alloc);
+
+	surface = cairo_surface_create_similar (cairo_get_target (cr),
+					        CAIRO_CONTENT_COLOR_ALPHA,
+						alloc.width,
+						alloc.height);
+	cr2 = cairo_create (surface);
+
+	cairo_translate (cr2, -alloc.x, -alloc.y);
+	fill_background (pie, windata, cr2);
+	cairo_translate (cr2, alloc.x, alloc.y);
+	draw_pie (pie, windata, cr2);
+	cairo_fill (cr2);
+
+	cairo_destroy (cr2);
+
+	cairo_save (cr);
+	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_surface (cr, surface, 0, 0);
-#else
-	cr = cairo_create(surface);
-#endif
+	cairo_paint (cr);
+	cairo_restore (cr);
 
-
-	cairo_translate (cr, -alloc.x, -alloc.y);
-	fill_background (pie, windata, cr);
-	cairo_translate (cr, alloc.x, alloc.y);
-	
-	draw_pie (pie, windata, cr);
-
+	cairo_surface_destroy (surface);
 #if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_destroy(cr);
+	cairo_destroy (cr);
 #endif
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
-	cairo_surface_destroy(surface);
-	cairo_destroy(context);
 	return TRUE;
 }
 
