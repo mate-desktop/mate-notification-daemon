@@ -1123,7 +1123,7 @@ static GdkPixbuf* _notify_daemon_scale_pixbuf(GdkPixbuf *pixbuf, gboolean no_str
 {
 	int pw;
 	int ph;
-	float scale_factor = 1.0;
+	float scale_factor;
 
 	pw = gdk_pixbuf_get_width (pixbuf);
 	ph = gdk_pixbuf_get_height (pixbuf);
