@@ -387,9 +387,17 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	cairo_rectangle (cr, 0, 0, STRIPE_WIDTH, windata->height);
 	cairo_clip (cr);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	gdouble  color_mult = 1.0;
+	GdkRGBA  top_color;
+	GdkRGBA  center_color;
+	GdkRGBA  bottom_color;
+#else
+	gdouble  color_mult = 65535.0;
 	GdkColor top_color;
 	GdkColor center_color;
 	GdkColor bottom_color;
+#endif
 
 	float alpha;
 	if (windata->composited)
@@ -401,49 +409,49 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	{
 		case URGENCY_LOW: // LOW
 			alpha = alpha * 0.5;
-			top_color.red = 221 / 255.0 * 65535.0;
+			top_color.red = 221 / 255.0 * color_mult;
 			top_color.green = top_color.red;
 			top_color.blue = top_color.red;
-			center_color.red = 192 / 255.0 * 65535.0;
+			center_color.red = 192 / 255.0 * color_mult;
 			center_color.green = center_color.red;
 			center_color.blue = center_color.red;
-			bottom_color.red = 167 / 255.0 * 65535.0;
+			bottom_color.red = 167 / 255.0 * color_mult;
 			bottom_color.green = center_color.red;
 			bottom_color.blue = center_color.red;
 			break;
 
 		case URGENCY_CRITICAL: // CRITICAL
-			top_color.red = 255 / 255.0 * 65535.0;
-			top_color.green = 11 / 255.0 * 65535.0;
+			top_color.red = 255 / 255.0 * color_mult;
+			top_color.green = 11 / 255.0 * color_mult;
 			top_color.blue = top_color.green;
-			center_color.red = 205 / 255.0 * 65535.0;
+			center_color.red = 205 / 255.0 * color_mult;
 			center_color.green = 0;
 			center_color.blue = 0;
-			bottom_color.red = 145 / 255.0 * 65535.0;
+			bottom_color.red = 145 / 255.0 * color_mult;
 			bottom_color.green = 0;
 			bottom_color.blue = 0;
 			break;
 
 		case URGENCY_NORMAL: // NORMAL
 		default:
-			top_color.red = 20 / 255.0 * 65535.0;
-			top_color.green = 175 / 255.0 * 65535.0;
-			top_color.blue = 65535.0;
-			center_color.red = 9 / 255.0 * 65535.0;
-			center_color.green = 139 / 255.0 * 65535.0;
-			center_color.blue = 207 / 255.0 * 65535.0;
+			top_color.red = 20 / 255.0 * color_mult;
+			top_color.green = 175 / 255.0 * color_mult;
+			top_color.blue = color_mult;
+			center_color.red = 9 / 255.0 * color_mult;
+			center_color.green = 139 / 255.0 * color_mult;
+			center_color.blue = 207 / 255.0 * color_mult;
 			bottom_color.red = 0;
-			bottom_color.green = 97 / 255.0 * 65535.0;
-			bottom_color.blue = 147 / 255.0 * 65535.0;
+			bottom_color.green = 97 / 255.0 * color_mult;
+			bottom_color.blue = 147 / 255.0 * color_mult;
 			break;
 	}
 
 
 	cairo_pattern_t *pattern;
 	pattern = cairo_pattern_create_linear (0, 0, 0, windata->height);
-	cairo_pattern_add_color_stop_rgba (pattern, 0, top_color.red / 65535.0, top_color.green / 65535.0, top_color.blue / 65535.0, alpha);
-	cairo_pattern_add_color_stop_rgba (pattern, GRADIENT_CENTER, bottom_color.red / 65535.0, bottom_color.green / 65535.0, bottom_color.blue / 65535.0, alpha);
-	cairo_pattern_add_color_stop_rgba (pattern, 1, bottom_color.red / 65535.0, bottom_color.green / 65535.0, bottom_color.blue / 65535.0, alpha);
+	cairo_pattern_add_color_stop_rgba (pattern, 0, top_color.red / color_mult, top_color.green / color_mult, top_color.blue / color_mult, alpha);
+	cairo_pattern_add_color_stop_rgba (pattern, GRADIENT_CENTER, bottom_color.red / color_mult, bottom_color.green / color_mult, bottom_color.blue / color_mult, alpha);
+	cairo_pattern_add_color_stop_rgba (pattern, 1, bottom_color.red / color_mult, bottom_color.green / color_mult, bottom_color.blue / color_mult, alpha);
 	cairo_set_source (cr, pattern);
 	cairo_pattern_destroy (pattern);
 
