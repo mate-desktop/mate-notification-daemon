@@ -49,6 +49,8 @@ typedef struct
 	
 	int width;
 	int height;
+	int last_width;
+	int last_height;
 
 	guchar urgency;
 	glong timeout;
@@ -162,6 +164,98 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 	cairo_fill (cr); 
 }
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+static void
+update_shape_region (cairo_surface_t *surface,
+		     WindowData      *windata)
+{
+	cairo_region_t *region;
+
+	if (windata->width == windata->last_width && windata->height == windata->last_height)
+	{
+		return;
+	}
+
+	if (windata->width == 0 || windata->height == 0)
+	{
+		GtkAllocation allocation;
+		gtk_widget_get_allocation (windata->win, &allocation);
+
+		windata->width = MAX (allocation.width, 1);
+		windata->height = MAX (allocation.height, 1);
+	}
+
+	if (!windata->composited) {
+		cairo_region_t *region;
+
+		region = gdk_cairo_region_create_from_surface (surface);
+		gtk_widget_shape_combine_region (windata->win, region);
+		cairo_region_destroy (region);
+	} else {
+		gtk_widget_shape_combine_region (windata->win, NULL);
+		return;
+	}
+
+	windata->last_width = windata->width;
+	windata->last_height = windata->height;
+}
+#else
+static void
+update_shape_mask (WindowData* windata)
+{
+	cairo_t *cr;
+	GdkBitmap* mask;
+
+	if (windata->width == windata->last_width && windata->height == windata->last_height)
+	{
+		return;
+	}
+
+	if (windata->width == 0 || windata->height == 0)
+	{
+		GtkAllocation allocation;
+
+		gtk_widget_get_allocation (windata->win, &allocation);
+
+		windata->width = MAX (allocation.width, 1);
+		windata->height = MAX (allocation.height, 1);
+	}
+
+	if (windata->composited)
+	{
+		gtk_widget_shape_combine_mask (windata->win, NULL, 0, 0);
+		return;
+	}
+
+	windata->last_width = windata->width;
+	windata->last_height = windata->height;
+
+	mask = (GdkBitmap*) gdk_pixmap_new (NULL, windata->width, windata->height, 1);
+
+	if (mask == NULL)
+	{
+		return;
+	}
+	cr = gdk_cairo_create (mask);
+
+	if (cairo_status (cr) == CAIRO_STATUS_SUCCESS)
+	{
+		cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
+		cairo_paint (cr);
+
+		cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+		cairo_set_source_rgb (cr, 1.0f, 1.0f, 1.0f);
+		nodoka_rounded_rectangle (cr, 0, 0, windata->width , windata->height, 6);
+		cairo_fill (cr);
+
+		gtk_widget_shape_combine_mask (windata->win, mask, 0, 0);
+	}
+
+	cairo_destroy (cr);
+	g_object_unref (mask);
+}
+#endif
+
 static gboolean
 paint_window(GtkWidget *widget,
 #if GTK_CHECK_VERSION (3, 0, 0)
@@ -207,6 +301,12 @@ paint_window(GtkWidget *widget,
 	cairo_set_source_surface (cr, surface, 0, 0);
 	cairo_paint (cr);
 	cairo_restore (cr);
+
+#if GTK_CHECK_VERSION (3, 0, 0)
+	update_shape_region (surface, windata);
+#else
+	update_shape_mask (windata);
+#endif
 
 	cairo_surface_destroy (surface);
 #if !GTK_CHECK_VERSION (3, 0, 0)
@@ -284,6 +384,13 @@ static gboolean on_configure_event (GtkWidget* widget, GdkEventConfigure* event,
 	gtk_widget_queue_draw (widget);
 
 	return FALSE;
+}
+
+static void on_composited_changed (GtkWidget* window, WindowData* windata)
+{
+	windata->composited = gdk_screen_is_composited (gtk_widget_get_screen(window));
+
+	gtk_widget_queue_draw (window);
 }
 
 static void
@@ -407,6 +514,8 @@ create_notification(UrlClickedCb url_clicked)
 #endif
 
 	g_signal_connect (G_OBJECT (win), "configure-event", G_CALLBACK (on_configure_event), windata);
+
+	g_signal_connect (G_OBJECT (win), "composited-changed", G_CALLBACK (on_composited_changed), windata);
 
     padding = gtk_alignment_new(0, 0, 0, 0);
 	gtk_widget_show(padding);
