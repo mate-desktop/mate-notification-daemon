@@ -434,11 +434,6 @@ static void notification_properties_checkbox_notify(GSettings *settings, gchar *
 	}
 }
 
-static void notification_properties_dialog_help(void)
-{
-	/* Do nothing */
-}
-
 static void show_message(NotificationAppletDialog* dialog, const gchar* message)
 {
 	GtkWidget* d = gtk_message_dialog_new(GTK_WINDOW(dialog->dialog), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", message);
@@ -490,10 +485,6 @@ static void notification_properties_dialog_response(GtkWidget* widget, int respo
 {
 	switch (response)
 	{
-		case GTK_RESPONSE_HELP:
-			notification_properties_dialog_help();
-			break;
-
 		case GTK_RESPONSE_ACCEPT:
 			notification_properties_dialog_preview(dialog);
 			break;
