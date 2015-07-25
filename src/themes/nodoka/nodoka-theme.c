@@ -62,7 +62,7 @@ typedef struct
 
 	ArrowParameters arrow;
 
-	gboolean enable_transparency;
+	gboolean composited;
 	
 	int width;
 	int height;
@@ -355,7 +355,7 @@ static void
 fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
 	float alpha;
-	if (windata->enable_transparency)
+	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
 		alpha = 1.0;
@@ -390,7 +390,7 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	GdkColor bottom_color;
 
 	float alpha;
-	if (windata->enable_transparency)
+	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
 		alpha = 1.0;
@@ -460,7 +460,7 @@ static void
 draw_border(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
 	float alpha;
-	if (windata->enable_transparency)
+	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
 		alpha = 1.0;
@@ -713,7 +713,7 @@ create_notification(UrlClickedCb url_clicked)
 	win = gtk_window_new(GTK_WINDOW_POPUP);
 	windata->win = win;
 
-	windata->enable_transparency = FALSE;
+	windata->composited = FALSE;
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
 #if GTK_CHECK_VERSION(3, 0, 0)
 	visual = gdk_screen_get_rgba_visual(screen);
@@ -722,7 +722,7 @@ create_notification(UrlClickedCb url_clicked)
 	{
 		gtk_widget_set_visual(win, visual);
 		if (gdk_screen_is_composited(screen))
-			windata->enable_transparency = TRUE;
+			windata->composited = TRUE;
 	}
 #else
 	colormap = gdk_screen_get_rgba_colormap(screen);
@@ -731,7 +731,7 @@ create_notification(UrlClickedCb url_clicked)
 	{
 		gtk_widget_set_colormap(win, colormap);
 		if (gdk_screen_is_composited(screen))
-			windata->enable_transparency = TRUE;
+			windata->composited = TRUE;
 	}
 #endif
 
