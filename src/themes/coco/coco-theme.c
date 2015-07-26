@@ -256,23 +256,17 @@ update_shape_mask (WindowData* windata)
 }
 #endif
 
-static gboolean
-paint_window(GtkWidget *widget,
-#if GTK_CHECK_VERSION (3, 0, 0)
-	     cairo_t *cr,
-#else
-	     GdkEventExpose *event,
-#endif
-	     WindowData *windata)
+static void
+paint_window (GtkWidget  *widget,
+	      cairo_t    *cr,
+	      WindowData *windata)
 {
 	cairo_surface_t *surface;
 	cairo_t *cr2;
-	GtkAllocation allocation;
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_t *cr = gdk_cairo_create (event->window);
-#endif
 
 	if (windata->width == 0 || windata->height == 0) {
+		GtkAllocation allocation;
+
 		gtk_widget_get_allocation(windata->win, &allocation);
 		windata->width = allocation.width;
 		windata->height = allocation.height;
@@ -309,11 +303,28 @@ paint_window(GtkWidget *widget,
 #endif
 
 	cairo_surface_destroy (surface);
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_destroy(cr);
-#endif
+}
+
+static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+{
+	paint_window (widget, cr, windata);
+
 	return FALSE;
 }
+#else
+on_expose_event (GtkWidget *widget, GdkEventExpose *event, WindowData *windata)
+{
+	cairo_t *cr = gdk_cairo_create (event->window);
+
+	paint_window (widget, cr, windata);
+
+	cairo_destroy (cr);
+
+	return FALSE;
+}
+#endif
 
 /* Event handlers */
 static gboolean
@@ -506,11 +517,11 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_container_add(GTK_CONTAINER(drawbox), main_vbox);
 
 #if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(main_vbox), "draw",
-					 G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "draw",
+					 G_CALLBACK (on_draw), windata);
 #else
-	g_signal_connect(G_OBJECT(main_vbox), "expose_event",
-					 G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "expose_event",
+					 G_CALLBACK (on_expose_event), windata);
 #endif
 
 	g_signal_connect (G_OBJECT (win), "configure-event", G_CALLBACK (on_configure_event), windata);
