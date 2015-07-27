@@ -607,7 +607,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 {
 	GtkWidget* spacer;
 	GtkWidget* win;
-	GtkWidget* drawbox;
 	GtkWidget* main_vbox;
 	GtkWidget* hbox;
 	GtkWidget* vbox;
@@ -672,20 +671,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 	g_signal_connect(G_OBJECT(win), "configure_event", G_CALLBACK(configure_event_cb), windata);
 
-	/*
-	 * For some reason, there are occasionally graphics glitches when
-	 * repainting the window. Despite filling the window with a background
-	 * color, parts of the other windows on the screen or the shadows around
-	 * notifications will appear on the notification. Somehow, adding this
-	 * eventbox makes that problem just go away. Whatever works for now.
-	 */
-	drawbox = gtk_event_box_new();
-	gtk_widget_show(drawbox);
-	gtk_container_add(GTK_CONTAINER(win), drawbox);
-
 	main_vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(main_vbox);
-	gtk_container_add(GTK_CONTAINER(drawbox), main_vbox);
+	gtk_container_add (GTK_CONTAINER (win), main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
 
 #if GTK_CHECK_VERSION (3, 0, 0)
