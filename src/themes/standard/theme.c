@@ -480,11 +480,11 @@ static gboolean paint_window(GtkWidget* widget, cairo_t* cr, WindowData* windata
 static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowData* windata)
 #endif
 {
-	cairo_t*         context;
+	cairo_t*         cr2;
 	cairo_surface_t* surface;
 	GtkAllocation    allocation;
 #if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_t*         cr;
+	cairo_t*         cr = gdk_cairo_create (event->window);
 #endif
 
 	gtk_widget_get_allocation(windata->win, &allocation);
@@ -495,32 +495,30 @@ static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowDat
 			windata->height = allocation.height;
 	}
 
-	context = gdk_cairo_create(gtk_widget_get_window(widget));
-
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
+	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
 
 	gtk_widget_get_allocation(widget, &allocation);
 
-	surface = cairo_surface_create_similar(cairo_get_target(context), CAIRO_CONTENT_COLOR_ALPHA, allocation.width, allocation.height);
+	surface = cairo_surface_create_similar (cairo_get_target (cr),
+						CAIRO_CONTENT_COLOR_ALPHA,
+						allocation.width,
+						allocation.height);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-	cairo_set_source_surface(cr, surface, 0, 0);
-#else
-	cr = cairo_create(surface);
-#endif
+	cr2 = cairo_create (surface);
 
-	fill_background(widget, windata, cr);
-	draw_border(widget, windata, cr);
-	draw_stripe(widget, windata, cr);
+	fill_background(widget, windata, cr2);
+	draw_border(widget, windata, cr2);
+	draw_stripe(widget, windata, cr2);
+	cairo_fill (cr2);
+	cairo_destroy (cr2);
+
+	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_paint(cr);
+	cairo_surface_destroy(surface);
 
 #if !GTK_CHECK_VERSION (3, 0, 0)
 	cairo_destroy(cr);
 #endif
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
-	cairo_surface_destroy(surface);
-	cairo_destroy(context);
-
 	return FALSE;
 }
 
