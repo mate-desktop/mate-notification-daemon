@@ -177,15 +177,12 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 #endif
 }
 
-static void update_shape(WindowData* windata)
-{
-	cairo_t* cr;
 #if GTK_CHECK_VERSION (3, 0, 0)
-	cairo_surface_t *surface;
+static void
+update_shape_region (cairo_surface_t *surface,
+		     WindowData      *windata)
+{
 	cairo_region_t *region;
-#else
-	GdkBitmap* mask;
-#endif
 
 	if (windata->width == windata->last_width && windata->height == windata->last_height)
 	{
@@ -194,66 +191,83 @@ static void update_shape(WindowData* windata)
 
 	if (windata->width == 0 || windata->height == 0)
 	{
-			GtkAllocation allocation;
+		GtkAllocation allocation;
+		gtk_widget_get_allocation (windata->win, &allocation);
 
-			gtk_widget_get_allocation(windata->win, &allocation);
-
-			windata->width = MAX(allocation.width, 1);
-			windata->height = MAX(allocation.height, 1);
+		windata->width = MAX (allocation.width, 1);
+		windata->height = MAX (allocation.height, 1);
 	}
 
-	if (windata->composited)
-	{
-#if GTK_CHECK_VERSION (3, 0, 0)
+	if (!windata->composited) {
+		cairo_region_t *region;
+
+		region = gdk_cairo_region_create_from_surface (surface);
+		gtk_widget_shape_combine_region (windata->win, region);
+		cairo_region_destroy (region);
+	} else {
 		gtk_widget_shape_combine_region (windata->win, NULL);
-#else
-		gtk_widget_shape_combine_mask(windata->win, NULL, 0, 0);
-#endif
 		return;
 	}
 
 	windata->last_width = windata->width;
 	windata->last_height = windata->height;
-#if GTK_CHECK_VERSION (3, 0, 0)
-	surface = cairo_image_surface_create (CAIRO_FORMAT_A8, windata->width, windata->height);
-	cr = cairo_create (surface);
+}
 #else
-	mask = (GdkBitmap*) gdk_pixmap_new(NULL, windata->width, windata->height, 1);
+static void
+update_shape_mask (WindowData* windata)
+{
+	cairo_t *cr;
+	GdkBitmap* mask;
+
+	if (windata->width == windata->last_width && windata->height == windata->last_height)
+	{
+		return;
+	}
+
+	if (windata->width == 0 || windata->height == 0)
+	{
+		GtkAllocation allocation;
+
+		gtk_widget_get_allocation (windata->win, &allocation);
+
+		windata->width = MAX (allocation.width, 1);
+		windata->height = MAX (allocation.height, 1);
+	}
+
+	if (windata->composited)
+	{
+		gtk_widget_shape_combine_mask (windata->win, NULL, 0, 0);
+		return;
+	}
+
+	windata->last_width = windata->width;
+	windata->last_height = windata->height;
+
+	mask = (GdkBitmap*) gdk_pixmap_new (NULL, windata->width, windata->height, 1);
 
 	if (mask == NULL)
 	{
 		return;
 	}
-	cr = gdk_cairo_create(mask);
-#endif
+	cr = gdk_cairo_create (mask);
 
-	if (cairo_status(cr) == CAIRO_STATUS_SUCCESS)
+	if (cairo_status (cr) == CAIRO_STATUS_SUCCESS)
 	{
-		cairo_set_operator(cr, CAIRO_OPERATOR_CLEAR);
-		cairo_paint(cr);
+		cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
+		cairo_paint (cr);
 
-		cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
-		cairo_set_source_rgb(cr, 1.0f, 1.0f, 1.0f);
-		draw_round_rect(cr, 1.0f, DEFAULT_X0, DEFAULT_Y0, DEFAULT_RADIUS, windata->width, windata->height);
-		cairo_fill(cr);
+		cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
+		cairo_set_source_rgb (cr, 1.0f, 1.0f, 1.0f);
+		draw_round_rect (cr, 1.0f, DEFAULT_X0, DEFAULT_Y0, DEFAULT_RADIUS, windata->width, windata->height);
+		cairo_fill (cr);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-		region = gdk_cairo_region_create_from_surface (surface);
-		gtk_widget_shape_combine_region (windata->win, region);
-		cairo_region_destroy (region);
-#else
-		gtk_widget_shape_combine_mask(windata->win, mask, 0, 0);
-#endif
+		gtk_widget_shape_combine_mask (windata->win, mask, 0, 0);
 	}
-	cairo_destroy(cr);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-	cairo_surface_destroy (surface);
-#else
-	g_object_unref(mask);
-#endif
+	cairo_destroy (cr);
+	g_object_unref (mask);
 }
-
+#endif
 static void paint_window(GtkWidget* widget, WindowData* windata)
 {
 	cairo_t* context;
@@ -291,7 +305,12 @@ static void paint_window(GtkWidget* widget, WindowData* windata)
 	cairo_surface_destroy(surface);
 	cairo_destroy(context);
 
-	update_shape(windata);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	update_shape_region (surface, windata);
+#else
+	update_shape_mask (windata);
+#endif
+
 }
 
 static gboolean on_window_map(GtkWidget* widget, GdkEvent* event, WindowData* windata)
@@ -521,7 +540,8 @@ static void on_style_set(GtkWidget* widget, GtkStyle* previous_style, WindowData
 static void on_composited_changed(GtkWidget* window, WindowData* windata)
 {
 	windata->composited = gdk_screen_is_composited(gtk_widget_get_screen(window));
-	update_shape(windata);
+
+	gtk_widget_queue_draw (windata->win);
 }
 
 GtkWindow* create_notification(UrlClickedCb url_clicked)
