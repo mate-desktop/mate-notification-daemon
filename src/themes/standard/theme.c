@@ -474,18 +474,14 @@ static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
 	cairo_stroke(cr);
 }
 
-#if GTK_CHECK_VERSION(3, 0, 0)
-static gboolean paint_window(GtkWidget* widget, cairo_t* cr, WindowData* windata)
-#else
-static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowData* windata)
-#endif
+static void
+paint_window (GtkWidget  *widget,
+	      cairo_t    *cr,
+	      WindowData *windata)
 {
 	cairo_t*         cr2;
 	cairo_surface_t* surface;
 	GtkAllocation    allocation;
-#if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_t*         cr = gdk_cairo_create (event->window);
-#endif
 
 	gtk_widget_get_allocation(windata->win, &allocation);
 
@@ -515,12 +511,28 @@ static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowDat
 	cairo_set_source_surface (cr, surface, 0, 0);
 	cairo_paint(cr);
 	cairo_surface_destroy(surface);
+}
 
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_destroy(cr);
-#endif
+static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+{
+	paint_window (widget, cr, windata);
+
 	return FALSE;
 }
+#else
+on_expose_event (GtkWidget *widget, GdkEventExpose *event, WindowData *windata)
+{
+	cairo_t *cr = gdk_cairo_create (event->window);
+
+	paint_window (widget, cr, windata);
+
+	cairo_destroy (cr);
+
+	return FALSE;
+}
+#endif
 
 static void destroy_windata(WindowData* windata)
 {
@@ -675,9 +687,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
 
 #if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(main_vbox), "draw", G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "draw", G_CALLBACK (on_draw), windata);
 #else
-	g_signal_connect(G_OBJECT(main_vbox), "expose_event", G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "expose_event", G_CALLBACK (on_expose_event), windata);
 #endif
 
 	windata->top_spacer = gtk_image_new();
