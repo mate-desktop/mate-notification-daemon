@@ -461,7 +461,7 @@ static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
 #if GTK_CHECK_VERSION(3, 0, 0)
 		/* FIXME!!! */
 #else
-		gdk_window_shape_combine_region(windata->win->window, windata->window_region, 0, 0);
+		gdk_window_shape_combine_region (gtk_widget_get_window (windata->win), windata->window_region, 0, 0);
 #endif
 		g_free(windata->border_points);
 		windata->border_points = NULL;

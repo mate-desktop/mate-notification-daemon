@@ -122,6 +122,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	GdkRGBA fg_color;
 	GdkRGBA bg_color;
 #else
+	GtkStyle *style;
 	GdkColor color;
 #endif
 	double r, g, b;
@@ -157,7 +158,9 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	cairo_stroke(cr);
 
 #else
-	color = widget->style->bg[GTK_STATE_NORMAL];
+	style = gtk_widget_get_style (widget);
+
+	color = style->bg[GTK_STATE_NORMAL];
 	r = (float) color.red / 65535.0;
 	g = (float) color.green / 65535.0;
 	b = (float) color.blue / 65535.0;
@@ -167,7 +170,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	/* Should we show urgency somehow?  Probably doesn't
 	 * have any meaningful value to the user... */
 
-	color = widget->style->text_aa[GTK_STATE_NORMAL];
+	color = style->text_aa[GTK_STATE_NORMAL];
 	r = (float) color.red / 65535.0;
 	g = (float) color.green / 65535.0;
 	b = (float) color.blue / 65535.0;
@@ -504,13 +507,13 @@ static void override_style(GtkWidget* widget, GtkStyle* previous_style)
 	GdkColor fg;
 	GdkColor bg;
 
-	style = gtk_style_copy(widget->style);
+	style = gtk_style_copy(gtk_widget_get_style (widget));
 
 	if (previous_style == NULL || (previous_style != NULL && (previous_style->bg[GTK_STATE_NORMAL].red != style->bg[GTK_STATE_NORMAL].red || previous_style->bg[GTK_STATE_NORMAL].green != style->bg[GTK_STATE_NORMAL].green || previous_style->bg[GTK_STATE_NORMAL].blue != style->bg[GTK_STATE_NORMAL].blue)))
 	{
 		state = (GtkStateType) 0;
 
-		while (state < (GtkStateType) G_N_ELEMENTS(widget->style->bg))
+		while (state < (GtkStateType) G_N_ELEMENTS(style->bg))
 		{
 			color_reverse(&style->bg[state], &bg);
 			gtk_widget_modify_bg(widget, state, &bg);
@@ -522,7 +525,7 @@ static void override_style(GtkWidget* widget, GtkStyle* previous_style)
 	{
 		state = (GtkStateType) 0;
 
-		while (state < (GtkStateType) G_N_ELEMENTS(widget->style->fg))
+		while (state < (GtkStateType) G_N_ELEMENTS(style->fg))
 		{
 			color_reverse(&style->fg[state], &fg);
 			gtk_widget_modify_fg(widget, state, &fg);
@@ -992,7 +995,7 @@ static gboolean on_countdown_expose(GtkWidget* pie, GdkEventExpose* event, Windo
 	g = color.green;
 	b = color.blue;
 #else
-	color = windata->win->style->bg[GTK_STATE_NORMAL];
+	color = style->bg[GTK_STATE_NORMAL];
 	r = (float) color.red / 65535.0;
 	g = (float) color.green / 65535.0;
 	b = (float) color.blue / 65535.0;
