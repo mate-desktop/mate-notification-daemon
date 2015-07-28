@@ -942,18 +942,14 @@ void set_notification_arrow(GtkWidget* nw, gboolean visible, int x, int y)
 	update_spacers(nw);
 }
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-static gboolean countdown_draw_cb(GtkWidget* pie, cairo_t* cr, WindowData* windata)
-#else
-static gboolean countdown_expose_cb(GtkWidget* pie, GdkEventExpose* event, WindowData* windata)
-#endif
+static void
+paint_countdown (GtkWidget  *pie,
+		 cairo_t    *cr,
+		 WindowData *windata)
 {
 	GtkStyle* style;
 	cairo_t* cr2;
 	cairo_surface_t* surface;
-#if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_t* cr = gdk_cairo_create (event->window);
-#endif
 
 	style = gtk_widget_get_style(windata->win);
 	GtkAllocation alloc;
@@ -988,13 +984,28 @@ static gboolean countdown_expose_cb(GtkWidget* pie, GdkEventExpose* event, Windo
 	cairo_restore (cr);
 
 	cairo_surface_destroy(surface);
-
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_destroy(cr);
-#endif
-
-	return TRUE;
 }
+
+static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+{
+	paint_countdown (widget, cr, windata);
+
+	return FALSE;
+}
+#else
+on_countdown_expose_event (GtkWidget *widget, GdkEventExpose *event, WindowData *windata)
+{
+	cairo_t *cr = gdk_cairo_create (event->window);
+
+	paint_countdown (widget, cr, windata);
+
+	cairo_destroy (cr);
+
+	return FALSE;
+}
+#endif
 
 static void action_clicked_cb(GtkWidget* w, GdkEventButton* event, ActionInvokedCb action_cb)
 {
@@ -1034,9 +1045,9 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
 		gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
 #if GTK_CHECK_VERSION (3, 0, 0)
-		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(countdown_draw_cb), windata);
+		g_signal_connect (G_OBJECT (windata->pie_countdown), "draw", G_CALLBACK (on_countdown_draw), windata);
 #else
-		g_signal_connect(G_OBJECT(windata->pie_countdown), "expose_event", G_CALLBACK(countdown_expose_cb), windata);
+		g_signal_connect (G_OBJECT (windata->pie_countdown), "expose_event", G_CALLBACK (on_countdown_expose_event), windata);
 #endif
 	}
 
