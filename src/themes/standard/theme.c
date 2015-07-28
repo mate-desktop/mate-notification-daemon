@@ -43,7 +43,7 @@ typedef struct {
 	GtkWidget* pie_countdown;
 
 	gboolean has_arrow;
-	gboolean enable_transparency;
+	gboolean composited;
 
 	int point_x;
 	int point_y;
@@ -129,7 +129,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	style = gtk_widget_get_style(widget);
 	background_color = &style->base[GTK_STATE_NORMAL];
 
-	if (windata->enable_transparency)
+	if (windata->composited)
 	{
 		cairo_set_source_rgba(cr, background_color->red / 65535.0, background_color->green / 65535.0, background_color->blue / 65535.0, BACKGROUND_OPACITY);
 	}
@@ -474,18 +474,14 @@ static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
 	cairo_stroke(cr);
 }
 
-#if GTK_CHECK_VERSION(3, 0, 0)
-static gboolean paint_window(GtkWidget* widget, cairo_t* cr, WindowData* windata)
-#else
-static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowData* windata)
-#endif
+static void
+paint_window (GtkWidget  *widget,
+	      cairo_t    *cr,
+	      WindowData *windata)
 {
-	cairo_t*         context;
+	cairo_t*         cr2;
 	cairo_surface_t* surface;
 	GtkAllocation    allocation;
-#if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_t*         cr;
-#endif
 
 	gtk_widget_get_allocation(windata->win, &allocation);
 
@@ -495,34 +491,48 @@ static gboolean paint_window(GtkWidget* widget, GdkEventExpose* event, WindowDat
 			windata->height = allocation.height;
 	}
 
-	context = gdk_cairo_create(gtk_widget_get_window(widget));
-
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
+	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
 
 	gtk_widget_get_allocation(widget, &allocation);
 
-	surface = cairo_surface_create_similar(cairo_get_target(context), CAIRO_CONTENT_COLOR_ALPHA, allocation.width, allocation.height);
+	surface = cairo_surface_create_similar (cairo_get_target (cr),
+						CAIRO_CONTENT_COLOR_ALPHA,
+						allocation.width,
+						allocation.height);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-	cairo_set_source_surface(cr, surface, 0, 0);
-#else
-	cr = cairo_create(surface);
-#endif
+	cr2 = cairo_create (surface);
 
-	fill_background(widget, windata, cr);
-	draw_border(widget, windata, cr);
-	draw_stripe(widget, windata, cr);
+	fill_background(widget, windata, cr2);
+	draw_border(widget, windata, cr2);
+	draw_stripe(widget, windata, cr2);
+	cairo_fill (cr2);
+	cairo_destroy (cr2);
 
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_destroy(cr);
-#endif
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
+	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_paint(cr);
 	cairo_surface_destroy(surface);
-	cairo_destroy(context);
+}
+
+static gboolean
+#if GTK_CHECK_VERSION (3, 0, 0)
+on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+{
+	paint_window (widget, cr, windata);
 
 	return FALSE;
 }
+#else
+on_expose_event (GtkWidget *widget, GdkEventExpose *event, WindowData *windata)
+{
+	cairo_t *cr = gdk_cairo_create (event->window);
+
+	paint_window (widget, cr, windata);
+
+	cairo_destroy (cr);
+
+	return FALSE;
+}
+#endif
 
 static void destroy_windata(WindowData* windata)
 {
@@ -634,7 +644,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	win = gtk_window_new(GTK_WINDOW_POPUP);
 	windata->win = win;
 
-	windata->enable_transparency = FALSE;
+	windata->composited = FALSE;
 
 
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
@@ -648,7 +658,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 		if (gdk_screen_is_composited(screen))
 		{
-			windata->enable_transparency = TRUE;
+			windata->composited = TRUE;
 		}
 	}
 #else
@@ -657,7 +667,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	if (colormap != NULL && gdk_screen_is_composited(screen))
 	{
 		gtk_widget_set_colormap(win, colormap);
-		windata->enable_transparency = TRUE;
+		windata->composited = TRUE;
 	}
 #endif
 
@@ -689,9 +699,9 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
 
 #if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(main_vbox), "draw", G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "draw", G_CALLBACK (on_draw), windata);
 #else
-	g_signal_connect(G_OBJECT(main_vbox), "expose_event", G_CALLBACK(paint_window), windata);
+	g_signal_connect (G_OBJECT (main_vbox), "expose_event", G_CALLBACK (on_expose_event), windata);
 #endif
 
 	windata->top_spacer = gtk_image_new();
