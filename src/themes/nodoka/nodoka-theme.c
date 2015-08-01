@@ -142,13 +142,10 @@ get_notification_arrow_type(GtkWidget *nw)
 static void
 set_arrow_parameters (WindowData *windata)
 {
-	int screen_height;
 	int screen_width;
 	int x,y;
 	GtkArrowType arrow_type;
 
-	screen_height = gdk_screen_get_height(
-		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
 	screen_width = gdk_screen_get_width(
 		gdk_window_get_screen(gtk_widget_get_window(windata->win)));
 
