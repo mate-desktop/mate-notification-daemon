@@ -35,7 +35,6 @@
 #define GSETTINGS_KEY_THEME          "theme"
 #define GSETTINGS_KEY_POPUP_LOCATION "popup-location"
 #define GSETTINGS_KEY_SOUND_ENABLED  "sound-enabled"
-#define GSETTINGS_KEY_DEFAULT_SOUND  "default-sound"
 #define GSETTINGS_KEY_MONITOR_NUMBER "monitor-number"
 #define GSETTINGS_KEY_USE_ACTIVE     "use-active-monitor"
 

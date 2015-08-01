@@ -25,10 +25,5 @@
       <_summary>Sound Enabled</_summary>
       <_description>Turns on and off sound support for notifications.</_description>
     </key>
-    <key name="default-sound" type="s">
-      <default>''</default>
-      <_summary>Default Sound</_summary>
-      <_description>The default sound file used unless a notification supplies the 'sound-file' or 'suppress-sound' hint.  Leave empty for no default sound.</_description>
-    </key>
   </schema>
 </schemalist>
