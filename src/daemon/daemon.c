@@ -1755,7 +1755,7 @@ int main(int argc, char** argv)
 	gboolean res;
 	guint request_name_result;
 
-	g_log_set_always_fatal(G_LOG_LEVEL_ERROR | G_LOG_LEVEL_CRITICAL);
+	g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL);
 
 	gtk_init(&argc, &argv);
 
