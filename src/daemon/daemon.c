@@ -1382,7 +1382,7 @@ static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Wind
 
 GQuark notify_daemon_error_quark(void)
 {
-	static GQuark q = 0;
+	static GQuark q;
 
 	if (q == 0)
 	{
