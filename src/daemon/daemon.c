@@ -121,7 +121,7 @@ typedef struct {
 	NotifyDaemon* daemon;
 } _NotifyPendingClose;
 
-static DBusConnection* dbus_conn = NULL;
+static DBusConnection* dbus_conn;
 
 static void notify_daemon_finalize(GObject* object);
 static void _notification_destroyed_cb(GtkWindow* nw, NotifyDaemon* daemon);
