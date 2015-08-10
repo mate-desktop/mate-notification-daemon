@@ -30,7 +30,7 @@ void
 sound_play_file (GtkWidget *widget,
                  const char *filename)
 {
-        ca_gtk_play_for_widget (widget, 0,
+        ca_gtk_play_for_widget (widget, MATE_EVENT,
                                 CA_PROP_MEDIA_ROLE, "event",
                                 CA_PROP_MEDIA_FILENAME, filename,
                                 CA_PROP_EVENT_DESCRIPTION, _("Notification"),

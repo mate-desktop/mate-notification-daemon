@@ -33,6 +33,8 @@
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <glib-object.h>
+#include <glib/gi18n.h>
+#include <canberra-gtk.h>
 #include <gtk/gtk.h>
 
 #include <X11/Xproto.h>
@@ -121,7 +123,13 @@ typedef struct {
 	NotifyDaemon* daemon;
 } _NotifyPendingClose;
 
+struct sound_file {
+	char *sound_file;
+	guint id;
+};
+
 static DBusConnection* dbus_conn;
+static GSList *sound_files;
 
 static void notify_daemon_finalize(GObject* object);
 static void _notification_destroyed_cb(GtkWindow* nw, NotifyDaemon* daemon);
@@ -358,6 +366,26 @@ static void create_screens(NotifyDaemon* daemon)
 }
 #endif
 
+static void on_sound_enabled_changed(GSettings *settings, gchar *key, NotifyDaemon* daemon)
+{
+	gboolean sound_enabled;
+
+	sound_enabled = g_settings_get_boolean (settings, GSETTINGS_KEY_SOUND_ENABLED);
+	if (sound_enabled) {
+		GSList *el;
+		for (el = sound_files; el; el=el->next) {
+			struct sound_file *f = el->data;
+			ca_context_play(ca_gtk_context_get(), MATE_EVENT,
+					CA_PROP_MEDIA_ROLE, "event",
+					CA_PROP_MEDIA_FILENAME, f->sound_file,
+					CA_PROP_EVENT_DESCRIPTION, _("Notification"),
+					NULL);
+		}
+	} else {
+		ca_context_cancel(ca_gtk_context_get(), MATE_EVENT);
+	}
+}
+
 static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDaemon* daemon)
 {
 	NotifyStackLocation stack_location;
@@ -418,6 +446,7 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
 	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
+	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_SOUND_ENABLED, G_CALLBACK (on_sound_enabled_changed), daemon);
 
 	location = g_settings_get_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 	daemon->priv->stack_location = get_stack_location_from_string(location);
@@ -606,6 +635,18 @@ static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_no
 
 	if (nt != NULL)
 	{
+		GSList *el;
+		for (el = sound_files; el; el=el->next) {
+			struct sound_file *f;
+			f = el->data;
+			if (f->id == id) {
+				sound_files = g_slist_remove(sound_files, el->data);
+				free(f->sound_file);
+				free(f);
+				break;
+			}
+		}
+
 		_emit_closed_signal(nt->nw, reason);
 
 		if (hide_notification)
@@ -1673,6 +1714,12 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 		if (sound_file != NULL)
 		{
+			struct sound_file *file;
+			file = g_new0(struct sound_file, 1);
+			file->sound_file = g_strdup(sound_file);
+			file->id = return_id;
+			sound_files = g_slist_append(sound_files, file);
+
 			sound_play_file (GTK_WIDGET (nw), sound_file);
 		}
 	}
