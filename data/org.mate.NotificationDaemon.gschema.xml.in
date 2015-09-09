@@ -1,0 +1,29 @@
+<schemalist gettext-domain="@GETTEXT_PACKAGE@">
+  <schema id="org.mate.NotificationDaemon" path="/org/mate/notification-daemon/">
+    <key name="popup-location" type="s">
+      <default>'top_right'</default>
+      <summary>Popup location</summary>
+      <description>Default popup location on the workspace for stack notifications. Allowed values: "top_left","top_right","bottom_left" and "bottom_right"</description>
+    </key>
+    <key name="use-active-monitor" type="b">
+      <default>true</default>
+      <summary>Use Active Monitor</summary>
+      <description>Display the notification on the active monitor.</description>
+    </key>
+    <key name="monitor-number" type="i">
+      <default>0</default>
+      <summary>Monitor</summary>
+      <description>Monitor to display the notification. Allowed values: -1 (display on active monitor) and 0 to n - 1 where n is the number of monitors.</description>
+    </key>
+    <key name="theme" type="s">
+      <default>'nodoka'</default>
+      <summary>Current theme</summary>
+      <description>The theme used when displaying notifications.</description>
+    </key>
+    <key name="sound-enabled" type="b">
+      <default>true</default>
+      <summary>Sound Enabled</summary>
+      <description>Turns on and off sound support for notifications.</description>
+    </key>
+  </schema>
+</schemalist>

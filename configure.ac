@@ -68,7 +68,7 @@ LT_INIT
 dnl ---------------------------------------------------------------------------
 dnl i18n stuff
 dnl ---------------------------------------------------------------------------
-IT_PROG_INTLTOOL([0.40.0])
+IT_PROG_INTLTOOL([0.50.1])
 AC_SUBST([GETTEXT_PACKAGE], [mate-notification-daemon])
 AM_GLIB_GNU_GETTEXT
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
@@ -263,6 +263,7 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/org.freedesktop.mate.Notifications.service
+data/org.mate.NotificationDaemon.gschema.xml
 po/Makefile.in
 src/Makefile
 src/daemon/Makefile

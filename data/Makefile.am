@@ -16,18 +16,16 @@ iconscalable_DATA = icons/scalable/mate-notification-properties.svg
 servicedir   = $(DBUS_SERVICES_DIR)
 service_DATA = org.freedesktop.mate.Notifications.service
 
-gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
+gsettingsschema_in_files = org.mate.NotificationDaemon.gschema.xml.in
+gsettings_SCHEMAS = $(gsettingsschema_in_files:.xml.in=.xml)
 @INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
-
-%.gschema.xml.in: %.gschema.xml.in.in Makefile
-	$(AM_V_GEN) $(SED) -e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' < $< > $@
 
 convertdir = $(datadir)/MateConf/gsettings
 convert_DATA = mate-notification-daemon.convert
 
 EXTRA_DIST = \
-	$(gsettings_SCHEMAS).in.in \
+	$(gsettingsschema_in_files) \
 	$(convert_DATA) \
 	$(service_DATA) \
 	$(icon16_DATA) \
