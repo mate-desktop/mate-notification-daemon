@@ -38,6 +38,12 @@ AC_DEFINE_UNQUOTED(NOTIFICATION_DAEMON_MICRO_VERSION, $NOTIFICATION_DAEMON_MICRO
 AC_DEFINE_UNQUOTED(NOTIFICATION_DAEMON_VERSION, "$NOTIFICATION_DAEMON_VERSION",
 	[mate-notification-daemon version.])
 
+# GLib min/max required versions
+AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [GLIB_VERSION_2_36],
+	[Warn on use of APIs added after GLib 2.36])
+AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_36],
+	[Warn on use of APIs deprecated before GLib 2.36])
+
 dnl ################################################################
 dnl # Initialize automake
 dnl ################################################################
