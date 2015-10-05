@@ -1,3 +1,9 @@
+1.10.2
+  * Standard theme: fix crash when clicking on close button
+  * Properties: remove useless help button
+  * Fix build with GLib 2.36
+  * Some more bugfixes
+
 1.10.1
   * Don't crash on notifications from Rhythmbox
   * Some more bugfixes
