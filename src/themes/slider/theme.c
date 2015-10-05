@@ -720,7 +720,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 #endif
 	gtk_widget_show(windata->summary_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->summary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 15, 2)
+#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (windata->summary_label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (windata->summary_label), 0.0);
 #else
@@ -751,7 +751,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 #endif
 	gtk_widget_show(windata->body_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 15, 2)
+#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (windata->body_label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (windata->body_label), 0.0);
 #else
@@ -1106,7 +1106,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 #endif
 		gtk_widget_show(image);
 		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 15, 2)
+#if GTK_CHECK_VERSION (3, 16, 0)
 		gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 		gtk_widget_set_valign (image, GTK_ALIGN_CENTER);
 #else
@@ -1122,7 +1122,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 #endif
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 15, 2)
+#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
 #else
 	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
