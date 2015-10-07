@@ -52,8 +52,6 @@
 #include "notificationdaemon-dbus-glue.h"
 
 #define MAX_NOTIFICATIONS 20
-
-#define WIDTH 400
 #define IMAGE_SIZE 48
 #define IDLE_SECONDS 30
 #define NOTIFICATION_BUS_NAME      "org.freedesktop.Notifications"
