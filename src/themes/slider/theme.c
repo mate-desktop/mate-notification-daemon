@@ -61,6 +61,24 @@ enum {
 	URGENCY_CRITICAL
 };
 
+gboolean theme_check_init(unsigned int major_ver, unsigned int minor_ver,
+			  unsigned int micro_ver);
+void get_theme_info(char **theme_name, char **theme_ver, char **author,
+		    char **homepage);
+GtkWindow* create_notification(UrlClickedCb url_clicked);
+void set_notification_text(GtkWindow *nw, const char *summary,
+			   const char *body);
+void set_notification_icon(GtkWindow *nw, GdkPixbuf *pixbuf);
+void set_notification_arrow(GtkWidget *nw, gboolean visible, int x, int y);
+void add_notification_action(GtkWindow *nw, const char *text, const char *key,
+			     ActionInvokedCb cb);
+void clear_notification_actions(GtkWindow *nw);
+void move_notification(GtkWidget *nw, int x, int y);
+void set_notification_timeout(GtkWindow *nw, glong timeout);
+void set_notification_hints(GtkWindow *nw, GHashTable *hints);
+void notification_tick(GtkWindow *nw, glong remaining);
+gboolean get_always_stack(GtkWidget* nw);
+
 #define WIDTH          400
 #if GTK_CHECK_VERSION(3, 0, 0)
 #define HEIGHT         100
