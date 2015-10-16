@@ -102,7 +102,6 @@ void set_notification_timeout(GtkWindow *nw, glong timeout);
 void set_notification_hints(GtkWindow *nw, GHashTable *hints);
 void notification_tick(GtkWindow *nw, glong remaining);
 
-#define M_PI 3.14159265358979323846
 #define STRIPE_WIDTH  32
 #define WIDTH         400
 #define IMAGE_SIZE    32
@@ -304,10 +303,10 @@ nodoka_rounded_rectangle (cairo_t * cr,
 							  int radius)
 {
 	cairo_move_to (cr, x + radius, y);
-	cairo_arc (cr, x + w - radius, y + radius, radius, M_PI * 1.5, M_PI * 2);
-	cairo_arc (cr, x + w - radius, y + h - radius, radius, 0, M_PI * 0.5);
-	cairo_arc (cr, x + radius, y + h - radius, radius, M_PI * 0.5, M_PI);
-	cairo_arc (cr, x + radius, y + radius, radius, M_PI, M_PI * 1.5);
+	cairo_arc (cr, x + w - radius, y + radius, radius, G_PI * 1.5, G_PI * 2);
+	cairo_arc (cr, x + w - radius, y + h - radius, radius, 0, G_PI * 0.5);
+	cairo_arc (cr, x + radius, y + h - radius, radius, G_PI * 0.5, G_PI);
+	cairo_arc (cr, x + radius, y + radius, radius, G_PI, G_PI * 1.5);
 }
 
 /* Rounded rectangle with arrow */
@@ -343,9 +342,9 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 	}
 
 	cairo_arc (cr, rect.x + rect.width - radius, rect.y + radius, radius, 
-			M_PI * 1.5, M_PI * 2);
+			G_PI * 1.5, G_PI * 2);
 	cairo_arc (cr, rect.x + rect.width - radius, 
-			rect.y + rect.height - radius, radius, 0, M_PI * 0.5);
+			rect.y + rect.height - radius, radius, 0, G_PI * 0.5);
 
 	if (!arrow_up)
 	{
@@ -358,9 +357,9 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 	}
 
 	cairo_arc (cr, rect.x + radius, rect.y + rect.height - radius, 
-			radius, M_PI * 0.5, M_PI);
-	cairo_arc (cr, rect.x + radius, rect.y + radius, radius, M_PI, 
-			M_PI * 1.5);
+			radius, G_PI * 0.5, G_PI);
+	cairo_arc (cr, rect.x + radius, rect.y + radius, radius, G_PI,
+			G_PI * 1.5);
 
 	cairo_translate (cr, -x, -y);
 
@@ -517,7 +516,7 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 	cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
 	cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
-					-M_PI/2, (-0.25 + arc_angle)*2*M_PI);
+					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
 	cairo_line_to(cr, PIE_RADIUS, PIE_RADIUS);
 	
 	cairo_fill (cr); 
