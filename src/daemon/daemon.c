@@ -405,7 +405,7 @@ static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDae
 
 static void notify_daemon_init(NotifyDaemon* daemon)
 {
-	char* location;
+	gchar *location;
 
 	daemon->priv = G_TYPE_INSTANCE_GET_PRIVATE(daemon, NOTIFY_TYPE_DAEMON, NotifyDaemonPrivate);
 
