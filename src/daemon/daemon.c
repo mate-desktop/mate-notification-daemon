@@ -127,7 +127,7 @@ static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_no
 static GdkFilterReturn _notify_x11_filter(GdkXEvent* xevent, GdkEvent* event, NotifyDaemon* daemon);
 static void _emit_closed_signal(GtkWindow* nw, NotifydClosedReason reason);
 static void _action_invoked_cb(GtkWindow* nw, const char* key);
-static NotifyStackLocation get_stack_location_from_string(gchar *slocation);
+static NotifyStackLocation get_stack_location_from_string(const gchar *slocation);
 static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Window source);
 static void monitor_notification_source_windows(NotifyDaemon* daemon, NotifyTimeout* nt, Window source);
 
@@ -527,7 +527,7 @@ static void notify_daemon_finalize(GObject* object)
 	G_OBJECT_CLASS(notify_daemon_parent_class)->finalize(object);
 }
 
-static NotifyStackLocation get_stack_location_from_string(gchar *slocation)
+static NotifyStackLocation get_stack_location_from_string(const gchar *slocation)
 {
 	NotifyStackLocation stack_location = NOTIFY_STACK_LOCATION_DEFAULT;
 
