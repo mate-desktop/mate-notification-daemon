@@ -1,6 +1,7 @@
 1.11.0
-  * fixes for gkt3 themes
-  * some general improvements
+  * Retrieve strings directly from gschema (requires intltool 0.50.1)
+  * Multiple theme fixes (including GTK+3 fixes)
+  * Some more fixes and cleanups
 
 1.10.2
   * Standard theme: fix crash when clicking on close button
