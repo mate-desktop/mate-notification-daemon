@@ -851,14 +851,28 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 
 	g_assert(windata != NULL);
 
+/* theme does not change bg color as in gtk2, so we use a fixed
+   fg color as workaround for the moment */
 	quoted = g_markup_escape_text(summary, -1);
+#if GTK_CHECK_VERSION (3, 0, 0)
+	str = g_strdup_printf(
+        "<span color=\"#FFFFFF\"><b><big>%s</big></b></span>", quoted);
+#else
 	str = g_strdup_printf("<b><big>%s</big></b>", quoted);
+#endif
 	g_free(quoted);
 
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
+#if GTK_CHECK_VERSION (3, 0, 0)
+	str = g_strdup_printf(
+        "<span color=\"#EAEAEA\">%s</span>", body);
+	gtk_label_set_markup (GTK_LABEL (windata->body_label), str);
+	g_free(str);
+#else
 	gtk_label_set_markup(GTK_LABEL(windata->body_label), body);
+#endif
 
 	if (body == NULL || *body == '\0')
 	{
