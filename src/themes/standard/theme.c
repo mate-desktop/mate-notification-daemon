@@ -792,7 +792,11 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 	windata->icon = gtk_image_new();
 	gtk_box_pack_start(GTK_BOX(windata->iconbox), windata->icon, TRUE, TRUE, 0);
+#if GTK_CHECK_VERSION (3, 16, 0)
+	gtk_widget_set_valign (windata->icon, GTK_ALIGN_START);
+#else
 	gtk_misc_set_alignment(GTK_MISC(windata->icon), 0.5, 0.0);
+#endif
 
 	vbox = gtk_vbox_new(FALSE, 6);
 	gtk_widget_show(vbox);
