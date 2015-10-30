@@ -1595,6 +1595,11 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 #if !GTK_CHECK_VERSION (3, 8, 0)
 		int screen_num;
 #endif
+#if GTK_CHECK_VERSION (3, 0, 0)
+		GdkDisplay *display;
+		GdkDeviceManager *device_manager;
+		GdkDevice *pointer;
+#endif
 		GdkScreen* screen;
 		gint x, y;
 
@@ -1605,7 +1610,15 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		 * number the user has set in gsettings. */
 		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
 		{
+#if GTK_CHECK_VERSION (3, 0, 0)
+			display = gdk_display_get_default ();
+			device_manager = gdk_display_get_device_manager (display);
+			pointer = gdk_device_manager_get_client_pointer (device_manager);
+
+			gdk_device_get_position (pointer, &screen, &x, &y);
+#else
 			gdk_display_get_pointer (gdk_display_get_default (), &screen, &x, &y, NULL);
+#endif
 #if !GTK_CHECK_VERSION (3, 8, 0)
 			screen_num = gdk_screen_get_number (screen);
 #endif
