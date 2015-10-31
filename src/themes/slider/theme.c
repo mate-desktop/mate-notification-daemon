@@ -151,7 +151,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 #if GTK_CHECK_VERSION(3, 0, 0)
 	context = gtk_widget_get_style_context(widget);
 
-	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, "background-color", &bg_color, NULL);
+	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg_color);
 	r = bg_color.red;
 	g = bg_color.green;
 	b = bg_color.blue;
@@ -506,7 +506,7 @@ static void override_style(GtkWidget* widget)
 		flags = state_flags_from_type (state);
 
 		gtk_style_context_get_color (context, flags, &fg);
-		gtk_style_context_get (context, flags, "background-color", &bg, NULL);
+		gtk_style_context_get_background_color (context, flags, &bg);
 
 		color_reverse(&fg, &fg2);
 		color_reverse(&bg, &bg2);
@@ -1008,7 +1008,7 @@ static gboolean on_countdown_expose(GtkWidget* pie, GdkEventExpose* event, Windo
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 #if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
-	gtk_style_context_get (context, GTK_STATE_FLAG_NORMAL, "background-color", &fg_color, NULL);
+	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &fg_color);
 	r = color.red;
 	g = color.green;
 	b = color.blue;
