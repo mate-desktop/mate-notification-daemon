@@ -1007,8 +1007,8 @@ static gboolean on_countdown_expose(GtkWidget* pie, GdkEventExpose* event, Windo
 
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 #if GTK_CHECK_VERSION (3, 0, 0)
-	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &color);
-	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &fg_color);
+	gtk_style_context_get_color (style, GTK_STATE_FLAG_NORMAL, &color);
+	gtk_style_context_get_background_color (style, GTK_STATE_FLAG_NORMAL, &fg_color);
 	r = color.red;
 	g = color.green;
 	b = color.blue;
