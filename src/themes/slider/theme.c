@@ -203,8 +203,6 @@ static void
 update_shape_region (cairo_surface_t *surface,
 		     WindowData      *windata)
 {
-	cairo_region_t *region;
-
 	if (windata->width == windata->last_width && windata->height == windata->last_height)
 	{
 		return;
