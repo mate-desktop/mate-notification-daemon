@@ -3,7 +3,7 @@ dnl Process this file with autoconf to create configure.
 dnl ################################################################
 dnl # Initialize autoconf
 dnl ################################################################
-AC_INIT([mate-notification-daemon], [1.11.0], [http://www.mate-desktop.org])
+AC_INIT([mate-notification-daemon], [1.12.0], [http://www.mate-desktop.org])
 AC_PREREQ(2.63)
 
 AC_CONFIG_HEADERS([config.h])
