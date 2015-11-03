@@ -478,6 +478,7 @@ create_notification(UrlClickedCb url_clicked)
 	windata->url_clicked = url_clicked;
 
 	win = gtk_window_new(GTK_WINDOW_POPUP);
+	gtk_window_set_resizable(GTK_WINDOW(win), FALSE);
 	windata->win = win;
 
 	windata->rtl = gtk_widget_get_default_direction();
