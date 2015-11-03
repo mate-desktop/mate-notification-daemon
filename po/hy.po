@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Siranush <ss.m.95@mail.ru>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 15:23+0200\n"
+"PO-Revision-Date: 2015-09-29 16:11+0000\n"
+"Last-Translator: Siranush <ss.m.95@mail.ru>\n"
+"Language-Team: Armenian (http://www.transifex.com/mate/MATE/language/hy/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: hy\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
+msgid "Popup location"
+msgstr "Թռուցիկ տեղակայություն"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
+msgid ""
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Use Active Monitor"
+msgstr "Օգտագործել Ակտիվ Մոնիտոր"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr "Ցուցադրել ծանուցումը ակտիվ վերահսկման մեջ։"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
+msgid "Monitor"
+msgstr "Մոնիտոր"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr ""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
+msgid "Current theme"
+msgstr "Ընթացիկ թեմա"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
+msgid "The theme used when displaying notifications."
+msgstr "Թեման օգտագործվում է, երբ ցուցադրվում է ծանուցումները։"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
+msgid "Sound Enabled"
+msgstr "Ձայնը Միացված է"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
+msgid "Turns on and off sound support for notifications."
+msgstr "Միացման և անջատման ձայնային աջակցման ծանուցումներ։"
+
+#: ../src/capplet/mate-notification-properties.c:329
+msgid "Coco"
+msgstr "Կոկոսի արմավենի"
+
+#: ../src/capplet/mate-notification-properties.c:333
+msgid "Nodoka"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:337
+msgid "Slider"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:341
+msgid "Standard theme"
+msgstr "Ստանդարտ թեմա"
+
+#: ../src/capplet/mate-notification-properties.c:458
+msgid "Error initializing libmatenotify"
+msgstr ""
+
+#: ../src/capplet/mate-notification-properties.c:471
+msgid "Notification Test"
+msgstr "Ծանուցում Թեստ"
+
+#: ../src/capplet/mate-notification-properties.c:471
+msgid "Just a test"
+msgstr "Պարզապես մի փորձարկում"
+
+#: ../src/capplet/mate-notification-properties.c:475
+#, c-format
+msgid "Error while displaying notification: %s"
+msgstr "Ծանուցման ցուցադրման սխալ: %s"
+
+#: ../src/capplet/mate-notification-properties.c:526
+#, c-format
+msgid "Could not load user interface file: %s"
+msgstr "Չհաջողվեց բեռնել օգտագործողի ինտերֆեյսի ֆայլը: %s"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
+msgid "Popup Notifications"
+msgstr "Թռուցիկ Ծանուցումներ"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
+msgid "Set your popup notification preferences"
+msgstr "Սահմանել ձեր թռուցիկ ծանուցման նախընտրությունները"
+
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "Notification Settings"
+msgstr "Ծանուցում Պարամետրեր"
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "_Preview"
+msgstr "_Նախնական դիտում"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>Ընդհանուր Տարբերակներ</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "P_osition:"
+msgstr "Դ_ասավորություն։"
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "_Theme:"
+msgstr "_Թեմա։"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Monitor:"
+msgstr "_Մոնիտոր։"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Left"
+msgstr "Վերև Ձախ"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Top Right"
+msgstr "Վերև Աջ"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Bottom Left"
+msgstr "Ներքև Ձախ"
+
+#: ../src/capplet/mate-notification-properties.ui.h:11
+msgid "Bottom Right"
+msgstr "Ներքև Աջ"
+
+#: ../src/daemon/daemon.c:1418
+#, c-format
+msgid "Exceeded maximum number of notifications"
+msgstr "Ծանուցումների թիվը գերազանցել է առավելագույնը"
+
+#: ../src/daemon/daemon.c:1712
+#, c-format
+msgid "%u is not a valid notification ID"
+msgstr "%u անվավեր ծանուցման ID է"
+
+#: ../src/daemon/sound.c:36
+msgid "Notification"
+msgstr "Ծանուցում"

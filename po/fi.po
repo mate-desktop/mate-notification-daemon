@@ -1,0 +1,164 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# Mikko Harhanen <gitti@mikkoharhanen.fi>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: MATE Desktop Environment\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-09-09 15:23+0200\n"
+"PO-Revision-Date: 2015-09-09 13:22+0000\n"
+"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
+"Language-Team: Finnish (http://www.transifex.com/mate/MATE/language/fi/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fi\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
+msgid "Popup location"
+msgstr "Ponnahdusviestien sijainti"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
+msgid ""
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr "Oletus ponnahdusviestien sijainnille työpöydällä. Sallittuja arvoja ovat: \"top_left\",\"top_right\",\"bottom_left\" ja \"bottom_right\""
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:7
+msgid "Use Active Monitor"
+msgstr "Käytä aktiivista näyttöä"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
+msgid "Display the notification on the active monitor."
+msgstr "Näytä ilmoitus käytössä olevalla näytöllä"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
+msgid "Monitor"
+msgstr "Näyttö"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr "Ilmoitukset esittävä näyttö. Sallitut arvot: -1 (esitä aktiivisella näytöllä) ja 0:sta n - 1:een, jossa n on näyttöjen lukumäärä."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
+msgid "Current theme"
+msgstr "Nykyinen teema"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
+msgid "The theme used when displaying notifications."
+msgstr "Ilmoitusten näytössä käytetty teema."
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
+msgid "Sound Enabled"
+msgstr "Äänet käytössä"
+
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
+msgid "Turns on and off sound support for notifications."
+msgstr "Kytkee ilmoitusten äänituen päälle ja pois."
+
+#: ../src/capplet/mate-notification-properties.c:329
+msgid "Coco"
+msgstr "Coco"
+
+#: ../src/capplet/mate-notification-properties.c:333
+msgid "Nodoka"
+msgstr "Nodoka"
+
+#: ../src/capplet/mate-notification-properties.c:337
+msgid "Slider"
+msgstr "Slider"
+
+#: ../src/capplet/mate-notification-properties.c:341
+msgid "Standard theme"
+msgstr "Oletusteema"
+
+#: ../src/capplet/mate-notification-properties.c:458
+msgid "Error initializing libmatenotify"
+msgstr "Libmatenotifyn käynnistys epäonnistui"
+
+#: ../src/capplet/mate-notification-properties.c:471
+msgid "Notification Test"
+msgstr "Ilmoitustesti"
+
+#: ../src/capplet/mate-notification-properties.c:471
+msgid "Just a test"
+msgstr "Pelkkä testiajo"
+
+#: ../src/capplet/mate-notification-properties.c:475
+#, c-format
+msgid "Error while displaying notification: %s"
+msgstr "Virhe näytettäessä ilmoitusta: %s"
+
+#: ../src/capplet/mate-notification-properties.c:526
+#, c-format
+msgid "Could not load user interface file: %s"
+msgstr "Käyttöliittymätiedostoa ei voitu ladata: %s"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:1
+msgid "Popup Notifications"
+msgstr "Ponnahdusilmoitukset"
+
+#: ../src/capplet/mate-notification-properties.desktop.in.h:2
+msgid "Set your popup notification preferences"
+msgstr "Muuta ponnahdusikkuna-asetuksia"
+
+#: ../src/capplet/mate-notification-properties.ui.h:1
+msgid "Notification Settings"
+msgstr "Ilmoitusasetukset"
+
+#: ../src/capplet/mate-notification-properties.ui.h:2
+msgid "_Preview"
+msgstr "_Esikatselu"
+
+#: ../src/capplet/mate-notification-properties.ui.h:3
+msgid "<b>General Options</b>"
+msgstr "<b>Yleiset asetukset</b>"
+
+#: ../src/capplet/mate-notification-properties.ui.h:4
+msgid "P_osition:"
+msgstr "_Sijainti"
+
+#: ../src/capplet/mate-notification-properties.ui.h:5
+msgid "_Theme:"
+msgstr "_Teema"
+
+#: ../src/capplet/mate-notification-properties.ui.h:6
+msgid "_Monitor:"
+msgstr "_Näyttö"
+
+#: ../src/capplet/mate-notification-properties.ui.h:8
+msgid "Top Left"
+msgstr "Vasen yläreuna"
+
+#: ../src/capplet/mate-notification-properties.ui.h:9
+msgid "Top Right"
+msgstr "Oikea yläreuna"
+
+#: ../src/capplet/mate-notification-properties.ui.h:10
+msgid "Bottom Left"
+msgstr "Vasen alareuna"
+
+#: ../src/capplet/mate-notification-properties.ui.h:11
+msgid "Bottom Right"
+msgstr "Oikea alareuna"
+
+#: ../src/daemon/daemon.c:1418
+#, c-format
+msgid "Exceeded maximum number of notifications"
+msgstr "Ilmoitusten enimmäismäärä ylitetty"
+
+#: ../src/daemon/daemon.c:1712
+#, c-format
+msgid "%u is not a valid notification ID"
+msgstr "%u on epäkelpo ilmoitustunniste"
+
+#: ../src/daemon/sound.c:36
+msgid "Notification"
+msgstr "Ilmoitus"
