@@ -723,7 +723,11 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	atk_object_set_name(atkobj, "");
 	atk_object_set_description(atkobj, "Closes the notification.");
 
+#if GTK_CHECK_VERSION (3, 10, 0)
+	image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
+#else
 	image = gtk_image_new_from_stock(GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+#endif
 	gtk_widget_show(image);
 	gtk_container_add(GTK_CONTAINER(close_button), image);
 
