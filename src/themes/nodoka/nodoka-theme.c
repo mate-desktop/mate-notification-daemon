@@ -872,7 +872,9 @@ create_notification(UrlClickedCb url_clicked)
 	main_vbox = gtk_vbox_new(FALSE, 0);
 	gtk_widget_show(main_vbox);
 	gtk_container_add(GTK_CONTAINER(win), main_vbox);
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
+#endif
 
 #if GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect (G_OBJECT (main_vbox), "draw", G_CALLBACK (on_draw), windata);
