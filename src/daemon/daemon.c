@@ -933,7 +933,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	int n_channels;
 	gsize expected_len;
 	GdkPixbuf* pixbuf;
-	GArray* image_struct;
+	GValueArray* image_struct;
 	GValue* value;
 	GArray* tmp_array;
 	GType struct_type;
@@ -946,8 +946,8 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 		return NULL;
 	}
 
-	image_struct = (GArray *) g_value_get_boxed (icon_data);
-	value = g_array_index(image_struct, GValue *, 0);
+	image_struct = (GValueArray *) g_value_get_boxed (icon_data);
+	value = g_value_array_get_nth (image_struct, 0);
 
 	if (value == NULL)
 	{
@@ -962,7 +962,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	width = g_value_get_int (value);
-	value = g_array_index (image_struct, GValue *, 1);
+	value = g_value_array_get_nth (image_struct, 1);
 
 	if (value == NULL)
 	{
@@ -977,7 +977,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	height = g_value_get_int (value);
-	value = g_array_index (image_struct, GValue *, 2);
+	value = g_value_array_get_nth (image_struct, 2);
 
 	if (value == NULL)
 	{
@@ -992,7 +992,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	rowstride = g_value_get_int (value);
-	value = g_array_index (image_struct, GValue *, 3);
+	value = g_value_array_get_nth (image_struct, 3);
 
 	if (value == NULL)
 	{
@@ -1007,7 +1007,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	has_alpha = g_value_get_boolean (value);
-	value = g_array_index (image_struct, GValue *, 4);
+	value = g_value_array_get_nth (image_struct, 4);
 
 	if (value == NULL) {
 		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 4 of the GValueArray to exist");
@@ -1021,7 +1021,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	bits_per_sample = g_value_get_int (value);
-	value = g_array_index (image_struct, GValue *, 5);
+	value = g_value_array_get_nth (image_struct, 5);
 
 	if (value == NULL)
 	{
@@ -1036,7 +1036,7 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
 	}
 
 	n_channels = g_value_get_int (value);
-	value = g_array_index (image_struct, GValue *, 6);
+	value = g_value_array_get_nth (image_struct, 6);
 
 	if (value == NULL)
 	{
