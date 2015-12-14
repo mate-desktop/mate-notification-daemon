@@ -445,6 +445,7 @@ static void color_reverse(const GdkColor* a, GdkColor* b)
 	b->red = red;
 	b->green = green;
 	b->blue = blue;
+	b->alpha = a->alpha;
 #else
 	b->red = red * 65535.0;
 	b->green = green * 65535.0;
