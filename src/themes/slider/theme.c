@@ -131,6 +131,26 @@ static void draw_round_rect(cairo_t* cr, gdouble aspect, gdouble x, gdouble y, g
 	cairo_arc(cr, x + radius, y + radius, radius, 180.0f * G_PI / 180.0f, 270.0f * G_PI / 180.0f);
 }
 
+#if GTK_CHECK_VERSION(3, 0, 0)
+static void
+get_background_color (GtkStyleContext *context,
+                      GtkStateFlags    state,
+                      GdkRGBA         *color)
+{
+    GdkRGBA *c;
+
+    g_return_if_fail (color != NULL);
+    g_return_if_fail (GTK_IS_STYLE_CONTEXT (context));
+
+    gtk_style_context_get (context,
+                           state,
+                           "background-color", &c,
+                           NULL);
+    *color = *c;
+    gdk_rgba_free (c);
+}
+#endif
+
 static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
 	GtkAllocation allocation;
@@ -151,7 +171,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 #if GTK_CHECK_VERSION(3, 0, 0)
 	context = gtk_widget_get_style_context(widget);
 
-	gtk_style_context_get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg_color);
+	get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg_color);
 	r = bg_color.red;
 	g = bg_color.green;
 	b = bg_color.blue;
@@ -505,7 +525,7 @@ static void override_style(GtkWidget* widget)
 		flags = state_flags_from_type (state);
 
 		gtk_style_context_get_color (context, flags, &fg);
-		gtk_style_context_get_background_color (context, flags, &bg);
+		get_background_color (context, flags, &bg);
 
 		color_reverse(&fg, &fg2);
 		color_reverse(&bg, &bg2);
@@ -1011,7 +1031,7 @@ static gboolean on_countdown_expose(GtkWidget* pie, GdkEventExpose* event, Windo
 	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
 #if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_style_context_get_color (style, GTK_STATE_FLAG_NORMAL, &color);
-	gtk_style_context_get_background_color (style, GTK_STATE_FLAG_NORMAL, &fg_color);
+	get_background_color (style, GTK_STATE_FLAG_NORMAL, &fg_color);
 	r = color.red;
 	g = color.green;
 	b = color.blue;
