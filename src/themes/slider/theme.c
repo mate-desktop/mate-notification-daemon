@@ -419,11 +419,8 @@ static void on_window_realize(GtkWidget* widget, WindowData* windata)
 	/* Nothing */
 }
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-static void color_reverse(const GdkRGBA* a, GdkRGBA* b)
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 static void color_reverse(const GdkColor* a, GdkColor* b)
-#endif
 {
 	gdouble red;
 	gdouble green;
@@ -432,15 +429,9 @@ static void color_reverse(const GdkColor* a, GdkColor* b)
 	gdouble s;
 	gdouble v;
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-	red = a->red;
-	green = a->green;
-	blue = a->blue;
-#else
 	red = (gdouble) a->red / 65535.0;
 	green = (gdouble) a->green / 65535.0;
 	blue = (gdouble) a->blue / 65535.0;
-#endif
 
 	gtk_rgb_to_hsv(red, green, blue, &h, &s, &v);
 
@@ -461,17 +452,11 @@ static void color_reverse(const GdkColor* a, GdkColor* b)
 
 	gtk_hsv_to_rgb(h, s, v, &red, &green, &blue);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
-	b->red = red;
-	b->green = green;
-	b->blue = blue;
-	b->alpha = a->alpha;
-#else
 	b->red = red * 65535.0;
 	b->green = green * 65535.0;
 	b->blue = blue * 65535.0;
-#endif
 }
+#endif
 #if GTK_CHECK_VERSION (3, 0, 0)
 static GtkStateFlags state_flags_from_type (GtkStateType state)
 {
@@ -527,8 +512,8 @@ static void override_style(GtkWidget* widget)
 		gtk_style_context_get_color (context, flags, &fg);
 		get_background_color (context, flags, &bg);
 
-		color_reverse(&fg, &fg2);
-		color_reverse(&bg, &bg2);
+		fg2 = fg;
+		bg2 = bg;
 
 		gtk_widget_override_color (widget, flags, &fg2);
 		gtk_widget_override_background_color (widget, flags, &bg2);
