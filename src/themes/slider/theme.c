@@ -685,9 +685,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	g_signal_connect(G_OBJECT(win), "configure-event", G_CALLBACK(on_configure_event), windata);
 
 	main_vbox = gtk_vbox_new(FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(main_vbox), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(main_vbox), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(main_vbox);
@@ -720,9 +718,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), alignment, FALSE, FALSE, 0);
 
 	close_button = gtk_button_new();
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(close_button), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(close_button), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(close_button);
@@ -754,9 +750,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 	/* center vbox */
 	windata->summary_label = gtk_label_new(NULL);
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(windata->summary_label), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(windata->summary_label), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(windata->summary_label);
@@ -785,9 +779,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(windata->content_hbox), vbox, TRUE, TRUE, 0);
 
 	windata->body_label = gtk_label_new(NULL);
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(windata->body_label), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(windata->body_label), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(windata->body_label);
@@ -1100,9 +1092,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		gtk_box_pack_end(GTK_BOX(windata->actions_box), alignment, FALSE, TRUE, 0);
 
 		windata->pie_countdown = gtk_drawing_area_new();
-#if GTK_CHECK_VERSION (3, 0, 0)
-		g_signal_connect(G_OBJECT(windata->pie_countdown), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 
@@ -1117,9 +1107,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	}
 
 	button = gtk_button_new();
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(button), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(button), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(button);
@@ -1140,9 +1128,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	if (pixbuf != NULL)
 	{
 		GtkWidget* image = gtk_image_new_from_pixbuf(pixbuf);
-#if GTK_CHECK_VERSION (3, 0, 0)
-		g_signal_connect(G_OBJECT(image), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 		g_signal_connect(G_OBJECT(image), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 		gtk_widget_show(image);
@@ -1156,9 +1142,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	}
 
 	label = gtk_label_new(NULL);
-#if GTK_CHECK_VERSION (3, 0, 0)
-	g_signal_connect(G_OBJECT(label), "style-updated", G_CALLBACK(on_style_updated), windata);
-#else
+#if !GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect(G_OBJECT(label), "style-set", G_CALLBACK(on_style_set), windata);
 #endif
 	gtk_widget_show(label);
