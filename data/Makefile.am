@@ -21,12 +21,8 @@ gsettings_SCHEMAS = $(gsettingsschema_in_files:.xml.in=.xml)
 @INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
-convertdir = $(datadir)/MateConf/gsettings
-convert_DATA = mate-notification-daemon.convert
-
 EXTRA_DIST = \
 	$(gsettingsschema_in_files) \
-	$(convert_DATA) \
 	$(service_DATA) \
 	$(icon16_DATA) \
 	$(icon22_DATA) \
