@@ -774,6 +774,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
 #if GTK_CHECK_VERSION (3, 0, 0)
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->body_label), PANGO_WRAP_WORD_CHAR);
+    gtk_label_set_max_width_chars (GTK_LABEL (windata->body_label), 50);
 #endif
 	g_signal_connect_swapped(G_OBJECT(windata->body_label), "activate-link", G_CALLBACK(windata->url_clicked), win);
 
