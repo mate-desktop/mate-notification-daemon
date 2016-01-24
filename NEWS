@@ -1,4 +1,8 @@
 1.13.0
+  * GTK3: use max. 50 characters for body label
+  * GTK3: some deprecation fixes
+  * drop MateConf migration script
+  * GTK3: some fixes for slider theme
 
 1.12.1
   * Fix crash due to regression
