@@ -1,8 +1,11 @@
 1.13.0
-  * GTK3: use max. 50 characters for body label
-  * GTK3: some deprecation fixes
-  * drop MateConf migration script
-  * GTK3: some fixes for slider theme
+  * Drop MateConf migration script
+  * GTK+3: explicitly wrap notification text at 50 characters
+  * GTK+3: stop reversing fg/bg colors in slider theme (use colors
+    from current GTK+ theme as is)
+  * GTK+3: some more fixes for slider theme
+  * GTK+3: some deprecation fixes
+  * Translations update
 
 1.12.1
   * Fix crash due to regression
