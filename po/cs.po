@@ -5,120 +5,111 @@
 # Translators:
 # Lukáš Kvídera <lukas.kvidera@seznam.cz>, 2013
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2012
+# Stanislav Kučera <inactive+kacernator@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-31 13:34+0100\n"
-"PO-Revision-Date: 2014-12-31 12:35+0000\n"
-"Last-Translator: infirit <infirit@gmail.com>\n"
-"Language-Team: Czech (http://www.transifex.com/projects/p/MATE/language/cs/)\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
+"PO-Revision-Date: 2015-10-25 17:44+0000\n"
+"Last-Translator: Stanislav Kučera <inactive+kacernator@transifex.com>\n"
+"Language-Team: Czech (http://www.transifex.com/mate/MATE/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
 msgstr "Umístění automaticky otevíraného okna"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "Výchozí umístění automaticky otevíraného okna u vícenásobných oznámení. Povolené hodnoty: \"top_left\",\"top_right\",\"bottom_left\" a \"bottom_right\""
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
 msgstr "Použít aktivní monitor"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
 msgstr "Zobrazit notifikaci na aktivním monitoru"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr "Monitor zobrazující notifikace. Povolené hodnoty: -1 (zobrazit na aktivním monitoru) a od 0 do n - 1, kde n je počet monitorů."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
 msgstr "Aktuální motiv"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "Motiv používaný k zobrazování oznámení."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
 msgstr "Zvuk povolen"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "Zapne a vypne zvukovou podporu u oznámení."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
-msgid "Default Sound"
-msgstr "Výchozí zvuk"
-
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
-msgid ""
-"The default sound file used unless a notification supplies the 'sound-file' "
-"or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "Výchozí zvukový soubor použitý v případě, kdy oznámením není poskytnuto \"sound-file\" nebo \"suppress-sound\". Ponechejte prázdné, nechcete-li žádný výchozí zvuk."
-
-#: ../src/capplet/mate-notification-properties.c:327
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:331
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:335
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Táhlo"
 
-#: ../src/capplet/mate-notification-properties.c:339
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Standardní motiv"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "Chyba během spouštění libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Text oznámení"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Toliko test"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Chyba při zobrazování oznámení: %s"
 
-#: ../src/capplet/mate-notification-properties.c:534
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Nelze načíst soubor rozložení uživatelského rozhraní: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr ""
+msgstr "Vyskakovací oznámení"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "Nastavit předvolby vyskakovacích oznámení"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -133,43 +124,39 @@ msgid "<b>General Options</b>"
 msgstr "<b>Hlavní nastavení</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "      "
-msgstr "      "
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
 msgstr "P_ozice"
 
-#: ../src/capplet/mate-notification-properties.ui.h:6
+#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
 msgstr "_Téma"
 
-#: ../src/capplet/mate-notification-properties.ui.h:7
+#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
 msgstr "_Monitor:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
 msgstr "Horní levý"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
 msgstr "Horní pravý"
 
-#: ../src/capplet/mate-notification-properties.ui.h:11
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
 msgstr "Spodní levý"
 
-#: ../src/capplet/mate-notification-properties.ui.h:12
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
 msgstr "Spodní pravý"
 
-#: ../src/daemon/daemon.c:1330
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Překročen maximální počet oznámení"
 
-#: ../src/daemon/daemon.c:1606
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u není platným ID oznámení"

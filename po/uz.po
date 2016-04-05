@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# muzaffar habibullayev <muzaffarlearner@gmail.com>, 2016
 # Umid Almasov <u.almasov@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:23+0200\n"
-"PO-Revision-Date: 2015-09-09 13:22+0000\n"
-"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
+"PO-Revision-Date: 2016-03-29 14:34+0000\n"
+"Last-Translator: muzaffar habibullayev <muzaffarlearner@gmail.com>\n"
 "Language-Team: Uzbek (http://www.transifex.com/mate/MATE/language/uz/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,7 +21,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr ""
+msgstr "Chqish joyi"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
@@ -39,7 +40,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
-msgstr ""
+msgstr "Monitor"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
@@ -49,7 +50,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
-msgstr ""
+msgstr "Joriy mavzu"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
@@ -57,7 +58,7 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
-msgstr ""
+msgstr "Ovoz Yoqilgan"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
@@ -77,7 +78,7 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
-msgstr ""
+msgstr "Standart Mavzu"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
@@ -85,11 +86,11 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
-msgstr ""
+msgstr "Ogohlantirishni Sinash"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
-msgstr ""
+msgstr "Shunchaki sinov"
 
 #: ../src/capplet/mate-notification-properties.c:475
 #, c-format
@@ -111,11 +112,11 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr ""
+msgstr "Ogohlantirish Moslamalari"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr ""
+msgstr "_Oldindan ko'rish"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
@@ -123,42 +124,42 @@ msgstr "<b>Umumiy parametrlar</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
-msgstr ""
+msgstr "J_oylashuv:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
-msgstr ""
+msgstr "_ Mavzu:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
-msgstr ""
+msgstr "_Monitor:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
-msgstr ""
+msgstr "Yuqori Chap"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
-msgstr ""
+msgstr "Yuqopi O'ng"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
-msgstr ""
+msgstr "Quyi Chap"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
-msgstr ""
+msgstr "Quyi O'ng"
 
-#: ../src/daemon/daemon.c:1418
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr ""
 
-#: ../src/daemon/daemon.c:1712
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr ""
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr ""
+msgstr "Ogohlantirish "

@@ -10,105 +10,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-31 13:34+0100\n"
-"PO-Revision-Date: 2015-01-07 14:54+0000\n"
-"Last-Translator: Atilla Öntaş <tarakbumba@gmail.com>\n"
-"Language-Team: Turkish (http://www.transifex.com/projects/p/MATE/language/tr/)\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
+"PO-Revision-Date: 2015-11-06 12:32+0000\n"
+"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
+"Language-Team: Turkish (http://www.transifex.com/mate/MATE/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
 msgstr "Balon konumu"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "Çalışma alanında bildirim balonlarının istifi için konum. İzin verilen değerler: \"top_left\" (sol üst), \"top_right\" (sağ üst), \"bottom_left\" (sol alt) ve \"bottom_right\" (sağ alt)"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
 msgstr "Etkin Ekranı Kullan"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
 msgstr "Bildirimi etkin ekranda görüntüle."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
 msgstr "Ekran"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr "Bildirimin gösterileceği ekran. İzin verilen değerler: -1 (etkin ekranda göster) ve 0 ilâ n-1 ki n monitör sayısıdır."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
 msgstr "Güncel tema"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "Bildirimlerin görüntülenmesi sırasında kullanılan tema."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
 msgstr "Ses faal"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "Bildirimler için ses desteğini açıp kapatır."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
-msgid "Default Sound"
-msgstr "Varsayılan ses"
-
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
-msgid ""
-"The default sound file used unless a notification supplies the 'sound-file' "
-"or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "Bildirim 'sound-file' or 'suppress-sound' ipucunu vermezse varsayılan ses dosyası kullanılır. Varsayılan ses olmaması için boş bırakın."
-
-#: ../src/capplet/mate-notification-properties.c:327
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:331
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:335
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Kaydırma çubuğu"
 
-#: ../src/capplet/mate-notification-properties.c:339
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Standart tema"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify başlatılmasında hata"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Bildirim testi"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Sadece bir test"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Şu bildirimin görüntülenmesinde hata: %s"
 
-#: ../src/capplet/mate-notification-properties.c:534
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Kullanıcı arayüzü dosyası yüklenemedi: %s"
@@ -134,43 +124,39 @@ msgid "<b>General Options</b>"
 msgstr "<b>Genel Seçenekler</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "      "
-msgstr "      "
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
 msgstr "K_onum:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:6
+#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
 msgstr "_Tema:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:7
+#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
 msgstr "_Ekran:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
 msgstr "Sol üst"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
 msgstr "Sağ üst"
 
-#: ../src/capplet/mate-notification-properties.ui.h:11
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
 msgstr "Sol alt"
 
-#: ../src/capplet/mate-notification-properties.ui.h:12
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
 msgstr "Sağ alt"
 
-#: ../src/daemon/daemon.c:1330
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Azami bildirim sayısı aşıldı"
 
-#: ../src/daemon/daemon.c:1606
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u geçerli bir bildirim kimliği değildir"

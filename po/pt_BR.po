@@ -12,105 +12,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-31 13:34+0100\n"
-"PO-Revision-Date: 2015-01-03 13:32+0000\n"
-"Last-Translator: Aldo Oliveira <america103@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/MATE/language/pt_BR/)\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
+"PO-Revision-Date: 2015-11-22 11:51+0000\n"
+"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
+"Language-Team: Portuguese (Brazil) (http://www.transifex.com/mate/MATE/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:1
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
 msgstr "Localização da pop-up"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:2
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr "Localização padrão para notificações pop-up empilhadas. Valores permitidos: \"top_left\", \"top_right\", \"bottom_left\" e \"bottom_right\""
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:3
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
+#: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
 msgstr "Utilizar monitor ativo"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:4
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
 msgstr "Mostrar a notificação no monitor ativo."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:5
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
 msgstr "Monitor"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:6
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr " Exibir a notificação do monitor. Valores permitidos: -1 (exibição monitor ativo) e de 0 a n - 1, onde n é o número de monitores."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:7
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
 msgstr "Tema atual"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:8
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
 msgstr "O tema usado ao exibir notificações."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:9
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
 msgstr "Som Habilitado"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:10
+#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
 msgstr "Liga ou desliga o suporte a som para notificações."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:11
-msgid "Default Sound"
-msgstr "Som Padrão"
-
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.in.h:12
-msgid ""
-"The default sound file used unless a notification supplies the 'sound-file' "
-"or 'suppress-sound' hint. Leave empty for no default sound."
-msgstr "O arquivo de som padrão a ser usado a não ser que uma notificação forneça a dica \"sound-file\" ou \"suppress-sound\". Deixe em branco para nenhum som padrão."
-
-#: ../src/capplet/mate-notification-properties.c:327
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:331
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:335
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Controle deslizante"
 
-#: ../src/capplet/mate-notification-properties.c:339
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Tema padrão"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "Erro ao inicializar libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Teste de Notificação"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Somente um teste"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Erro ao exibir notificação: %s"
 
-#: ../src/capplet/mate-notification-properties.c:534
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Não foi possível carregar arquivo de interface: %s"
@@ -136,43 +126,39 @@ msgid "<b>General Options</b>"
 msgstr "<b>Opções Gerais</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
-msgid "      "
-msgstr "       "
-
-#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "P_osition:"
 msgstr "P_osição:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:6
+#: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
 msgstr "_Tema:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:7
+#: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
 msgstr "_Monitor:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
 msgstr "Superior Esquerdo"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
 msgstr "Superior Direito"
 
-#: ../src/capplet/mate-notification-properties.ui.h:11
+#: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
 msgstr "Inferior Esquerda"
 
-#: ../src/capplet/mate-notification-properties.ui.h:12
+#: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
 msgstr "Inferior Direita"
 
-#: ../src/daemon/daemon.c:1330
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Excedido o número máximo de notificações"
 
-#: ../src/daemon/daemon.c:1606
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u não é uma ID de notificação válida"

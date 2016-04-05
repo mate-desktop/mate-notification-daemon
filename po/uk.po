@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-02-11 09:28+0000\n"
+"PO-Revision-Date: 2016-03-29 17:56+0000\n"
 "Last-Translator: Микола Ткач <Stuartlittle1970@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/mate/MATE/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -58,7 +58,7 @@ msgstr "Поточна тема"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "Оформлення показуваних сповіщень."
+msgstr "Оздоблення показуваних сповіщень."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"

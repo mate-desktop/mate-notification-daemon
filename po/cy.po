@@ -3,42 +3,39 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Adolfo Jayme Barrientos, 2013
-# Emiliano Fascetti, 2014
-# Lluís Tusquellas <lutusq@gmail.com>, 2012
-# Lluís Tusquellas <lutusq@gmail.com>, 2012
+# ciaran, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2015-10-05 13:35+0000\n"
-"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
-"Language-Team: Spanish (http://www.transifex.com/mate/MATE/language/es/)\n"
+"PO-Revision-Date: 2015-12-22 23:49+0000\n"
+"Last-Translator: ciaran\n"
+"Language-Team: Welsh (http://www.transifex.com/mate/MATE/language/cy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: cy\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr "Ubicación de la ventana emergente"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Ubicación predeterminada de la ventana emergente en el área de trabajo para la pila de notificaciones. Los valores permitidos son: «top_left», «top_right», «bottom_left» y «bottom_right»"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr "Usar el monitor activo"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Mostrar la notificación en el monitor activo."
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
@@ -48,120 +45,120 @@ msgstr "Monitor"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "El monitor en el que mostrar la notificación. Valores permitidos: -1 (mostrar en el monitor activo) y de 0 a n - 1, donde n es el número de monitores."
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
-msgstr "Tema actual"
+msgstr "Y thema gyfredol"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr "El tema usado al mostrar las notificaciones."
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
-msgstr "Sonido activado"
+msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr "Activar y desactivar el soporte de sonido para las notificaciones."
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
-msgstr "Coco"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr "Nodoka"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
-msgstr "Deslizador"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
-msgstr "Tema estándar"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr "Error al iniciar libmatenotify"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
-msgstr "Prueba de notificación"
+msgstr "Prawf hysbysiadau"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
-msgstr "Simplemente una prueba"
+msgstr "Dim ond prawf"
 
 #: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Error al mostrar la notificación: %s"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "No se pudo cargar el archivo de interfaz de usuario: %s"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr "Notificaciones emergentes"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr "Configurar las preferencias de sus notificaciones emergentes"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr "Configuración de notificaciones"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr "_Previsualizar"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr "<b>Opciones generales</b>"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
-msgstr "P_osición:"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
-msgstr "_Tema:"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
-msgstr "Arriba a la izquierda"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
-msgstr "Arriba a la derecha"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
-msgstr "Abajo a la izquierda"
+msgstr ""
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
-msgstr "Abajo a la derecha"
+msgstr ""
 
 #: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr "Se excedió el número máximo de notificaciones"
+msgstr ""
 
 #: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u no es un ID de notificación válido"
+msgstr ""
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr "Notificación"
+msgstr "Hysbysiad"

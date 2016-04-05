@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:23+0200\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
 "PO-Revision-Date: 2015-09-09 13:22+0000\n"
 "Last-Translator: infirit <inactive+infirit@transifex.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/mate/MATE/language/fi/)\n"
@@ -149,12 +149,12 @@ msgstr "Vasen alareuna"
 msgid "Bottom Right"
 msgstr "Oikea alareuna"
 
-#: ../src/daemon/daemon.c:1418
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Ilmoitusten enimmäismäärä ylitetty"
 
-#: ../src/daemon/daemon.c:1712
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u on epäkelpo ilmoitustunniste"

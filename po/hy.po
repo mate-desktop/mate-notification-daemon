@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-09 15:23+0200\n"
-"PO-Revision-Date: 2015-09-29 16:11+0000\n"
+"POT-Creation-Date: 2015-12-14 14:02+0300\n"
+"PO-Revision-Date: 2015-12-06 16:25+0000\n"
 "Last-Translator: Siranush <ss.m.95@mail.ru>\n"
 "Language-Team: Armenian (http://www.transifex.com/mate/MATE/language/hy/)\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr "Թռուցիկ տեղակայություն"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr ""
+msgstr "Նախնական թռուցիկ դիրքը աշխատատիրույթի վրա պահոցի ծանուցումների համար։ Թույլատրելի արժեքները \"top_left\",\"top_right\",\"bottom_left\" և \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -45,7 +45,7 @@ msgstr "Մոնիտոր"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr ""
+msgstr "Մոնիտորին ցուցադրել ծանուցումը։ Թույլատրված արժեքները․ -1 (Ցուցադրել ակտիվ մոնիտորը) և 0֊ից n - 1, որտեղ n֊ը մոնիտորների թիվն է։"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -69,11 +69,11 @@ msgstr "Կոկոսի արմավենի"
 
 #: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
-msgstr ""
+msgstr "Սլայդեր"
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
@@ -81,7 +81,7 @@ msgstr "Ստանդարտ թեմա"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr ""
+msgstr "libmatenotify սկզբնարժեքավորման սխալ"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
@@ -149,12 +149,12 @@ msgstr "Ներքև Ձախ"
 msgid "Bottom Right"
 msgstr "Ներքև Աջ"
 
-#: ../src/daemon/daemon.c:1418
+#: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Ծանուցումների թիվը գերազանցել է առավելագույնը"
 
-#: ../src/daemon/daemon.c:1712
+#: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u անվավեր ծանուցման ID է"

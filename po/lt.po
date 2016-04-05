@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-02-15 19:25+0000\n"
+"PO-Revision-Date: 2016-02-22 11:03+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/mate/MATE/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "Standartinė tema"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr "Klaida inicializuojant libmatenotify"
+msgstr "Klaida inicijuojant libmatenotify"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
