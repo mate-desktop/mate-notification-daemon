@@ -1,4 +1,4 @@
-1.13.0
+1.14.0
   * Drop MateConf migration script
   * GTK+3: explicitly wrap notification text at 50 characters
   * GTK+3: stop reversing fg/bg colors in slider theme (use colors
@@ -6,6 +6,7 @@
   * GTK+3: some more fixes for slider theme
   * GTK+3: some deprecation fixes
   * Translations update
+  * Add Changelog generation
 
 1.12.1
   * Fix crash due to regression
