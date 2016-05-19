@@ -439,11 +439,8 @@ static void create_border_with_arrow(GtkWidget* nw, WindowData* windata)
 
 	g_assert(shape_points != NULL);
 
-#if GTK_CHECK_VERSION(3, 0, 0)
-	/* FIXME!!! */
-#else
-	windata->window_region = gdk_region_polygon(shape_points, windata->num_border_points, GDK_EVEN_ODD_RULE);
-#endif
+	/* FIXME won't work with GTK+3, need a replacement */
+	/*windata->window_region = gdk_region_polygon(shape_points, windata->num_border_points, GDK_EVEN_ODD_RULE);*/
 	g_free(shape_points);
 }
 
@@ -466,11 +463,8 @@ static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
 		}
 
 		cairo_close_path(cr);
-#if GTK_CHECK_VERSION(3, 0, 0)
-		/* FIXME!!! */
-#else
-		gdk_window_shape_combine_region (gtk_widget_get_window (windata->win), windata->window_region, 0, 0);
-#endif
+		/* FIXME window_region is not set up anyway, see previous fixme */
+		/*gdk_window_shape_combine_region (gtk_widget_get_window (windata->win), windata->window_region, 0, 0);*/
 		g_free(windata->border_points);
 		windata->border_points = NULL;
 	}
