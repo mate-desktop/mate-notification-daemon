@@ -80,9 +80,6 @@ void notification_tick(GtkWindow *nw, glong remaining);
 gboolean get_always_stack(GtkWidget* nw);
 
 #define WIDTH          400
-#if GTK_CHECK_VERSION(3, 0, 0)
-#define HEIGHT         100
-#endif
 #define DEFAULT_X0     0
 #define DEFAULT_Y0     0
 #define DEFAULT_RADIUS 8
