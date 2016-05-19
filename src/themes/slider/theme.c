@@ -305,74 +305,9 @@ static void on_window_realize(GtkWidget* widget, WindowData* windata)
 	/* Nothing */
 }
 
-static GtkStateFlags state_flags_from_type (GtkStateType state)
-{
-	GtkStateFlags flags;
-
-	switch (state)
-	{
-	case GTK_STATE_NORMAL:
-		flags = GTK_STATE_FLAG_NORMAL;
-		break;
-	case GTK_STATE_ACTIVE:
-		flags = GTK_STATE_FLAG_ACTIVE;
-		break;
-	case GTK_STATE_PRELIGHT:
-		flags = GTK_STATE_FLAG_PRELIGHT;
-		break;
-	case GTK_STATE_SELECTED:
-		flags = GTK_STATE_FLAG_SELECTED;
-		break;
-	case GTK_STATE_INSENSITIVE:
-		flags = GTK_STATE_FLAG_INSENSITIVE;
-		break;
-	case GTK_STATE_INCONSISTENT:
-		flags = GTK_STATE_FLAG_INCONSISTENT;
-		break;
-	case GTK_STATE_FOCUSED:
-		flags = GTK_STATE_FLAG_FOCUSED;
-		break;
-	default:
-		g_assert_not_reached();
-	}
-
-	return flags;
-}
-
-static void override_style(GtkWidget* widget)
-{
-	GtkStyleContext *context;
-	GtkStateType state;
-	GdkRGBA fg;
-	GdkRGBA bg;
-	GdkRGBA fg2;
-	GdkRGBA bg2;
-
-	context = gtk_widget_get_style_context (widget);
-
-	state = (GtkStateType) 0;
-	while (state <= GTK_STATE_FOCUSED)
-	{
-		GtkStateFlags flags;
-		flags = state_flags_from_type (state);
-
-		gtk_style_context_get_color (context, flags, &fg);
-		get_background_color (context, flags, &bg);
-
-		fg2 = fg;
-		bg2 = bg;
-
-		gtk_widget_override_color (widget, flags, &fg2);
-		gtk_widget_override_background_color (widget, flags, &bg2);
-
-		state++;
-	}
-}
-
 static void on_style_updated(GtkWidget* widget, WindowData* windata)
 {
 	g_signal_handlers_block_by_func(G_OBJECT(widget), on_style_updated, windata);
-	override_style(widget);
 
 	gtk_widget_queue_draw(widget);
 
