@@ -102,11 +102,6 @@ void notification_tick(GtkWindow *nw, glong remaining);
 #define BACKGROUND_OPACITY    0.90
 #define GRADIENT_CENTER 0.7
 
-#if GTK_CHECK_VERSION (3, 2, 0)
-#define gtk_hbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_HORIZONTAL,Y)
-#define gtk_vbox_new(X,Y) gtk_box_new(GTK_ORIENTATION_VERTICAL,Y)
-#endif
-
 /* Support Nodoka Functions */
 
 /* Handle clicking on link */
@@ -180,7 +175,6 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 	cairo_fill (cr); 
 }
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 static void
 update_shape_region (cairo_surface_t *surface,
 		     WindowData      *windata)
@@ -213,62 +207,6 @@ update_shape_region (cairo_surface_t *surface,
 	windata->last_width = windata->width;
 	windata->last_height = windata->height;
 }
-#else
-static void
-update_shape_mask (WindowData* windata)
-{
-	cairo_t *cr;
-	GdkBitmap* mask;
-
-	if (windata->width == windata->last_width && windata->height == windata->last_height)
-	{
-		return;
-	}
-
-	if (windata->width == 0 || windata->height == 0)
-	{
-		GtkAllocation allocation;
-
-		gtk_widget_get_allocation (windata->win, &allocation);
-
-		windata->width = MAX (allocation.width, 1);
-		windata->height = MAX (allocation.height, 1);
-	}
-
-	if (windata->composited)
-	{
-		gtk_widget_shape_combine_mask (windata->win, NULL, 0, 0);
-		return;
-	}
-
-	windata->last_width = windata->width;
-	windata->last_height = windata->height;
-
-	mask = (GdkBitmap*) gdk_pixmap_new (NULL, windata->width, windata->height, 1);
-
-	if (mask == NULL)
-	{
-		return;
-	}
-	cr = gdk_cairo_create (mask);
-
-	if (cairo_status (cr) == CAIRO_STATUS_SUCCESS)
-	{
-		cairo_set_operator (cr, CAIRO_OPERATOR_CLEAR);
-		cairo_paint (cr);
-
-		cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
-		cairo_set_source_rgb (cr, 1.0f, 1.0f, 1.0f);
-		nodoka_rounded_rectangle (cr, 0, 0, windata->width , windata->height, 6);
-		cairo_fill (cr);
-
-		gtk_widget_shape_combine_mask (windata->win, mask, 0, 0);
-	}
-
-	cairo_destroy (cr);
-	g_object_unref (mask);
-}
-#endif
 
 static void
 paint_window (GtkWidget  *widget,
@@ -310,35 +248,18 @@ paint_window (GtkWidget  *widget,
 	cairo_paint (cr);
 	cairo_restore (cr);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	update_shape_region (surface, windata);
-#else
-	update_shape_mask (windata);
-#endif
 
 	cairo_surface_destroy (surface);
 }
 
 static gboolean
-#if GTK_CHECK_VERSION (3, 0, 0)
 on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 {
 	paint_window (widget, cr, windata);
 
 	return FALSE;
 }
-#else
-on_expose_event (GtkWidget *widget, GdkEventExpose *event, WindowData *windata)
-{
-	cairo_t *cr = gdk_cairo_create (event->window);
-
-	paint_window (widget, cr, windata);
-
-	cairo_destroy (cr);
-
-	return FALSE;
-}
-#endif
 
 /* Event handlers */
 static gboolean
@@ -356,16 +277,9 @@ configure_event_cb(GtkWidget *nw,
 
 static gboolean
 countdown_expose_cb(GtkWidget *pie,
-#if GTK_CHECK_VERSION (3, 0, 0)
 					cairo_t *cr,
-#else
-					GdkEventExpose *event,
-#endif
 					WindowData *windata)
 {
-#if !GTK_CHECK_VERSION (3, 0, 0)
-	cairo_t *cr = gdk_cairo_create (event->window);
-#endif
 	cairo_t *cr2;
 	cairo_surface_t *surface;
 	GtkAllocation alloc;
@@ -395,9 +309,6 @@ countdown_expose_cb(GtkWidget *pie,
 	cairo_restore (cr);
 
 	cairo_surface_destroy (surface);
-#if !GTK_CHECK_VERSION(3, 0, 0)
-	cairo_destroy (cr);
-#endif
 	return TRUE;
 }
 
@@ -466,11 +377,7 @@ create_notification(UrlClickedCb url_clicked)
     GtkWidget *padding;
 	AtkObject *atkobj;
 	WindowData *windata;
-#if GTK_CHECK_VERSION(3, 0, 0)
 	GdkVisual *visual;
-#else 
-	GdkColormap *colormap;
-#endif
 	GdkScreen *screen;
 
 	windata = g_new0(WindowData, 1);
@@ -484,7 +391,6 @@ create_notification(UrlClickedCb url_clicked)
 	windata->rtl = gtk_widget_get_default_direction();
 	windata->composited = FALSE;
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
-#if GTK_CHECK_VERSION(3, 0, 0)
 	visual = gdk_screen_get_rgba_visual(screen);
 
 	if (visual != NULL)
@@ -493,16 +399,6 @@ create_notification(UrlClickedCb url_clicked)
 		if (gdk_screen_is_composited(screen))
 			windata->composited = TRUE;
 	}
-#else 
-	colormap = gdk_screen_get_rgba_colormap(screen);
-
-	if (colormap != NULL)
-	{
-		gtk_widget_set_colormap(win, colormap);
-		if (gdk_screen_is_composited(screen))
-			windata->composited = TRUE;
-	}
-#endif
 
 	gtk_window_set_title(GTK_WINDOW(win), "Notification");
 	gtk_window_set_type_hint(GTK_WINDOW(win), GDK_WINDOW_TYPE_HINT_NOTIFICATION);
@@ -516,17 +412,12 @@ create_notification(UrlClickedCb url_clicked)
 	g_signal_connect(G_OBJECT(win), "configure_event",
 					 G_CALLBACK(configure_event_cb), windata);
 
-	main_vbox = gtk_vbox_new(FALSE, 0);
+	main_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(main_vbox);
 	gtk_container_add (GTK_CONTAINER (win), main_vbox);
 
-#if GTK_CHECK_VERSION (3, 0, 0)
 	g_signal_connect (G_OBJECT (main_vbox), "draw",
 					 G_CALLBACK (on_draw), windata);
-#else
-	g_signal_connect (G_OBJECT (main_vbox), "expose_event",
-					 G_CALLBACK (on_expose_event), windata);
-#endif
 
 	g_signal_connect (G_OBJECT (win), "configure-event", G_CALLBACK (on_configure_event), windata);
 
@@ -537,13 +428,13 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(main_vbox), padding, FALSE, FALSE, 0);
   g_object_set(G_OBJECT(padding), "top-padding", 8, "right-padding", 8, NULL);
 
-	windata->main_hbox = gtk_hbox_new(FALSE, 0);
+	windata->main_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(windata->main_hbox);
 	gtk_container_add(GTK_CONTAINER(padding), windata->main_hbox);
 	gtk_container_set_border_width(GTK_CONTAINER(windata->main_hbox), 13);
    
     /* The icon goes at the left */ 
-	windata->iconbox = gtk_vbox_new(FALSE, 0);
+	windata->iconbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(windata->iconbox);
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), windata->iconbox,
 					   FALSE, FALSE, 0);
@@ -558,7 +449,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), padding, TRUE, TRUE, 0);
   g_object_set(G_OBJECT(padding), "left-padding", 8, NULL);
 
-	vbox = gtk_vbox_new(FALSE, 0);
+	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(vbox);
 	gtk_container_add(GTK_CONTAINER(padding), vbox);
 
@@ -587,9 +478,7 @@ create_notification(UrlClickedCb url_clicked)
 #endif
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->body_label), PANGO_WRAP_WORD_CHAR);
-#if GTK_CHECK_VERSION (3, 0, 0)
     gtk_label_set_max_width_chars (GTK_LABEL (windata->body_label), 50);
-#endif
 
 	g_signal_connect(G_OBJECT(windata->body_label), "activate-link",
                          G_CALLBACK(activate_link), windata);
@@ -601,7 +490,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_widget_show(alignment);
 	gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, TRUE, 0);
 
-	windata->actions_box = gtk_hbox_new(FALSE, 6);
+	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_container_add(GTK_CONTAINER(alignment), windata->actions_box);
 
 	return GTK_WINDOW(win);
@@ -698,20 +587,15 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
 		gtk_widget_set_size_request(windata->pie_countdown,
 									PIE_WIDTH, PIE_HEIGHT);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw",
 						 G_CALLBACK(countdown_expose_cb), windata);
-#else
-		g_signal_connect(G_OBJECT(windata->pie_countdown), "expose_event",
-						 G_CALLBACK(countdown_expose_cb), windata);
-#endif
 	}
 
 	button = gtk_button_new();
 	gtk_widget_show(button);
 	gtk_box_pack_start(GTK_BOX(windata->actions_box), button, FALSE, FALSE, 0);
 
-	hbox = gtk_hbox_new(FALSE, 6);
+	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_show(hbox);
 	gtk_container_add(GTK_CONTAINER(button), hbox);
 
@@ -728,12 +612,8 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 		GtkWidget *image = gtk_image_new_from_pixbuf(pixbuf);
 		gtk_widget_show(image);
 		gtk_box_pack_start(GTK_BOX(hbox), image, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 0, 0)
 		gtk_widget_set_halign (image, GTK_ALIGN_CENTER);
 		gtk_widget_set_valign (image, GTK_ALIGN_CENTER);
-#else
-		gtk_misc_set_alignment(GTK_MISC(image), 0.5, 0.5);
-#endif
 	}
 
 	label = gtk_label_new(NULL);
