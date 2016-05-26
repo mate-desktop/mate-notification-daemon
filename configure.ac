@@ -8,7 +8,7 @@ AC_PREREQ(2.63)
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_SRCDIR([config.h.in])
-AC_CONFIG_MACRO_DIR([macros])
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl ################################################################
 dnl # Version information
