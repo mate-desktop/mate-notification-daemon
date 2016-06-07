@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-03-24 13:26+0000\n"
+"PO-Revision-Date: 2016-04-09 02:15+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/mate/MATE/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -32,15 +32,15 @@ msgstr "Forvalgt oppsprettsplassering på arbeidsområdet for stabelsmerknader. 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr "Bruk aktiv monitor"
+msgstr "Bruk aktiv skjerm"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Vis marknaden på aktiv monitor."
+msgstr "Vis marknaden på aktiv skjerm."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
-msgstr "Monitor"
+msgstr "Skjerm"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
@@ -132,7 +132,7 @@ msgstr "_Tema:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
-msgstr "_Monitor:"
+msgstr "_Skjerm:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
