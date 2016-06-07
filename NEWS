@@ -1,3 +1,12 @@
+1.15.0
+
+  * Translations update
+  * remove ancient and unneeded NEWS.GNOME file
+  * use 'm4' dir instead of 'macros' - it's more common name for it
+  * slider: remove color overriding that does nothing these days
+  * require GTK+ >= 3.14, drop GTK+2 code and --with-gtk build option
+  * Coco, Nodoka: set notification window type
+
 1.14.0
   * Drop MateConf migration script
   * GTK+3: explicitly wrap notification text at 50 characters
