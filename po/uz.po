@@ -4,13 +4,13 @@
 # 
 # Translators:
 # muzaffar habibullayev <muzaffarlearner@gmail.com>, 2016
-# Umid Almasov <u.almasov@gmail.com>, 2013
+# Umidjon Almasov <u.almasov@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-03-29 14:34+0000\n"
+"PO-Revision-Date: 2016-04-27 12:49+0000\n"
 "Last-Translator: muzaffar habibullayev <muzaffarlearner@gmail.com>\n"
 "Language-Team: Uzbek (http://www.transifex.com/mate/MATE/language/uz/)\n"
 "MIME-Version: 1.0\n"
@@ -32,11 +32,11 @@ msgstr ""
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Faol Monitordan Foydalanish"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "Xabarnomani faol monitorda ko'rsatish"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
@@ -54,7 +54,7 @@ msgstr "Joriy mavzu"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr ""
+msgstr "Ogohlantirishlarni ko'rsatish chog'i qo'llaniladigan mavzu"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
@@ -66,15 +66,15 @@ msgstr ""
 
 #: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
-msgstr ""
+msgstr "Koko"
 
 #: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
-msgstr ""
+msgstr "Slayder"
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
@@ -95,12 +95,12 @@ msgstr "Shunchaki sinov"
 #: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr ""
+msgstr "Ogohlantirishni ko'rsatishda xato: %s"
 
 #: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr ""
+msgstr "Foydalanuvchi interfeysi faylini yuklay olmadi: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
@@ -153,12 +153,12 @@ msgstr "Quyi O'ng"
 #: ../src/daemon/daemon.c:1417
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "Ogohlantirishlarning maksimal miqdoridan oshib ketdi"
 
 #: ../src/daemon/daemon.c:1724
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr ""
+msgstr "%u yaroqli ogohlantirish ID si emas"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
