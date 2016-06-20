@@ -373,8 +373,6 @@ create_notification(UrlClickedCb url_clicked)
 	GtkWidget *win;
 	GtkWidget *main_vbox;
 	GtkWidget *vbox;
-	GtkWidget *alignment;
-    GtkWidget *padding;
 	AtkObject *atkobj;
 	WindowData *windata;
 	GdkVisual *visual;
@@ -423,14 +421,13 @@ create_notification(UrlClickedCb url_clicked)
 
 	g_signal_connect (G_OBJECT (win), "composited-changed", G_CALLBACK (on_composited_changed), windata);
 
-    padding = gtk_alignment_new(0, 0, 0, 0);
-	gtk_widget_show(padding);
-	gtk_box_pack_start(GTK_BOX(main_vbox), padding, FALSE, FALSE, 0);
-  g_object_set(G_OBJECT(padding), "top-padding", 8, "right-padding", 8, NULL);
-
-	windata->main_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
-	gtk_widget_show(windata->main_hbox);
-	gtk_container_add(GTK_CONTAINER(padding), windata->main_hbox);
+	windata->main_hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
+	gtk_widget_set_halign (windata->main_hbox, GTK_ALIGN_START);
+	gtk_widget_set_valign (windata->main_hbox, GTK_ALIGN_START);
+	gtk_widget_set_margin_top (windata->main_hbox, 8);
+	gtk_widget_set_margin_end (windata->main_hbox, 8);
+	gtk_widget_show (windata->main_hbox);
+	gtk_box_pack_start (GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(windata->main_hbox), 13);
    
     /* The icon goes at the left */ 
@@ -444,14 +441,12 @@ create_notification(UrlClickedCb url_clicked)
 					   FALSE, FALSE, 0);
 
     /* The title and the text at the right */
-    padding = gtk_alignment_new(0, 0.5, 0, 0);
-	gtk_widget_show(padding);
-	gtk_box_pack_start(GTK_BOX(windata->main_hbox), padding, TRUE, TRUE, 0);
-  g_object_set(G_OBJECT(padding), "left-padding", 8, NULL);
+	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	gtk_widget_set_halign (vbox, GTK_ALIGN_START);
+	gtk_widget_set_margin_start (vbox, 8);
+	gtk_widget_show (vbox);
+	gtk_box_pack_start (GTK_BOX (windata->main_hbox), vbox, TRUE, TRUE, 0);
 
-	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(vbox);
-	gtk_container_add(GTK_CONTAINER(padding), vbox);
 
 	windata->summary_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->summary_label);
@@ -486,12 +481,10 @@ create_notification(UrlClickedCb url_clicked)
 	atkobj = gtk_widget_get_accessible(windata->body_label);
 	atk_object_set_description(atkobj, "Notification body text.");
 
-	alignment = gtk_alignment_new(1, 0.5, 0, 0);
-	gtk_widget_show(alignment);
-	gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, TRUE, 0);
-
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
-	gtk_container_add(GTK_CONTAINER(alignment), windata->actions_box);
+	gtk_widget_set_halign(windata->actions_box, GTK_ALIGN_END);
+	gtk_widget_show(windata->actions_box);
+	gtk_box_pack_start(GTK_BOX(vbox), windata->actions_box, FALSE, TRUE, 0);
 
 	return GTK_WINDOW(win);
 }
@@ -571,20 +564,15 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 
 	g_assert(windata != NULL);
 
-	if (!gtk_widget_get_visible(windata->actions_box))
+	if (gtk_widget_get_visible(windata->actions_box))
 	{
-		GtkWidget *alignment;
-
 		gtk_widget_show(windata->actions_box);
 
-		alignment = gtk_alignment_new(1, 0.5, 0, 0);
-		gtk_widget_show(alignment);
-		gtk_box_pack_end(GTK_BOX(windata->actions_box), alignment,
-						   FALSE, TRUE, 0);
-
 		windata->pie_countdown = gtk_drawing_area_new();
+		gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
 		gtk_widget_show(windata->pie_countdown);
-		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
+
+		gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
 		gtk_widget_set_size_request(windata->pie_countdown,
 									PIE_WIDTH, PIE_HEIGHT);
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw",
