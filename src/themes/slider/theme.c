@@ -30,7 +30,6 @@ typedef void (*UrlClickedCb) (GtkWindow* nw, const char* url);
 typedef struct {
 	GtkWidget* win;
 	GtkWidget* main_hbox;
-	GtkWidget* iconbox;
 	GtkWidget* icon;
 	GtkWidget* content_hbox;
 	GtkWidget* summary_label;
@@ -328,7 +327,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	GtkWidget* vbox;
 	GtkWidget* close_button;
 	GtkWidget* image;
-	GtkWidget* alignment;
 	AtkObject* atkobj;
 	WindowData* windata;
 	GdkVisual *visual;
@@ -383,31 +381,30 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_widget_show(windata->main_hbox);
 	gtk_box_pack_start(GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
 
-	/* First row (icon, vbox, close) */
-	windata->iconbox = gtk_alignment_new(0.5, 0, 0, 0);
-	gtk_widget_show(windata->iconbox);
-	gtk_alignment_set_padding(GTK_ALIGNMENT(windata->iconbox), 5, 0, 0, 0);
-	gtk_box_pack_start(GTK_BOX(windata->main_hbox), windata->iconbox, FALSE, FALSE, 0);
-	gtk_widget_set_size_request(windata->iconbox, BODY_X_OFFSET, -1);
-
+	/* Add icon */
 	windata->icon = gtk_image_new();
+	gtk_widget_set_valign (windata->icon, GTK_ALIGN_START);
+	gtk_widget_set_margin_top (windata->icon, 5);
+	gtk_widget_set_size_request (windata->icon, BODY_X_OFFSET, -1);
 	gtk_widget_show(windata->icon);
-	gtk_container_add(GTK_CONTAINER(windata->iconbox), windata->icon);
+	gtk_box_pack_start (GTK_BOX(windata->main_hbox), windata->icon, FALSE, FALSE, 0);
 
+	/* Add vbox */
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
 	gtk_widget_show(vbox);
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), vbox, TRUE, TRUE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), 10);
 
 	/* Add the close button */
-	alignment = gtk_alignment_new(0.5, 0, 0, 0);
-	gtk_widget_show(alignment);
-	gtk_box_pack_start(GTK_BOX(windata->main_hbox), alignment, FALSE, FALSE, 0);
-
 	close_button = gtk_button_new();
+	gtk_widget_set_valign (close_button, GTK_ALIGN_START);
 	gtk_widget_show(close_button);
+
 	windata->close_button = close_button;
-	gtk_container_add(GTK_CONTAINER(alignment), close_button);
+	gtk_box_pack_start (GTK_BOX (windata->main_hbox),
+                        windata->close_button,
+                        FALSE, FALSE, 0);
+
 	gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
 	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
 	g_signal_connect_swapped(G_OBJECT(close_button), "clicked", G_CALLBACK(gtk_widget_destroy), win);
@@ -463,13 +460,11 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	atkobj = gtk_widget_get_accessible(windata->body_label);
 	atk_object_set_description(atkobj, "Notification body text.");
 
-	alignment = gtk_alignment_new(1, 0.5, 0, 0);
-	gtk_widget_show(alignment);
-	gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, TRUE, 0);
-
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
+	gtk_widget_set_halign (windata->actions_box, GTK_ALIGN_END);
 	gtk_widget_show(windata->actions_box);
-	gtk_container_add(GTK_CONTAINER(alignment), windata->actions_box);
+
+	gtk_box_pack_start (GTK_BOX (vbox), windata->actions_box, FALSE, TRUE, 0);
 
 	return GTK_WINDOW(win);
 }
@@ -623,14 +618,14 @@ void set_notification_icon(GtkWindow* nw, GdkPixbuf* pixbuf)
 		int pixbuf_width = gdk_pixbuf_get_width(scaled);
 
 		gtk_widget_show(windata->icon);
-		gtk_widget_set_size_request(windata->iconbox, MAX(BODY_X_OFFSET, pixbuf_width), -1);
+		gtk_widget_set_size_request(windata->icon, MAX(BODY_X_OFFSET, pixbuf_width), -1);
 		g_object_unref(scaled);
 	}
 	else
 	{
 		gtk_widget_hide(windata->icon);
 
-		gtk_widget_set_size_request(windata->iconbox, BODY_X_OFFSET, -1);
+		gtk_widget_set_size_request(windata->icon, BODY_X_OFFSET, -1);
 	}
 
 	update_content_hbox_visibility(windata);
@@ -713,19 +708,15 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 
 	if (!gtk_widget_get_visible(windata->actions_box))
 	{
-		GtkWidget* alignment;
-
 		gtk_widget_show(windata->actions_box);
 		update_content_hbox_visibility(windata);
 
-		alignment = gtk_alignment_new(1, 0.5, 0, 0);
-		gtk_widget_show(alignment);
-		gtk_box_pack_end(GTK_BOX(windata->actions_box), alignment, FALSE, TRUE, 0);
-
 		windata->pie_countdown = gtk_drawing_area_new();
 
+		gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
 		gtk_widget_show(windata->pie_countdown);
-		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
+
+		gtk_box_pack_start (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
 		gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(on_countdown_draw), windata);
 	}
