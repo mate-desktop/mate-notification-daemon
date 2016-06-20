@@ -1470,7 +1470,11 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	{
 		int monitor_num;
 		GdkDisplay *display;
+#if GTK_CHECK_VERSION (3, 20, 0)
+		GdkSeat *seat;
+#else
 		GdkDeviceManager *device_manager;
+#endif
 		GdkDevice *pointer;
 		GdkScreen* screen;
 		gint x, y;
@@ -1483,8 +1487,13 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
 		{
 			display = gdk_display_get_default ();
+#if GTK_CHECK_VERSION (3, 20, 0)
+			seat = gdk_display_get_default_seat (display);
+			pointer = gdk_seat_get_pointer (seat);
+#else
 			device_manager = gdk_display_get_device_manager (display);
 			pointer = gdk_device_manager_get_client_pointer (device_manager);
+#endif
 
 			gdk_device_get_position (pointer, &screen, &x, &y);
 			monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
