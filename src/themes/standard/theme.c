@@ -607,7 +607,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	GtkWidget* vbox;
 	GtkWidget* close_button;
 	GtkWidget* image;
-	GtkWidget* alignment;
 	AtkObject* atkobj;
 	WindowData* windata;
 
@@ -699,14 +698,12 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	atk_object_set_description(atkobj, "Notification summary text.");
 
 	/* Add the close button */
-	alignment = gtk_alignment_new(1, 0, 0, 0);
-	gtk_widget_show(alignment);
-	gtk_box_pack_start(GTK_BOX(hbox), alignment, FALSE, FALSE, 0);
-
 	close_button = gtk_button_new();
 	windata->close_button = close_button;
+	gtk_widget_set_halign (close_button, GTK_ALIGN_END);
+	gtk_widget_set_valign (close_button, GTK_ALIGN_START);
 	gtk_widget_show(close_button);
-	gtk_container_add(GTK_CONTAINER(alignment), close_button);
+	gtk_box_pack_start(GTK_BOX(hbox), close_button, FALSE, FALSE, 0);
 	gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
 	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
 	//gtk_widget_set_size_request(close_button, 20, 20);
@@ -754,12 +751,10 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	atkobj = gtk_widget_get_accessible(windata->body_label);
 	atk_object_set_description(atkobj, "Notification body text.");
 
-	alignment = gtk_alignment_new(1, 0.5, 0, 0);
-	gtk_widget_show(alignment);
-	gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, TRUE, 0);
-
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
-	gtk_container_add(GTK_CONTAINER(alignment), windata->actions_box);
+	gtk_widget_set_halign (windata->actions_box, GTK_ALIGN_END);
+	gtk_widget_show(windata->actions_box);
+	gtk_box_pack_start(GTK_BOX(vbox), windata->actions_box, FALSE, TRUE, 0);
 
 	return GTK_WINDOW(win);
 }
@@ -916,7 +911,7 @@ paint_countdown (GtkWidget  *pie,
 	{
 		gdouble pct = (gdouble) windata->remaining / (gdouble) windata->timeout;
 
-		gdk_cairo_set_source_color (cr2, &style->bg[GTK_STATE_ACTIVE]);
+		gdk_cairo_set_source_color (cr2, &style->bg[GTK_STATE_SELECTED]);
 
 		cairo_move_to (cr2, PIE_RADIUS, PIE_RADIUS);
 		cairo_arc_negative (cr2, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
@@ -964,20 +959,15 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 
 	g_assert(windata != NULL);
 
-	if (!gtk_widget_get_visible(windata->actions_box))
+	if (gtk_widget_get_visible(windata->actions_box))
 	{
-		GtkWidget* alignment;
-
 		gtk_widget_show(windata->actions_box);
 		update_content_hbox_visibility(windata);
 
-		alignment = gtk_alignment_new(1, 0.5, 0, 0);
-		gtk_widget_show(alignment);
-		gtk_box_pack_end(GTK_BOX(windata->actions_box), alignment, FALSE, TRUE, 0);
-
 		windata->pie_countdown = gtk_drawing_area_new();
+		gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
 		gtk_widget_show(windata->pie_countdown);
-		gtk_container_add(GTK_CONTAINER(alignment), windata->pie_countdown);
+		gtk_box_pack_end(GTK_BOX(windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
 		gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
 		g_signal_connect (G_OBJECT (windata->pie_countdown), "draw", G_CALLBACK (on_countdown_draw), windata);
 	}
