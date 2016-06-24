@@ -22,6 +22,7 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 typedef void (*ActionInvokedCb) (GtkWindow* nw, const char* key);
@@ -410,9 +411,10 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	g_signal_connect_swapped(G_OBJECT(close_button), "clicked", G_CALLBACK(gtk_widget_destroy), win);
 
 	atkobj = gtk_widget_get_accessible(close_button);
-	atk_action_set_description(ATK_ACTION(atkobj), 0, "Closes the notification.");
+	atk_action_set_description(ATK_ACTION(atkobj), 0,
+                                          _("Closes the notification."));
 	atk_object_set_name(atkobj, "");
-	atk_object_set_description(atkobj, "Closes the notification.");
+	atk_object_set_description (atkobj, _("Closes the notification."));
 
 	image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
 	gtk_widget_show(image);
@@ -432,7 +434,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->summary_label), PANGO_WRAP_WORD_CHAR);
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
-	atk_object_set_description(atkobj, "Notification summary text.");
+	atk_object_set_description (atkobj, _("Notification summary text."));
 
 	windata->content_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_show(windata->content_hbox);
@@ -458,7 +460,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	g_signal_connect_swapped(G_OBJECT(windata->body_label), "activate-link", G_CALLBACK(windata->url_clicked), win);
 
 	atkobj = gtk_widget_get_accessible(windata->body_label);
-	atk_object_set_description(atkobj, "Notification body text.");
+	atk_object_set_description (atkobj, _("Notification body text."));
 
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_set_halign (windata->actions_box, GTK_ALIGN_END);

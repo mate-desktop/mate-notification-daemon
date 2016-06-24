@@ -24,6 +24,7 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 /* Define basic coco types */
@@ -461,7 +462,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->summary_label), PANGO_WRAP_WORD_CHAR);
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
-	atk_object_set_description(atkobj, "Notification summary text.");
+	atk_object_set_description (atkobj, _("Notification summary text."));
 
 	windata->body_label = gtk_label_new(NULL);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, FALSE, FALSE, 0);
@@ -479,7 +480,7 @@ create_notification(UrlClickedCb url_clicked)
                          G_CALLBACK(activate_link), windata);
 
 	atkobj = gtk_widget_get_accessible(windata->body_label);
-	atk_object_set_description(atkobj, "Notification body text.");
+	atk_object_set_description (atkobj, _("Notification body text."));
 
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_set_halign(windata->actions_box, GTK_ALIGN_END);
