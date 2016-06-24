@@ -25,6 +25,7 @@
 
 #include "config.h"
 
+#include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
 /* Define basic nodoka types */
@@ -926,7 +927,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->summary_label), PANGO_WRAP_WORD_CHAR);
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
-	atk_object_set_description(atkobj, "Notification summary text.");
+	atk_object_set_description (atkobj, _("Notification summary text."));
 
 	/* Add the close button */
 	close_button = gtk_button_new();
@@ -940,9 +941,9 @@ create_notification(UrlClickedCb url_clicked)
 
 	atkobj = gtk_widget_get_accessible(close_button);
 	atk_action_set_description(ATK_ACTION(atkobj), 0,
-							   "Closes the notification.");
+							   _("Closes the notification."));
 	atk_object_set_name(atkobj, "");
-	atk_object_set_description(atkobj, "Closes the notification.");
+	atk_object_set_description (atkobj, _("Closes the notification."));
 
 	image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
 	gtk_widget_show(image);
@@ -989,7 +990,7 @@ create_notification(UrlClickedCb url_clicked)
                          G_CALLBACK(activate_link), windata);
 
 	atkobj = gtk_widget_get_accessible(windata->body_label);
-	atk_object_set_description(atkobj, "Notification body text.");
+	atk_object_set_description (atkobj, _("Notification body text."));
 
 	alignment = gtk_alignment_new(1, 0.5, 0, 0);
 	gtk_widget_show(alignment);
