@@ -117,57 +117,81 @@ void notification_tick(GtkWindow *nw, glong remaining);
 #define BACKGROUND_OPACITY    0.92
 #define BOTTOM_GRADIENT_HEIGHT 30
 
+static void
+get_background_color (GtkStyleContext *context,
+                      GtkStateFlags    state,
+                      GdkRGBA         *color)
+{
+        GdkRGBA *c;
+
+        g_return_if_fail (color != NULL);
+        g_return_if_fail (GTK_IS_STYLE_CONTEXT (context));
+
+        gtk_style_context_get (context, state,
+                               "background-color", &c,
+                               NULL);
+
+        *color = *c;
+        gdk_rgba_free (c);
+}
+
 static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
-	GtkStyle* style;
-	GdkColor* background_color;
+    GtkStyleContext *context;
+    GdkRGBA bg;
 
-	GtkAllocation allocation;
+    GtkAllocation allocation;
 
-	gtk_widget_get_allocation(widget, &allocation);
+    gtk_widget_get_allocation(widget, &allocation);
 
-	#ifdef ENABLE_GRADIENT_LOOK
+    #ifdef ENABLE_GRADIENT_LOOK
 
-		cairo_pattern_t *gradient;
-		int              gradient_y;
+        cairo_pattern_t *gradient;
+        int              gradient_y;
 
-		gradient_y = allocation.height - BOTTOM_GRADIENT_HEIGHT;
+        gradient_y = allocation.height - BOTTOM_GRADIENT_HEIGHT;
 
-	#endif
+    #endif
 
-	style = gtk_widget_get_style(widget);
-	background_color = &style->base[GTK_STATE_NORMAL];
+    context = gtk_widget_get_style_context (windata->win);
 
-	if (windata->composited)
-	{
-		cairo_set_source_rgba(cr, background_color->red / 65535.0, background_color->green / 65535.0, background_color->blue / 65535.0, BACKGROUND_OPACITY);
-	}
-	else
-	{
-		gdk_cairo_set_source_color(cr, background_color);
-	}
+    gtk_style_context_save (context);
+    gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
 
-		cairo_rectangle(cr, 0, 0, allocation.width, allocation.height);
+    get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg);
 
-	cairo_fill(cr);
+    gtk_style_context_restore (context);
 
-	#ifdef ENABLE_GRADIENT_LOOK
-		/* Add a very subtle gradient to the bottom of the notification */
-		gradient = cairo_pattern_create_linear(0, gradient_y, 0, allocation.height);
-		cairo_pattern_add_color_stop_rgba(gradient, 0, 0, 0, 0, 0);
-		cairo_pattern_add_color_stop_rgba(gradient, 1, 0, 0, 0, 0.15);
-		cairo_rectangle(cr, 0, gradient_y, allocation.width, BOTTOM_GRADIENT_HEIGHT);
+    if (windata->composited)
+    {
+        cairo_set_source_rgba(cr, bg.red, bg.green, bg.blue, BACKGROUND_OPACITY);
+    }
+    else
+    {
+        gdk_cairo_set_source_rgba (cr, &bg);
+    }
 
-		cairo_set_source(cr, gradient);
-		cairo_fill(cr);
-		cairo_pattern_destroy(gradient);
-	#endif
+    cairo_rectangle(cr, 0, 0, allocation.width, allocation.height);
+
+    cairo_fill(cr);
+
+    #ifdef ENABLE_GRADIENT_LOOK
+        /* Add a very subtle gradient to the bottom of the notification */
+        gradient = cairo_pattern_create_linear(0, gradient_y, 0, allocation.height);
+        cairo_pattern_add_color_stop_rgba(gradient, 0, 0, 0, 0, 0);
+        cairo_pattern_add_color_stop_rgba(gradient, 1, 0, 0, 0, 0.15);
+        cairo_rectangle(cr, 0, gradient_y, allocation.width, BOTTOM_GRADIENT_HEIGHT);
+
+        cairo_set_source(cr, gradient);
+        cairo_fill(cr);
+        cairo_pattern_destroy(gradient);
+    #endif
 }
 
 static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
-	GtkStyle*        style;
-	GdkColor         color;
+	GtkStyleContext* context;
+	GdkRGBA bg;
 	int              stripe_x;
 	int              stripe_y;
 	int              stripe_height;
@@ -176,7 +200,9 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 		double           r, g, b;
 	#endif
 
-	style = gtk_widget_get_style(widget);
+	context = gtk_widget_get_style_context (widget);
+
+	gtk_style_context_save (context);
 
 	GtkAllocation alloc;
 	gtk_widget_get_allocation(windata->main_hbox, &alloc);
@@ -194,18 +220,26 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	switch (windata->urgency)
 	{
 		case URGENCY_LOW: // LOW
-			color = style->bg[GTK_STATE_NORMAL];
+			gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
+			gtk_style_context_add_class (context, GTK_STYLE_CLASS_VIEW);
+			get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg);
+			gdk_cairo_set_source_rgba (cr, &bg);
 			break;
 
 		case URGENCY_CRITICAL: // CRITICAL
-			gdk_color_parse("#CC0000", &color);
+			gdk_rgba_parse (&bg, "#CC0000");
 			break;
 
 		case URGENCY_NORMAL: // NORMAL
 		default:
-			color = style->bg[GTK_STATE_SELECTED];
+			gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+			gtk_style_context_add_class (context, GTK_STYLE_CLASS_VIEW);
+			get_background_color (context, GTK_STATE_FLAG_SELECTED, &bg);
+			gdk_cairo_set_source_rgba (cr, &bg);
 			break;
 	}
+
+	gtk_style_context_restore (context);
 
 	cairo_rectangle(cr, stripe_x, stripe_y, STRIPE_WIDTH, stripe_height);
 
@@ -221,7 +255,7 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 		cairo_fill(cr);
 		cairo_pattern_destroy(gradient);
 	#else
-		gdk_cairo_set_source_color(cr, &color);
+		gdk_cairo_set_source_rgba (cr, &bg);
 		cairo_fill(cr);
 	#endif
 }
@@ -738,6 +772,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(windata->content_hbox), vbox, TRUE, TRUE, 0);
 
 	windata->body_label = gtk_label_new(NULL);
+	gtk_widget_show(windata->body_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, TRUE, TRUE, 0);
 #if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (windata->body_label), 0.0);
@@ -889,46 +924,55 @@ void set_notification_arrow(GtkWidget* nw, gboolean visible, int x, int y)
 
 static void
 paint_countdown (GtkWidget  *pie,
-		 cairo_t    *cr,
-		 WindowData *windata)
+                 cairo_t    *cr,
+                 WindowData *windata)
 {
-	GtkStyle* style;
-	cairo_t* cr2;
-	cairo_surface_t* surface;
+    GtkStyleContext *context;
+    GdkRGBA bg;
+    GtkAllocation alloc;
+    cairo_t* cr2;
+    cairo_surface_t* surface;
 
-	style = gtk_widget_get_style(windata->win);
-	GtkAllocation alloc;
-	gtk_widget_get_allocation(pie, &alloc);
-	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-	surface = cairo_surface_create_similar (cairo_get_target(cr),
-						CAIRO_CONTENT_COLOR_ALPHA,
-						alloc.width,
-						alloc.height);
+    context = gtk_widget_get_style_context (windata->win);
 
-	cr2 = cairo_create (surface);
+    gtk_style_context_save (context);
+    gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
 
-	fill_background (pie, windata, cr2);
+    get_background_color (context, GTK_STATE_FLAG_SELECTED, &bg);
 
-	if (windata->timeout > 0)
-	{
-		gdouble pct = (gdouble) windata->remaining / (gdouble) windata->timeout;
+    gtk_style_context_restore (context);
 
-		gdk_cairo_set_source_color (cr2, &style->bg[GTK_STATE_SELECTED]);
+    gtk_widget_get_allocation(pie, &alloc);
+    cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+    surface = cairo_surface_create_similar (cairo_get_target(cr),
+                                            CAIRO_CONTENT_COLOR_ALPHA,
+                                            alloc.width,
+                                            alloc.height);
 
-		cairo_move_to (cr2, PIE_RADIUS, PIE_RADIUS);
-		cairo_arc_negative (cr2, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
-		cairo_line_to (cr2, PIE_RADIUS, PIE_RADIUS);
-		cairo_fill (cr2);
-	}
+    cr2 = cairo_create (surface);
 
-	cairo_destroy(cr2);
+    fill_background (pie, windata, cr2);
 
-	cairo_save (cr);
-	cairo_set_source_surface (cr, surface, 0, 0);
-	cairo_paint (cr);
-	cairo_restore (cr);
+    if (windata->timeout > 0)
+    {
+        gdouble pct = (gdouble) windata->remaining / (gdouble) windata->timeout;
 
-	cairo_surface_destroy(surface);
+        gdk_cairo_set_source_rgba (cr2, &bg);
+
+        cairo_move_to (cr2, PIE_RADIUS, PIE_RADIUS);
+        cairo_arc_negative (cr2, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
+        cairo_line_to (cr2, PIE_RADIUS, PIE_RADIUS);
+        cairo_fill (cr2);
+    }
+
+    cairo_destroy(cr2);
+
+    cairo_save (cr);
+    cairo_set_source_surface (cr, surface, 0, 0);
+    cairo_paint (cr);
+    cairo_restore (cr);
+
+    cairo_surface_destroy(surface);
 }
 
 static gboolean
