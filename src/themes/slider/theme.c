@@ -145,44 +145,37 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
 	GtkAllocation allocation;
 	GtkStyleContext *context;
-	GdkRGBA color;
-	GdkRGBA fg_color;
-	GdkRGBA bg_color;
-	double r, g, b;
+	GdkRGBA fg;
+	GdkRGBA bg;
 
 	gtk_widget_get_allocation(widget, &allocation);
 
 	draw_round_rect(cr, 1.0f, DEFAULT_X0 + 1, DEFAULT_Y0 + 1, DEFAULT_RADIUS, allocation.width - 2, allocation.height - 2);
+
 	context = gtk_widget_get_style_context(widget);
 
-	get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg_color);
-	r = bg_color.red;
-	g = bg_color.green;
-	b = bg_color.blue;
-	cairo_set_source_rgba(cr, r, g, b, BACKGROUND_ALPHA);
+	gtk_style_context_save (context);
+	gtk_style_context_set_state (context, GTK_STATE_FLAG_NORMAL);
+
+	get_background_color (context, GTK_STATE_FLAG_NORMAL, &bg);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &fg);
+
+	gtk_style_context_restore (context);
+
+	cairo_set_source_rgba(cr, bg.red, bg.green, bg.blue, BACKGROUND_ALPHA);
 	cairo_fill_preserve(cr);
 
 	/* Should we show urgency somehow?  Probably doesn't
 	 * have any meaningful value to the user... */
 
-	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &fg_color);
-
-	color.red   = (fg_color.red   + bg_color.red)   / 2.0;
-	color.green = (fg_color.green + bg_color.green) / 2.0;
-	color.blue  = (fg_color.blue  + bg_color.blue)  / 2.0;
-	color.alpha = (fg_color.alpha + bg_color.alpha) / 2.0;
-
-	r = color.red;
-	g = color.green;
-	b = color.blue;
-	cairo_set_source_rgba(cr, r, g, b, BACKGROUND_ALPHA / 2);
+	cairo_set_source_rgba(cr, fg.red, fg.green, fg.blue, BACKGROUND_ALPHA);
 	cairo_set_line_width(cr, 1);
 	cairo_stroke(cr);
 }
 
 static void
 update_shape_region (cairo_surface_t *surface,
-		     WindowData      *windata)
+                     WindowData      *windata)
 {
 	if (windata->width == windata->last_width && windata->height == windata->last_height)
 	{
@@ -219,19 +212,15 @@ static void paint_window (GtkWidget  *widget,
 {
 	cairo_surface_t *surface;
 	cairo_t *cr2;
-
-	if (windata->width == 0 || windata->height == 0)
-	{
 		GtkAllocation allocation;
 
 		gtk_widget_get_allocation (windata->win, &allocation);
 
+	if (windata->width == 0 || windata->height == 0)
+	{
 		windata->width = MAX (allocation.width, 1);
 		windata->height = MAX (allocation.height, 1);
 	}
-
-	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-
 
 	surface = cairo_surface_create_similar (cairo_get_target (cr),
 						CAIRO_CONTENT_COLOR_ALPHA,
@@ -250,6 +239,7 @@ static void paint_window (GtkWidget  *widget,
 	cairo_destroy(cr2);
 
 	cairo_save (cr);
+	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
 	cairo_set_source_surface(cr, surface, 0, 0);
 	cairo_paint(cr);
 	update_shape_region (surface, windata);
@@ -305,15 +295,6 @@ static void on_window_realize(GtkWidget* widget, WindowData* windata)
 	/* Nothing */
 }
 
-static void on_style_updated(GtkWidget* widget, WindowData* windata)
-{
-	g_signal_handlers_block_by_func(G_OBJECT(widget), on_style_updated, windata);
-
-	gtk_widget_queue_draw(widget);
-
-	g_signal_handlers_unblock_by_func(G_OBJECT(widget), on_style_updated, windata);
-}
-
 static void on_composited_changed(GtkWidget* window, WindowData* windata)
 {
 	windata->composited = gdk_screen_is_composited(gtk_widget_get_screen(window));
@@ -340,7 +321,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	win = gtk_window_new(GTK_WINDOW_POPUP);
 	gtk_window_set_resizable(GTK_WINDOW(win), FALSE);
 	gtk_widget_set_app_paintable(win, TRUE);
-	g_signal_connect(G_OBJECT(win), "style-updated", G_CALLBACK(on_style_updated), windata);
 	g_signal_connect(G_OBJECT(win), "map-event", G_CALLBACK(on_window_map), windata);
 	g_signal_connect(G_OBJECT(win), "draw", G_CALLBACK(on_draw), windata);
 	g_signal_connect(G_OBJECT(win), "realize", G_CALLBACK(on_window_realize), windata);
@@ -439,7 +419,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	windata->content_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_show(windata->content_hbox);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->content_hbox, FALSE, FALSE, 0);
-
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
 	gtk_widget_show(vbox);
@@ -640,53 +619,65 @@ void set_notification_arrow(GtkWidget* nw, gboolean visible, int x, int y)
 	g_assert(windata != NULL);
 }
 
-static gboolean on_countdown_draw(GtkWidget* pie, cairo_t* cr, WindowData* windata)
+static void
+paint_countdown (GtkWidget  *pie,
+                 cairo_t* cr,
+                 WindowData* windata)
 {
+	GtkStyleContext* context;
+	GdkRGBA bg;
 	GtkAllocation allocation;
-	GtkStyleContext* style;
-	GdkRGBA color;
-	GdkRGBA fg_color;
-	cairo_t* context;
+	cairo_t* cr2;
 	cairo_surface_t* surface;
-	double r, g, b;
 
-	context = gdk_cairo_create(GDK_WINDOW(gtk_widget_get_window(windata->pie_countdown)));
-	style = gtk_widget_get_style_context(windata->win);
+	context = gtk_widget_get_style_context(windata->win);
 
-	cairo_set_operator(context, CAIRO_OPERATOR_SOURCE);
+	gtk_style_context_save (context);
+	gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+
+	get_background_color (context, GTK_STATE_FLAG_SELECTED, &bg);
+
+	gtk_style_context_restore (context);
 
 	gtk_widget_get_allocation(pie, &allocation);
-	surface = cairo_surface_create_similar(cairo_get_target(context), CAIRO_CONTENT_COLOR_ALPHA, allocation.width, allocation.height);
-	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
+	surface = cairo_surface_create_similar(cairo_get_target(cr),
+                                           CAIRO_CONTENT_COLOR_ALPHA,
+                                           allocation.width,
+                                           allocation.height);
 
-	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
-	gtk_style_context_get_color (style, GTK_STATE_FLAG_NORMAL, &color);
-	get_background_color (style, GTK_STATE_FLAG_NORMAL, &fg_color);
-	r = color.red;
-	g = color.green;
-	b = color.blue;
-	cairo_set_source_rgba(cr, r, g, b, BACKGROUND_ALPHA);
-	cairo_paint(cr);
+	cr2 = cairo_create (surface);
+
+	fill_background (pie, windata, cr2);
 
 	if (windata->timeout > 0)
 	{
 		gdouble pct = (gdouble) windata->remaining / (gdouble) windata->timeout;
 
-		gdk_cairo_set_source_rgba(cr, &fg_color);
+		gdk_cairo_set_source_rgba (cr2, &bg);
 
-		cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
-		cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
-		cairo_line_to(cr, PIE_RADIUS, PIE_RADIUS);
-		cairo_fill(cr);
+		cairo_move_to (cr2, PIE_RADIUS, PIE_RADIUS);
+		cairo_arc_negative (cr2, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
+		cairo_line_to (cr2, PIE_RADIUS, PIE_RADIUS);
+		cairo_fill (cr2);
 	}
 
-	cairo_destroy(cr);
-	cairo_set_source_surface(context, surface, 0, 0);
-	cairo_paint(context);
-	cairo_surface_destroy(surface);
-	cairo_destroy(context);
+	cairo_destroy(cr2);
 
-	return TRUE;
+	cairo_save (cr);
+	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_paint (cr);
+	cairo_restore (cr);
+
+	cairo_surface_destroy(surface);
+}
+
+static gboolean
+on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+{
+	paint_countdown (widget, cr, windata);
+
+	return FALSE;
 }
 
 static void on_action_clicked(GtkWidget* w, GdkEventButton *event, ActionInvokedCb action_cb)
@@ -699,12 +690,14 @@ static void on_action_clicked(GtkWidget* w, GdkEventButton *event, ActionInvoked
 
 void add_notification_action(GtkWindow* nw, const char* text, const char* key, ActionInvokedCb cb)
 {
-	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
+	WindowData* windata;
 	GtkWidget* label;
 	GtkWidget* button;
 	GtkWidget* hbox;
 	GdkPixbuf* pixbuf;
 	char* buf;
+
+	windata = g_object_get_data(G_OBJECT(nw), "windata");
 
 	g_assert(windata != NULL);
 
@@ -718,7 +711,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
 		gtk_widget_show(windata->pie_countdown);
 
-		gtk_box_pack_start (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
+		gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
 		gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
 		g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(on_countdown_draw), windata);
 	}
