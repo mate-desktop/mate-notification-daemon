@@ -4,3 +4,7 @@ src/capplet/mate-notification-properties.desktop.in
 [type: gettext/glade]src/capplet/mate-notification-properties.ui
 src/daemon/daemon.c
 src/daemon/sound.c
+src/themes/coco/coco-theme.c
+src/themes/nodoka/nodoka-theme.c
+src/themes/slider/theme.c
+src/themes/standard/theme.c
