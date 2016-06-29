@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-03-29 17:56+0000\n"
+"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"PO-Revision-Date: 2016-06-27 08:06+0000\n"
 "Last-Translator: Микола Ткач <Stuartlittle1970@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/mate/MATE/language/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -154,12 +154,12 @@ msgstr "Знизу ліворуч"
 msgid "Bottom Right"
 msgstr "Знизу праворуч"
 
-#: ../src/daemon/daemon.c:1417
+#: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Перевищено максимальну кількість сповіщень"
 
-#: ../src/daemon/daemon.c:1724
+#: ../src/daemon/daemon.c:1583
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u не є дійсним ідентифікатором"
@@ -167,3 +167,20 @@ msgstr "%u не є дійсним ідентифікатором"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Сповіщення"
+
+#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
+#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+msgid "Notification summary text."
+msgstr ""
+
+#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
+#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+msgid "Notification body text."
+msgstr ""
+
+#: ../src/themes/nodoka/nodoka-theme.c:825
+#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
+#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
+#: ../src/themes/standard/theme.c:751
+msgid "Closes the notification."
+msgstr "Закриває повідомлення."

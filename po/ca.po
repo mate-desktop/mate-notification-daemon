@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Pere Orga <gotrunks@gmail.com>, 2012-2013
-# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2015
+# Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2015-11-26 11:43+0000\n"
+"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"PO-Revision-Date: 2016-06-26 07:50+0000\n"
 "Last-Translator: Robert Antoni Buj i Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/mate/MATE/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -150,12 +150,12 @@ msgstr "Inferior esquerra"
 msgid "Bottom Right"
 msgstr "Inferior dreta"
 
-#: ../src/daemon/daemon.c:1417
+#: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "S'ha excedit el nombre màxim de notificacions"
 
-#: ../src/daemon/daemon.c:1724
+#: ../src/daemon/daemon.c:1583
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no és un id. vàlid de notificació"
@@ -163,3 +163,20 @@ msgstr "%u no és un id. vàlid de notificació"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Notificació"
+
+#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
+#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+msgid "Notification summary text."
+msgstr "El text del resum de la notificació."
+
+#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
+#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+msgid "Notification body text."
+msgstr "El text del cos de la notificació."
+
+#: ../src/themes/nodoka/nodoka-theme.c:825
+#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
+#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
+#: ../src/themes/standard/theme.c:751
+msgid "Closes the notification."
+msgstr "Tanca la notificació."

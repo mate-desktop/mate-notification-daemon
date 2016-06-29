@@ -5,14 +5,14 @@
 # Translators:
 # guyfawkes <a.dawtjan@gmx.de>, 2013
 # crazyd <lebendig2002@yahoo.de>, 2012
-# Tobias Bannert <tobannert@gmail.com>, 2014-2015
+# Tobias Bannert <tobannert@gmail.com>, 2014-2016
 # Xpistian <xpistianbecker2@web.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2015-09-19 15:12+0000\n"
+"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"PO-Revision-Date: 2016-06-27 12:41+0000\n"
 "Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/mate/MATE/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -152,12 +152,12 @@ msgstr "Unten Links"
 msgid "Bottom Right"
 msgstr "Unten Rechts"
 
-#: ../src/daemon/daemon.c:1417
+#: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Maximale Anzahl an Benachrichtigungen wurde überschritten"
 
-#: ../src/daemon/daemon.c:1724
+#: ../src/daemon/daemon.c:1583
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ist keine gültige Kennung für eine Benachrichtigung"
@@ -165,3 +165,20 @@ msgstr "%u ist keine gültige Kennung für eine Benachrichtigung"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Benachrichtigung"
+
+#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
+#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+msgid "Notification summary text."
+msgstr "Benachrichtigungszusammenfassung."
+
+#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
+#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+msgid "Notification body text."
+msgstr "Benachrichtigungstext."
+
+#: ../src/themes/nodoka/nodoka-theme.c:825
+#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
+#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
+#: ../src/themes/standard/theme.c:751
+msgid "Closes the notification."
+msgstr "Schließt die Benachrichtigung."
