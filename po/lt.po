@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2016-02-22 11:03+0000\n"
+"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"PO-Revision-Date: 2016-06-26 12:01+0000\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian (http://www.transifex.com/mate/MATE/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -151,12 +151,12 @@ msgstr "Apačioje kairėje"
 msgid "Bottom Right"
 msgstr "Apačioje dešinėje"
 
-#: ../src/daemon/daemon.c:1417
+#: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Viršytas leistinų pranešimų kiekis"
 
-#: ../src/daemon/daemon.c:1724
+#: ../src/daemon/daemon.c:1583
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nėra tinkamas pranešimo ID"
@@ -164,3 +164,20 @@ msgstr "%u nėra tinkamas pranešimo ID"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Pranešimas"
+
+#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
+#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+msgid "Notification summary text."
+msgstr "Pranešimo santraukos tekstas."
+
+#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
+#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+msgid "Notification body text."
+msgstr "Pranešimo pagrindinės dalies tekstas."
+
+#: ../src/themes/nodoka/nodoka-theme.c:825
+#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
+#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
+#: ../src/themes/standard/theme.c:751
+msgid "Closes the notification."
+msgstr "Užveria pranešimą."

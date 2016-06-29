@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-14 14:02+0300\n"
-"PO-Revision-Date: 2015-09-09 13:22+0000\n"
-"Last-Translator: infirit <inactive+infirit@transifex.com>\n"
+"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"PO-Revision-Date: 2016-06-26 07:25+0000\n"
+"Last-Translator: Wolfgang Ulbrich <chat-to-me@raveit.de>\n"
 "Language-Team: Dutch (http://www.transifex.com/mate/MATE/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -150,12 +150,12 @@ msgstr "Linksonder"
 msgid "Bottom Right"
 msgstr "Rechtsonder"
 
-#: ../src/daemon/daemon.c:1417
+#: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Maximum aantal notificaties overschreden"
 
-#: ../src/daemon/daemon.c:1724
+#: ../src/daemon/daemon.c:1583
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u is geen geldig notificatie-ID"
@@ -163,3 +163,20 @@ msgstr "%u is geen geldig notificatie-ID"
 #: ../src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Notificatie"
+
+#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
+#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+msgid "Notification summary text."
+msgstr ""
+
+#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
+#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+msgid "Notification body text."
+msgstr ""
+
+#: ../src/themes/nodoka/nodoka-theme.c:825
+#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
+#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
+#: ../src/themes/standard/theme.c:751
+msgid "Closes the notification."
+msgstr ""
