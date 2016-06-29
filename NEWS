@@ -1,5 +1,16 @@
 1.15.1
 
+  * Translation update
+  * Slider: improve GtkStyleContex functions
+  * Standard: port to GtkStyleContext
+  * themes: make text translatable
+  * standard: do not use dprecated GtkAlignment
+  * Save some RAM in NotifyTimeout
+  * slider: do not use dprecated GtkAlignment
+  * nodoka: do not use deprecated GtkAlignment
+  * coco: do not use dprecated GtkAlignment
+  * GTK+-3.20 daemon: avoid deprecated GdkDeviceManager
+
 1.15.0
 
   * Translations update
