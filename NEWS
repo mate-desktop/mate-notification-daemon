@@ -1,3 +1,10 @@
+1.14.1
+
+  * Translations update
+  * themes: make text translatable
+  * Save some RAM in NotifyTimeout
+  * Coco, Nodoka: set notification window type
+
 1.14.0
   * Drop MateConf migration script
   * GTK+3: explicitly wrap notification text at 50 characters
