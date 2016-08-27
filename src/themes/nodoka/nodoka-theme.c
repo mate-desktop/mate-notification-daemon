@@ -880,16 +880,21 @@ void
 set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 {
 	char *str;
+	char* quoted;
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	g_assert(windata != NULL);
 
+	quoted = g_markup_escape_text(summary, -1);
 	str = g_strdup_printf(
-		"<span color=\"#000000\"><b><big>%s</big></b></span>", summary);
+		"<span color=\"#000000\"><b><big>%s</big></b></span>", quoted);
+	g_free(quoted);
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
+	quoted = g_markup_escape_text(body, -1);
 	str = g_strdup_printf(
-        "<span color=\"#000000\">%s</span>", body);
+        "<span color=\"#000000\">%s</span>", quoted);
+	g_free(quoted);
 	gtk_label_set_markup(GTK_LABEL(windata->body_label), str);
 	g_free(str);
 
