@@ -1416,6 +1416,10 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 	}
+	else if ((data = (GValue *) g_hash_table_lookup (hints, "image-data")))
+	{
+		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
+	}
 	else if ((data = (GValue *) g_hash_table_lookup (hints, "image_path")))
 	{
 		if (G_VALUE_HOLDS_STRING (data))
@@ -1426,6 +1430,18 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		else
 		{
 			g_warning ("notify_daemon_notify_handler expected image_path hint to be of type string");
+		}
+	}
+	else if ((data = (GValue *) g_hash_table_lookup (hints, "image-path")))
+	{
+		if (G_VALUE_HOLDS_STRING (data))
+		{
+			const char *path = g_value_get_string (data);
+			pixbuf = _notify_daemon_pixbuf_from_path (path);
+		}
+		else
+		{
+			g_warning ("notify_daemon_notify_handler expected image-path hint to be of type string");
 		}
 	}
 	else if (*icon != '\0')
