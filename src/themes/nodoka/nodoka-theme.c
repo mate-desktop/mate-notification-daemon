@@ -891,10 +891,16 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
-	quoted = g_markup_escape_text(body, -1);
-	str = g_strdup_printf(
-        "<span color=\"#000000\">%s</span>", quoted);
-	g_free(quoted);
+	if (strstr(body, "&amp;") || strstr(body, "&lt;") || strstr(body, "&gt;") || strstr(body, "&apos;") || strstr(body, "&quot;"))
+	{
+		str = g_strdup_printf("<span color=\"#000000\">%s</span>", body);
+	}
+	else
+	{
+		quoted = g_markup_escape_text(body, -1);
+		str = g_strdup_printf("<span color=\"#000000\">%s</span>", quoted);
+		g_free(quoted);
+	}
 	gtk_label_set_markup(GTK_LABEL(windata->body_label), str);
 	g_free(str);
 
