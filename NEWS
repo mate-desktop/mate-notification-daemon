@@ -1,23 +1,17 @@
-1.15.1
-
-  * Translation update
-  * Slider: improve GtkStyleContex functions
-  * Standard: port to GtkStyleContext
-  * themes: make text translatable
-  * standard: do not use dprecated GtkAlignment
-  * Save some RAM in NotifyTimeout
-  * slider: do not use dprecated GtkAlignment
-  * nodoka: do not use deprecated GtkAlignment
-  * coco: do not use dprecated GtkAlignment
-  * GTK+-3.20 daemon: avoid deprecated GdkDeviceManager
-
-1.15.0
-
+1.16.0
+  * Build: use 'm4' dir instead of 'macros' for m4 macros, like
+    in other projects
+  * Move to GTK+3 (require GTK+ >= 3.14), drop GTK+2 code and
+    --with-gtk build option
+  * Add support for GNotification
+  * Fix escaping of special characters
+  * Fix various GTK+ deprecations
   * Translations update
-  * remove ancient and unneeded NEWS.GNOME file
-  * use 'm4' dir instead of 'macros' - it's more common name for it
-  * slider: remove color overriding that does nothing these days
-  * require GTK+ >= 3.14, drop GTK+2 code and --with-gtk build option
+
+1.14.1
+  * Translations update
+  * themes: make text translatable
+  * Save some RAM in NotifyTimeout
   * Coco, Nodoka: set notification window type
 
 1.14.0
