@@ -5,14 +5,15 @@
 # Translators:
 # Lukáš Kvídera <lukas.kvidera@seznam.cz>, 2013
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2012
+# Roman Horník <roman.hornik@debian-linux.cz>, 2016
 # Stanislav Kučera <inactive+kacernator@transifex.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-26 09:14+0200\n"
-"PO-Revision-Date: 2016-06-26 07:25+0000\n"
-"Last-Translator: Wolfgang Ulbrich <chat-to-me@raveit.de>\n"
+"PO-Revision-Date: 2016-07-02 12:08+0000\n"
+"Last-Translator: Roman Horník <roman.hornik@debian-linux.cz>\n"
 "Language-Team: Czech (http://www.transifex.com/mate/MATE/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -168,16 +169,16 @@ msgstr "Oznámení"
 #: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
 #: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
 msgid "Notification summary text."
-msgstr ""
+msgstr "Souhrn textu upozornění."
 
 #: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
 #: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
 msgid "Notification body text."
-msgstr ""
+msgstr "Obsah textu upozornění."
 
 #: ../src/themes/nodoka/nodoka-theme.c:825
 #: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
 #: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
 #: ../src/themes/standard/theme.c:751
 msgid "Closes the notification."
-msgstr ""
+msgstr "Zavře upozornění."
