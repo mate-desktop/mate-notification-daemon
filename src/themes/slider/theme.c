@@ -513,15 +513,12 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
-	if (strstr(body, "&amp;") || strstr(body, "&lt;") || strstr(body, "&gt;") || strstr(body, "&apos;") || strstr(body, "&quot;"))
+	if (pango_parse_markup (body, -1, 0, NULL, NULL, NULL, NULL))
 	{
-		gtk_label_set_markup(GTK_LABEL(windata->body_label), body);
+		gtk_label_set_markup (GTK_LABEL (windata->body_label), body);
 	}
-	else
-	{
-		quoted = g_markup_escape_text(body, -1);
-		gtk_label_set_markup(GTK_LABEL(windata->body_label), quoted);
-		g_free(quoted);
+	else {
+		gtk_label_set_text (GTK_LABEL (windata->body_label), body);
 	}
 
 	if (body == NULL || *body == '\0')
