@@ -47,7 +47,8 @@ typedef struct
 	GtkWidget *pie_countdown;
 
 	gboolean composited;
-	
+	gboolean action_icons;
+
 	int width;
 	int height;
 	int last_width;
@@ -680,11 +681,12 @@ void
 set_notification_hints(GtkWindow *nw, GHashTable *hints)
 {
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
-	GValue *value;
+	GValue *value = NULL, *icon_value = NULL;
 
 	g_assert(windata != NULL);
 
 	value = (GValue *)g_hash_table_lookup(hints, "urgency");
+	icon_value = (GValue *)g_hash_table_lookup(hints, "action-icons");
 
 	if (value != NULL && G_VALUE_HOLDS_UCHAR(value))
 	{
@@ -695,6 +697,12 @@ set_notification_hints(GtkWindow *nw, GHashTable *hints)
 		} else {
 			gtk_window_set_title(GTK_WINDOW(nw), "Notification");
 		}
+	}
+
+	/* Determine if action-icons have been requested */
+	if (icon_value != NULL && G_VALUE_HOLDS_BOOLEAN(icon_value))
+	{
+		windata->action_icons = g_value_get_boolean(icon_value);
 	}
 }
 
