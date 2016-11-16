@@ -42,6 +42,7 @@ typedef struct {
 
 	gboolean has_arrow;
 	gboolean composited;
+	gboolean action_icons;
 
 	int width;
 	int height;
@@ -450,26 +451,31 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	return GTK_WINDOW(win);
 }
 
-void set_notification_hints(GtkWindow* nw, GHashTable* hints)
+void set_notification_hints(GtkWindow *nw, GHashTable *hints)
 {
-	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
+	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
+	GValue *value = NULL, *icon_value = NULL;
 
 	g_assert(windata != NULL);
 
-	GValue* value = (GValue*) g_hash_table_lookup(hints, "urgency");
+	value = (GValue *)g_hash_table_lookup(hints, "urgency");
+	icon_value = (GValue *)g_hash_table_lookup(hints, "action-icons");
 
 	if (value != NULL && G_VALUE_HOLDS_UCHAR(value))
 	{
 		windata->urgency = g_value_get_uchar(value);
 
-		if (windata->urgency == URGENCY_CRITICAL)
-		{
+		if (windata->urgency == URGENCY_CRITICAL) {
 			gtk_window_set_title(GTK_WINDOW(nw), "Critical Notification");
-		}
-		else
-		{
+		} else {
 			gtk_window_set_title(GTK_WINDOW(nw), "Notification");
 		}
+	}
+
+	/* Determine if action-icons have been requested */
+	if (icon_value != NULL && G_VALUE_HOLDS_BOOLEAN(icon_value))
+	{
+		windata->action_icons = g_value_get_boolean(icon_value);
 	}
 }
 
