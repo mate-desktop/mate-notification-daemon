@@ -1022,12 +1022,18 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		gtk_widget_show(windata->actions_box);
 		update_content_hbox_visibility(windata);
 
-		windata->pie_countdown = gtk_drawing_area_new();
-		gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
-		gtk_widget_show(windata->pie_countdown);
-		gtk_box_pack_end(GTK_BOX(windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
-		gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
-		g_signal_connect (G_OBJECT (windata->pie_countdown), "draw", G_CALLBACK (on_countdown_draw), windata);
+		/* Don't try to re-add a pie_countdown */
+		if (!windata->pie_countdown) {
+			windata->pie_countdown = gtk_drawing_area_new();
+			gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
+			gtk_widget_show(windata->pie_countdown);
+
+			gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
+			gtk_widget_set_size_request(windata->pie_countdown,
+						    PIE_WIDTH, PIE_HEIGHT);
+			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw",
+					 G_CALLBACK(on_countdown_draw), windata);
+		}
 	}
 
 	button = gtk_button_new();
