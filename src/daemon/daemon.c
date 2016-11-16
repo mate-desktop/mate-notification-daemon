@@ -1610,6 +1610,7 @@ gboolean notify_daemon_get_capabilities(NotifyDaemon* daemon, char*** caps)
 {
 	GPtrArray* a = g_ptr_array_new ();
 	g_ptr_array_add (a, g_strdup ("actions"));
+	g_ptr_array_add (a, g_strdup ("action-icons"));
 	g_ptr_array_add (a, g_strdup ("body"));
 	g_ptr_array_add (a, g_strdup ("body-hyperlinks"));
 	g_ptr_array_add (a, g_strdup ("body-markup"));
