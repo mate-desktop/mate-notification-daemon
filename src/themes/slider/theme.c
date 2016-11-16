@@ -732,11 +732,13 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		}
 	}
 
+	if (windata->action_icons) {
+		button = gtk_button_new_from_icon_name(key, GTK_ICON_SIZE_BUTTON);
+		goto add_button;
+	}
+
 	button = gtk_button_new();
 	gtk_widget_show(button);
-	gtk_box_pack_start(GTK_BOX(windata->actions_box), button, FALSE, FALSE, 0);
-	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
-	gtk_container_set_border_width(GTK_CONTAINER(button), 0);
 
 	hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_show(hbox);
@@ -770,9 +772,16 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	gtk_label_set_markup(GTK_LABEL(label), buf);
 	g_free(buf);
 
+add_button:
+	gtk_box_pack_start(GTK_BOX(windata->actions_box), button, FALSE, FALSE, 0);
+	gtk_button_set_relief(GTK_BUTTON(button), GTK_RELIEF_NONE);
+	gtk_container_set_border_width(GTK_CONTAINER(button), 0);
+
 	g_object_set_data(G_OBJECT(button), "_nw", nw);
 	g_object_set_data_full(G_OBJECT(button), "_action_key", g_strdup(key), g_free);
 	g_signal_connect(G_OBJECT(button), "button-release-event", G_CALLBACK(on_action_clicked), cb);
+
+	gtk_widget_show_all(windata->actions_box);
 }
 
 void clear_notification_actions(GtkWindow* nw)
