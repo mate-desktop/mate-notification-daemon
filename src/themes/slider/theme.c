@@ -722,6 +722,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 		if (!windata->pie_countdown) {
 			windata->pie_countdown = gtk_drawing_area_new();
 			gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
+			gtk_widget_set_valign (windata->pie_countdown, GTK_ALIGN_CENTER);
 			gtk_widget_show(windata->pie_countdown);
 
 			gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
