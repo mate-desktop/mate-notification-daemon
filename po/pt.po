@@ -5,14 +5,15 @@
 # Translators:
 # crolidge, 2013
 # crolidge, 2014-2015
+# Manuela Silva <manuela.silva@sky.com>, 2016
 # Sérgio Marques <smarquespt@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
-"PO-Revision-Date: 2016-06-26 07:25+0000\n"
-"Last-Translator: Wolfgang Ulbrich <chat-to-me@raveit.de>\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
+"PO-Revision-Date: 2016-11-23 13:40+0000\n"
+"Last-Translator: Manuela Silva <manuela.silva@sky.com>\n"
 "Language-Team: Portuguese (http://www.transifex.com/mate/MATE/language/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -156,7 +157,7 @@ msgstr "Direita inferior"
 msgid "Exceeded maximum number of notifications"
 msgstr "Excedeu o número máximo de notificações"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u não é uma identificação válida"
@@ -168,16 +169,16 @@ msgstr "Notificação"
 #: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
 #: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
 msgid "Notification summary text."
-msgstr ""
+msgstr "Texto resumo da notificação."
 
 #: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
 #: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
 msgid "Notification body text."
-msgstr ""
+msgstr "Texto do corpo da notificação."
 
 #: ../src/themes/nodoka/nodoka-theme.c:825
 #: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
 #: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
 #: ../src/themes/standard/theme.c:751
 msgid "Closes the notification."
-msgstr ""
+msgstr "Fecha a notificação."
