@@ -1,3 +1,7 @@
+1.16.1
+  * Fix markup parsing
+  * Translations update
+
 1.16.0
   * Build: use 'm4' dir instead of 'macros' for m4 macros, like
     in other projects
