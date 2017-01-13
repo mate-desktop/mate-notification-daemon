@@ -1,11 +1,14 @@
-1.17.0
+### mate-notification-daemon 1.17.0
+
   * Translations update
 
-1.16.1
+### mate-notification-daemon 1.16.1
+
   * Fix markup parsing
   * Translations update
 
-1.16.0
+### mate-notification-daemon 1.16.0
+
   * Build: use 'm4' dir instead of 'macros' for m4 macros, like
     in other projects
   * Move to GTK+3 (require GTK+ >= 3.14), drop GTK+2 code and
@@ -15,13 +18,15 @@
   * Fix various GTK+ deprecations
   * Translations update
 
-1.14.1
+### mate-notification-daemon 1.14.1
+
   * Translations update
   * themes: make text translatable
   * Save some RAM in NotifyTimeout
   * Coco, Nodoka: set notification window type
 
-1.14.0
+### mate-notification-daemon 1.14.0
+
   * Drop MateConf migration script
   * GTK+3: explicitly wrap notification text at 50 characters
   * GTK+3: stop reversing fg/bg colors in slider theme (use colors
@@ -31,30 +36,36 @@
   * Translations update
   * Add Changelog generation
 
-1.12.1
+### mate-notification-daemon 1.12.1
+
   * Fix crash due to regression
   * GTK+3 fixes
   * Translations update
 
-1.12.0
+### mate-notification-daemon 1.12.0
+
   * Retrieve strings directly from gschema (requires intltool 0.50.1)
   * Fix height and visibility of themes in gtk3
   * Multiple theme fixes
   * Some more fixes and cleanups
 
-1.10.2
+### mate-notification-daemon 1.10.2
+
   * Standard theme: fix crash when clicking on close button
   * Properties: remove useless help button
   * Fix build with GLib 2.36
   * Some more bugfixes
 
-1.10.1
+### mate-notification-daemon 1.10.1
+
   * Don't crash on notifications from Rhythmbox
   * Some more bugfixes
   * Translations update
 
-1.10.0
+### mate-notification-daemon 1.10.0
+
   * Bugfixes
 
-1.8.0
+### mate-notification-daemon 1.8.0
+
   * Switch to libwnck
