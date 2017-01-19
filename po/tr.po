@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Atilla Öntaş <tarakbumba@gmail.com>, 2015
+# tarakbumba <tarakbumba@gmail.com>, 2015
 # mauron, 2013
 # mauron, 2012
 # Yasin Uysal <yasinuysal22@outlook.com>, 2016
@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
 "PO-Revision-Date: 2016-07-27 10:43+0000\n"
 "Last-Translator: Yasin Uysal <yasinuysal22@outlook.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/mate/MATE/language/tr/)\n"
@@ -157,7 +157,7 @@ msgstr "Sağ alt"
 msgid "Exceeded maximum number of notifications"
 msgstr "Azami bildirim sayısı aşıldı"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u geçerli bir bildirim kimliği değildir"

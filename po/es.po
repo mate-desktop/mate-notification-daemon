@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
 "PO-Revision-Date: 2016-07-19 00:20+0000\n"
 "Last-Translator: Mario Verdin <jmvl1303@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/mate/MATE/language/es/)\n"
@@ -158,7 +158,7 @@ msgstr "Abajo a la derecha"
 msgid "Exceeded maximum number of notifications"
 msgstr "Se excedió el número máximo de notificaciones"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no es un ID de notificación válido"

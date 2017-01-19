@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
 "PO-Revision-Date: 2016-06-27 12:41+0000\n"
 "Last-Translator: Tobias Bannert <tobannert@gmail.com>\n"
 "Language-Team: German (http://www.transifex.com/mate/MATE/language/de/)\n"
@@ -157,7 +157,7 @@ msgstr "Unten Rechts"
 msgid "Exceeded maximum number of notifications"
 msgstr "Maximale Anzahl an Benachrichtigungen wurde überschritten"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ist keine gültige Kennung für eine Benachrichtigung"

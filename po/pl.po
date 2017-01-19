@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Dominik Grzywak, 2016
+# Dominik Adrian Grzywak, 2016
 # Marcin Kralka <marcink96@gmail.com>, 2013
 # Michal Herman <szalejot@gmail.com>, 2013
 # Paweł Bandura <gawelx@gmail.com>, 2015

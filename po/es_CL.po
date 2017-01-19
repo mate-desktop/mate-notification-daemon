@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Claudio Alejandro <claudio_alejandro@gmx.com>, 2015
+# Alejo_K <claudio_alejandro@gmx.com>, 2015
 # Pablo Roberto “Jristz” Lezaeta Reyes <prflr88@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
 "PO-Revision-Date: 2016-06-26 07:25+0000\n"
 "Last-Translator: Wolfgang Ulbrich <chat-to-me@raveit.de>\n"
 "Language-Team: Spanish (Chile) (http://www.transifex.com/mate/MATE/language/es_CL/)\n"
@@ -155,7 +155,7 @@ msgstr "Fondo a la derecha"
 msgid "Exceeded maximum number of notifications"
 msgstr "Exedido el maximo de notificaciones"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no es una ID de notificación válida"

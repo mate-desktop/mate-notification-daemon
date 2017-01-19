@@ -4,13 +4,13 @@
 # 
 # Translators:
 # corneliu.e <corneliueva@yahoo.com>, 2014
-# Daniel <danny34ever@yahoo.com>, 2015-2016
+# Daniel <danny3@tutanota.com>, 2015-2016
 # Polihron Alexandru (APoliTech) <ppolihron@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-26 09:14+0200\n"
+"POT-Creation-Date: 2016-12-06 00:49+0300\n"
 "PO-Revision-Date: 2016-06-26 07:25+0000\n"
 "Last-Translator: Wolfgang Ulbrich <chat-to-me@raveit.de>\n"
 "Language-Team: Romanian (http://www.transifex.com/mate/MATE/language/ro/)\n"
@@ -156,7 +156,7 @@ msgstr "Dreapta jos"
 msgid "Exceeded maximum number of notifications"
 msgstr "Numărul maxim de notificări a fost depașit"
 
-#: ../src/daemon/daemon.c:1583
+#: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nu este un ID de notificare valid"
