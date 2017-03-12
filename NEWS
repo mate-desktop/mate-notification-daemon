@@ -1,7 +1,10 @@
-### mate-notification-daemon 1.17.1
+### mate-notification-daemon 1.18.0
 
-### mate-notification-daemon 1.17.0
-
+  * NEWS: use consistent, project wide, markdown-like formatting
+    to make generating release announcements easier
+  * Implement action icons support (e.g. playback control icons
+    used by media players)
+  * Themes: fix some pie countdown issues
   * Translations update
 
 ### mate-notification-daemon 1.16.1
