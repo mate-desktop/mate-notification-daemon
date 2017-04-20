@@ -317,7 +317,12 @@ countdown_expose_cb(GtkWidget *pie,
 static gboolean on_configure_event (GtkWidget* widget, GdkEventConfigure* event, WindowData* windata)
 {
 	windata->width = event->width;
+	/* fix window height in GTK3 */
+#if GTK_CHECK_VERSION(3, 0, 0)
+	windata->height = event->height/2.2;
+#else
 	windata->height = event->height;
+#endif
 
 	gtk_widget_queue_draw (widget);
 
