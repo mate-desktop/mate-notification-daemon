@@ -24,6 +24,8 @@
 
 #include <gtk/gtk.h>
 
+#define MATE_EVENT 42
+
 void sound_play_file(GtkWidget* widget, const char* filename);
 
 #endif /* _SOUND_H */
