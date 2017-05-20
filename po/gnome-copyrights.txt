@@ -160,12 +160,12 @@
 
 
 ========== pl.po ==========
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-# Aviary.pl
-# Jeśli masz jakiekolwiek uwagi odnoszące się do tłumaczenia lub chcesz
-# pomóc w jego rozwijaniu i pielęgnowaniu, napisz do nas:
-# matepl@aviary.pl
-# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+# Polish translation for notification-daemon.
+# Copyright © 2007-2010 the notification-daemon authors.
+# This file is distributed under the same license as the notification-daemon package.
+# Piotr Drąg <piotrdrag@gmail.com>, 2007-2010.
+# Aviary.pl <gnomepl@aviary.pl>, 2010.
+#
 
 
 
