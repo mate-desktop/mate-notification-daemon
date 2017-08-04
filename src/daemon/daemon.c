@@ -185,13 +185,21 @@ static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, in
 
 static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 {
+#if GTK_CHECK_VERSION (3, 22, 0)
+	GdkDisplay     *display;
+#endif
 	NotifyScreen* nscreen;
 	int n_monitors;
 	int i;
 
 	nscreen = daemon->priv->screen;
+#if GTK_CHECK_VERSION (3, 22, 0)
+	display = gdk_screen_get_display (screen);
 
+	n_monitors = gdk_display_get_n_monitors(display);
+#else
 	n_monitors = gdk_screen_get_n_monitors(screen);
+#endif
 
 	if (n_monitors > nscreen->n_stacks)
 	{
@@ -240,12 +248,20 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 
 static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen *screen)
 {
+#if GTK_CHECK_VERSION (3, 22, 0)
+	GdkDisplay     *display;
+#endif
 	NotifyScreen* nscreen;
 	int i;
 
 	nscreen = daemon->priv->screen;
+#if GTK_CHECK_VERSION (3, 22, 0)
+	display = gdk_screen_get_display (screen);
 
+	nscreen->n_stacks = gdk_display_get_n_monitors(display);
+#else
 	nscreen->n_stacks = gdk_screen_get_n_monitors(screen);
+#endif
 
 	nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, nscreen->n_stacks);
 
