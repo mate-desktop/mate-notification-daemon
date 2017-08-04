@@ -196,10 +196,18 @@ notify_stack_new (NotifyDaemon       *daemon,
                   NotifyStackLocation location)
 {
         NotifyStack    *stack;
+#if GTK_CHECK_VERSION (3, 22, 0)
+        GdkDisplay     *display;
 
+        display = gdk_screen_get_display (screen);
+#endif
         g_assert (daemon != NULL);
         g_assert (screen != NULL && GDK_IS_SCREEN (screen));
+#if GTK_CHECK_VERSION (3, 22, 0)
+        g_assert (monitor < (guint)gdk_display_get_n_monitors (display));
+#else
         g_assert (monitor < (guint)gdk_screen_get_n_monitors (screen));
+#endif
         g_assert (location != NOTIFY_STACK_LOCATION_UNKNOWN);
 
         stack = g_new0 (NotifyStack, 1);

@@ -213,7 +213,11 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
 	screen = gdk_display_get_default_screen(display);
 	g_assert(screen != NULL);
 	
+#if GTK_CHECK_VERSION (3, 22, 0)
+	num_monitors = gdk_display_get_n_monitors(display);
+#else
 	num_monitors = gdk_screen_get_n_monitors(screen);
+#endif
 	g_assert(num_monitors >= 1);
 	
 	store = gtk_list_store_new(N_COLUMNS_MONITOR, G_TYPE_INT);
