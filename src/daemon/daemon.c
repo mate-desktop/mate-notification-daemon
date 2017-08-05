@@ -955,9 +955,12 @@ static GdkPixbuf* _notify_daemon_pixbuf_from_path(const char* path)
 		if (!strncmp (path, "file://", 7))
 		{
 			path += 7;
+
+			/* Unescape URI-encoded, allowed characters */
+			path = g_uri_unescape_string (path, G_URI_RESERVED_CHARS_ALLOWED_IN_PATH);
 		}
 
-			/* Load file */
+		/* Load file */
 		pixbuf = gdk_pixbuf_new_from_file (path, NULL);
 	}
 	else
