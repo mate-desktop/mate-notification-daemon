@@ -743,7 +743,7 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 
 		theme_set_notification_timeout(nt->nw, timeout);
 
-		glong usec = timeout * 1000;  /* convert from msec to usec */
+		glong usec = timeout * 1000L;  /* convert from msec to usec */
 
 		/*
 		 * If it's less than 0, wrap around back to MAXLONG.
