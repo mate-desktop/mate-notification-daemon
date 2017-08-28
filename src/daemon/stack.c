@@ -36,7 +36,11 @@
 struct _NotifyStack {
 	NotifyDaemon* daemon;
 	GdkScreen* screen;
+#if GTK_CHECK_VERSION (3, 22, 0)
+	GdkMonitor *monitor;
+#else
 	guint monitor;
+#endif
 	NotifyStackLocation location;
 	GList* windows;
 	guint update_id;
@@ -190,10 +194,33 @@ translate_coordinates (NotifyStackLocation stack_location,
         }
 }
 
+#if GTK_CHECK_VERSION(3, 22, 0)
+static int
+_gtk_get_monitor_num (GdkMonitor *monitor)
+{
+        GdkDisplay *display;
+        int n_monitors, i;
+
+        display = gdk_monitor_get_display(monitor);
+        n_monitors = gdk_display_get_n_monitors(display);
+
+        for(i = 0; i < n_monitors; i++)
+        {
+                if (gdk_display_get_monitor(display, i) == monitor) return i;
+        }
+
+        return -1;
+}
+#endif
+
 NotifyStack *
 notify_stack_new (NotifyDaemon       *daemon,
                   GdkScreen          *screen,
+#if GTK_CHECK_VERSION (3, 22, 0)
+                  GdkMonitor         *monitor,
+#else
                   guint               monitor,
+#endif
                   NotifyStackLocation location)
 {
         NotifyStack    *stack;
@@ -205,7 +232,7 @@ notify_stack_new (NotifyDaemon       *daemon,
         g_assert (daemon != NULL);
         g_assert (screen != NULL && GDK_IS_SCREEN (screen));
 #if GTK_CHECK_VERSION (3, 22, 0)
-        g_assert (monitor < (guint)gdk_display_get_n_monitors (display));
+        g_assert ((guint)_gtk_get_monitor_num (monitor) < (guint)gdk_display_get_n_monitors (display));
 #else
         g_assert (monitor < (guint)gdk_screen_get_n_monitors (screen));
 #endif
@@ -281,9 +308,13 @@ notify_stack_shift_notifications (NotifyStack *stack,
         int             n_wins;
 
         get_work_area (stack, &workarea);
+#if GTK_CHECK_VERSION (3, 22, 0)
+	gdk_monitor_get_geometry (stack->monitor, &monitor);
+#else
         gdk_screen_get_monitor_geometry (stack->screen,
                                          stack->monitor,
                                          &monitor);
+#endif
         gdk_rectangle_intersect (&monitor, &workarea, &workarea);
 
         add_padding_to_rect (&workarea);

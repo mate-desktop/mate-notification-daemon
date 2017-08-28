@@ -266,13 +266,24 @@ static GtkArrowType get_notification_arrow_type(GtkWidget* nw)
 	WindowData*     windata;
 	GdkScreen*      screen;
 	GdkRectangle    monitor_geometry;
+#if GTK_CHECK_VERSION (3, 22, 0)
+	GdkDisplay*     display;
+	GdkMonitor*     monitor;
+#else
 	int             monitor;
+#endif
 
 	windata = g_object_get_data(G_OBJECT(nw), "windata");
 
 	screen = gdk_window_get_screen(GDK_WINDOW( gtk_widget_get_window(nw)));
+#if GTK_CHECK_VERSION (3, 22, 0)
+	display = gdk_screen_get_display (screen);
+	monitor = gdk_display_get_monitor_at_point (display, windata->point_x, windata->point_y);
+	gdk_monitor_get_geometry (monitor, &monitor_geometry);
+#else
 	monitor = gdk_screen_get_monitor_at_point(screen, windata->point_x, windata->point_y);
 	gdk_screen_get_monitor_geometry(screen, monitor, &monitor_geometry);
+#endif
 
 	if (windata->point_y - monitor_geometry.y + windata->height + DEFAULT_ARROW_HEIGHT > monitor_geometry.height)
 	{
@@ -307,15 +318,26 @@ static void create_border_with_arrow(GtkWidget* nw, WindowData* windata)
 	int             arrow_offset = DEFAULT_ARROW_OFFSET;
 	GdkPoint*       shape_points = NULL;
 	int             i = 0;
+#if GTK_CHECK_VERSION (3, 22, 0)
+	GdkMonitor*     monitor;
+	GdkDisplay*     display;
+#else
 	int             monitor;
+#endif
 	GdkRectangle    monitor_geometry;
 
 	width = windata->width;
 	height = windata->height;
 
 	screen = gdk_window_get_screen(GDK_WINDOW(gtk_widget_get_window(nw)));
+#if GTK_CHECK_VERSION (3, 22, 0)
+	display = gdk_screen_get_display (screen);
+	monitor = gdk_display_get_monitor_at_point (display, windata->point_x, windata->point_y);
+	gdk_monitor_get_geometry (monitor, &monitor_geometry);
+#else
 	monitor = gdk_screen_get_monitor_at_point(screen, windata->point_x, windata->point_y);
 	gdk_screen_get_monitor_geometry(screen, monitor, &monitor_geometry);
+#endif
 
 	windata->num_border_points = 5;
 
