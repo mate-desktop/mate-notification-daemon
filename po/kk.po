@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-06-26 07:25+0000\n"
-"Last-Translator: Wolfgang Ulbrich <mate@raveit.de>\n"
+"PO-Revision-Date: 2017-03-23 15:48+0000\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
 "Language-Team: Kazakh (http://www.transifex.com/mate/MATE/language/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,94 +20,94 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr ""
+msgstr "Қалқымалы кеңес орны"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr ""
+msgstr "Хабарламаларды қатарымен орналастыру үшін бастапқы шығу орны. Мүмкін мәндері: \"top_left\",\"top_right\",\"bottom_left\" және \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Белсенді мониторды қолдану"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "Хабарламаны белсенді мониторда көрсету."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
-msgstr ""
+msgstr "Монитор"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr ""
+msgstr "Хабарламаны көрсету үшін монитор. Мүмкін мәндері: -1 (белсенді мониторда көрсету) және 0 мен n-1 арасындағы сан, бұл жерде n - мониторлардың жалпы саны."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
-msgstr ""
+msgstr "Ағымдағы тема"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr ""
+msgstr "Хабарламаны көрсету кезінде қолданылатын тема."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
-msgstr ""
+msgstr "Дыбыс іске қосылған"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr ""
+msgstr "Хабарламалар үшін дыбыс қолдауын іске қосу/сөндіру."
 
 #: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
-msgstr ""
+msgstr "Coco"
 
 #: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
-msgstr ""
+msgstr "Slider"
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
-msgstr ""
+msgstr "Қалыпты тема"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr ""
+msgstr "libmatenotify іске қосу қатесі"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
-msgstr ""
+msgstr "Хабарламаны сынау"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
-msgstr ""
+msgstr "Сынау"
 
 #: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr ""
+msgstr "Хабарламаны көрсету кезіндегі қате: %s"
 
 #: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr ""
+msgstr "Пайдаланушы интерфейс файлын жүктеу мүмкін емес: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr ""
+msgstr "Қалқымалы хабарламалар"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "Қалқымалы хабарламаларды баптау"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -114,23 +115,23 @@ msgstr "Хабарлау баптаулары"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr ""
+msgstr "А_лдын-ала қарау"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr ""
+msgstr "<b>Жалпы опциялар</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
-msgstr ""
+msgstr "_Орны:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
-msgstr "Т_ақырыбы:"
+msgstr "Т_емасы:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
-msgstr ""
+msgstr "_Монитор:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
@@ -151,30 +152,30 @@ msgstr "Оң жақ төменнен"
 #: ../src/daemon/daemon.c:1294
 #, c-format
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "Хабарламалардың максималды санынан астық"
 
 #: ../src/daemon/daemon.c:1599
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr ""
+msgstr "%u жарамды хабарлама ID-і емес"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr ""
+msgstr "Хабарлама"
 
 #: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
 #: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
 msgid "Notification summary text."
-msgstr ""
+msgstr "Хабарламаның жинақы мәтіні."
 
 #: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
 #: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
 msgid "Notification body text."
-msgstr ""
+msgstr "Хабарлама денесінің мәтіні."
 
 #: ../src/themes/nodoka/nodoka-theme.c:825
 #: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
 #: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
 #: ../src/themes/standard/theme.c:751
 msgid "Closes the notification."
-msgstr ""
+msgstr "Хабарламаны жабады."

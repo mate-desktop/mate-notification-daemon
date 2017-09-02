@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Michael Moroni <michael.moroni@openmailbox.org>, 2012
+# Michael Moroni <michaelmoroni@disroot.org>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"

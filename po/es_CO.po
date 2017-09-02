@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Julian B <julborre@gmail.com>, 2016
+# Julian Borrero <julborre@gmail.com>, 2016
+# Sergio Alejandro Bayona Becerra <sergioalejo@gmail.com>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-08-21 04:36+0000\n"
-"Last-Translator: Julian B <julborre@gmail.com>\n"
+"PO-Revision-Date: 2017-05-30 01:43+0000\n"
+"Last-Translator: Sergio Alejandro Bayona Becerra <sergioalejo@gmail.com>\n"
 "Language-Team: Spanish (Colombia) (http://www.transifex.com/mate/MATE/language/es_CO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,7 +116,7 @@ msgstr "Configuraciones de notificación"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
-msgstr ""
+msgstr "_Previsualizar"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
@@ -123,7 +124,7 @@ msgstr "<b>Opciones generales</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
-msgstr ""
+msgstr "P_osición:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
@@ -166,7 +167,7 @@ msgstr "Notificación"
 #: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
 #: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
 msgid "Notification summary text."
-msgstr "Texto del resumen de la notificación."
+msgstr "Texto de resumen de la notificación."
 
 #: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
 #: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789

@@ -3,17 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Daniel Gullbransen <daniel@llama.nu>, 2017
 # eckeman <eckeman@zoho.com>, 2015
 # Erik, 2014
-# Jonatan Nyberg <jonatan@autistici.org>, 2017
+# Jonatan Nyberg, 2017
 # Kristoffer Grundström <kristoffer.grundstrom1983@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2017-01-24 09:59+0000\n"
-"Last-Translator: Jonatan Nyberg <jonatan@autistici.org>\n"
+"PO-Revision-Date: 2017-05-03 08:00+0000\n"
+"Last-Translator: Daniel Gullbransen <daniel@llama.nu>\n"
 "Language-Team: Swedish (http://www.transifex.com/mate/MATE/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +111,7 @@ msgstr "Popup-notifieringar"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "Ställ dina popup-notifikation inställningar"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
