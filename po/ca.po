@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Pere O. <gotrunks@gmail.com>, 2012-2013
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2017
 # Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2015-2016
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-06-26 07:50+0000\n"
+"PO-Revision-Date: 2017-07-15 16:48+0000\n"
 "Last-Translator: Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>\n"
 "Language-Team: Catalan (http://www.transifex.com/mate/MATE/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +83,7 @@ msgstr "Tema estàndard"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr "S'ha produït un error en inicialitzar la libmatenotify"
+msgstr "Error en la inicialització de libmatenotify"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
