@@ -1,5 +1,13 @@
 ### mate-notification-daemon 1.19.0
 
+  * Translations update
+  * gtk 3.22: avoid deprecated gdk_screen_get_monitor... functions:
+  * avoid deprecated gdk_screen_get_width/height
+  * avoid deprecated gdk_screen_get_n_monitors
+  * Fixes high cpu usage with large timeouts
+  * unescape URI-encode paths for icon files
+  * Restore Polish translation credits from GNOME
+
 ### mate-notification-daemon 1.18.0
 
   * NEWS: use consistent, project wide, markdown-like formatting
