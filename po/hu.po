@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-07-01 05:05+0000\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-09-19 11:04+0000\n"
 "Last-Translator: Falu <info@falu.me>\n"
 "Language-Team: Hungarian (http://www.transifex.com/mate/MATE/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -64,40 +64,40 @@ msgstr "Hang engedélyezve"
 msgid "Turns on and off sound support for notifications."
 msgstr "Be- illetve kikapcsolja az értesítések hangját."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr "Kókusz"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "Csúszka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "Alapértelmezett téma"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "Hiba a libmatenotify előkészítése közben"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "Értesítésteszt"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "Csak egy próba"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Hiba az értesítés megjelenítésekor: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "A felhasználóifelület-fájl nem tölthető be: %s"
@@ -150,12 +150,12 @@ msgstr "Bal oldalon, alul"
 msgid "Bottom Right"
 msgstr "Jobb oldalon, alul"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Az értesítések maximális száma túllépve"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "A(z) %u nem érvényes értesítésazonosító"
@@ -164,19 +164,19 @@ msgstr "A(z) %u nem érvényes értesítésazonosító"
 msgid "Notification"
 msgstr "Értesítés"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
 msgstr "Értesítési szöveg összefoglalója."
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
 msgstr "Értesítési szöveg törzse."
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
 msgstr "Bezárja az értesítést."

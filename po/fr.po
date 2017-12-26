@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-07-23 08:51+0000\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-09-23 18:07+0000\n"
 "Last-Translator: brice nice <brice1024@yahoo.fr>\n"
 "Language-Team: French (http://www.transifex.com/mate/MATE/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -66,40 +66,40 @@ msgstr "Son activé"
 msgid "Turns on and off sound support for notifications."
 msgstr "Active ou désactive la prise en charge du son pour les notifications."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "Curseur"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "Thème standard"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "Erreur d'initialisation de libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "Test de notification"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "Un simple test"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Erreur lors de l'affichage d'une notification : %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Impossible de charger le fichier d'interface utilisateur : %s"
@@ -152,12 +152,12 @@ msgstr "En bas à gauche"
 msgid "Bottom Right"
 msgstr "En bas à droite"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Nombre maximum de notifications atteint"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u n'est pas un ID de notification valable"
@@ -166,19 +166,19 @@ msgstr "%u n'est pas un ID de notification valable"
 msgid "Notification"
 msgstr "Notification"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
 msgstr "Résumé "
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
 msgstr "Notification de corps de texte"
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
 msgstr "Ferme la notification"

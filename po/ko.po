@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-06-27 09:40+0000\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-11-14 11:52+0000\n"
 "Last-Translator: 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/mate/MATE/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -65,40 +65,40 @@ msgstr "소리 활성화"
 msgid "Turns on and off sound support for notifications."
 msgstr "알림에 사용할 소리를 켜거나 끕니다."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr "코코"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr "노도카"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "슬라이더"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "표준 테마"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify 초기화 중 오류"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "알림 시험"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "시험입니다"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "알림 표시 중 오류가 발생했습니다: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "사용자 인터페이스 파일을 불러올 수 없습니다: %s"
@@ -151,12 +151,12 @@ msgstr "좌측 하단"
 msgid "Bottom Right"
 msgstr "우측 하단"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "최대 알림 갯수를 넘었습니다"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "유효하지 않은 %u 알림 ID 입니다"
@@ -165,19 +165,19 @@ msgstr "유효하지 않은 %u 알림 ID 입니다"
 msgid "Notification"
 msgstr "알림"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
 msgstr "알림 요약 텍스트."
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
 msgstr "알림 내용 텍스트."
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
 msgstr "알림 닫기."

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2017-02-07 20:15+0000\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-09-23 18:07+0000\n"
 "Last-Translator: Αλέξανδρος Καπετάνιος <alexandros@gnugr.org>\n"
 "Language-Team: Greek (http://www.transifex.com/mate/MATE/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -67,40 +67,40 @@ msgstr "Ήχος ενεργός"
 msgid "Turns on and off sound support for notifications."
 msgstr "Ενεργοποιεί ή απενεργοποιεί την υποστήριξη ήχου για τις ειδοποιήσεις."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "Μπάρα κύλισης"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "Τυπικό θέμα"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "Σφάλμα ενεργοποίησης libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "Δοκιμή Ειδοποίησης"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "Αυτό είναι μια δοκιμή"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Σφάλμα εμφάνισης ειδοποιήσεων: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Αδυναμία φόρτωσης αρχείου περιβάλλοντος χρήσης: %s"
@@ -153,12 +153,12 @@ msgstr "Κάτω Αριστερά"
 msgid "Bottom Right"
 msgstr "Κάτω Δεξιά"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Έγινε υπέρβαση του μέγιστου αριθμού ειδοποιήσεων"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "το %u δεν είναι ένα έγκυρο ID ειδοποίησης"
@@ -167,19 +167,19 @@ msgstr "το %u δεν είναι ένα έγκυρο ID ειδοποίησης"
 msgid "Notification"
 msgstr "Ειδοποίηση"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
 msgstr "Κείμενο σύνοψης ειδοποιήσεων."
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
 msgstr "Μέρος κειμένου ειδοποιήσεων."
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
 msgstr "Κλείνει την ειδοποιήσει."

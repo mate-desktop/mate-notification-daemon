@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Edward Sawyer <saoded@gmail.com>, 2016
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2012-2013
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2012-2013,2017
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-06-26 07:25+0000\n"
-"Last-Translator: Wolfgang Ulbrich <mate@raveit.de>\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-12-06 15:43+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/mate/MATE/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,51 +64,51 @@ msgstr "Sound Enabled"
 msgid "Turns on and off sound support for notifications."
 msgstr "Turns on and off sound support for notifications."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr "קוקו"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr "נודוקה"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "פס גלילה"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "ערכת עיצוב רגילה"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "שגיאה בעת הפעלת "
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "בדיקת ההתרעות"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "סתם בדיקה"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "שגיאה בעת הצגת ההתרעה: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "לא ניתן לטעון את קובץ מנשק המשתמש: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr ""
+msgstr "התרעות קופצות"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "הגדרת העדפות ההתרעות הקופצות שלך"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -150,12 +150,12 @@ msgstr "שמאלה למטה"
 msgid "Bottom Right"
 msgstr "ימינה למטה"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "מספר ההתרעות המרבי הושג"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u אינו מזהה התרעה תקני"
@@ -164,19 +164,19 @@ msgstr "%u אינו מזהה התרעה תקני"
 msgid "Notification"
 msgstr "התרעה"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
-msgstr ""
+msgstr "טקסט תקציר של התרעה."
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
-msgstr ""
+msgstr "טקסט גוף ההתרעה."
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
-msgstr ""
+msgstr "סוגר את ההתרעה."

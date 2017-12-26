@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-06 00:49+0300\n"
-"PO-Revision-Date: 2016-06-26 07:25+0000\n"
+"POT-Creation-Date: 2017-11-28 13:26+0100\n"
+"PO-Revision-Date: 2017-09-19 11:04+0000\n"
 "Last-Translator: Wolfgang Ulbrich <mate@raveit.de>\n"
 "Language-Team: Panjabi (Punjabi) (http://www.transifex.com/mate/MATE/language/pa/)\n"
 "MIME-Version: 1.0\n"
@@ -62,40 +62,40 @@ msgstr "ਸਾਊਂਡ ਚਾਲੂ ਹੈ"
 msgid "Turns on and off sound support for notifications."
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ ਲਈ ਸਾਊਂਡ ਸਹਿਯੋਗ ਬੰਦ ਅਤੇ ਚਾਲੂ ਕਰੋ।"
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Coco"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Nodoka"
 msgstr ""
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Slider"
 msgstr "ਸਲਾਈਡਰ"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:345
 msgid "Standard theme"
 msgstr "ਸਟੈਂਡਰਡ ਥੀਮ"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: ../src/capplet/mate-notification-properties.c:462
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify ਸ਼ੁਰੂ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Notification Test"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ ਟੈਸਟ"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: ../src/capplet/mate-notification-properties.c:475
 msgid "Just a test"
 msgstr "ਸਿਰਫ ਟੈਸਟ ਹੈ"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ ਵੇਖਾਉਣ ਦੌਰਾਨ ਗਲਤੀ: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: ../src/capplet/mate-notification-properties.c:530
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "ਯੂਜ਼ਰ ਇੰਟਰਫੇਸ ਫਾਇਲ ਲੋਡ ਨਹੀਂ ਕੀਤੀ ਜਾ ਸਕੀ: %s"
@@ -148,12 +148,12 @@ msgstr "ਤਲ ਖੱਬੇ"
 msgid "Bottom Right"
 msgstr "ਤਲ ਸੱਜੇ"
 
-#: ../src/daemon/daemon.c:1294
+#: ../src/daemon/daemon.c:1346
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ ਤੋਂ ਵੱਧ ਗਈ"
 
-#: ../src/daemon/daemon.c:1599
+#: ../src/daemon/daemon.c:1675
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ਢੁੱਕਵਾਂ ਨੋਟੀਫਿਕੇਸ਼ਨ ID ਨਹੀਂ ਹੈ"
@@ -162,19 +162,19 @@ msgstr "%u ਢੁੱਕਵਾਂ ਨੋਟੀਫਿਕੇਸ਼ਨ ID ਨਹੀ�
 msgid "Notification"
 msgstr "ਨੋਟੀਫਿਕੇਸ਼ਨ"
 
-#: ../src/themes/coco/coco-theme.c:465 ../src/themes/nodoka/nodoka-theme.c:811
-#: ../src/themes/slider/theme.c:417 ../src/themes/standard/theme.c:733
+#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
+#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
 msgid "Notification summary text."
 msgstr ""
 
-#: ../src/themes/coco/coco-theme.c:483 ../src/themes/nodoka/nodoka-theme.c:868
-#: ../src/themes/slider/theme.c:442 ../src/themes/standard/theme.c:789
+#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
+#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
 msgid "Notification body text."
 msgstr ""
 
-#: ../src/themes/nodoka/nodoka-theme.c:825
-#: ../src/themes/nodoka/nodoka-theme.c:827 ../src/themes/slider/theme.c:395
-#: ../src/themes/slider/theme.c:397 ../src/themes/standard/theme.c:749
-#: ../src/themes/standard/theme.c:751
+#: ../src/themes/nodoka/nodoka-theme.c:826
+#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
+#: ../src/themes/standard/theme.c:774
 msgid "Closes the notification."
 msgstr ""
