@@ -38,11 +38,7 @@ typedef enum {
 
 typedef struct _NotifyStack NotifyStack;
 
-#if GTK_CHECK_VERSION (3, 22, 0)
 NotifyStack* notify_stack_new(NotifyDaemon* daemon, GdkScreen* screen, GdkMonitor *monitor, NotifyStackLocation stack_location);
-#else
-NotifyStack* notify_stack_new(NotifyDaemon* daemon, GdkScreen* screen, guint monitor, NotifyStackLocation stack_location);
-#endif
 void notify_stack_destroy(NotifyStack* stack);
 
 void notify_stack_set_location(NotifyStack* stack, NotifyStackLocation location);

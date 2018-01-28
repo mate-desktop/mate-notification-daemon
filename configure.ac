@@ -38,12 +38,6 @@ AC_DEFINE_UNQUOTED(NOTIFICATION_DAEMON_MICRO_VERSION, $NOTIFICATION_DAEMON_MICRO
 AC_DEFINE_UNQUOTED(NOTIFICATION_DAEMON_VERSION, "$NOTIFICATION_DAEMON_VERSION",
 	[mate-notification-daemon version.])
 
-# GLib min/max required versions
-AC_DEFINE([GLIB_VERSION_MAX_ALLOWED], [GLIB_VERSION_2_36],
-	[Warn on use of APIs added after GLib 2.36])
-AC_DEFINE([GLIB_VERSION_MIN_REQUIRED], [GLIB_VERSION_2_36],
-	[Warn on use of APIs deprecated before GLib 2.36])
-
 dnl ################################################################
 dnl # Initialize automake
 dnl ################################################################
@@ -84,7 +78,7 @@ dnl ---------------------------------------------------------------------------
 dnl Requirements for the themes
 dnl ---------------------------------------------------------------------------
 
-GTK_REQUIRED=3.14.0
+GTK_REQUIRED=3.22.0
 
 PKG_CHECK_MODULES(THEME,
   gtk+-3.0 >= $GTK_REQUIRED
@@ -95,7 +89,7 @@ AC_SUBST(THEME_LIBS)
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the daemon
 dnl ---------------------------------------------------------------------------
-REQ_GLIB_VERSION=2.36.0
+REQ_GLIB_VERSION=2.50.0
 REQ_DBUS_VERSION=0.78
 REQ_LIBCANBERRA_GTK_VERSION=0.4
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])

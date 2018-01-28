@@ -176,7 +176,6 @@ static void remove_exit_timeout(NotifyDaemon* daemon)
 	daemon->priv->exit_timeout_source = 0;
 }
 
-#if GTK_CHECK_VERSION(3, 22, 0)
 static int
 _gtk_get_monitor_num (GdkMonitor *monitor)
 {
@@ -195,36 +194,23 @@ _gtk_get_monitor_num (GdkMonitor *monitor)
 }
 
 static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, GdkMonitor *monitor_num)
-#else
-static void create_stack_for_monitor(NotifyDaemon* daemon, GdkScreen* screen, int monitor_num)
-#endif
 {
 	NotifyScreen* nscreen = daemon->priv->screen;
 
-#if GTK_CHECK_VERSION(3, 22, 0)
 	nscreen->stacks[_gtk_get_monitor_num(monitor_num)] = notify_stack_new(daemon, screen, monitor_num, daemon->priv->stack_location);
-#else
-	nscreen->stacks[monitor_num] = notify_stack_new(daemon, screen, monitor_num, daemon->priv->stack_location);
-#endif
 }
 
 static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 {
-#if GTK_CHECK_VERSION (3, 22, 0)
 	GdkDisplay     *display;
-#endif
 	NotifyScreen* nscreen;
 	int n_monitors;
 	int i;
 
 	nscreen = daemon->priv->screen;
-#if GTK_CHECK_VERSION (3, 22, 0)
 	display = gdk_screen_get_display (screen);
 
 	n_monitors = gdk_display_get_n_monitors(display);
-#else
-	n_monitors = gdk_screen_get_n_monitors(screen);
-#endif
 
 	if (n_monitors > nscreen->n_stacks)
 	{
@@ -234,11 +220,7 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 		/* add more stacks */
 		for (i = nscreen->n_stacks; i < n_monitors; i++)
 		{
-#if GTK_CHECK_VERSION (3, 22, 0)
 			create_stack_for_monitor(daemon, screen, gdk_display_get_monitor (display, i));
-#else
-			create_stack_for_monitor(daemon, screen, i);
-#endif
 		}
 
 		nscreen->n_stacks = n_monitors;
@@ -277,30 +259,20 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 
 static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen *screen)
 {
-#if GTK_CHECK_VERSION (3, 22, 0)
 	GdkDisplay     *display;
-#endif
 	NotifyScreen* nscreen;
 	int i;
 
 	nscreen = daemon->priv->screen;
-#if GTK_CHECK_VERSION (3, 22, 0)
 	display = gdk_screen_get_display (screen);
 
 	nscreen->n_stacks = gdk_display_get_n_monitors(display);
-#else
-	nscreen->n_stacks = gdk_screen_get_n_monitors(screen);
-#endif
 
 	nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, nscreen->n_stacks);
 
 	for (i = 0; i < nscreen->n_stacks; i++)
 	{
-#if GTK_CHECK_VERSION (3, 22, 0)
 		create_stack_for_monitor(daemon, screen, gdk_display_get_monitor (display, i));
-#else
-		create_stack_for_monitor(daemon, screen, i);
-#endif
 	}
 }
 
@@ -1536,17 +1508,9 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	}
 	else
 	{
-#if GTK_CHECK_VERSION (3, 22, 0)
 		GdkMonitor *monitor_id;
-#else
-		int monitor_num;
-#endif
 		GdkDisplay *display;
-#if GTK_CHECK_VERSION (3, 20, 0)
 		GdkSeat *seat;
-#else
-		GdkDeviceManager *device_manager;
-#endif
 		GdkDevice *pointer;
 		GdkScreen* screen;
 		gint x, y;
@@ -1559,33 +1523,19 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
 		{
 			display = gdk_display_get_default ();
-#if GTK_CHECK_VERSION (3, 20, 0)
 			seat = gdk_display_get_default_seat (display);
 			pointer = gdk_seat_get_pointer (seat);
-#else
-			device_manager = gdk_display_get_device_manager (display);
-			pointer = gdk_device_manager_get_client_pointer (device_manager);
-#endif
 
 			gdk_device_get_position (pointer, &screen, &x, &y);
-#if GTK_CHECK_VERSION (3, 22, 0)
 			monitor_id = gdk_display_get_monitor_at_point (gdk_screen_get_display (screen), x, y);
-#else
-			monitor_num = gdk_screen_get_monitor_at_point (screen, x, y);
-#endif
 		}
 		else
 		{
 			screen = gdk_display_get_default_screen(gdk_display_get_default());
-#if GTK_CHECK_VERSION (3, 22, 0)
 			monitor_id = gdk_display_get_monitor (gdk_display_get_default(),
 							      g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER));
-#else
-			monitor_num = g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
-#endif
 		}
 
-#if GTK_CHECK_VERSION (3, 22, 0)
 		if (_gtk_get_monitor_num (monitor_id) >= priv->screen->n_stacks)
 		{
 			/* screw it - dump it on the last one we'll get
@@ -1594,16 +1544,6 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 		}
 
 		notify_stack_add_window (priv->screen->stacks[_gtk_get_monitor_num (monitor_id)], nw, new_notification);
-#else
-		if (monitor_num >= priv->screen->n_stacks)
-		{
-			/* screw it - dump it on the last one we'll get
-			 a monitors-changed signal soon enough*/
-			monitor_num = priv->screen->n_stacks - 1;
-		}
-
-		notify_stack_add_window (priv->screen->stacks[monitor_num], nw, new_notification);
-#endif
 	}
 
 	if (id == 0)

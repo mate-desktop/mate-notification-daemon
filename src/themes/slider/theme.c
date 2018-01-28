@@ -405,12 +405,8 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	windata->summary_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->summary_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->summary_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (windata->summary_label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (windata->summary_label), 0.0);
-#else
-	gtk_misc_set_alignment(GTK_MISC(windata->summary_label), 0.0, 0.0);
-#endif
 	gtk_label_set_line_wrap(GTK_LABEL(windata->summary_label), TRUE);
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->summary_label), PANGO_WRAP_WORD_CHAR);
 
@@ -428,12 +424,8 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	windata->body_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->body_label);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, TRUE, TRUE, 0);
-#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (windata->body_label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (windata->body_label), 0.0);
-#else
-	gtk_misc_set_alignment(GTK_MISC(windata->body_label), 0.0, 0.0);
-#endif
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->body_label), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_max_width_chars (GTK_LABEL (windata->body_label), 50);
@@ -763,12 +755,8 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	label = gtk_label_new(NULL);
 	gtk_widget_show(label);
 	gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
-#if GTK_CHECK_VERSION (3, 16, 0)
 	gtk_label_set_xalign (GTK_LABEL (label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (label), 0.5);
-#else
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
-#endif
 	buf = g_strdup_printf("<small>%s</small>", text);
 	gtk_label_set_markup(GTK_LABEL(label), buf);
 	g_free(buf);
