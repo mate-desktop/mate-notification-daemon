@@ -1,3 +1,8 @@
+### mate-notification-daemon 1.20.0
+
+  * Translations update
+  * require GTK+ 3.22 and GLib 2.50
+
 ### mate-notification-daemon 1.19.1
 
   * Translations update
