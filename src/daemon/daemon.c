@@ -1076,9 +1076,9 @@ static void url_clicked_cb(GtkWindow* nw, const char *url)
 
 	escaped_url = g_shell_quote (url);
 
-	if ((found = g_find_program_in_path ("gvfs-open")) != NULL)
+	if ((found = g_find_program_in_path ("gio")) != NULL)
 	{
-		cmd = g_strdup_printf ("gvfs-open %s", escaped_url);
+		cmd = g_strdup_printf ("gio open %s", escaped_url);
 	}
 	else if ((found = g_find_program_in_path ("xdg-open")) != NULL)
 	{
