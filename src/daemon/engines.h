@@ -33,7 +33,7 @@ void            theme_destroy_notification       (GtkWindow   *nw);
 void            theme_show_notification          (GtkWindow   *nw);
 void            theme_hide_notification          (GtkWindow   *nw);
 void            theme_set_notification_hints     (GtkWindow   *nw,
-                                                  GHashTable  *hints);
+						  GVariant *hints);
 void            theme_set_notification_timeout   (GtkWindow   *nw,
                                                   glong        timeout);
 void            theme_notification_tick          (GtkWindow   *nw,
