@@ -1176,17 +1176,17 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 	return FALSE;
 }
 
-static Window get_window_parent(Display* display, Window window, Window* root)
+static Window get_window_parent(GdkDisplay* display, Window window, Window* root)
 {
 	Window parent;
 	Window* children = NULL;
 	guint nchildren;
 	gboolean result;
 
-	gdk_error_trap_push();
-	result = XQueryTree(display, window, root, &parent, &children, &nchildren);
+	gdk_x11_display_error_trap_push (display);
+	result = XQueryTree(GDK_DISPLAY_XDISPLAY(display), window, root, &parent, &children, &nchildren);
 
-	if (gdk_error_trap_pop() || !result)
+	if (gdk_x11_display_error_trap_pop (display) || !result)
 	{
 		return None;
 	}
@@ -1205,11 +1205,11 @@ static Window get_window_parent(Display* display, Window window, Window* root)
  */
 static void monitor_notification_source_windows(NotifyDaemon  *daemon, NotifyTimeout *nt, Window source)
 {
-	Display* display;
+	GdkDisplay *display;
 	Window root = None;
 	Window parent;
 
-	display = GDK_DISPLAY_XDISPLAY (gdk_display_get_default ());
+	display = gdk_display_get_default ();
 
 	/* Start monitoring events if necessary.  We don't want to
 	   filter events unless we absolutely have to. */
@@ -1224,7 +1224,7 @@ static void monitor_notification_source_windows(NotifyDaemon  *daemon, NotifyTim
 
 	for (parent = get_window_parent (display, source, &root); parent != None && root != parent; parent = get_window_parent (display, parent, &root))
 	{
-		XSelectInput (display, parent, StructureNotifyMask);
+		XSelectInput (GDK_DISPLAY_XDISPLAY(display), parent, StructureNotifyMask);
 
 		g_hash_table_insert(daemon->priv->monitored_window_hash, GUINT_TO_POINTER (parent), GINT_TO_POINTER (nt->id));
 	}
@@ -1233,7 +1233,7 @@ static void monitor_notification_source_windows(NotifyDaemon  *daemon, NotifyTim
 /* Use a source X Window ID to reposition a notification. */
 static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Window source)
 {
-	Display* display;
+	GdkDisplay *display;
 	Status result;
 	Window root;
 	Window child;
@@ -1241,14 +1241,14 @@ static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Wind
 	unsigned int width, height;
 	unsigned int border_width, depth;
 
-	display = GDK_DISPLAY_XDISPLAY(gdk_display_get_default ());
+	display = gdk_display_get_default ();
 
-	gdk_error_trap_push();
+	gdk_x11_display_error_trap_push (display);
 
 	/* Get the root for this window */
-	result = XGetGeometry(display, source, &root, &x, &y, &width, &height, &border_width, &depth);
+	result = XGetGeometry(GDK_DISPLAY_XDISPLAY(display), source, &root, &x, &y, &width, &height, &border_width, &depth);
 
-	if (gdk_error_trap_pop () || !result)
+	if (gdk_x11_display_error_trap_pop (display) || !result)
 	{
 		return;
 	}
@@ -1257,9 +1257,9 @@ static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Wind
 	 * Now calculate the offset coordinates for the source window from
 	 * the root.
 	 */
-	gdk_error_trap_push ();
-	result = XTranslateCoordinates (display, source, root, 0, 0, &x, &y, &child);
-	if (gdk_error_trap_pop () || !result)
+	gdk_x11_display_error_trap_push (display);
+	result = XTranslateCoordinates (GDK_DISPLAY_XDISPLAY (display), source, root, 0, 0, &x, &y, &child);
+	if (gdk_x11_display_error_trap_pop (display) || !result)
 	{
 		return;
 	}
