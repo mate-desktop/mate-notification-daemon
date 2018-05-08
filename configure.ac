@@ -90,7 +90,6 @@ dnl ---------------------------------------------------------------------------
 dnl Requirements for the daemon
 dnl ---------------------------------------------------------------------------
 REQ_GLIB_VERSION=2.50.0
-REQ_DBUS_VERSION=0.78
 REQ_LIBCANBERRA_GTK_VERSION=0.4
 PKG_CHECK_MODULES(GMODULE,gmodule-2.0,[GMODULE_ADD="gmodule-2.0"],[GMODULE_ADD=""])
 pkg_modules="
@@ -98,8 +97,6 @@ pkg_modules="
 	glib-2.0 >= $REQ_GLIB_VERSION, \
 	gio-2.0 >= $REQ_GLIB_VERSION, \
         $GMODULE_ADD \
-	dbus-1 >= $REQ_DBUS_VERSION, \
-	dbus-glib-1 >= $REQ_DBUS_VERSION, \
         libcanberra-gtk3 >= $REQ_LIBCANBERRA_GTK_VERSION, \
 	libwnck-3.0 \
         x11 \
@@ -111,7 +108,7 @@ AC_SUBST(NOTIFICATION_DAEMON_LIBS)
 dnl ---------------------------------------------------------------------------
 dnl Requirements for the setup tool
 dnl ---------------------------------------------------------------------------
-PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GLIB_VERSION gtk+-3.0 >= $GTK_REQUIRED libnotify dbus-1 dbus-glib-1)
+PKG_CHECK_MODULES(NOTIFICATION_CAPPLET, glib-2.0 >= $REQ_GLIB_VERSION gio-2.0 >= $REQ_GLIB_VERSION gtk+-3.0 >= $GTK_REQUIRED libnotify)
 AC_SUBST(NOTIFICATION_CAPPLET_CFLAGS)
 AC_SUBST(NOTIFICATION_CAPPLET_LIBS)
 
