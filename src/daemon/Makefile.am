@@ -1,6 +1,7 @@
 libexec_PROGRAMS = mate-notification-daemon
 
 mate_notification_daemon_SOURCES = \
+	$(mate_notification_daemon_built_sources) \
 	daemon.c \
 	daemon.h \
 	engines.c \
@@ -8,15 +9,22 @@ mate_notification_daemon_SOURCES = \
 	stack.c \
 	stack.h \
 	sound.c \
-	sound.h
+	sound.h \
+	mnd-daemon.c
 
 mate_notification_daemon_LDADD = $(NOTIFICATION_DAEMON_LIBS)
 
-BUILT_SOURCES = notificationdaemon-dbus-glue.h
+mate_notification_daemon_built_sources =	\
+	mnd-dbus-generated.h	\
+	mnd-dbus-generated.c	\
+	$(NULL)
 
-notificationdaemon-dbus-glue.h: notificationdaemon.xml
-	dbus-binding-tool --mode=glib-server --prefix=notification_daemon \
-		$(srcdir)/notificationdaemon.xml > notificationdaemon-dbus-glue.h
+$(mate_notification_daemon_built_sources) : Makefile.am $(srcdir)/notificationdaemon.xml
+	$(AM_V_GEN) gdbus-codegen \
+		--interface-prefix org.freedesktop. \
+		--c-namespace NotifyDaemon \
+		--generate-c-code mnd-dbus-generated \
+		$(srcdir)/notificationdaemon.xml
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
@@ -25,6 +33,6 @@ AM_CPPFLAGS = \
 
 EXTRA_DIST = notificationdaemon.xml
 DISTCLEANFILES = \
-	notificationdaemon-dbus-glue.h
+	$(mate_notification_daemon_built_sources)
 
 -include $(top_srcdir)/git.mk
