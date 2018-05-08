@@ -28,8 +28,6 @@
 #include <string.h>
 #include <stdio.h>
 
-#include <dbus/dbus.h>
-#include <dbus/dbus-glib.h>
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <glib-object.h>
@@ -49,7 +47,7 @@
 #include "engines.h"
 #include "stack.h"
 #include "sound.h"
-#include "notificationdaemon-dbus-glue.h"
+#include "mnd-dbus-generated.h"
 
 #define MAX_NOTIFICATIONS 20
 #define IMAGE_SIZE 48
@@ -63,6 +61,12 @@
 	(g_object_get_data(G_OBJECT(nw), "_notify_sender"))
 #define NW_GET_DAEMON(nw) \
 	(g_object_get_data(G_OBJECT(nw), "_notify_daemon"))
+
+enum {
+	PROP_0,
+	PROP_REPLACE,
+	LAST_PROP
+};
 
 typedef struct {
 	NotifyStackLocation type;
@@ -105,6 +109,10 @@ struct _NotifyDaemonPrivate {
 	GHashTable* notification_hash;
 	gboolean url_clicked_lock;
 
+	NotifyDaemonNotifications *skeleton;
+	guint              bus_name_id;
+	gboolean           replace;
+
 	NotifyStackLocation stack_location;
 	NotifyScreen* screen;
 };
@@ -113,8 +121,6 @@ typedef struct {
 	guint id;
 	NotifyDaemon* daemon;
 } _NotifyPendingClose;
-
-static DBusConnection* dbus_conn;
 
 static void notify_daemon_finalize(GObject* object);
 static void _notification_destroyed_cb(GtkWindow* nw, NotifyDaemon* daemon);
@@ -125,14 +131,104 @@ static void _action_invoked_cb(GtkWindow* nw, const char* key);
 static NotifyStackLocation get_stack_location_from_string(const gchar *slocation);
 static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Window source);
 static void monitor_notification_source_windows(NotifyDaemon* daemon, NotifyTimeout* nt, Window source);
+static GParamSpec *properties[LAST_PROP] = { NULL };
+
+static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, const gchar *app_name, guint id, const gchar *icon, const gchar *summary, const gchar *body, const gchar *const *actions, GVariant *hints, gint timeout, gpointer user_data);
+static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, guint arg_id, gpointer user_data);
+static gboolean notify_daemon_get_capabilities( NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation);
+static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
 
 G_DEFINE_TYPE(NotifyDaemon, notify_daemon, G_TYPE_OBJECT);
+
+static void bus_acquired_handler_cb (GDBusConnection *connection,
+		const gchar     *name,
+		gpointer         user_data)
+{
+	NotifyDaemon *daemon;
+
+	GError *error = NULL;
+	gboolean exported;
+
+	daemon = NOTIFY_DAEMON (user_data);
+
+	g_signal_connect (daemon->priv->skeleton, "handle-notify", G_CALLBACK (notify_daemon_notify_handler), daemon);
+	g_signal_connect (daemon->priv->skeleton, "handle-close-notification", G_CALLBACK (notify_daemon_close_notification_handler), daemon);
+	g_signal_connect (daemon->priv->skeleton, "handle-get-capabilities", G_CALLBACK (notify_daemon_get_capabilities), daemon);
+	g_signal_connect (daemon->priv->skeleton, "handle-get-server-information", G_CALLBACK (notify_daemon_get_server_information), daemon);
+
+	exported = g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (daemon->priv->skeleton),
+			connection, NOTIFICATION_BUS_PATH, &error);
+	if (!exported)
+	{
+		g_warning ("Failed to export interface: %s", error->message);
+		g_error_free (error);
+
+		gtk_main_quit();
+	}
+}
+
+static void name_lost_handler_cb (GDBusConnection *connection,
+		const gchar     *name,
+		gpointer         user_data)
+{
+	g_debug("bus name lost\n");
+	gtk_main_quit();
+}
+
+
+static void notify_daemon_constructed (GObject *object)
+{
+	NotifyDaemon *daemon;
+
+	GBusNameOwnerFlags flags;
+
+	daemon = NOTIFY_DAEMON (object);
+
+	G_OBJECT_CLASS (notify_daemon_parent_class)->constructed (object);
+
+	flags = G_BUS_NAME_OWNER_FLAGS_ALLOW_REPLACEMENT;
+	if (daemon->priv->replace)
+		flags |= G_BUS_NAME_OWNER_FLAGS_REPLACE;
+
+	daemon->priv->bus_name_id = g_bus_own_name (G_BUS_TYPE_SESSION,
+			NOTIFICATION_BUS_NAME, flags,
+			bus_acquired_handler_cb, NULL,
+			name_lost_handler_cb, daemon, NULL);
+}
+
+static void notify_daemon_set_property (GObject      *object,
+		guint         prop_id,
+		const GValue *value,
+		GParamSpec   *pspec)
+{
+	NotifyDaemon *daemon;
+
+	daemon = NOTIFY_DAEMON (object);
+
+	switch (prop_id)
+	{
+		case PROP_REPLACE:
+			daemon->priv->replace = g_value_get_boolean (value);
+			break;
+		default:
+			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
+			break;
+	}
+}
 
 static void notify_daemon_class_init(NotifyDaemonClass* daemon_class)
 {
 	GObjectClass* object_class = G_OBJECT_CLASS(daemon_class);
+	object_class->set_property = notify_daemon_set_property;
 
+	object_class->constructed = notify_daemon_constructed;
 	object_class->finalize = notify_daemon_finalize;
+	properties[PROP_REPLACE] =
+		g_param_spec_boolean ("replace", "replace", "replace", FALSE,
+				G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE |
+				G_PARAM_STATIC_STRINGS);
+
+	g_object_class_install_properties (object_class, LAST_PROP, properties);
 
 	g_type_class_add_private(daemon_class, sizeof(NotifyDaemonPrivate));
 }
@@ -358,6 +454,7 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 
 	daemon->priv->next_id = 1;
 	daemon->priv->timeout_source = 0;
+	daemon->priv->skeleton = notify_daemon_notifications_skeleton_new ();
 
 	add_exit_timeout(daemon);
 
@@ -416,6 +513,16 @@ static void notify_daemon_finalize(GObject* object)
 		gdk_window_remove_filter(NULL, (GdkFilterFunc) _notify_x11_filter, daemon);
 	}
 
+	if (daemon->priv->skeleton != NULL)
+	{
+		GDBusInterfaceSkeleton *skeleton;
+
+		skeleton = G_DBUS_INTERFACE_SKELETON (daemon->priv->skeleton);
+		g_dbus_interface_skeleton_unexport (skeleton);
+
+		g_clear_object (&daemon->priv->skeleton);
+	}
+
 	remove_exit_timeout(daemon);
 
 	g_hash_table_destroy(daemon->priv->monitored_window_hash);
@@ -424,7 +531,11 @@ static void notify_daemon_finalize(GObject* object)
 
 	destroy_screen(daemon);
 
-	g_free(daemon->priv);
+	if (daemon->priv->bus_name_id > 0)
+	{
+		g_bus_unown_name (daemon->priv->bus_name_id);
+		daemon->priv->bus_name_id = 0;
+	}
 
 	G_OBJECT_CLASS(notify_daemon_parent_class)->finalize(object);
 }
@@ -453,49 +564,28 @@ static NotifyStackLocation get_stack_location_from_string(const gchar *slocation
 	return stack_location;
 }
 
-static DBusMessage* create_signal(GtkWindow* nw, const char* signal_name)
-{
-	guint id;
-	char* dest;
-	DBusMessage* message;
-
-	id = NW_GET_NOTIFY_ID(nw);
-	dest = NW_GET_NOTIFY_SENDER(nw);
-
-	g_assert(dest != NULL);
-
-	message = dbus_message_new_signal(NOTIFICATION_BUS_PATH, NOTIFICATION_BUS_NAME, signal_name);
-
-	dbus_message_set_destination(message, dest);
-	dbus_message_append_args(message, DBUS_TYPE_UINT32, &id, DBUS_TYPE_INVALID);
-
-	return message;
-}
-
 static void _action_invoked_cb(GtkWindow* nw, const char *key)
 {
 	NotifyDaemon* daemon;
 	guint id;
-	DBusMessage* message;
 
 	daemon = NW_GET_DAEMON(nw);
 	id = NW_GET_NOTIFY_ID(nw);
 
-	message = create_signal(nw, "ActionInvoked");
-	dbus_message_append_args(message, DBUS_TYPE_STRING, &key, DBUS_TYPE_INVALID);
-
-	dbus_connection_send(dbus_conn, message, NULL);
-	dbus_message_unref(message);
+	notify_daemon_notifications_emit_action_invoked (daemon->priv->skeleton, id, key);
 
 	_close_notification(daemon, id, TRUE, NOTIFYD_CLOSED_USER);
 }
 
 static void _emit_closed_signal(GtkWindow* nw, NotifydClosedReason reason)
 {
-	DBusMessage* message = create_signal(nw, "NotificationClosed");
-	dbus_message_append_args(message, DBUS_TYPE_UINT32, &reason, DBUS_TYPE_INVALID);
-	dbus_connection_send(dbus_conn, message, NULL);
-	dbus_message_unref(message);
+	guint id;
+	NotifyDaemon* daemon;
+
+	id = NW_GET_NOTIFY_ID(nw);
+	daemon = NW_GET_DAEMON(nw);
+
+	notify_daemon_notifications_emit_notification_closed(daemon->priv->skeleton, id, reason);
 }
 
 static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_notification, NotifydClosedReason reason)
@@ -824,147 +914,54 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 	return nt;
 }
 
-static GdkPixbuf* _notify_daemon_pixbuf_from_data_hint(GValue* icon_data)
+static GdkPixbuf * _notify_daemon_pixbuf_from_data_hint (GVariant *icon_data)
 {
-	const guchar* data = NULL;
-	gboolean has_alpha;
-	int bits_per_sample;
-	int width;
-	int height;
-	int rowstride;
-	int n_channels;
-	gsize expected_len;
-	GdkPixbuf* pixbuf;
-	GValueArray* image_struct;
-	GValue* value;
-	GArray* tmp_array;
-	GType struct_type;
+        gboolean        has_alpha;
+        int             bits_per_sample;
+        int             width;
+        int             height;
+        int             rowstride;
+        int             n_channels;
+        GVariant       *data_variant;
+        gsize           expected_len;
+        guchar         *data;
+        GdkPixbuf      *pixbuf;
 
-	struct_type = dbus_g_type_get_struct("GValueArray", G_TYPE_INT, G_TYPE_INT, G_TYPE_INT, G_TYPE_BOOLEAN, G_TYPE_INT, G_TYPE_INT, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR), G_TYPE_INVALID);
+        g_variant_get (icon_data,
+                       "(iiibii@ay)",
+                       &width,
+                       &height,
+                       &rowstride,
+                       &has_alpha,
+                       &bits_per_sample,
+                       &n_channels,
+                       &data_variant);
 
-	if (!G_VALUE_HOLDS (icon_data, struct_type))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected a GValue of type GValueArray");
-		return NULL;
-	}
+        expected_len = (height - 1) * rowstride + width
+                * ((n_channels * bits_per_sample + 7) / 8);
 
-	image_struct = (GValueArray *) g_value_get_boxed (icon_data);
-	value = g_value_array_get_nth (image_struct, 0);
+        if (expected_len != g_variant_get_size (data_variant)) {
+                g_warning ("Expected image data to be of length %" G_GSIZE_FORMAT
+                           " but got a " "length of %" G_GSIZE_FORMAT,
+                           expected_len,
+                           g_variant_get_size (data_variant));
+                return NULL;
+        }
 
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 0 of the GValueArray to exist");
-		return NULL;
-	}
+        data = (guchar *) g_memdup (g_variant_get_data (data_variant),
+                                    g_variant_get_size (data_variant));
 
-	if (!G_VALUE_HOLDS (value, G_TYPE_INT))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 0 of the GValueArray to be of type int");
-		return NULL;
-	}
+        pixbuf = gdk_pixbuf_new_from_data (data,
+                                           GDK_COLORSPACE_RGB,
+                                           has_alpha,
+                                           bits_per_sample,
+                                           width,
+                                           height,
+                                           rowstride,
+                                           (GdkPixbufDestroyNotify) g_free,
+                                           NULL);
 
-	width = g_value_get_int (value);
-	value = g_value_array_get_nth (image_struct, 1);
-
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 1 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, G_TYPE_INT))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 1 of the GValueArray to be of type int");
-		return NULL;
-	}
-
-	height = g_value_get_int (value);
-	value = g_value_array_get_nth (image_struct, 2);
-
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 2 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, G_TYPE_INT))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 2 of the GValueArray to be of type int");
-		return NULL;
-	}
-
-	rowstride = g_value_get_int (value);
-	value = g_value_array_get_nth (image_struct, 3);
-
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 3 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, G_TYPE_BOOLEAN))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 3 of the GValueArray to be of type gboolean");
-		return NULL;
-	}
-
-	has_alpha = g_value_get_boolean (value);
-	value = g_value_array_get_nth (image_struct, 4);
-
-	if (value == NULL) {
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 4 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, G_TYPE_INT))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 4 of the GValueArray to be of type int");
-		return NULL;
-	}
-
-	bits_per_sample = g_value_get_int (value);
-	value = g_value_array_get_nth (image_struct, 5);
-
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 5 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, G_TYPE_INT))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 5 of the GValueArray to be of type int");
-		return NULL;
-	}
-
-	n_channels = g_value_get_int (value);
-	value = g_value_array_get_nth (image_struct, 6);
-
-	if (value == NULL)
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 6 of the GValueArray to exist");
-		return NULL;
-	}
-
-	if (!G_VALUE_HOLDS (value, dbus_g_type_get_collection ("GArray", G_TYPE_UCHAR)))
-	{
-		g_warning ("_notify_daemon_pixbuf_from_data_hint expected position 6 of the GValueArray to be of type GArray");
-		return NULL;
-	}
-
-	tmp_array = (GArray*) g_value_get_boxed(value);
-	expected_len = (height - 1) * rowstride + width * ((n_channels * bits_per_sample + 7) / 8);
-
-	if (expected_len != tmp_array->len)
-	{
-		g_warning("_notify_daemon_pixbuf_from_data_hint expected image data to be of length %" G_GSIZE_FORMAT " but got a " "length of %u", expected_len, tmp_array->len);
-		return NULL;
-	}
-
-	data = (guchar *) g_memdup(tmp_array->data, tmp_array->len);
-	pixbuf = gdk_pixbuf_new_from_data(data, GDK_COLORSPACE_RGB, has_alpha, bits_per_sample, width, height, rowstride, (GdkPixbufDestroyNotify) g_free, NULL);
-
-	return pixbuf;
+        return pixbuf;
 }
 
 static GdkPixbuf* _notify_daemon_pixbuf_from_path(const char* path)
@@ -1107,28 +1104,39 @@ static gboolean screensaver_active(GtkWidget* nw)
 {
 	GError* error = NULL;
 	gboolean active = FALSE;
+	GVariant *variant;
+	GDBusProxy *proxy = NULL;
 
-	DBusGConnection* connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
-
-	if (connection == NULL)
-	{
-		//g_warning("Failed to get dbus connection: %s", error->message);
-		g_error_free(error);
-		goto out;
+	proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SESSION,
+			G_DBUS_PROXY_FLAGS_NONE,
+			NULL,
+			"org.mate.ScreenSaver",
+			"/",
+			"org.mate.ScreenSaver",
+			NULL,
+			&error);
+	if (proxy == NULL) {
+		g_warning("Failed to get dbus connection: %s", error->message);
+		g_error_free (error);
 	}
 
-	DBusGProxy* gs_proxy = dbus_g_proxy_new_for_name(connection, "org.mate.ScreenSaver", "/", "org.mate.ScreenSaver");
-
-	if (!dbus_g_proxy_call(gs_proxy, "GetActive", &error, G_TYPE_INVALID, G_TYPE_BOOLEAN, &active, G_TYPE_INVALID))
+	variant = g_dbus_proxy_call_sync (proxy,
+			"GetActive",
+			g_variant_new ("()"),
+			G_DBUS_CALL_FLAGS_NONE,
+			-1,
+			NULL,
+			&error);
+	if (variant == NULL)
 	{
 		//g_warning("Failed to call mate-screensaver: %s", error->message);
-		g_error_free(error);
+		g_error_free (error);
+		return active;
 	}
 
-	g_object_unref(gs_proxy);
-
-	out:
-
+	g_variant_get (variant, "(b)", &active);
+	g_variant_unref (variant);
+	g_object_unref (proxy);
 	return active;
 }
 
@@ -1292,19 +1300,20 @@ GQuark notify_daemon_error_quark(void)
 	return q;
 }
 
-gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name, guint id, const char* icon, const char* summary, const char* body, char** actions, GHashTable* hints, int timeout, DBusGMethodInvocation* context)
+static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, const gchar *app_name, guint id, const gchar *icon, const gchar *summary, const gchar *body, const gchar *const *actions, GVariant *hints, gint timeout, gpointer user_data)
 {
+	NotifyDaemon *daemon;
+	daemon = NOTIFY_DAEMON (user_data);
 	NotifyDaemonPrivate *priv = daemon->priv;
 	NotifyTimeout* nt = NULL;
 	GtkWindow* nw = NULL;
-	GValue* data;
+	GVariant* data;
 	gboolean use_pos_data = FALSE;
 	gboolean new_notification = FALSE;
 	gint x = 0;
 	gint y = 0;
 	Window window_xid = None;
 	guint return_id;
-	char* sender;
 	char* sound_file = NULL;
 	gboolean sound_enabled;
 	gint i;
@@ -1313,13 +1322,8 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 	if (g_hash_table_size (priv->notification_hash) > MAX_NOTIFICATIONS)
 	{
-		GError *error;
-
-		error = g_error_new (notify_daemon_error_quark (), 1, _("Exceeded maximum number of notifications"));
-		dbus_g_method_return_error (context, error);
-		g_error_free (error);
-
-		return TRUE;
+		g_dbus_method_invocation_return_error (invocation, notify_daemon_error_quark(), 1, _("Exceeded maximum number of notifications"));
+		return FALSE;
 	}
 
 	if (id > 0)
@@ -1361,18 +1365,18 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	 */
 
 
-	if ((data = (GValue *) g_hash_table_lookup (hints, "window-xid")) != NULL)
+	if (g_variant_lookup(hints, "window-xid", "v", &data))
 	{
-		window_xid = (Window) g_value_get_uint (data);
+		window_xid = (Window) g_variant_get_uint32 (data);
 	}
 	/* deal with x, and y hints */
-	else if ((data = (GValue *) g_hash_table_lookup (hints, "x")) != NULL)
+	else if (g_variant_lookup(hints, "x", "v", &data))
 	{
-		x = g_value_get_int (data);
+		x = g_variant_get_int32 (data);
 
-		if ((data = (GValue *) g_hash_table_lookup (hints, "y")) != NULL)
+		if (g_variant_lookup(hints, "y", "v", &data))
 		{
-			y = g_value_get_int (data);
+			y = g_variant_get_int32 (data);
 			use_pos_data = TRUE;
 		}
 	}
@@ -1382,17 +1386,14 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	sound_enabled = g_settings_get_boolean (gsettings, GSETTINGS_KEY_SOUND_ENABLED);
 	g_object_unref (gsettings);
 
-	data = (GValue *) g_hash_table_lookup (hints, "suppress-sound");
-
-	if (data != NULL)
-	{
-		if (G_VALUE_HOLDS_BOOLEAN (data))
+	if (g_variant_lookup(hints, "suppress-sound", "v", &data)) {
+		if (g_variant_get_type (data) == G_VARIANT_TYPE_BOOLEAN )
 		{
-			sound_enabled = !g_value_get_boolean (data);
+			sound_enabled = !g_variant_get_boolean(data);
 		}
-		else if (G_VALUE_HOLDS_INT (data))
+		else if (g_variant_get_type (data) == G_VARIANT_TYPE_INT32)
 		{
-			sound_enabled = (g_value_get_int (data) != 0);
+			sound_enabled = (g_variant_get_int32(data) != 0);
 		}
 		else
 		{
@@ -1402,11 +1403,9 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 	if (sound_enabled)
 	{
-		data = (GValue *) g_hash_table_lookup (hints, "sound-file");
-
-		if (data != NULL)
+		if (g_variant_lookup(hints, "sound-file", "v", &data))
 		{
-			sound_file = g_value_dup_string (data);
+			sound_file = g_variant_dup_string (data, NULL);
 
 			if (*sound_file == '\0' || !g_file_test (sound_file, G_FILE_TEST_EXISTS))
 			{
@@ -1419,9 +1418,7 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	/* set up action buttons */
 	for (i = 0; actions[i] != NULL; i += 2)
 	{
-		char* l = actions[i + 1];
-
-		if (l == NULL)
+		if (actions[i+1] == NULL)
 		{
 			g_warning ("Label not found for action %s. The protocol specifies that a label must follow an action in the actions array", actions[i]);
 
@@ -1430,25 +1427,25 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 		if (strcasecmp (actions[i], "default"))
 		{
-			theme_add_notification_action (nw, l, actions[i], G_CALLBACK (_action_invoked_cb));
+			theme_add_notification_action (nw, actions[i+1], actions[i], G_CALLBACK (_action_invoked_cb));
 		}
 	}
 
 	pixbuf = NULL;
 
-	if ((data = (GValue *) g_hash_table_lookup (hints, "image_data")))
+	if (g_variant_lookup(hints, "image_data", "v", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 	}
-	else if ((data = (GValue *) g_hash_table_lookup (hints, "image-data")))
+	else if (g_variant_lookup(hints, "image-data", "v", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 	}
-	else if ((data = (GValue *) g_hash_table_lookup (hints, "image_path")))
+	else if (g_variant_lookup(hints, "image_path", "v", &data))
 	{
-		if (G_VALUE_HOLDS_STRING (data))
+		if (g_variant_get_type(data) == G_VARIANT_TYPE_STRING)
 		{
-			const char *path = g_value_get_string (data);
+			const char *path = g_variant_get_string (data, NULL);
 			pixbuf = _notify_daemon_pixbuf_from_path (path);
 		}
 		else
@@ -1456,11 +1453,11 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 			g_warning ("notify_daemon_notify_handler expected image_path hint to be of type string");
 		}
 	}
-	else if ((data = (GValue *) g_hash_table_lookup (hints, "image-path")))
+	else if (g_variant_lookup(hints, "image-path", "v", &data))
 	{
-		if (G_VALUE_HOLDS_STRING (data))
+		if (g_variant_get_type(data) == G_VARIANT_TYPE_STRING)
 		{
-			const char *path = g_value_get_string (data);
+			const char *path = g_variant_get_string (data, NULL);
 			pixbuf = _notify_daemon_pixbuf_from_path (path);
 		}
 		else
@@ -1472,7 +1469,7 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 	{
 		pixbuf = _notify_daemon_pixbuf_from_path (icon);
 	}
-	else if ((data = (GValue *) g_hash_table_lookup (hints, "icon_data")))
+	else if (g_variant_lookup(hints, "icon_data", "v", &data))
 	{
 		g_warning("\"icon_data\" hint is deprecated, please use \"image_data\" instead");
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
@@ -1593,118 +1590,69 @@ gboolean notify_daemon_notify_handler(NotifyDaemon* daemon, const char* app_name
 
 	g_free (sound_file);
 
-	sender = dbus_g_method_get_sender (context);
-
 	g_object_set_data (G_OBJECT (nw), "_notify_id", GUINT_TO_POINTER (return_id));
-	g_object_set_data_full (G_OBJECT (nw), "_notify_sender", sender, (GDestroyNotify) g_free);
 
 	if (nt)
 	{
 		_calculate_timeout (daemon, nt, timeout);
 	}
 
-	dbus_g_method_return (context, return_id);
-
+	notify_daemon_notifications_complete_notify ( object, invocation, return_id);
 	return TRUE;
 }
 
-gboolean notify_daemon_close_notification_handler(NotifyDaemon* daemon, guint id, GError** error)
+static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, guint id, gpointer user_data)
 {
 	if (id == 0)
 	{
-		g_set_error (error, notify_daemon_error_quark (), 100, _("%u is not a valid notification ID"), id);
+		g_dbus_method_invocation_return_error (invocation, notify_daemon_error_quark(), 100,  _("%u is not a valid notification ID"), id);
 		return FALSE;
 	}
 	else
 	{
+		NotifyDaemon *daemon;
+		daemon = NOTIFY_DAEMON (user_data);
 		_close_notification (daemon, id, TRUE, NOTIFYD_CLOSED_API);
+		notify_daemon_notifications_complete_close_notification (object, invocation);
 		return TRUE;
 	}
 }
 
-gboolean notify_daemon_get_capabilities(NotifyDaemon* daemon, char*** caps)
+static gboolean notify_daemon_get_capabilities( NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation)
 {
-	GPtrArray* a = g_ptr_array_new ();
-	g_ptr_array_add (a, g_strdup ("actions"));
-	g_ptr_array_add (a, g_strdup ("action-icons"));
-	g_ptr_array_add (a, g_strdup ("body"));
-	g_ptr_array_add (a, g_strdup ("body-hyperlinks"));
-	g_ptr_array_add (a, g_strdup ("body-markup"));
-	g_ptr_array_add (a, g_strdup ("icon-static"));
-	g_ptr_array_add (a, g_strdup ("sound"));
-	g_ptr_array_add (a, NULL);
-	char** _caps = (char**) g_ptr_array_free (a, FALSE);
+	GVariantBuilder *builder;
+	GVariant *value;
 
-	*caps = _caps;
-
+	builder = g_variant_builder_new (G_VARIANT_TYPE ("as"));
+	g_variant_builder_add (builder, "s", "actions");
+	g_variant_builder_add (builder, "s", "action-icons");
+	g_variant_builder_add (builder, "s", "body");
+	g_variant_builder_add (builder, "s", "body-hyperlinks");
+	g_variant_builder_add (builder, "s", "body-markup");
+	g_variant_builder_add (builder, "s", "icon-static");
+	g_variant_builder_add (builder, "s", "sound");
+	value = g_variant_new ("as", builder);
+	g_variant_builder_unref (builder);
+	notify_daemon_notifications_complete_get_capabilities (
+			object,
+			invocation,
+			(const gchar* const *)g_variant_dup_strv (value, NULL));
+	g_variant_unref (value);
 	return TRUE;
 }
 
-gboolean notify_daemon_get_server_information(NotifyDaemon *daemon, char** out_name, char** out_vendor, char** out_version, char** out_spec_ver)
+static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data)
 {
-	*out_name = g_strdup("Notification Daemon");
-	*out_vendor = g_strdup("MATE");
-	*out_version = g_strdup(PACKAGE_VERSION);
-	*out_spec_ver = g_strdup("1.1");
-
+	notify_daemon_notifications_complete_get_server_information(object,
+			invocation,
+			g_strdup("Notification Daemon"),
+			g_strdup("MATE"),
+			g_strdup(PACKAGE_VERSION),
+			g_strdup("1.1"));
 	return TRUE;
 }
 
-int main(int argc, char** argv)
+NotifyDaemon* notify_daemon_new (gboolean replace)
 {
-	NotifyDaemon* daemon;
-	DBusGConnection* connection;
-	DBusGProxy* bus_proxy;
-	GError* error;
-	gboolean res;
-	guint request_name_result;
-
-	g_log_set_always_fatal(G_LOG_LEVEL_CRITICAL);
-
-	gtk_init(&argc, &argv);
-
-	error = NULL;
-	connection = dbus_g_bus_get(DBUS_BUS_SESSION, &error);
-
-	if (connection == NULL)
-	{
-		g_printerr("Failed to open connection to bus: %s\n", error->message);
-		g_error_free(error);
-		exit(1);
-	}
-
-	dbus_conn = dbus_g_connection_get_connection(connection);
-
-	dbus_g_object_type_install_info(NOTIFY_TYPE_DAEMON, &dbus_glib_notification_daemon_object_info);
-
-	bus_proxy = dbus_g_proxy_new_for_name(connection, "org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus");
-
-	res = dbus_g_proxy_call(bus_proxy, "RequestName", &error, G_TYPE_STRING, NOTIFICATION_BUS_NAME, G_TYPE_UINT, 0, G_TYPE_INVALID, G_TYPE_UINT, &request_name_result, G_TYPE_INVALID);
-
-	if (! res || request_name_result != DBUS_REQUEST_NAME_REPLY_PRIMARY_OWNER)
-	{
-		if (error != NULL)
-		{
-			g_warning("Failed to acquire name %s: %s", NOTIFICATION_BUS_NAME, error->message);
-			g_error_free(error);
-		}
-		else
-		{
-			g_warning("Failed to acquire name %s", NOTIFICATION_BUS_NAME);
-		}
-
-		goto out;
-	}
-
-	daemon = g_object_new(NOTIFY_TYPE_DAEMON, NULL);
-
-	dbus_g_connection_register_g_object(connection, "/org/freedesktop/Notifications", G_OBJECT(daemon));
-
-	gtk_main();
-
-	g_object_unref(daemon);
-
-	out:
-
-	return 0;
+	return g_object_new (NOTIFY_TYPE_DAEMON, "replace", replace, NULL);
 }
