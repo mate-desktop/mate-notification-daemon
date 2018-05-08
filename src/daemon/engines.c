@@ -37,7 +37,7 @@ typedef struct {
 	void        (*destroy_notification)        (GtkWindow* nw);
 	void        (*show_notification)           (GtkWindow* nw);
 	void        (*hide_notification)           (GtkWindow* nw);
-	void        (*set_notification_hints)      (GtkWindow* nw, GHashTable* hints);
+	void        (*set_notification_hints)      (GtkWindow* nw, GVariant *hints);
 	void        (*set_notification_text)       (GtkWindow* nw, const char* summary, const char* body);
 	void        (*set_notification_icon)       (GtkWindow* nw, GdkPixbuf* pixbuf);
 	void        (*set_notification_arrow)      (GtkWindow* nw, gboolean visible, int x, int y);
@@ -251,7 +251,7 @@ void theme_hide_notification(GtkWindow* nw)
 	}
 }
 
-void theme_set_notification_hints(GtkWindow* nw, GHashTable* hints)
+void theme_set_notification_hints(GtkWindow* nw, GVariant *hints)
 {
 	ThemeEngine* engine = g_object_get_data(G_OBJECT(nw), "_theme_engine");
 
