@@ -1,21 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Dominik Adrian Grzywak, 2016
-# Marcin Kralka <marcink96@gmail.com>, 2013
-# Michal Herman <szalejot@gmail.com>, 2013
-# Paweł Bandura <gawelx@gmail.com>, 2015
-# Piotr Strębski <strebski@gmail.com>, 2016
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-19 11:04+0000\n"
-"Last-Translator: Piotr Strębski <strebski@gmail.com>\n"
-"Language-Team: Polish (http://www.transifex.com/mate/MATE/language/pl/)\n"
+"POT-Creation-Date: 2018-03-17 10:17+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Paweł Bandura <gawelx@gmail.com>, 2018\n"
+"Language-Team: Polish (https://www.transifex.com/mate/teams/13566/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -30,7 +26,10 @@ msgstr "Położenie wyskakujących powiadomień"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Domyślne położenie wyskakującego okna na obszarze roboczym dla stosu powiadomień. Dozwolone wartości: \"top_left\" (górny lewy), \"top_right\" (górny prawy), \"bottom_left\" (dolny lewy) i \"bottom_right\" (dolny prawy)"
+msgstr ""
+"Domyślne położenie wyskakującego okna na obszarze roboczym dla stosu "
+"powiadomień. Dozwolone wartości: \"top_left\" (górny lewy), \"top_right\" "
+"(górny prawy), \"bottom_left\" (dolny lewy) i \"bottom_right\" (dolny prawy)"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -49,7 +48,10 @@ msgstr "Monitor"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Monitor na którym wyświetlane będą powiadomienia. Dopuszczalne wartości: -1 (wyświetl na aktywnym monitorze) oraz od 0 do n-1 gdzie n jest liczbą monitorów."
+msgstr ""
+"Monitor na którym wyświetlane będą powiadomienia. Dopuszczalne wartości: -1 "
+"(wyświetl na aktywnym monitorze) oraz od 0 do n-1 gdzie n jest liczbą "
+"monitorów."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -67,40 +69,40 @@ msgstr "Włączenie dźwięków"
 msgid "Turns on and off sound support for notifications."
 msgstr "Włącza lub wyłącza obsługę dźwięków dla powiadomień."
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Slider"
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Motyw standardowy"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "Błąd podczas inicjowania biblioteki libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Test powiadomienia"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "To tylko test"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Błąd podczas wyświetlania powiadomienia: %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Nie można wczytać pliku interfejsu użytkownika: %s"
@@ -153,12 +155,12 @@ msgstr "Dolny lewy"
 msgid "Bottom Right"
 msgstr "Dolny prawy"
 
-#: ../src/daemon/daemon.c:1346
+#: ../src/daemon/daemon.c:1318
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "Przekroczono maksymalną liczbę powiadomień"
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1615
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nie jest prawidłowym identyfikatorem powiadomienia"
@@ -167,19 +169,19 @@ msgstr "%u nie jest prawidłowym identyfikatorem powiadomienia"
 msgid "Notification"
 msgstr "Powiadomienie"
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Tekst podsumowujący powiadomienia."
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Tekst główny powiadomienia."
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Zamyka powiadomienie."

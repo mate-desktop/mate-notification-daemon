@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# samson <sambelet@yahoo.com>, 2013-2014,2017
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-19 15:12+0000\n"
-"Last-Translator: samson <sambelet@yahoo.com>\n"
-"Language-Team: Amharic (http://www.transifex.com/mate/MATE/language/am/)\n"
+"POT-Creation-Date: 2018-03-17 10:17+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: samson <sambelet@yahoo.com>, 2018\n"
+"Language-Team: Amharic (https://www.transifex.com/mate/teams/13566/am/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -20,13 +20,15 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr "የብቅ ባይ አካባቢ "
+msgstr "የ ብቅ ባይ አካባቢ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "ነባር የብቅ ባይ አካባቢ በስራ ቦታ ላይ ማስታወቂያዎችን ለማከማቻ ፡ የተፈቀዱ ዋጋዎች : \"ላይ_በግራ\",\"ላይ_በቀኝ\",\"ታች_በግራ\" እና \"ታች_በቀኝ\""
+msgstr ""
+"ነባር የብቅ ባይ አካባቢ በስራ ቦታ ላይ ማስታወቂያዎችን ለማከማቻ ፡ የተፈቀዱ ዋጋዎች : "
+"\"ላይ_በግራ\",\"ላይ_በቀኝ\",\"ታች_በግራ\" እና \"ታች_በቀኝ\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -39,17 +41,19 @@ msgstr "ማስታወቂያውን በንቁ መቆጣጠሪያ ላይ ማሳያ "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
-msgstr "መቆጣጠሪያ"
+msgstr "መመልከቻ"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "ማስታወቂያዎቹ የሚታዩባቸው መመልከቻዎች ፡ የተፈቀዱ ዋጋዎች : -1 (በንቁ መመልከቻው ላይ ማሳያ) እና 0 ወደ n - 1 where n የመመልከቻው ቁጥር ነው "
+msgstr ""
+"ማስታወቂያዎቹ የሚታዩባቸው መመልከቻዎች ፡ የተፈቀዱ ዋጋዎች : -1 (በንቁ መመልከቻው ላይ ማሳያ) እና 0 ወደ n - 1"
+" where n የመመልከቻው ቁጥር ነው "
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
-msgstr "የአሁኑ ገጽታ "
+msgstr "የ አሁኑ ገጽታ"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
@@ -63,43 +67,43 @@ msgstr "ዽምፅ ተችሏል "
 msgid "Turns on and off sound support for notifications."
 msgstr "ለማስታወቂያዎች የድምፅ ድጋፍ ማብሪያ እና ማጥፊያ "
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "ተንሸራታች "
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "መደበኛ ገጽታ "
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "ስህተት ተፈጥሯል libmatenotify በማስነሳት ላይ "
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "ማስታወቂያ መሞከሪያ "
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "ለሙከራ "
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "ማስታወቂያ በማሳየት ላይ ስህተት ተፈጥሯል : %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr "የተጠቃሚውን ገጽታ ፋይሎች መጫን አልተቻለም : %s"
+msgstr "የተጠቃሚን ገጽታ ፋይል መጫን አልተቻለም: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
@@ -149,12 +153,12 @@ msgstr "ታች በግራ "
 msgid "Bottom Right"
 msgstr "ታች በቀኝ "
 
-#: ../src/daemon/daemon.c:1346
+#: ../src/daemon/daemon.c:1318
 #, c-format
 msgid "Exceeded maximum number of notifications"
 msgstr "ከፍተኛውን የማስታወቂያዎች ቁጥር አልፏል "
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1615
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ዋጋ ያለው የማስታወቂያ ID አይደለም "
@@ -163,19 +167,19 @@ msgstr "%u ዋጋ ያለው የማስታወቂያ ID አይደለም "
 msgid "Notification"
 msgstr "ማስታወቂያ "
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "የ ማስታወቂያ ጽሁፍ ባጠቃላይ"
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "የ ማስታወቂያ ጽሁፍ አካል"
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "ማስታወቂያ መዝጊያ"
