@@ -1,5 +1,14 @@
 ### mate-notification-daemon 1.21.0
 
+  * Translations update
+  * Drop dbus-glib dependence
+  * Use GVariant
+  * Migrate from dbus-glib to GDBus
+  * Add signals, remove annotation from xml file
+  * Use gdbus generate files
+  * Fix some gdk deprecations
+  * src/daemon/daemon.c: Replace deprecated gvfs-open call by "gio open" from libglib2.0-bin.
+
 ### mate-notification-daemon 1.20.0
 
   * Translations update
