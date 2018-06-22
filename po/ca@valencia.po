@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Pilar Embid Giner <embid_mar@gva.es>, 2016
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-21 21:09+0000\n"
-"Last-Translator: Jose Alfredo Murcia Andrés <joamuran@gmail.com>\n"
-"Language-Team: Catalan (Valencian) (http://www.transifex.com/mate/MATE/language/ca%40valencia/)\n"
+"POT-Creation-Date: 2018-06-15 17:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Jose Alfredo Murcia Andrés <joamuran@gmail.com>, 2018\n"
+"Language-Team: Catalan (Valencian) (https://www.transifex.com/mate/teams/13566/ca%40valencia/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,11 @@ msgstr "Ubicació de les notificacions"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Ubicació predeterminada per a les notificacions apilades a l'espai de treball. Els valors admesos són: «top_left» (part superior esquerra), «top_right» (part superior dreta), «bottom_left» (part inferior esquerra) i «bottom_right» (part inferior dreta)"
+msgstr ""
+"Ubicació predeterminada per a les notificacions apilades a l'espai de "
+"treball. Els valors admesos són: «top_left» (part superior esquerra), "
+"«top_right» (part superior dreta), «bottom_left» (part inferior esquerra) i "
+"«bottom_right» (part inferior dreta)"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -45,7 +49,9 @@ msgstr "Monitor"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Monitor on mostrar la notificació. Valors admesos: -1 (mostra en el monitor actiu) i 0 a n - 1, on n és el nombre de monitors."
+msgstr ""
+"Monitor on mostrar la notificació. Valors admesos: -1 (mostra en el monitor "
+"actiu) i 0 a n - 1, on n és el nombre de monitors."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -63,40 +69,40 @@ msgstr "So habilitat"
 msgid "Turns on and off sound support for notifications."
 msgstr "Habilita o inhabilita el so de les notificacions."
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Lliscant"
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Tema estàndard"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "S'ha produït un error en inicialitzar la libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Prova de notificació"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Això només és una prova"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "S'ha produït un error en mostrar la notificació: %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "No s'ha pogut carregar el fitxer d'interfície d'usuari: %s"
@@ -149,12 +155,11 @@ msgstr "Inferior esquerra"
 msgid "Bottom Right"
 msgstr "Inferior dreta"
 
-#: ../src/daemon/daemon.c:1346
-#, c-format
+#: ../src/daemon/daemon.c:1325
 msgid "Exceeded maximum number of notifications"
 msgstr "S'ha excedit el nombre màxim de notificacions"
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1608
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no és un id. vàlid de notificació"
@@ -163,19 +168,19 @@ msgstr "%u no és un id. vàlid de notificació"
 msgid "Notification"
 msgstr "Notificació"
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "El text del resum de la notificació."
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "El text del cos de la notificació."
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Tanca la notificació."

@@ -1,18 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Falu <info@falu.me>, 2016
-# Rezső Páder <rezso@rezso.net>, 2013,2015
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-19 11:04+0000\n"
-"Last-Translator: Falu <info@falu.me>\n"
-"Language-Team: Hungarian (http://www.transifex.com/mate/MATE/language/hu/)\n"
+"POT-Creation-Date: 2018-06-15 17:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Falu <info@falu.me>, 2018\n"
+"Language-Team: Hungarian (https://www.transifex.com/mate/teams/13566/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -27,7 +26,10 @@ msgstr "Felbukkanás helye"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "A munkaterületen felbukkanó veremértesítések felbukkanásának alapértelmezett helye. A lehetséges értékek: „top_left” (bal felső), top_right” (jobb felső), „bottom_left (bal alsó) és „bottom_right” (jobb alsó)."
+msgstr ""
+"A munkaterületen felbukkanó veremértesítések felbukkanásának alapértelmezett"
+" helye. A lehetséges értékek: „top_left” (bal felső), top_right” (jobb "
+"felső), „bottom_left (bal alsó) és „bottom_right” (jobb alsó)."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -46,7 +48,9 @@ msgstr "Monitor"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "A monitor, ahol az értesítés megjenik. Megengedett értékek: -1 (aktív monitor), és 0 - n-1, ahol 'n' a monitorok száma."
+msgstr ""
+"A monitor, ahol az értesítés megjenik. Megengedett értékek: -1 (aktív "
+"monitor), és 0 - n-1, ahol 'n' a monitorok száma."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -64,40 +68,40 @@ msgstr "Hang engedélyezve"
 msgid "Turns on and off sound support for notifications."
 msgstr "Be- illetve kikapcsolja az értesítések hangját."
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Kókusz"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Csúszka"
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Alapértelmezett téma"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "Hiba a libmatenotify előkészítése közben"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Értesítésteszt"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Csak egy próba"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Hiba az értesítés megjelenítésekor: %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "A felhasználóifelület-fájl nem tölthető be: %s"
@@ -150,12 +154,11 @@ msgstr "Bal oldalon, alul"
 msgid "Bottom Right"
 msgstr "Jobb oldalon, alul"
 
-#: ../src/daemon/daemon.c:1346
-#, c-format
+#: ../src/daemon/daemon.c:1325
 msgid "Exceeded maximum number of notifications"
 msgstr "Az értesítések maximális száma túllépve"
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1608
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "A(z) %u nem érvényes értesítésazonosító"
@@ -164,19 +167,19 @@ msgstr "A(z) %u nem érvényes értesítésazonosító"
 msgid "Notification"
 msgstr "Értesítés"
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Értesítési szöveg összefoglalója."
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Értesítési szöveg törzse."
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Bezárja az értesítést."

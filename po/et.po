@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Ivar Smolin <okul@linux.ee>, 2014-2015
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-19 11:04+0000\n"
-"Last-Translator: Wolfgang Ulbrich <mate@raveit.de>\n"
-"Language-Team: Estonian (http://www.transifex.com/mate/MATE/language/et/)\n"
+"POT-Creation-Date: 2018-06-15 17:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2018\n"
+"Language-Team: Estonian (https://www.transifex.com/mate/teams/13566/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,16 +26,19 @@ msgstr "Hüpiku asukoht"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Teavituste virna vaikimisi asukoht tööalal. Lubatud väärtused: \"top_left\" (üleval vasakul),\"top_right\" (üleval paremal),\"bottom_left\" (all vasakul) ja \"bottom_right\" (all paremal)"
+msgstr ""
+"Teavituste virna vaikimisi asukoht tööalal. Lubatud väärtused: \"top_left\" "
+"(üleval vasakul),\"top_right\" (üleval paremal),\"bottom_left\" (all "
+"vasakul) ja \"bottom_right\" (all paremal)"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr "Kasutatakse aktiivset kuvarit"
+msgstr "Aktiivse kuvari kasutamine"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr "Aktiivse kuvari kasutamine"
+msgstr "Teavitust näidatakse alati aktiivsel kuvaril."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
@@ -45,7 +48,9 @@ msgstr "Kuvar"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Teavituse näitamiseks kasutatav kuvar. Võimalikud väärtused: -1 (näidatakse aktiivsel kuvaril) ja 0-st kuni väärtuseni n - 1 (n on kuvarite arv)."
+msgstr ""
+"Teavituse näitamiseks kasutatav kuvar. Võimalikud väärtused: -1 (näidatakse "
+"aktiivsel kuvaril) ja 0-st kuni väärtuseni n - 1 (n on kuvarite arv)."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -63,40 +68,40 @@ msgstr "Helide lubamine"
 msgid "Turns on and off sound support for notifications."
 msgstr "Teavituste helide toe sisse- ja väljalülitamine."
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Liugur"
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Standardteema"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "Viga libmatenotify lähtestamisel"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
-msgstr "Teavituse test"
+msgstr "Teavituse proov"
+
+#: ../src/capplet/mate-notification-properties.c:471
+msgid "Just a test"
+msgstr "Lihtsalt prooviks"
 
 #: ../src/capplet/mate-notification-properties.c:475
-msgid "Just a test"
-msgstr "Vaid üks test"
-
-#: ../src/capplet/mate-notification-properties.c:479
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Teavituse kuvamisel tekkis viga: %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Kasutajaliidese faili pole võimalik laadida: %s"
@@ -149,12 +154,11 @@ msgstr "All vasakul"
 msgid "Bottom Right"
 msgstr "All paremal"
 
-#: ../src/daemon/daemon.c:1346
-#, c-format
+#: ../src/daemon/daemon.c:1325
 msgid "Exceeded maximum number of notifications"
 msgstr "Suurim teavituste arv on ületatud"
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1608
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ei ole kehtiv teavituse ID"
@@ -163,19 +167,19 @@ msgstr "%u ei ole kehtiv teavituse ID"
 msgid "Notification"
 msgstr "Teavitus"
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
-msgstr ""
+msgstr "Teavituse kokkuvõttev tekst."
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
-msgstr ""
+msgstr "Teavituse sisutekst."
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr ""
+msgstr "Teavituse sulgemine."

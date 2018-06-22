@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
-# Translators:
-# Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2017
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-28 13:26+0100\n"
-"PO-Revision-Date: 2017-09-19 14:45+0000\n"
-"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>\n"
-"Language-Team: Kazakh (http://www.transifex.com/mate/MATE/language/kk/)\n"
+"POT-Creation-Date: 2018-06-15 17:13+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Baurzhan Muftakhidinov <baurthefirst@gmail.com>, 2018\n"
+"Language-Team: Kazakh (https://www.transifex.com/mate/teams/13566/kk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: kk\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
@@ -26,7 +26,9 @@ msgstr "Қалқымалы кеңес орны"
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
-msgstr "Хабарламаларды қатарымен орналастыру үшін бастапқы шығу орны. Мүмкін мәндері: \"top_left\",\"top_right\",\"bottom_left\" және \"bottom_right\""
+msgstr ""
+"Хабарламаларды қатарымен орналастыру үшін бастапқы шығу орны. Мүмкін "
+"мәндері: \"top_left\",\"top_right\",\"bottom_left\" және \"bottom_right\""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
@@ -45,7 +47,10 @@ msgstr "Монитор"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "Хабарламаны көрсету үшін монитор. Мүмкін мәндері: -1 (белсенді мониторда көрсету) және 0 мен n-1 арасындағы сан, бұл жерде n - мониторлардың жалпы саны."
+msgstr ""
+"Хабарламаны көрсету үшін монитор. Мүмкін мәндері: -1 (белсенді мониторда "
+"көрсету) және 0 мен n-1 арасындағы сан, бұл жерде n - мониторлардың жалпы "
+"саны."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
@@ -63,40 +68,40 @@ msgstr "Дыбыс іске қосылған"
 msgid "Turns on and off sound support for notifications."
 msgstr "Хабарламалар үшін дыбыс қолдауын іске қосу/сөндіру."
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Slider"
 
-#: ../src/capplet/mate-notification-properties.c:345
+#: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Қалыпты тема"
 
-#: ../src/capplet/mate-notification-properties.c:462
+#: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify іске қосу қатесі"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
 msgstr "Хабарламаны сынау"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
 msgstr "Сынау"
 
-#: ../src/capplet/mate-notification-properties.c:479
+#: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Хабарламаны көрсету кезіндегі қате: %s"
 
-#: ../src/capplet/mate-notification-properties.c:530
+#: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
 msgstr "Пайдаланушы интерфейс файлын жүктеу мүмкін емес: %s"
@@ -149,12 +154,11 @@ msgstr "Сол жақ төменнен "
 msgid "Bottom Right"
 msgstr "Оң жақ төменнен"
 
-#: ../src/daemon/daemon.c:1346
-#, c-format
+#: ../src/daemon/daemon.c:1325
 msgid "Exceeded maximum number of notifications"
 msgstr "Хабарламалардың максималды санынан астық"
 
-#: ../src/daemon/daemon.c:1675
+#: ../src/daemon/daemon.c:1608
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u жарамды хабарлама ID-і емес"
@@ -163,19 +167,19 @@ msgstr "%u жарамды хабарлама ID-і емес"
 msgid "Notification"
 msgstr "Хабарлама"
 
-#: ../src/themes/coco/coco-theme.c:466 ../src/themes/nodoka/nodoka-theme.c:812
-#: ../src/themes/slider/theme.c:418 ../src/themes/standard/theme.c:756
+#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
+#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Хабарламаның жинақы мәтіні."
 
-#: ../src/themes/coco/coco-theme.c:484 ../src/themes/nodoka/nodoka-theme.c:869
-#: ../src/themes/slider/theme.c:443 ../src/themes/standard/theme.c:812
+#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
+#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Хабарлама денесінің мәтіні."
 
-#: ../src/themes/nodoka/nodoka-theme.c:826
-#: ../src/themes/nodoka/nodoka-theme.c:828 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:772
-#: ../src/themes/standard/theme.c:774
+#: ../src/themes/nodoka/nodoka-theme.c:823
+#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
+#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
+#: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Хабарламаны жабады."
