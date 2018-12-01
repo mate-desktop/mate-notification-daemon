@@ -36,16 +36,7 @@
 #define GSETTINGS_KEY_USE_ACTIVE     "use-active-monitor"
 
 #define NOTIFY_TYPE_DAEMON (notify_daemon_get_type())
-#define NOTIFY_DAEMON(obj) \
-        (G_TYPE_CHECK_INSTANCE_CAST ((obj), NOTIFY_TYPE_DAEMON, NotifyDaemon))
-#define NOTIFY_DAEMON_CLASS(klass) \
-        (G_TYPE_CHECK_CLASS_CAST ((klass), NOTIFY_TYPE_DAEMON, NotifyDaemonClass))
-#define NOTIFY_IS_DAEMON(obj) \
-        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), NOTIFY_TYPE_DAEMON))
-#define NOTIFY_IS_DAEMON_CLASS(klass) \
-        (G_TYPE_CHECK_CLASS_TYPE ((klass), NOTIFY_TYPE_DAEMON))
-#define NOTIFY_DAEMON_GET_CLASS(obj) \
-        (G_TYPE_INSTANCE_GET_CLASS((obj), NOTIFY_TYPE_DAEMON, NotifyDaemonClass))
+G_DECLARE_FINAL_TYPE (NotifyDaemon, notify_daemon, NOTIFY, DAEMON, GObject)
 
 #define NOTIFY_DAEMON_DEFAULT_TIMEOUT 7000
 
@@ -62,25 +53,8 @@ typedef enum {
 	NOTIFYD_CLOSED_RESERVED = 4
 } NotifydClosedReason;
 
-typedef struct _NotifyDaemon NotifyDaemon;
-typedef struct _NotifyDaemonClass NotifyDaemonClass;
-typedef struct _NotifyDaemonPrivate NotifyDaemonPrivate;
-
-struct _NotifyDaemon {
-	GObject parent;
-	GSettings* gsettings;
-
-	/*< private > */
-	NotifyDaemonPrivate* priv;
-};
-
-struct _NotifyDaemonClass {
-	GObjectClass parent_class;
-};
-
 G_BEGIN_DECLS
 
-GType             notify_daemon_get_type   (void) G_GNUC_CONST;
 NotifyDaemon*     notify_daemon_new        (gboolean replace);
 
 GQuark notify_daemon_error_quark(void);
