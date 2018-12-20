@@ -16,7 +16,9 @@ $(OBJECTS): libtool
 libtool: $(LIBTOOL_DEPS)
 	$(SHELL) ./config.status --recheck
 
-DISTCHECK_CONFIGURE_FLAGS = --disable-icon-update
+DISTCHECK_CONFIGURE_FLAGS = \
+	--disable-icon-update \
+	CFLAGS='-Wno-deprecated-declarations'
 
 DISTCLEANFILES = \
 	intltool-extract \
