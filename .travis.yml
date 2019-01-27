@@ -14,5 +14,6 @@ script:
 
 env:
   - DISTRO="base/archlinux"
+  - DISTRO="debian:sid"
   - DISTRO="fedora:29"
   - DISTRO="ubuntu:18.10"
