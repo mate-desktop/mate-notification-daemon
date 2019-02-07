@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - curl -L -o docker-build https://github.com/mate-desktop/mate-dev-scripts/raw/master/travis/docker-build
+  - curl -Ls -o docker-build https://github.com/mate-desktop/mate-dev-scripts/raw/master/travis/docker-build
   - chmod +x docker-build
  
 install:
@@ -16,7 +16,7 @@ script:
   - ./docker-build --name ${DISTRO} --verbose --config .travis.yml --build autotools
 
 env:
-  - DISTRO="base/archlinux"
+  - DISTRO="archlinux/base"
   - DISTRO="debian:sid"
   - DISTRO="fedora:29"
   - DISTRO="ubuntu:18.10"
@@ -34,6 +34,8 @@ requires:
     - libwnck3
     - make
     - mate-common
+    - which
+
   debian:
     - git # Required to generate the ChangeLog file
     - gobject-introspection
@@ -57,6 +59,7 @@ requires:
     - mate-common
     - quilt
     - shared-mime-info
+
   fedora:
     # Useful URL: https://src.fedoraproject.org/cgit/rpms/caja.git/
     - git # Required to generate the ChangeLog file
@@ -67,6 +70,7 @@ requires:
     - libwnck3-devel
     - mate-common
     - mate-desktop-devel
+
   ubuntu:
     - git # Required to generate the ChangeLog file
     - gobject-introspection
@@ -90,7 +94,9 @@ requires:
     - mate-common
     - quilt
     - shared-mime-info
+
 variables:
-  - CFLAGS="-Wall"
+  - CFLAGS="-Wall -Werror=format-security"
+
 after_scripts:
   - make distcheck
