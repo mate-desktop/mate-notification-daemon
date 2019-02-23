@@ -1,3 +1,10 @@
+### mate-notification-daemon 1.22.0
+
+  * Translations update
+  * initial travis-CI support
+  * disable deprecation warnings for distcheck
+  * Avoid compile warning for g_type_class_add_private
+
 ### mate-notification-daemon 1.21.0
 
   * Translations update
