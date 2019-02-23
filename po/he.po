@@ -3,13 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2018
+# Stefano Karapetsas <stefano@karapetsas.com>, 2018
+# Edward Sawyer <saoded@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Edward Sawyer <saoded@gmail.com>, 2018\n"
 "Language-Team: Hebrew (https://www.transifex.com/mate/teams/13566/he/)\n"
 "MIME-Version: 1.0\n"
@@ -153,11 +158,11 @@ msgstr "שמאלה למטה"
 msgid "Bottom Right"
 msgstr "ימינה למטה"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
 msgstr "מספר ההתרעות המרבי הושג"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u אינו מזהה התרעה תקני"

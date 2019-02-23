@@ -3,13 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Rax Garfield <admin@dvizho.ks.ua>, 2018
+# Stefano Karapetsas <stefano@karapetsas.com>, 2018
+# zubr139, 2018
+# Микола Ткач <chistomov@gmail.com>, 2018
+# Шаповалов Анатолій Романович <elrond.716.smith@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Шаповалов Анатолій Романович <elrond.716.smith@gmail.com>, 2018\n"
 "Language-Team: Ukrainian (https://www.transifex.com/mate/teams/13566/uk/)\n"
 "MIME-Version: 1.0\n"
@@ -20,14 +27,14 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr "Розташування виринаючого вікна"
+msgstr "Розташування виринного вікна"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
-"Типове розташування виринаючих сповіщень на робочому просторі. Можна "
+"Типове розташування виринних сповіщень на робочому просторі. Можна "
 "розташовувати згори ліворуч, згори праворуч, знизу ліворуч чи знизу "
 "праворуч."
 
@@ -108,11 +115,11 @@ msgstr "Не вдається завантажити файл інтерфейс
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr "Виринаючі сповіщення"
+msgstr "Виринні сповіщення"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr "Налаштувати виринаючі сповіщення"
+msgstr "Налаштувати виринні сповіщення"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
@@ -154,11 +161,11 @@ msgstr "Знизу ліворуч"
 msgid "Bottom Right"
 msgstr "Знизу праворуч"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
-msgstr "Перевищено максимальну кількість сповіщень"
+msgstr "Перевищено щонайбільшу кількість сповіщень"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u не є дійсним ідентифікатором"

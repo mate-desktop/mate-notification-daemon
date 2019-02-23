@@ -3,13 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Andika Triwidada <andika@gmail.com>, 2018
+# Aris S. Ripandi <inactive+riespandi@transifex.com>, 2018
+# Ibnu Daru Aji, 2018
+# La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2018
+# Rendiyono Wahyu Saputro <rendi.7936@gmail.com>, 2018
+# Anton Toni Agung <vdrive6@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Anton Toni Agung <vdrive6@gmail.com>, 2018\n"
 "Language-Team: Indonesian (https://www.transifex.com/mate/teams/13566/id/)\n"
 "MIME-Version: 1.0\n"
@@ -154,11 +162,11 @@ msgstr "Bawah Kiri"
 msgid "Bottom Right"
 msgstr "Bawah Kanan"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
 msgstr "Melebihi jumlah notifikasi maksimal"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u bukan merupakan ID notifikasi yang valid"

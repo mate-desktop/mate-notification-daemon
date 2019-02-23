@@ -3,13 +3,19 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Pandi3a <pandi3a@gmail.com>, 2018
+# Любомир Василев, 2018
+# Georgi Georgiev <georgiev_1994@abv.bg>, 2018
+# Elusiv_man <breaker9loc@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Elusiv_man <breaker9loc@gmail.com>, 2018\n"
 "Language-Team: Bulgarian (https://www.transifex.com/mate/teams/13566/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -153,11 +159,11 @@ msgstr "Долен ляв"
 msgid "Bottom Right"
 msgstr "Долен десен"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
 msgstr "Надвишен е максималния брой на известията"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u не е валидно ID на известие"

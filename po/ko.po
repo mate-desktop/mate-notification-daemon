@@ -3,13 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2018
+# 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2018
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2018\n"
 "Language-Team: Korean (https://www.transifex.com/mate/teams/13566/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -151,11 +155,11 @@ msgstr "좌측 하단"
 msgid "Bottom Right"
 msgstr "우측 하단"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
 msgstr "최대 알림 갯수를 넘었습니다"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "유효하지 않은 %u 알림 ID 입니다"

@@ -3,14 +3,18 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
+# Translators:
+# Stefano Karapetsas <stefano@karapetsas.com>, 2018
+# Benedikt Straub <benedikt-straub@web.de>, 2019
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: MATE Desktop Environment\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-15 17:13+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2018\n"
+"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
+"Last-Translator: Benedikt Straub <benedikt-straub@web.de>, 2019\n"
 "Language-Team: Low German (https://www.transifex.com/mate/teams/13566/nds/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,22 +24,24 @@ msgstr ""
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
 msgid "Popup location"
-msgstr ""
+msgstr "Vörkoom-Stee"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
+"De Stee up'm Schrievdisk, waar Narichten normaal vandag komen. Verlöövte "
+"Weerten: »top_left«, »top_right«, »bottom_left« un »bottom_right«"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
 #: ../src/capplet/mate-notification-properties.ui.h:7
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Aktiven Billschirm bruken"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "De Naricht up de aktiven Monitor wiesen."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
 msgid "Monitor"
@@ -46,72 +52,74 @@ msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr ""
+"De Billschirm, waar de Naricht wiesen word. Verlöövte Weerten: -1 (aktiver "
+"Billschirm) un 0 bit n-1; daarbi is n de Tahl vun Billschirmen."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
 msgid "Current theme"
-msgstr ""
+msgstr "Aktuelles Thema"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
 msgid "The theme used when displaying notifications."
-msgstr ""
+msgstr "Dat Thema, waar Narichten mit wiesen worden."
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
 msgid "Sound Enabled"
-msgstr ""
+msgstr "Gedrüüs an"
 
 #: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
 msgid "Turns on and off sound support for notifications."
-msgstr ""
+msgstr "Maakt Gedrüüs-Unnerstütten för Narichten at oder ut."
 
 #: ../src/capplet/mate-notification-properties.c:329
 msgid "Coco"
-msgstr ""
+msgstr "Coco"
 
 #: ../src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: ../src/capplet/mate-notification-properties.c:337
 msgid "Slider"
-msgstr ""
+msgstr "Schuver"
 
 #: ../src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
-msgstr ""
+msgstr "Normaales Thema"
 
 #: ../src/capplet/mate-notification-properties.c:458
 msgid "Error initializing libmatenotify"
-msgstr ""
+msgstr "Fehler bi'm Vörbereiden vun libmatenotify"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Notification Test"
-msgstr ""
+msgstr "Narichten-Test"
 
 #: ../src/capplet/mate-notification-properties.c:471
 msgid "Just a test"
-msgstr ""
+msgstr "Blot een Test"
 
 #: ../src/capplet/mate-notification-properties.c:475
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr ""
+msgstr "Fehler bi'm Wiesen vun eener Naricht: %s"
 
 #: ../src/capplet/mate-notification-properties.c:526
 #, c-format
 msgid "Could not load user interface file: %s"
-msgstr ""
+msgstr "Kunn de Bruker-Bovensied-Datei nich laden: %s"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:1
 msgid "Popup Notifications"
-msgstr ""
+msgstr "Vörkoom-Narichten"
 
 #: ../src/capplet/mate-notification-properties.desktop.in.h:2
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "Sett de Instellungen för Vörkoom-Narichten"
 
 #: ../src/capplet/mate-notification-properties.ui.h:1
 msgid "Notification Settings"
-msgstr ""
+msgstr "Narichten-Instellens"
 
 #: ../src/capplet/mate-notification-properties.ui.h:2
 msgid "_Preview"
@@ -119,62 +127,62 @@ msgstr "_Utblick"
 
 #: ../src/capplet/mate-notification-properties.ui.h:3
 msgid "<b>General Options</b>"
-msgstr ""
+msgstr "<b>Allgemeene Instellens</b>"
 
 #: ../src/capplet/mate-notification-properties.ui.h:4
 msgid "P_osition:"
-msgstr ""
+msgstr "_Stee:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:5
 msgid "_Theme:"
-msgstr ""
+msgstr "_Thema:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:6
 msgid "_Monitor:"
-msgstr ""
+msgstr "_Billschirm:"
 
 #: ../src/capplet/mate-notification-properties.ui.h:8
 msgid "Top Left"
-msgstr ""
+msgstr "Boven links"
 
 #: ../src/capplet/mate-notification-properties.ui.h:9
 msgid "Top Right"
-msgstr ""
+msgstr "Boven rechts"
 
 #: ../src/capplet/mate-notification-properties.ui.h:10
 msgid "Bottom Left"
-msgstr ""
+msgstr "Unnen links"
 
 #: ../src/capplet/mate-notification-properties.ui.h:11
 msgid "Bottom Right"
-msgstr ""
+msgstr "Unnen rechts"
 
-#: ../src/daemon/daemon.c:1325
+#: ../src/daemon/daemon.c:1320
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "To völe Narichten"
 
-#: ../src/daemon/daemon.c:1608
+#: ../src/daemon/daemon.c:1603
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr ""
+msgstr "%u is keene gültige Narichten-ID"
 
 #: ../src/daemon/sound.c:36
 msgid "Notification"
-msgstr ""
+msgstr "Naricht"
 
 #: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
 #: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
 msgid "Notification summary text."
-msgstr ""
+msgstr "Tosamenfaten-Text vun de Naricht."
 
 #: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
 #: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
 msgid "Notification body text."
-msgstr ""
+msgstr "Höövdtext vun de Naricht."
 
 #: ../src/themes/nodoka/nodoka-theme.c:823
 #: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
 #: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
 #: ../src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr ""
+msgstr "Naricht sluten."
