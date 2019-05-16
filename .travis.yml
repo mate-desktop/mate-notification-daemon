@@ -80,6 +80,7 @@ requires:
     # Useful URL: https://salsa.debian.org/debian-mate-team/mate-notification-daemon
     - clang
     - clang-tools
+    - cppcheck
     - gcc
     - git
     - gobject-introspection
@@ -168,6 +169,9 @@ build_scripts:
   -     scan-build $CHECKERS --keep-cc -o html-report make -j $CPU_COUNT
   - else
   -     scan-build $CHECKERS --keep-cc -o html-report make
+  - fi
+  - if [ ${DISTRO_NAME} == "debian" ];then
+  -     cppcheck --enable=warning,style,performance,portability,information,missingInclude .
   - fi
 
 after_scripts:
