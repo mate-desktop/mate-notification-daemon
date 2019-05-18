@@ -109,6 +109,7 @@ requires:
     # Useful URL: https://src.fedoraproject.org/cgit/rpms/mate-notification-daemon.git
     - clang
     - clang-analyzer
+    - cppcheck-htmlreport
     - desktop-file-utils
     - file
     - git
@@ -176,7 +177,9 @@ build_scripts:
 
 after_scripts:
   - if [ ${DISTRO_NAME} == "fedora" ];then
-  -   ./gen-index -i https://github.com/${OWNER_NAME}/mate-notification-daemon/raw/master/data/icons/16x16/mate-notification-properties.png
+  -   cppcheck --xml --output-file=cppcheck.xml --enable=warning,style,performance,portability,information,missingInclude .
+  -   cppcheck-htmlreport --title=${REPO_NAME} --file=cppcheck.xml --report-dir=cppcheck-htmlreport
+  -   ./gen-index -l 20 -i https://github.com/${OWNER_NAME}/mate-notification-daemon/raw/master/data/icons/16x16/mate-notification-properties.png
   - fi
   - make distcheck
 
