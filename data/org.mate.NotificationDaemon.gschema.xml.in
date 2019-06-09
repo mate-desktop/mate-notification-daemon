@@ -25,5 +25,10 @@
       <summary>Sound Enabled</summary>
       <description>Turns on and off sound support for notifications.</description>
     </key>
+    <key name="do-not-disturb" type="b">
+      <default>false</default>
+      <summary>Do not disturb</summary>
+      <description>When enabled, notifications are not shown.</description>
+    </key>
   </schema>
 </schemalist>
