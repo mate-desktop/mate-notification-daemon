@@ -873,9 +873,8 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 	}
 }
 
-static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, int timeout)
+static guint _generate_id(NotifyDaemon* daemon)
 {
-	NotifyTimeout* nt;
 	guint id = 0;
 
 	do {
@@ -896,6 +895,14 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 		}
 
 	} while (id == 0);
+
+	return id;
+}
+
+static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, int timeout)
+{
+	NotifyTimeout* nt;
+	guint id = _generate_id(daemon);
 
 	nt = g_new0(NotifyTimeout, 1);
 	nt->id = id;
@@ -1311,6 +1318,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	guint return_id;
 	char* sound_file = NULL;
 	gboolean sound_enabled;
+	gboolean do_not_disturb;
 	gint i;
 	GdkPixbuf* pixbuf;
 	GSettings* gsettings;
@@ -1319,6 +1327,21 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	{
 		g_dbus_method_invocation_return_error (invocation, notify_daemon_error_quark(), 1, _("Exceeded maximum number of notifications"));
 		return FALSE;
+	}
+
+	/* Grab the settings */
+	gsettings = g_settings_new (GSETTINGS_SCHEMA);
+	sound_enabled = g_settings_get_boolean (gsettings, GSETTINGS_KEY_SOUND_ENABLED);
+	do_not_disturb = g_settings_get_boolean (gsettings, GSETTINGS_KEY_DO_NOT_DISTURB);
+	g_object_unref (gsettings);
+
+	/* If we are in do-not-disturb mode, just grab a new id and close the notification */
+	if (do_not_disturb)
+	{
+		/* FIXME: does this break things if we enable the option with an action notification up */
+		return_id = _generate_id (daemon);
+		notify_daemon_notifications_complete_notify (object, invocation, return_id);
+		return TRUE;
 	}
 
 	if (id > 0)
@@ -1375,11 +1398,6 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 			use_pos_data = TRUE;
 		}
 	}
-
-	/* Deal with sound hints */
-	gsettings = g_settings_new (GSETTINGS_SCHEMA);
-	sound_enabled = g_settings_get_boolean (gsettings, GSETTINGS_KEY_SOUND_ENABLED);
-	g_object_unref (gsettings);
 
 	if (g_variant_lookup(hints, "suppress-sound", "v", &data)) {
 		if (g_variant_get_type (data) == G_VARIANT_TYPE_BOOLEAN )
