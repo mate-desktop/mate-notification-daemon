@@ -105,16 +105,16 @@ static void notification_properties_monitor_changed(GtkComboBox* widget, Notific
 {
 	gint monitor;
 	GtkTreeIter iter;
-	
+
 	GtkTreeModel *model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->monitor_combo));
-	
+
 	if (!gtk_combo_box_get_active_iter(GTK_COMBO_BOX(dialog->monitor_combo), &iter))
 	{
 		return;
 	}
-	
+
 	gtk_tree_model_get(model, &iter, NOTIFY_MONITOR_NUMBER, &monitor, -1);
-	
+
 	g_settings_set_int(dialog->gsettings, GSETTINGS_KEY_MONITOR_NUMBER, monitor);
 }
 
@@ -129,11 +129,11 @@ static void notification_properties_monitor_notify(GSettings *settings, gchar *k
 	model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->monitor_combo));
 
 	monitor_number = g_settings_get_int(dialog->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
-	
+
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid; valid = gtk_tree_model_iter_next(model, &iter))
 	{
 		gtk_tree_model_get(model, &iter, NOTIFY_MONITOR_NUMBER, &monitor_number_at_iter, -1);
-		
+
 		if (monitor_number_at_iter == monitor_number)
 		{
 			gtk_combo_box_set_active_iter(GTK_COMBO_BOX(dialog->monitor_combo), &iter);
@@ -207,15 +207,15 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
 	// TODO: add support for multiple displays.
 	display = gdk_display_get_default();
 	g_assert(display != NULL);
-	
+
 	// Assumes the user has only one screen.
 	// TODO: add support for mulitple screens.
 	screen = gdk_display_get_default_screen(display);
 	g_assert(screen != NULL);
-	
+
 	num_monitors = gdk_display_get_n_monitors(display);
 	g_assert(num_monitors >= 1);
-	
+
 	store = gtk_list_store_new(N_COLUMNS_MONITOR, G_TYPE_INT);
 
     gint i;
@@ -224,21 +224,21 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
         gtk_list_store_append(store, &iter);
 		gtk_list_store_set(store, &iter, NOTIFY_MONITOR_NUMBER, i, -1);
 	}
-	
+
 	gtk_combo_box_set_model(GTK_COMBO_BOX (dialog->monitor_combo), GTK_TREE_MODEL (store));
-	
+
 	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_MONITOR_NUMBER, G_CALLBACK (notification_properties_monitor_notify), dialog);
 	cur_monitor_number = g_settings_get_int(dialog->gsettings, GSETTINGS_KEY_MONITOR_NUMBER);
 
 	for (valid = gtk_tree_model_get_iter_first(GTK_TREE_MODEL (store), &iter); valid; valid = gtk_tree_model_iter_next(GTK_TREE_MODEL (store), &iter))
 	{
 		gtk_tree_model_get(GTK_TREE_MODEL (store), &iter, NOTIFY_MONITOR_NUMBER, &cur_monitor_number_at_iter, -1);
-		
+
 		if (cur_monitor_number_at_iter == cur_monitor_number)
 		{
 			gtk_combo_box_set_active_iter(GTK_COMBO_BOX(dialog->monitor_combo), &iter);
 			break;
-		}				
+		}
 	}
 
 	g_object_unref(store);
@@ -536,16 +536,16 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 
 	dialog->monitor_combo = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_combo"));
 	g_assert(dialog->monitor_combo != NULL);
-	
+
 	dialog->theme_combo = GTK_WIDGET(gtk_builder_get_object(builder, "theme_combo"));
 	g_assert(dialog->theme_combo != NULL);
-	
+
 	dialog->active_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "use_active_check"));
-	g_assert(dialog->active_checkbox != NULL);	
+	g_assert(dialog->active_checkbox != NULL);
 
     dialog->monitor_label = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_label"));
     g_assert(dialog->monitor_label != NULL);
-	
+
 	g_object_unref(builder);
 
 	dialog->gsettings = g_settings_new (GSETTINGS_SCHEMA);

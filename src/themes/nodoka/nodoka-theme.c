@@ -5,23 +5,23 @@
  * Copyright (C) 2012 - Stefano Karapetsas <stefano@karapetsas.com>
  * Copyright (C) 2008 - Martin Sourada
  *
- * notification-daemon-engine-nodoka is free software; you can redistribute it 
- * and/or modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 3 of the License, 
+ * notification-daemon-engine-nodoka is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
- * notification-daemon-engine-nodoka is distributed in the hope that it will be 
+ * notification-daemon-engine-nodoka is distributed in the hope that it will be
  * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with notification-daemon-engine-nodoka; if not, write to the Free 
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * along with notification-daemon-engine-nodoka; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301  USA
  */
- 
- 
+
+
 
 #include "config.h"
 
@@ -167,19 +167,19 @@ set_arrow_parameters (WindowData *windata)
 	GtkAllocation alloc;
 	gtk_widget_get_allocation(windata->win, &alloc);
 
-	if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
-		DEFAULT_ARROW_OFFSET + alloc.width) > 
+	if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW -
+		DEFAULT_ARROW_OFFSET + alloc.width) >
 			screen_width)
 	{
-		windata->arrow.offset = windata->arrow.position.x - 
-					DEFAULT_ARROW_SKEW - 
-					(screen_width - 
+		windata->arrow.offset = windata->arrow.position.x -
+					DEFAULT_ARROW_SKEW -
+					(screen_width -
 						alloc.width);
 	}
-	else if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW - 
+	else if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW -
 		DEFAULT_ARROW_OFFSET < 0))
 	{
-		windata->arrow.offset = windata->arrow.position.x - 
+		windata->arrow.offset = windata->arrow.position.x -
 					DEFAULT_ARROW_SKEW;
 	}
 	else
@@ -192,17 +192,17 @@ set_arrow_parameters (WindowData *windata)
 		windata->arrow.offset = 6;
 		windata->arrow.position.x += 6;
 	}
-	else if (windata->arrow.offset + DEFAULT_ARROW_WIDTH + 6 > 
+	else if (windata->arrow.offset + DEFAULT_ARROW_WIDTH + 6 >
 			alloc.width)
 	{
-		windata->arrow.offset = alloc.width - 6 - 
+		windata->arrow.offset = alloc.width - 6 -
 					DEFAULT_ARROW_WIDTH;
 		windata->arrow.position.x -= 6;
 	}
 
 	/* Set arrow points X position */
 	windata->arrow.point_begin.x = windata->arrow.offset;
-	windata->arrow.point_middle.x = windata->arrow.offset + 
+	windata->arrow.point_middle.x = windata->arrow.offset +
 					DEFAULT_ARROW_SKEW;
 	windata->arrow.point_end.x = windata->arrow.offset +
 					DEFAULT_ARROW_WIDTH;
@@ -210,7 +210,7 @@ set_arrow_parameters (WindowData *windata)
 
 	/* Set arrow points Y position */
 	arrow_type = get_notification_arrow_type(windata->win);
-	
+
 	switch (arrow_type)
 	{
 		case GTK_ARROW_UP:
@@ -220,13 +220,13 @@ set_arrow_parameters (WindowData *windata)
 			y = windata->arrow.position.y;
 			break;
 		case GTK_ARROW_DOWN:
-			windata->arrow.point_begin.y = 
-				alloc.height - 
+			windata->arrow.point_begin.y =
+				alloc.height -
 					DEFAULT_ARROW_HEIGHT;
-			windata->arrow.point_middle.y = 
+			windata->arrow.point_middle.y =
 				alloc.height;
-			windata->arrow.point_end.y = 
-				alloc.height - 
+			windata->arrow.point_end.y =
+				alloc.height -
 					DEFAULT_ARROW_HEIGHT;
 			y = windata->arrow.position.y - alloc.height;
 			break;
@@ -309,8 +309,8 @@ nodoka_rounded_rectangle (cairo_t * cr,
 
 /* Rounded rectangle with arrow */
 static void
-nodoka_rounded_rectangle_with_arrow (cairo_t * cr, 
-				double x, double y, double w, double h, 
+nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
+				double x, double y, double w, double h,
 				int radius, ArrowParameters * arrow)
 {
 	gboolean arrow_up;
@@ -323,38 +323,38 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 	rect.width = w;
 	if (arrow_up)
 		rect.y = 0 + DEFAULT_ARROW_HEIGHT;
-	else 
+	else
 		rect.y = 0;
 	rect.height = h - DEFAULT_ARROW_HEIGHT;
 
-	cairo_move_to (cr, rect.x + radius, rect.y);	
+	cairo_move_to (cr, rect.x + radius, rect.y);
 
 	if (arrow_up)
 	{
-		cairo_line_to (cr, rect.x + arrow->point_begin.x, 
+		cairo_line_to (cr, rect.x + arrow->point_begin.x,
 				rect.y);
-		cairo_line_to (cr, rect.x + arrow->point_middle.x, 
+		cairo_line_to (cr, rect.x + arrow->point_middle.x,
 				rect.y - DEFAULT_ARROW_HEIGHT);
-		cairo_line_to (cr, rect.x + arrow->point_end.x, 
+		cairo_line_to (cr, rect.x + arrow->point_end.x,
 				rect.y);
 	}
 
-	cairo_arc (cr, rect.x + rect.width - radius, rect.y + radius, radius, 
+	cairo_arc (cr, rect.x + rect.width - radius, rect.y + radius, radius,
 			G_PI * 1.5, G_PI * 2);
-	cairo_arc (cr, rect.x + rect.width - radius, 
+	cairo_arc (cr, rect.x + rect.width - radius,
 			rect.y + rect.height - radius, radius, 0, G_PI * 0.5);
 
 	if (!arrow_up)
 	{
-		cairo_line_to (cr, rect.x + arrow->point_end.x, 
+		cairo_line_to (cr, rect.x + arrow->point_end.x,
 				rect.y + rect.height);
-		cairo_line_to (cr, rect.x + arrow->point_middle.x, 
+		cairo_line_to (cr, rect.x + arrow->point_middle.x,
 				rect.y + rect.height + DEFAULT_ARROW_HEIGHT);
-		cairo_line_to (cr, rect.x + arrow->point_begin.x, 
+		cairo_line_to (cr, rect.x + arrow->point_begin.x,
 				rect.y + rect.height);
 	}
 
-	cairo_arc (cr, rect.x + radius, rect.y + rect.height - radius, 
+	cairo_arc (cr, rect.x + radius, rect.y + rect.height - radius,
 			radius, G_PI * 0.5, G_PI);
 	cairo_arc (cr, rect.x + radius, rect.y + radius, radius, G_PI,
 			G_PI * 1.5);
@@ -380,14 +380,14 @@ fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	cairo_pattern_add_color_stop_rgba (pattern, 1, 0.984, 0.984, 0.663, alpha);
 	cairo_set_source (cr, pattern);
 	cairo_pattern_destroy (pattern);
-	
+
 	if (windata->arrow.has_arrow)
-		nodoka_rounded_rectangle_with_arrow (cr, 0, 0, 
+		nodoka_rounded_rectangle_with_arrow (cr, 0, 0,
 			windata->width, windata->height, 6, & (windata->arrow));
 	else
-		nodoka_rounded_rectangle (cr, 0, 0, windata->width, 
+		nodoka_rounded_rectangle (cr, 0, 0, windata->width,
 			windata->height, 6);
-	cairo_fill (cr);	
+	cairo_fill (cr);
 }
 
 
@@ -460,10 +460,10 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	cairo_pattern_destroy (pattern);
 
 	if (windata->arrow.has_arrow)
-		nodoka_rounded_rectangle_with_arrow (cr, 1, 1, 
+		nodoka_rounded_rectangle_with_arrow (cr, 1, 1,
 			windata->width - 2, windata->height - 2, 5, & (windata->arrow));
 	else
-		nodoka_rounded_rectangle (cr, 1, 1, windata->width - 2, 
+		nodoka_rounded_rectangle (cr, 1, 1, windata->width - 2,
 			windata->height - 2, 5);
 	cairo_fill (cr);
 
@@ -485,16 +485,16 @@ draw_border(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	cairo_pattern_add_color_stop_rgba (pattern, 1, 0.776, 0.757, 0.596, alpha);
 	cairo_set_source (cr, pattern);
 	cairo_pattern_destroy (pattern);
-	
+
 	if (windata->arrow.has_arrow)
-		nodoka_rounded_rectangle_with_arrow (cr, 0.5, 0.5, 
+		nodoka_rounded_rectangle_with_arrow (cr, 0.5, 0.5,
 			windata->width -1, windata->height -1, 6, & (windata->arrow));
 	else
-		nodoka_rounded_rectangle (cr, 0.5, 0.5, windata->width -1, 
+		nodoka_rounded_rectangle (cr, 0.5, 0.5, windata->width -1,
 			windata->height -1, 6);
 
 	cairo_set_line_width (cr, 1.0);
-	cairo_stroke (cr);	
+	cairo_stroke (cr);
 }
 
 static void
@@ -509,8 +509,8 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
 					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
 	cairo_line_to(cr, PIE_RADIUS, PIE_RADIUS);
-	
-	cairo_fill (cr); 
+
+	cairo_fill (cr);
 }
 
 static void
@@ -560,7 +560,7 @@ paint_window (GtkWidget  *widget,
 		windata->width = allocation.width;
 		windata->height = allocation.height;
 	}
-	
+
 	if (windata->arrow.has_arrow)
 		set_arrow_parameters (windata);
 
@@ -704,8 +704,8 @@ get_theme_info(char **theme_name,
 			   char **homepage)
 {
 	*theme_name = g_strdup("Nodoka");
-	*theme_ver  = g_strdup_printf("%d.%d.%d", NOTIFICATION_DAEMON_MAJOR_VERSION, 
-                                                  NOTIFICATION_DAEMON_MINOR_VERSION, 
+	*theme_ver  = g_strdup_printf("%d.%d.%d", NOTIFICATION_DAEMON_MAJOR_VERSION,
+                                                  NOTIFICATION_DAEMON_MINOR_VERSION,
 						  NOTIFICATION_DAEMON_MICRO_VERSION);
 	*author = g_strdup("Martin Sourada");
 	*homepage = g_strdup("https://nodoka.fedorahosted.org/");
