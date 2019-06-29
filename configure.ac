@@ -218,7 +218,7 @@ if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
 else
         AC_MSG_RESULT(no)
 fi
- 
+
 dnl ---------------------------------------------------------------------------
 dnl Enabel/disable icon cache generation
 dnl ---------------------------------------------------------------------------
@@ -227,7 +227,7 @@ AC_ARG_ENABLE(icon-update, AC_HELP_STRING([--disable-icon-update],
 if (test "$enable_icon_update" != no); then
         AC_PATH_PROG(UPDATE_ICON_CACHE, [gtk-update-icon-cache])
 fi
-AM_CONDITIONAL([ICON_UPDATE], [test -n "$UPDATE_ICON_CACHE"]) 
+AM_CONDITIONAL([ICON_UPDATE], [test -n "$UPDATE_ICON_CACHE"])
 
 AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $WARNINGCFLAGS"
 AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS"

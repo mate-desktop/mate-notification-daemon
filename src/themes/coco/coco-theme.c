@@ -6,19 +6,19 @@
  * Copyright (C) 2010 - Eduardo Grajeda
  * Copyright (C) 2008 - Martin Sourada
  *
- * notification-daemon-engine-coco is free software; you can redistribute it 
- * and/or modify it under the terms of the GNU General Public License as 
- * published by the Free Software Foundation; either version 3 of the License, 
+ * notification-daemon-engine-coco is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 3 of the License,
  * or (at your option) any later version.
  *
- * notification-daemon-engine-coco is distributed in the hope that it will be 
+ * notification-daemon-engine-coco is distributed in the hope that it will be
  * useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with notification-daemon-engine-coco; if not, write to the Free 
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, 
+ * along with notification-daemon-engine-coco; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor,
  * Boston, MA  02110-1301  USA
  */
 
@@ -146,19 +146,19 @@ fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 
 	cairo_pattern_t *pattern;
 	pattern = cairo_pattern_create_linear (0, 0, 0, windata->height);
-	cairo_pattern_add_color_stop_rgba (pattern, 0, 
+	cairo_pattern_add_color_stop_rgba (pattern, 0,
         19/255.0, 19/255.0, 19/255.0, alpha);
-	cairo_pattern_add_color_stop_rgba (pattern, GRADIENT_CENTER, 
+	cairo_pattern_add_color_stop_rgba (pattern, GRADIENT_CENTER,
         19/255.0, 19/255.0, 19/255.0, alpha);
-	cairo_pattern_add_color_stop_rgba (pattern, 1, 
+	cairo_pattern_add_color_stop_rgba (pattern, 1,
         19/255.0, 19/255.0, 19/255.0, alpha);
 	cairo_set_source (cr, pattern);
 	cairo_pattern_destroy (pattern);
-	
+
     nodoka_rounded_rectangle (cr, 0, 8, windata->width-8,
         windata->height-8, 6);
 
-	cairo_fill (cr);	
+	cairo_fill (cr);
 }
 
 static void
@@ -173,8 +173,8 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
 					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
 	cairo_line_to(cr, PIE_RADIUS, PIE_RADIUS);
-	
-	cairo_fill (cr); 
+
+	cairo_fill (cr);
 }
 
 static void
@@ -361,8 +361,8 @@ get_theme_info(char **theme_name,
 			   char **homepage)
 {
 	*theme_name = g_strdup("Coco");
-	*theme_ver  = g_strdup_printf("%d.%d.%d", NOTIFICATION_DAEMON_MAJOR_VERSION, 
-                                                  NOTIFICATION_DAEMON_MINOR_VERSION, 
+	*theme_ver  = g_strdup_printf("%d.%d.%d", NOTIFICATION_DAEMON_MAJOR_VERSION,
+                                                  NOTIFICATION_DAEMON_MINOR_VERSION,
 						  NOTIFICATION_DAEMON_MICRO_VERSION);
 	*author = g_strdup("Eduardo Grajeda");
 	*homepage = g_strdup("http://github.com/tatofoo/");
@@ -431,13 +431,13 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_widget_show (windata->main_hbox);
 	gtk_box_pack_start (GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(windata->main_hbox), 13);
-   
-    /* The icon goes at the left */ 
+
+    /* The icon goes at the left */
 	windata->iconbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(windata->iconbox);
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), windata->iconbox,
 					   FALSE, FALSE, 0);
-    
+
 	windata->icon = gtk_image_new();
 	gtk_box_pack_start(GTK_BOX(windata->iconbox), windata->icon,
 					   FALSE, FALSE, 0);
