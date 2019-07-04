@@ -1,3 +1,11 @@
+### mate-notification-daemon 1.23.0
+
+  * Translations update
+  * Remove trailing whitespaces
+  * Change url project's website
+  * [ci] Add cppcheck html report
+  * [ci] Enable Clang Static Analyzer
+
 ### mate-notification-daemon 1.22.0
 
   * Translations update
