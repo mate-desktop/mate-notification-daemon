@@ -6,7 +6,7 @@
 # Translators:
 # Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Dario Di Nucci <linkin88mail@gmail.com>, 2018
-# Giuseppe Pignataro (Fastbyte01) <rogepix@gmail.com>, 2018
+# Giuseppe Pignataro <rogepix@gmail.com>, 2018
 # LuKePicci <luca.piccirillo@gmail.com>, 2018
 # Antonio Gschossmann <gschossmannantonio@gmail.com>, 2018
 # 
