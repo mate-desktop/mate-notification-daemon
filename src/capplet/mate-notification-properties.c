@@ -612,6 +612,8 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
         gtk_widget_set_sensitive(dialog->monitor_label, TRUE);
 	}
 
+	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->dnd_checkbox), g_settings_get_boolean(dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB));
+
 	gtk_widget_show_all(dialog->dialog);
 
 	dialog->preview = NULL;
