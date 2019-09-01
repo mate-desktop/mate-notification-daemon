@@ -1338,7 +1338,6 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	/* If we are in do-not-disturb mode, just grab a new id and close the notification */
 	if (do_not_disturb)
 	{
-		/* FIXME: does this break things if we enable the option with an action notification up */
 		return_id = _generate_id (daemon);
 		notify_daemon_notifications_complete_notify (object, invocation, return_id);
 		return TRUE;
