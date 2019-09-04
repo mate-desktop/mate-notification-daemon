@@ -1382,43 +1382,41 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	 */
 
 
-	if (g_variant_lookup(hints, "window-xid", "v", &data))
+	if (g_variant_lookup(hints, "window-xid", "@u", &data))
 	{
 		window_xid = (Window) g_variant_get_uint32 (data);
+		g_variant_unref(data);
 	}
 	/* deal with x, and y hints */
-	else if (g_variant_lookup(hints, "x", "v", &data))
+	else if (g_variant_lookup(hints, "x", "i", &x))
 	{
-		x = g_variant_get_int32 (data);
-
-		if (g_variant_lookup(hints, "y", "v", &data))
+		if (g_variant_lookup(hints, "y", "i", &y))
 		{
-			y = g_variant_get_int32 (data);
 			use_pos_data = TRUE;
 		}
 	}
 
-	if (g_variant_lookup(hints, "suppress-sound", "v", &data)) {
-		if (g_variant_get_type (data) == G_VARIANT_TYPE_BOOLEAN )
+	if (g_variant_lookup(hints, "suppress-sound", "@*", &data))
+	{
+		if (g_variant_is_of_type (data, G_VARIANT_TYPE_BOOLEAN))
 		{
 			sound_enabled = !g_variant_get_boolean(data);
 		}
-		else if (g_variant_get_type (data) == G_VARIANT_TYPE_INT32)
+		else if (g_variant_is_of_type (data, G_VARIANT_TYPE_INT32))
 		{
-			sound_enabled = (g_variant_get_int32(data) != 0);
+			sound_enabled = (g_variant_get_int32(data) == 0);
 		}
 		else
 		{
-			g_warning ("suppress-sound is of type %s (expected bool or int)\n", g_type_name (G_VALUE_TYPE (data)));
+			g_warning ("suppress-sound is of type %s (expected bool or int)\n", g_variant_get_type_string(data));
 		}
+		g_variant_unref(data);
 	}
 
 	if (sound_enabled)
 	{
-		if (g_variant_lookup(hints, "sound-file", "v", &data))
+		if (g_variant_lookup(hints, "sound-file", "s", &sound_file))
 		{
-			sound_file = g_variant_dup_string (data, NULL);
-
 			if (*sound_file == '\0' || !g_file_test (sound_file, G_FILE_TEST_EXISTS))
 			{
 				g_free (sound_file);
@@ -1445,46 +1443,37 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	pixbuf = NULL;
 
-	if (g_variant_lookup(hints, "image_data", "v", &data))
+	if (g_variant_lookup(hints, "image_data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
+		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image-data", "v", &data))
+	else if (g_variant_lookup(hints, "image-data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
+		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image_path", "v", &data))
+	else if (g_variant_lookup(hints, "image_path", "@s", &data))
 	{
-		if (g_variant_get_type(data) == G_VARIANT_TYPE_STRING)
-		{
-			const char *path = g_variant_get_string (data, NULL);
-			pixbuf = _notify_daemon_pixbuf_from_path (path);
-		}
-		else
-		{
-			g_warning ("notify_daemon_notify_handler expected image_path hint to be of type string");
-		}
+		const char *path = g_variant_get_string (data, NULL);
+		pixbuf = _notify_daemon_pixbuf_from_path (path);
+		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image-path", "v", &data))
+	else if (g_variant_lookup(hints, "image-path", "@s", &data))
 	{
-		if (g_variant_get_type(data) == G_VARIANT_TYPE_STRING)
-		{
-			const char *path = g_variant_get_string (data, NULL);
-			pixbuf = _notify_daemon_pixbuf_from_path (path);
-		}
-		else
-		{
-			g_warning ("notify_daemon_notify_handler expected image-path hint to be of type string");
-		}
+		const char *path = g_variant_get_string (data, NULL);
+		pixbuf = _notify_daemon_pixbuf_from_path (path);
+		g_variant_unref(data);
 	}
 	else if (*icon != '\0')
 	{
 		pixbuf = _notify_daemon_pixbuf_from_path (icon);
 	}
-	else if (g_variant_lookup(hints, "icon_data", "v", &data))
+	else if (g_variant_lookup(hints, "icon_data", "@(iiibiiay)", &data))
 	{
 		g_warning("\"icon_data\" hint is deprecated, please use \"image_data\" instead");
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
+		g_variant_unref(data);
 	}
 
 	if (pixbuf != NULL)
