@@ -446,16 +446,14 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 void set_notification_hints(GtkWindow *nw, GVariant *hints)
 {
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
-	GVariant *value = NULL, *icon_value = NULL;
+	guint8 urgency;
+	gboolean action_icons;
 
 	g_assert(windata != NULL);
 
-	g_variant_lookup(hints, "urgency", "v", &value);
-	g_variant_lookup(hints, "action-icons", "v", &icon_value);
-
-	if (value != NULL && g_variant_get_type(value) == G_VARIANT_TYPE_BYTE)
+	if (g_variant_lookup(hints, "urgency", "y", &urgency))
 	{
-		windata->urgency = g_variant_get_byte(value);
+		windata->urgency = urgency;
 
 		if (windata->urgency == URGENCY_CRITICAL) {
 			gtk_window_set_title(GTK_WINDOW(nw), "Critical Notification");
@@ -465,9 +463,9 @@ void set_notification_hints(GtkWindow *nw, GVariant *hints)
 	}
 
 	/* Determine if action-icons have been requested */
-	if (icon_value != NULL && g_variant_get_type(icon_value) == G_VARIANT_TYPE_BOOLEAN)
+	if (g_variant_lookup(hints, "action-icons", "b", &action_icons))
 	{
-		windata->action_icons = g_variant_get_boolean(icon_value);
+		windata->action_icons = action_icons;
 	}
 }
 
