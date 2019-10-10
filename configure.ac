@@ -59,6 +59,12 @@ AC_PROG_INSTALL
 AC_TYPE_SIZE_T
 
 dnl ---------------------------------------------------------------------------
+dnl Warning flags
+dnl ---------------------------------------------------------------------------
+MATE_MAINTAINER_MODE_DEFINES
+MATE_COMPILE_WARNINGS([yes])
+
+dnl ---------------------------------------------------------------------------
 dnl Initialize Libtool
 dnl ---------------------------------------------------------------------------
 LT_PREREQ([2.2.6])
@@ -176,50 +182,6 @@ AC_DEFINE_UNQUOTED(DBUS_SYSTEMD_DIR, "$DBUS_SYS_DIR", [Where system.d dir for DB
 AC_DEFINE_UNQUOTED(DBUS_SERVICES_DIR, "$DBUS_SERVICES_DIR", [Where services dir for DBUS is])
 
 dnl ---------------------------------------------------------------------------
-dnl Turn on the additional warnings last
-dnl ---------------------------------------------------------------------------
-MATE_COMPILE_WARNINGS([maximum])
-MATE_CXX_WARNINGS([yes])
-MATE_MAINTAINER_MODE_DEFINES
-
-AC_ARG_ENABLE(more-warnings,
-              AS_HELP_STRING([--enable-more-warnings],
-                             [Maximum compiler warnings]),
-              set_more_warnings="$enableval",[
-	      if test -d $srcdir/.git; then
-	        set_more_warnings=yes
-	      else
-	        set_more_warnings=no
-              fi])
-
-AC_MSG_CHECKING(for more warnings)
-if test "$GCC" = "yes" -a "$set_more_warnings" != "no"; then
-        AC_MSG_RESULT(yes)
-        WARNINGCFLAGS="\
-        -Wchar-subscripts -Wmissing-declarations \
-        -Wcast-align -Wsign-compare -U_FORTIFY_SOURCE -Wp,-D_FORTIFY_SOURCE=2 \
-        $WARNINGCFLAGS"
-
-        for option in -Wno-strict-aliasing; do
-                SAVE_CFLAGS="$WARNINGCFLAGS"
-                WARNINGCFLAGS="$WARNINGCFLAGS $option"
-                AC_MSG_CHECKING([whether gcc understands $option])
-                AC_TRY_COMPILE([], [],
-                        has_option=yes,
-                        has_option=no,)
-                if test $has_option = no; then
-                        WARNINGCFLAGS="$SAVE_CFLAGS"
-                fi
-                AC_MSG_RESULT($has_option)
-                unset has_option
-                unset SAVE_CFLAGS
-        done
-        unset option
-else
-        AC_MSG_RESULT(no)
-fi
-
-dnl ---------------------------------------------------------------------------
 dnl Enabel/disable icon cache generation
 dnl ---------------------------------------------------------------------------
 AC_ARG_ENABLE(icon-update, AC_HELP_STRING([--disable-icon-update],
@@ -228,12 +190,6 @@ if (test "$enable_icon_update" != no); then
         AC_PATH_PROG(UPDATE_ICON_CACHE, [gtk-update-icon-cache])
 fi
 AM_CONDITIONAL([ICON_UPDATE], [test -n "$UPDATE_ICON_CACHE"])
-
-AM_CFLAGS="$AM_CFLAGS $WARN_CFLAGS $WARNINGCFLAGS"
-AM_CXXFLAGS="$AM_CXXFLAGS $WARN_CXXFLAGS"
-
-AC_SUBST([AM_CFLAGS])
-AC_SUBST([AM_CXXFLAGS])
 
 AC_CONFIG_FILES([
 Makefile
@@ -255,14 +211,16 @@ AC_OUTPUT
 
 echo "
 			$PACKAGE_NAME $PACKAGE_VERSION
-			=========================
+			================================
 
 	prefix:                   ${prefix}
 	exec_prefix:              ${exec_prefix}
 	bindir:                   ${bindir}
 	datadir:                  ${datadir}
 	source code location:     ${srcdir}
-	cflags:		              ${AM_CFLAGS}
+	compiler:                 ${CC}
+	cflags:	                  ${CFLAGS}
+	warning flags:            ${WARN_CFLAGS}
 
 	dbus-1 system.d           $DBUS_SYS_DIR
 	dbus-1 services           $DBUS_SERVICES_DIR

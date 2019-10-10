@@ -14,6 +14,8 @@ mate_notification_daemon_SOURCES = \
 
 mate_notification_daemon_LDADD = $(NOTIFICATION_DAEMON_LIBS)
 
+mate_notification_daemon_CFLAGS = $(WARN_CFLAGS)
+
 mate_notification_daemon_built_sources =	\
 	mnd-dbus-generated.h	\
 	mnd-dbus-generated.c	\

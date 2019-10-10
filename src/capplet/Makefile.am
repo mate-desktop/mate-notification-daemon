@@ -4,7 +4,7 @@ bin_PROGRAMS = mate-notification-properties
 
 mate_notification_properties_LDADD   = $(NOTIFICATION_CAPPLET_LIBS)
 mate_notification_properties_SOURCES = mate-notification-properties.c
-
+mate_notification_properties_CFLAGS = $(WARN_CFLAGS)
 uidir = $(datadir)/mate-notification-daemon
 ui_DATA = mate-notification-properties.ui
 
