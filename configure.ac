@@ -81,6 +81,24 @@ AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package n
 
 
 dnl ---------------------------------------------------------------------------
+dnl GLIB_COMPILE_RESOURCES
+dnl ---------------------------------------------------------------------------
+AC_ARG_VAR([GLIB_COMPILE_RESOURCES],[glib-compile-resources bin])
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources],[])
+if test -z "$GLIB_COMPILE_RESOURCES"; then
+  AC_MSG_ERROR([glib-compile-resources not found])
+fi
+
+dnl ---------------------------------------------------------------------------
+dnl XMLLINT
+dnl ---------------------------------------------------------------------------
+AC_ARG_VAR([XMLLINT],[xmllint bin])
+AC_PATH_PROG([XMLLINT],[xmllint],[])
+if test -z "$XMLLINT"; then
+  AC_MSG_ERROR([xmllint not found])
+fi
+
+dnl ---------------------------------------------------------------------------
 dnl Requirements for the themes
 dnl ---------------------------------------------------------------------------
 
