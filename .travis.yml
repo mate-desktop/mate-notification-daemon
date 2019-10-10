@@ -103,6 +103,7 @@ requires:
     - libwnck-3-dev
     - libx11-dev
     - libxml2-dev
+    - libxml2-utils
     - mate-common
     - quilt
     - shared-mime-info
@@ -146,6 +147,7 @@ requires:
     - libwnck-3-dev
     - libx11-dev
     - libxml2-dev
+    - libxml2-utils
     - mate-common
     - quilt
     - shared-mime-info

@@ -39,8 +39,6 @@
 #define GSETTINGS_KEY_USE_ACTIVE_MONITOR "use-active-monitor"
 #define GSETTINGS_KEY_DO_NOT_DISTURB "do-not-disturb"
 
-#define NOTIFICATION_UI_FILE "mate-notification-properties.ui"
-
 typedef struct {
 	GSettings* gsettings;
 
@@ -539,25 +537,14 @@ static void notification_properties_dialog_destroyed(GtkWidget* widget, Notifica
 
 static gboolean notification_properties_dialog_init(NotificationAppletDialog* dialog)
 {
-	const char* ui_file;
-
-	if (g_file_test(NOTIFICATION_UI_FILE, G_FILE_TEST_EXISTS))
-	{
-		ui_file = NOTIFICATION_UI_FILE;
-	}
-	else
-	{
-		ui_file = NOTIFICATION_UIDIR "/" NOTIFICATION_UI_FILE;
-	}
-
 	GtkBuilder* builder = gtk_builder_new();
 	GError* error = NULL;
 
-	gtk_builder_add_from_file(builder, ui_file, &error);
+	gtk_builder_add_from_resource (builder, "/org/mate/notifications/properties/mate-notification-properties.ui", &error);
 
 	if (error != NULL)
 	{
-		g_warning(_("Could not load user interface file: %s"), error->message);
+		g_warning(_("Could not load user interface: %s"), error->message);
 		g_error_free(error);
 		return FALSE;
 	}
