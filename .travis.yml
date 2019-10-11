@@ -74,6 +74,7 @@ requires:
     - libwnck3
     - make
     - mate-common
+    - unzip
     - which
 
   debian:
@@ -106,6 +107,7 @@ requires:
     - mate-common
     - quilt
     - shared-mime-info
+    - unzip
 
   fedora:
     # Useful URL: https://src.fedoraproject.org/cgit/rpms/mate-notification-daemon.git
@@ -122,6 +124,7 @@ requires:
     - make
     - mate-common
     - mate-desktop-devel
+    - unzip
 
   ubuntu:
     - autoconf-archive
@@ -149,6 +152,7 @@ requires:
     - mate-common
     - quilt
     - shared-mime-info
+    - unzip
 
 variables:
   - CFLAGS="-Wall -Werror=format-security"
@@ -175,11 +179,12 @@ before_scripts:
   -     curl -Ls -o debian.sh https://github.com/mate-desktop/mate-dev-scripts/raw/master/travis/debian.sh
   -     bash ./debian.sh
   - fi
-  # Install mate-common fron tarball
+  # Install mate-common from master branch
   - cd ${START_DIR}
-  - '[ -f mate-common-1.23.3.tar.xz ] || curl -Ls -o mate-common-1.23.3.tar.xz http://pub.mate-desktop.org/releases/1.23/mate-common-1.23.3.tar.xz'
-  - tar xf mate-common-1.23.3.tar.xz
-  - cd mate-common-1.23.3
+  - curl -Ls -o mate-common-master.zip https://github.com/mate-desktop/mate-common/archive/master.zip
+  - unzip mate-common-master.zip
+  - cd mate-common-master
+  - ./autogen.sh
   - if [ ${DISTRO_NAME} == "debian" -o ${DISTRO_NAME} == "ubuntu" ];then
   -     ./configure --prefix=/usr --libdir=/usr/lib/x86_64-linux-gnu --libexecdir=/usr/lib/x86_64-linux-gnu
   - else
