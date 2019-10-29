@@ -74,9 +74,12 @@ LT_INIT
 dnl ---------------------------------------------------------------------------
 dnl i18n stuff
 dnl ---------------------------------------------------------------------------
-IT_PROG_INTLTOOL([0.50.1])
+
+AM_GNU_GETTEXT_VERSION([0.19.8])
+AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.8])
+AM_GNU_GETTEXT([external])
+
 AC_SUBST([GETTEXT_PACKAGE], [mate-notification-daemon])
-AM_GLIB_GNU_GETTEXT
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
 
 

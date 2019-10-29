@@ -18,7 +18,6 @@ service_DATA = org.freedesktop.mate.Notifications.service
 
 gsettingsschema_in_files = org.mate.NotificationDaemon.gschema.xml.in
 gsettings_SCHEMAS = $(gsettingsschema_in_files:.xml.in=.xml)
-@INTLTOOL_XML_NOMERGE_RULE@
 @GSETTINGS_RULES@
 
 EXTRA_DIST = \
