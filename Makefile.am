@@ -1,4 +1,4 @@
-SUBDIRS = data po src
+SUBDIRS = po data src
 
 # Point to our macro directory and pick up user flags from the environment
 ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
@@ -7,10 +7,7 @@ EXTRA_DIST = \
 	AUTHORS NEWS COPYING README \
 	ChangeLog \
 	autogen.sh \
-	configure.ac \
-	intltool-extract.in \
-	intltool-merge.in \
-	intltool-update.in
+	configure.ac
 
 $(OBJECTS): libtool
 libtool: $(LIBTOOL_DEPS)
@@ -20,10 +17,7 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-icon-update \
 	CFLAGS='-Wno-deprecated-declarations'
 
-DISTCLEANFILES = \
-	intltool-extract \
-	intltool-merge \
-	intltool-update
+DISTCLEANFILES =
 
 MAINTAINERCLEANFILES = \
         $(srcdir)/INSTALL \

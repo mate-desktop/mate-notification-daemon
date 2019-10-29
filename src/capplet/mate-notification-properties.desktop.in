@@ -1,11 +1,13 @@
 [Desktop Entry]
-_Name=Popup Notifications
-_Comment=Set your popup notification preferences
+Name=Popup Notifications
+Comment=Set your popup notification preferences
 Exec=mate-notification-properties
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=mate-notification-properties
 Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GTK;Settings;DesktopSettings;
 OnlyShowIn=MATE;
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=MATE;Notification;Theme;

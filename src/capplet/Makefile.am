@@ -1,7 +1,5 @@
 bin_PROGRAMS = mate-notification-properties
 
-@INTLTOOL_DESKTOP_RULE@
-
 BUILT_SOURCES = mate-notification-properties-resources.h mate-notification-properties-resources.c
 
 mate_notification_properties_LDADD   = $(NOTIFICATION_CAPPLET_LIBS)
@@ -14,6 +12,8 @@ mate-notification-properties-resources.h mate-notification-properties-resources.
 desktopdir = $(datadir)/applications
 desktop_in_files = mate-notification-properties.desktop.in
 desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+$(desktop_DATA): $(desktop_in_files)
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 man_MANS = mate-notification-properties.1
 
