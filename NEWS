@@ -1,3 +1,15 @@
+### mate-notification-daemon 1.23.1
+
+  * Translations update
+  * migrate from intltools to gettext
+  * Use gresource for mate-notification-properties.ui
+  * Use WARN_CFLAGS which are only set with --enable-compiler-warnings
+  * Fix decoding the hints dictionary.
+  * mate-notification-properties: initialize do-not-disturb checkbox
+  * mate-notification-properties: Add do-not-disturb checkbox
+  * daemon.c: check for do-not-disturb and skip notification
+  * add do-not-disturb setting
+
 ### mate-notification-daemon 1.23.0
 
   * Translations update
