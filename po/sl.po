@@ -1,6 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR MATE Desktop Environment team
+# This file is distributed under the same license as the mate-notification-daemon package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
@@ -9,15 +9,15 @@
 # Damir Jerovšek <jierro@windowslive.com>, 2018
 # worm <thewormhole@gmail.com>, 2018
 # Helena S <ele@tutamail.com>, 2018
+# Arnold Marko <arnold.marko@gmail.com>, 2019
 # 
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: MATE Desktop Environment\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-12-20 20:12+0100\n"
+"Project-Id-Version: mate-notification-daemon 1.23.0\n"
+"Report-Msgid-Bugs-To: https://mate-desktop.org\n"
+"POT-Creation-Date: 2019-11-07 12:05+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Helena S <ele@tutamail.com>, 2018\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2019\n"
 "Language-Team: Slovenian (https://www.transifex.com/mate/teams/13566/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,11 +25,11 @@ msgstr ""
 "Language: sl\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:1
+#: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
 msgstr "Mesto pojavnega obvestila"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:2
+#: data/org.mate.NotificationDaemon.gschema.xml.in:6
 msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
@@ -38,20 +38,20 @@ msgstr ""
 "Dovoljene vrednosti: \"top_left\",\"top_right\",\"bottom_left\" in "
 "\"bottom_right\""
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:3
-#: ../src/capplet/mate-notification-properties.ui.h:7
+#: data/org.mate.NotificationDaemon.gschema.xml.in:10
+#: src/capplet/mate-notification-properties.ui:237
 msgid "Use Active Monitor"
 msgstr "Uporabi dejavni zaslon"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:4
+#: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
 msgstr "Prikaži obvestilo na dejavnem zaslonu."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:5
+#: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
 msgstr "Zaslon"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:6
+#: data/org.mate.NotificationDaemon.gschema.xml.in:16
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
@@ -59,134 +59,157 @@ msgstr ""
 "Zaslon za prikaz obvestila. Dovoljene vrednosti: -1 (prikaz na dejavnem "
 "zaslonu) in 0 do n - 1, kjer je n število zaslonov."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:7
+#: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
 msgstr "Trenutna tema"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:8
+#: data/org.mate.NotificationDaemon.gschema.xml.in:21
 msgid "The theme used when displaying notifications."
 msgstr "Tema za prikaz obvestil."
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:9
+#: data/org.mate.NotificationDaemon.gschema.xml.in:25
 msgid "Sound Enabled"
 msgstr "Zvok je omogočen"
 
-#: ../data/org.mate.NotificationDaemon.gschema.xml.in.h:10
+#: data/org.mate.NotificationDaemon.gschema.xml.in:26
 msgid "Turns on and off sound support for notifications."
 msgstr "Vklopi in izklopi zvočno podporo za obvestila."
 
-#: ../src/capplet/mate-notification-properties.c:329
+#: data/org.mate.NotificationDaemon.gschema.xml.in:30
+msgid "Do not disturb"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:31
+msgid "When enabled, notifications are not shown."
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
 msgstr "Coco"
 
-#: ../src/capplet/mate-notification-properties.c:333
+#: src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: ../src/capplet/mate-notification-properties.c:337
+#: src/capplet/mate-notification-properties.c:337
 msgid "Slider"
 msgstr "Drsnik"
 
-#: ../src/capplet/mate-notification-properties.c:341
+#: src/capplet/mate-notification-properties.c:341
 msgid "Standard theme"
 msgstr "Običajna tema"
 
-#: ../src/capplet/mate-notification-properties.c:458
+#: src/capplet/mate-notification-properties.c:490
 msgid "Error initializing libmatenotify"
 msgstr "Napaka med začenjanjem libmatenotify"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: src/capplet/mate-notification-properties.c:503
 msgid "Notification Test"
 msgstr "Preizkus obvestila"
 
-#: ../src/capplet/mate-notification-properties.c:471
+#: src/capplet/mate-notification-properties.c:503
 msgid "Just a test"
 msgstr "Samo preizkus"
 
-#: ../src/capplet/mate-notification-properties.c:475
+#: src/capplet/mate-notification-properties.c:507
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Napaka med prikazovanjem obvestila: %s"
 
-#: ../src/capplet/mate-notification-properties.c:526
+#: src/capplet/mate-notification-properties.c:547
 #, c-format
-msgid "Could not load user interface file: %s"
-msgstr "Datoteke uporabniškega vmesnika ni mogoče naložiti: %s"
+msgid "Could not load user interface: %s"
+msgstr ""
 
-#: ../src/capplet/mate-notification-properties.desktop.in.h:1
+#: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
 msgstr "Pojavna Obvestila"
 
-#: ../src/capplet/mate-notification-properties.desktop.in.h:2
+#: src/capplet/mate-notification-properties.desktop.in:4
 msgid "Set your popup notification preferences"
 msgstr "Nastavite vaše nastavitve pojavnih obvestil"
 
-#: ../src/capplet/mate-notification-properties.ui.h:1
+#. Translators: Do NOT translate or transliterate this text (this is an icon
+#. file name)!
+#: src/capplet/mate-notification-properties.desktop.in:7
+msgid "mate-notification-properties"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: src/capplet/mate-notification-properties.desktop.in:14
+msgid "MATE;Notification;Theme;"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
 msgstr "Nastavitve obvestil"
 
-#: ../src/capplet/mate-notification-properties.ui.h:2
+#: src/capplet/mate-notification-properties.ui:58
 msgid "_Preview"
 msgstr "_Predogled"
 
-#: ../src/capplet/mate-notification-properties.ui.h:3
+#: src/capplet/mate-notification-properties.ui:113
 msgid "<b>General Options</b>"
 msgstr "<b>Splošne možnosti</b>"
 
-#: ../src/capplet/mate-notification-properties.ui.h:4
+#: src/capplet/mate-notification-properties.ui:174
 msgid "P_osition:"
 msgstr "_Položaj:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:5
+#: src/capplet/mate-notification-properties.ui:191
 msgid "_Theme:"
 msgstr "_Tema:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:6
+#: src/capplet/mate-notification-properties.ui:206
 msgid "_Monitor:"
 msgstr "_Zaslon:"
 
-#: ../src/capplet/mate-notification-properties.ui.h:8
+#: src/capplet/mate-notification-properties.ui:253
+msgid "Enable Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"
 msgstr "Zgoraj levo"
 
-#: ../src/capplet/mate-notification-properties.ui.h:9
+#: src/capplet/mate-notification-properties.ui:308
 msgid "Top Right"
 msgstr "Zgoraj desno"
 
-#: ../src/capplet/mate-notification-properties.ui.h:10
+#: src/capplet/mate-notification-properties.ui:312
 msgid "Bottom Left"
 msgstr "Spodaj levo"
 
-#: ../src/capplet/mate-notification-properties.ui.h:11
+#: src/capplet/mate-notification-properties.ui:316
 msgid "Bottom Right"
 msgstr "Spodaj desno"
 
-#: ../src/daemon/daemon.c:1320
+#: src/daemon/daemon.c:1328
 msgid "Exceeded maximum number of notifications"
 msgstr "Največje število obvestil je preseženo"
 
-#: ../src/daemon/daemon.c:1603
+#: src/daemon/daemon.c:1609
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ni veljaven ID obvestila"
 
-#: ../src/daemon/sound.c:36
+#: src/daemon/sound.c:36
 msgid "Notification"
 msgstr "Obvestilo"
 
-#: ../src/themes/coco/coco-theme.c:462 ../src/themes/nodoka/nodoka-theme.c:809
-#: ../src/themes/slider/theme.c:414 ../src/themes/standard/theme.c:734
+#: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
+#: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Besedilo povzetka obvestil."
 
-#: ../src/themes/coco/coco-theme.c:476 ../src/themes/nodoka/nodoka-theme.c:862
-#: ../src/themes/slider/theme.c:435 ../src/themes/standard/theme.c:786
+#: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
+#: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Vsebina sporočila obvestil."
 
-#: ../src/themes/nodoka/nodoka-theme.c:823
-#: ../src/themes/nodoka/nodoka-theme.c:825 ../src/themes/slider/theme.c:396
-#: ../src/themes/slider/theme.c:398 ../src/themes/standard/theme.c:750
-#: ../src/themes/standard/theme.c:752
+#: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
+#: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
+#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr ""
+msgstr "Zapre obvestilo."
