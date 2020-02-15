@@ -1,9 +1,9 @@
 [main]
 host = https://www.transifex.com
  
-[MATE.master--mate-notification-daemon]
+[MATE.1-24--mate-notification-daemon]
 file_filter = po/<lang>.po
-source_file = po/mate-notification-daemon.pot
+source_file = mate-notification-daemon.pot
 source_lang = en
 type = PO
 minimum_perc = 2
