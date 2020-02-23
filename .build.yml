@@ -1,0 +1,97 @@
+##########################################################
+# THE FOLLOWING LINES IS USED BY docker-build
+##########################################################
+requires:
+  archlinux:
+    # Useful URL: https://git.archlinux.org/svntogit/community.git/tree/mate-notification-daemon
+    - gcc
+    - git
+    - gtk3
+    - intltool
+    - libnotify
+    - libwnck3
+    - make
+    - mate-common
+    - which
+
+  debian:
+    # Useful URL: https://github.com/mate-desktop/debian-packages
+    # Useful URL: https://salsa.debian.org/debian-mate-team/mate-notification-daemon
+    - git
+    - gobject-introspection
+    - gtk-doc-tools
+    - intltool
+    - libcanberra-gtk3-dev
+    - libdconf-dev
+    - libexempi-dev
+    - libexif-dev
+    - libgail-3-dev
+    - libgirepository1.0-dev
+    - libglib2.0-dev
+    - libgtk-3-dev
+    - libmate-desktop-dev
+    - libnotify-dev
+    - libpango1.0-dev
+    - libstartup-notification0-dev
+    - libwnck-3-dev
+    - libx11-dev
+    - libxml2-dev
+    - mate-common
+    - quilt
+    - shared-mime-info
+
+  fedora:
+    # Useful URL: https://src.fedoraproject.org/cgit/rpms/mate-notification-daemon.git
+    - desktop-file-utils
+    - file
+    - git
+    - libcanberra-devel
+    - libnotify-devel
+    - libwnck3-devel
+    - make
+    - mate-common
+    - mate-desktop-devel
+
+  ubuntu:
+    - git
+    - gobject-introspection
+    - gtk-doc-tools
+    - intltool
+    - libcanberra-gtk3-dev
+    - libdconf-dev
+    - libexempi-dev
+    - libexif-dev
+    - libgail-3-dev
+    - libgirepository1.0-dev
+    - libglib2.0-dev
+    - libgtk-3-dev
+    - libmate-desktop-dev
+    - libnotify-dev
+    - libpango1.0-dev
+    - libstartup-notification0-dev
+    - libwnck-3-dev
+    - libx11-dev
+    - libxml2-dev
+    - mate-common
+    - quilt
+    - shared-mime-info
+
+variables:
+  - CFLAGS="-Wall -Werror=format-security"
+
+after_scripts:
+  - make distcheck
+
+releases:
+  draft: false
+  prerelease: false
+  checksum: true
+  file_glob: true
+  files: mate-notification-daemon-*.tar.xz
+  github_release:
+    tags: true
+    overwrite: true
+    base_version: 1.20.0
+    notify_servers:
+      - https://release.mate-desktop.org/release
+
