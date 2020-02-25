@@ -179,7 +179,6 @@ dnl ---------------------------------------------------------------------------
 dnl Turn on the additional warnings last
 dnl ---------------------------------------------------------------------------
 MATE_COMPILE_WARNINGS([maximum])
-MATE_CXX_WARNINGS([yes])
 MATE_MAINTAINER_MODE_DEFINES
 
 AC_ARG_ENABLE(more-warnings,
