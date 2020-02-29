@@ -4,6 +4,7 @@
 requires:
   archlinux:
     # Useful URL: https://git.archlinux.org/svntogit/community.git/tree/mate-notification-daemon
+    - autoconf-archive
     - gcc
     - git
     - gtk3
