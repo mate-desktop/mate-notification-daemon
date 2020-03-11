@@ -875,6 +875,7 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 {
 	char *str;
 	char* quoted;
+	const char *body_label_text;
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	g_assert(windata != NULL);
 
@@ -885,15 +886,12 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
-	if (pango_parse_markup (body, -1, 0, NULL, NULL, NULL, NULL))
-	{
-		str = g_strdup_printf("<span color=\"#000000\">%s</span>", body);
-		gtk_label_set_markup (GTK_LABEL (windata->body_label), str);
-		g_free(str);
-	}
-	else {
+	str = g_strdup_printf("<span color=\"#000000\">%s</span>", body);
+	gtk_label_set_markup (GTK_LABEL (windata->body_label), str);
+	g_free(str);
+	body_label_text = gtk_label_get_text (GTK_LABEL (windata->body_label));
+	if ((body_label_text == NULL) || (strlen (body_label_text) == 0))
 		gtk_label_set_text (GTK_LABEL (windata->body_label), body);
-	}
 
 	if (body == NULL || *body == '\0')
 		gtk_widget_hide(windata->body_label);
