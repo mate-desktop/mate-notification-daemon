@@ -494,6 +494,7 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 {
 	char* str;
 	char* quoted;
+	const char *body_label_text;
 	GtkRequisition req;
 	WindowData* windata;
 	int summary_width;
@@ -509,22 +510,15 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
-	if (pango_parse_markup (body, -1, 0, NULL, NULL, NULL, NULL))
-	{
-		gtk_label_set_markup (GTK_LABEL (windata->body_label), body);
-	}
-	else {
-		gtk_label_set_text (GTK_LABEL (windata->body_label), body);
-	}
+	gtk_label_set_markup (GTK_LABEL (windata->body_label), body);
+	body_label_text = gtk_label_get_text (GTK_LABEL (windata->body_label));
+	if ((body_label_text == NULL) || (strlen (body_label_text) == 0))
+		 gtk_label_set_text (GTK_LABEL (windata->body_label), body);
 
 	if (body == NULL || *body == '\0')
-	{
 		gtk_widget_hide(windata->body_label);
-	}
 	else
-	{
 		gtk_widget_show(windata->body_label);
-	}
 
 	update_content_hbox_visibility(windata);
 
