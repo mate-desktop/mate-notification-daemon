@@ -44,12 +44,12 @@ typedef struct {
 
 	GtkWidget* dialog;
 	GtkWidget* position_combo;
-    GtkWidget* monitor_combo;
+	GtkWidget* monitor_combo;
 	GtkWidget* theme_combo;
 	GtkWidget* preview_button;
 	GtkWidget* active_checkbox;
 	GtkWidget* dnd_checkbox;
-    GtkWidget* monitor_label;
+	GtkWidget* monitor_label;
 
 	NotifyNotification* preview;
 } NotificationAppletDialog;
@@ -380,92 +380,6 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 	g_free(theme);
 }
 
-static void notification_properties_checkbox_toggled(GtkWidget* widget, NotificationAppletDialog* dialog)
-{
-    gboolean is_active;
-
-    is_active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget));
-
-    // This was called as a result of notification_properties_checkbox_notify being called.
-    // Stop here instead of doing redundant work.
-    if (is_active == g_settings_get_boolean(dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR))
-    {
-        return;
-    }
-
-	if (is_active)
-	{
-		g_settings_set_boolean(dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR, TRUE);
-		gtk_widget_set_sensitive(dialog->monitor_combo, FALSE);
-		gtk_widget_set_sensitive(dialog->monitor_label, FALSE);
-	}
-	else
-	{
-		g_settings_set_boolean(dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR, FALSE);
-		gtk_widget_set_sensitive(dialog->monitor_combo, TRUE);
-		gtk_widget_set_sensitive(dialog->monitor_label, TRUE);
-	}
-}
-
-static void notification_properties_checkbox_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
-{
-    gboolean is_set;
-
-    is_set = g_settings_get_boolean(settings, key);
-
-    // This was called as a result of notification_properties_checkbox_toggled being called.
-    // Stop here instead of doing redundant work.
-    if(is_set == gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (dialog->active_checkbox)))
-    {
-        return;
-    }
-
-	if (is_set)
-	{
-		gtk_widget_set_sensitive(dialog->monitor_combo, FALSE);
-		gtk_widget_set_sensitive(dialog->monitor_label, FALSE);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->active_checkbox), TRUE);
-	}
-	else
-	{
-		gtk_widget_set_sensitive(dialog->monitor_combo, TRUE);
-		gtk_widget_set_sensitive(dialog->monitor_label, TRUE);
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->active_checkbox), FALSE);
-	}
-}
-
-static void notification_properties_dnd_toggled(GtkWidget* widget, NotificationAppletDialog* dialog)
-{
-	gboolean is_active;
-
-	is_active = gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (widget));
-
-	// This was called as a result of notification_properties_dnd_notify being called.
-	// Stop here instead of doing redundant work.
-	if (is_active == g_settings_get_boolean(dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB))
-	{
-		return;
-	}
-
-	g_settings_set_boolean(dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB, is_active);
-}
-
-static void notification_properties_dnd_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
-{
-	gboolean is_set;
-
-	is_set = g_settings_get_boolean(settings, key);
-
-	// This was called as a result of notification_properties_dnd_toggled being called.
-	// Stop here instead of doing redundant work.
-	if(is_set == gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON (dialog->dnd_checkbox)))
-	{
-		return;
-	}
-
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->dnd_checkbox), is_set);
-}
-
 static void show_message(NotificationAppletDialog* dialog, const gchar* message)
 {
 	GtkWidget* d = gtk_message_dialog_new(GTK_WINDOW(dialog->dialog), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_ERROR, GTK_BUTTONS_CLOSE, "%s", message);
@@ -539,9 +453,9 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 {
 	GtkBuilder* builder = gtk_builder_new();
 	GError* error = NULL;
+	gboolean inv_active_checkbox;
 
 	gtk_builder_add_from_resource (builder, "/org/mate/notifications/properties/mate-notification-properties.ui", &error);
-
 	if (error != NULL)
 	{
 		g_warning(_("Could not load user interface: %s"), error->message);
@@ -550,56 +464,32 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	}
 
 	dialog->dialog = GTK_WIDGET(gtk_builder_get_object(builder, "dialog"));
-	g_assert(dialog->dialog != NULL);
-
 	dialog->position_combo = GTK_WIDGET(gtk_builder_get_object(builder, "position_combo"));
-	g_assert(dialog->position_combo != NULL);
-
 	dialog->monitor_combo = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_combo"));
-	g_assert(dialog->monitor_combo != NULL);
-
 	dialog->theme_combo = GTK_WIDGET(gtk_builder_get_object(builder, "theme_combo"));
-	g_assert(dialog->theme_combo != NULL);
-
 	dialog->active_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "use_active_check"));
-	g_assert(dialog->active_checkbox != NULL);
-
 	dialog->dnd_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "do_not_disturb_check"));
-	g_assert(dialog->dnd_checkbox != NULL);
+	dialog->monitor_label = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_label"));
 
-    dialog->monitor_label = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_label"));
-    g_assert(dialog->monitor_label != NULL);
-
-	g_object_unref(builder);
+	g_object_unref (builder);
 
 	dialog->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
-	g_signal_connect(dialog->dialog, "response", G_CALLBACK(notification_properties_dialog_response), dialog);
-	g_signal_connect(dialog->dialog, "destroy", G_CALLBACK(notification_properties_dialog_destroyed), dialog);
+	g_signal_connect (dialog->dialog, "response", G_CALLBACK(notification_properties_dialog_response), dialog);
+	g_signal_connect (dialog->dialog, "destroy", G_CALLBACK(notification_properties_dialog_destroyed), dialog);
 
-	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_USE_ACTIVE_MONITOR, G_CALLBACK (notification_properties_checkbox_notify), dialog);
-	g_signal_connect(dialog->active_checkbox, "toggled", G_CALLBACK(notification_properties_checkbox_toggled), dialog);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR, dialog->active_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB, dialog->dnd_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 
-	g_signal_connect(dialog->gsettings, "changed::" GSETTINGS_KEY_DO_NOT_DISTURB, G_CALLBACK (notification_properties_dnd_notify), dialog);
-	g_signal_connect(dialog->dnd_checkbox, "toggled", G_CALLBACK(notification_properties_dnd_toggled), dialog);
+	notification_properties_dialog_setup_themes (dialog);
+	notification_properties_dialog_setup_positions (dialog);
+	notification_properties_dialog_setup_monitors (dialog);
 
-	notification_properties_dialog_setup_themes(dialog);
-	notification_properties_dialog_setup_positions(dialog);
-	notification_properties_dialog_setup_monitors(dialog);
-
-	if (g_settings_get_boolean(dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR))
-	{
-		gtk_widget_set_sensitive(dialog->monitor_combo, FALSE);
-		gtk_widget_set_sensitive(dialog->monitor_label, FALSE);
-	}
-	else
-	{
-		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->active_checkbox), FALSE);
-        gtk_widget_set_sensitive(dialog->monitor_combo, TRUE);
-        gtk_widget_set_sensitive(dialog->monitor_label, TRUE);
-	}
-
-	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON (dialog->dnd_checkbox), g_settings_get_boolean(dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB));
+	inv_active_checkbox = !gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (dialog->active_checkbox));
+	gtk_widget_set_sensitive (dialog->monitor_combo, inv_active_checkbox);
+	gtk_widget_set_sensitive (dialog->monitor_label, inv_active_checkbox);
+	g_object_bind_property (dialog->active_checkbox, "active", dialog->monitor_combo, "sensitive", G_BINDING_INVERT_BOOLEAN);
+	g_object_bind_property (dialog->active_checkbox, "active", dialog->monitor_label, "sensitive", G_BINDING_INVERT_BOOLEAN);
 
 	gtk_widget_show_all(dialog->dialog);
 
