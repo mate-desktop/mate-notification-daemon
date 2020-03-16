@@ -84,14 +84,14 @@ const PopupNotifyStackLocation popup_stack_locations[] = {
 #define POPUP_STACK_DEFAULT_INDEX 3     /* XXX Hack! */
 
 typedef struct {
-	NotifyDaemon* daemon;
-	GTimeVal expiration;
-	GTimeVal paused_diff;
-	guint id;
-	GtkWindow* nw;
-	Window src_window_xid;
-	guint   has_timeout : 1;
-	guint   paused : 1;
+	NotifyDaemon *daemon;
+	GDateTime    *expiration;
+	GTimeSpan     paused_diff;
+	guint         id;
+	GtkWindow    *nw;
+	Window        src_window_xid;
+	guint         has_timeout : 1;
+	guint         paused : 1;
 } NotifyTimeout;
 
 typedef struct {
@@ -242,6 +242,7 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 	 */
 	g_signal_handlers_disconnect_by_func(nt->nw, _notification_destroyed_cb, nt->daemon);
 	gtk_widget_destroy(GTK_WIDGET(nt->nw));
+	g_date_time_unref (nt->expiration);
 	g_free(nt);
 }
 
@@ -736,7 +737,7 @@ static void _mouse_entered_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 {
 	NotifyTimeout* nt;
 	guint id;
-	GTimeVal now;
+	GDateTime *now;
 
 	if (event->detail == GDK_NOTIFY_INFERIOR)
 	{
@@ -747,16 +748,10 @@ static void _mouse_entered_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 	nt = (NotifyTimeout*) g_hash_table_lookup(daemon->notification_hash, &id);
 
 	nt->paused = TRUE;
-	g_get_current_time(&now);
+	now = g_date_time_new_now_local ();
 
-	nt->paused_diff.tv_usec = nt->expiration.tv_usec - now.tv_usec;
-	nt->paused_diff.tv_sec = nt->expiration.tv_sec - now.tv_sec;
-
-	if (nt->paused_diff.tv_usec < 0)
-	{
-		nt->paused_diff.tv_usec += G_USEC_PER_SEC;
-		nt->paused_diff.tv_sec--;
-	}
+	nt->paused_diff = g_date_time_difference (nt->expiration, now);
+	g_date_time_unref (now);
 }
 
 static void _mouse_exitted_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaemon* daemon)
@@ -774,41 +769,37 @@ static void _mouse_exitted_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 
 static gboolean _is_expired(gpointer key, NotifyTimeout* nt, gboolean* phas_more_timeouts)
 {
-	time_t now_time;
-	time_t expiration_time;
-	GTimeVal now;
+	GDateTime *now;
+	GTimeSpan  time_span;
 
 	if (!nt->has_timeout)
 	{
 		return FALSE;
 	}
 
-	g_get_current_time(&now);
+	now = g_date_time_new_now_local ();
+	time_span = g_date_time_difference (nt->expiration, now);
 
-	expiration_time = (nt->expiration.tv_sec * 1000) + (nt->expiration.tv_usec / 1000);
-	now_time = (now.tv_sec * 1000) + (now.tv_usec / 1000);
-
-	if (now_time > expiration_time)
+	if (time_span <= 0)
 	{
+		g_date_time_unref (now);
 		theme_notification_tick(nt->nw, 0);
 		_emit_closed_signal(nt->nw, NOTIFYD_CLOSED_EXPIRED);
 		return TRUE;
 	}
 	else if (nt->paused)
 	{
-		nt->expiration.tv_usec = nt->paused_diff.tv_usec + now.tv_usec;
-		nt->expiration.tv_sec = nt->paused_diff.tv_sec + now.tv_sec;
-
-		if (nt->expiration.tv_usec >= G_USEC_PER_SEC)
+		if (nt->expiration)
 		{
-			nt->expiration.tv_usec -= G_USEC_PER_SEC;
-			nt->expiration.tv_sec++;
+			g_date_time_unref (nt->expiration);
 		}
+		nt->expiration = g_date_time_add (now, nt->paused_diff);
 	}
 	else
 	{
-		theme_notification_tick(nt->nw, expiration_time - now_time);
+		theme_notification_tick (nt->nw, time_span / 1000);
 	}
+	g_date_time_unref (now);
 
 	*phas_more_timeouts = TRUE;
 
@@ -851,20 +842,25 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 
 		theme_set_notification_timeout(nt->nw, timeout);
 
-		glong usec = timeout * 1000L;  /* convert from msec to usec */
+		gint64 usec = (gint64) timeout * 1000;  /* convert from msec to usec */
 
 		/*
 		 * If it's less than 0, wrap around back to MAXLONG.
 		 * g_time_val_add() requires a glong, and anything larger than
-		 * MAXLONG will be treated as a negative value.
+		 * MAXINT64 will be treated as a negative value.
 		 */
 		if (usec < 0)
 		{
-			usec = G_MAXLONG;
+			usec = G_MAXINT64;
 		}
 
-		g_get_current_time(&nt->expiration);
-		g_time_val_add(&nt->expiration, usec);
+		if (nt->expiration)
+		{
+			g_date_time_unref (nt->expiration);
+		}
+		GDateTime *now = g_date_time_new_now_local ();
+		nt->expiration = g_date_time_add (now, usec);
+		g_date_time_unref (now);
 
 		if (daemon->timeout_source == 0)
 		{
