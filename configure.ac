@@ -106,9 +106,11 @@ dnl Requirements for the themes
 dnl ---------------------------------------------------------------------------
 
 GTK_REQUIRED=3.22.0
+XML_REQUIRED=2.9.0
 
 PKG_CHECK_MODULES(THEME,
   gtk+-3.0 >= $GTK_REQUIRED
+  libxml-2.0 >= $XML_REQUIRED
 )
 AC_SUBST(THEME_CFLAGS)
 AC_SUBST(THEME_LIBS)
