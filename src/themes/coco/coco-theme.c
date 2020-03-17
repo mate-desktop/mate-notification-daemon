@@ -27,6 +27,8 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include <libxml/xpath.h>
+
 /* Define basic coco types */
 typedef void (*ActionInvokedCb)(GtkWindow *nw, const char *key);
 typedef void (*UrlClickedCb)(GtkWindow *nw, const char *url);
@@ -488,11 +490,11 @@ void
 set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 {
 	char *str;
-	char* quoted;
-	const char *body_label_text;
+	char *quoted;
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	g_assert(windata != NULL);
 
+	/* title */
 	quoted = g_markup_escape_text(summary, -1);
 	str = g_strdup_printf(
         "<span color=\"#FFFFFF\"><big><b>%s</b></big></span>", quoted);
@@ -500,12 +502,60 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 	gtk_label_set_markup(GTK_LABEL(windata->summary_label), str);
 	g_free(str);
 
-	str = g_strdup_printf("<span color=\"#EAEAEA\">%s</span>", body);
+	/* body */
+	xmlDocPtr doc;
+	xmlInitParser();
+	str = g_strconcat ("<markup>", "<span color=\"#EAEAEA\">", body, "</span>", "</markup>", NULL);
+	/* parse notification body */
+	doc = xmlReadMemory(str, strlen (str), "noname.xml", NULL, 0);
+	g_free (str);
+	if (doc != NULL) {
+		xmlXPathContextPtr xpathCtx;
+		xmlXPathObjectPtr  xpathObj;
+		xmlNodeSetPtr      nodes;
+		const char        *body_label_text;
+		int i, size;
+
+		/* filterout img nodes */
+		xpathCtx = xmlXPathNewContext(doc);
+		xpathObj = xmlXPathEvalExpression((unsigned char *)"//img", xpathCtx);
+		nodes = xpathObj->nodesetval;
+		size = (nodes) ? nodes->nodeNr : 0;
+		for(i = size - 1; i >= 0; i--) {
+			xmlUnlinkNode (nodes->nodeTab[i]);
+			xmlFreeNode (nodes->nodeTab[i]);
+		}
+
+		/* write doc to string */
+		xmlBufferPtr buf = xmlBufferCreate();
+		(void) xmlNodeDump(buf, doc, xmlDocGetRootElement (doc), 0, 0);
+		str = (char *)buf->content;
+		gtk_label_set_markup (GTK_LABEL (windata->body_label), str);
+
+		/* cleanup */
+		xmlBufferFree (buf);
+		xmlXPathFreeObject (xpathObj);
+		xmlXPathFreeContext (xpathCtx);
+		xmlFreeDoc (doc);
+
+		/* Does it render properly? */
+		body_label_text = gtk_label_get_text (GTK_LABEL (windata->body_label));
+		if ((body_label_text == NULL) || (strlen (body_label_text) == 0)) {
+			goto render_fail;
+		}
+		goto renrer_ok;
+	}
+
+render_fail:
+	/* could not parse notification body */
+	quoted = g_markup_escape_text(body, -1);
+	str = g_strconcat ("<span color=\"#EAEAEA\">", quoted, "</span>", NULL);
 	gtk_label_set_markup (GTK_LABEL (windata->body_label), str);
-	g_free(str);
-	body_label_text = gtk_label_get_text (GTK_LABEL (windata->body_label));
-	if ((body_label_text == NULL) || (strlen (body_label_text) == 0))
-		gtk_label_set_text (GTK_LABEL (windata->body_label), body);
+	g_free (quoted);
+	g_free (str);
+
+renrer_ok:
+	xmlCleanupParser ();
 
 	if (body == NULL || *body == '\0')
 		gtk_widget_hide(windata->body_label);

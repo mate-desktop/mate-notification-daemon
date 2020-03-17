@@ -58,6 +58,7 @@ requires:
     - libcanberra-devel
     - libnotify-devel
     - libwnck3-devel
+    - libxml2-devel
     - make
     - mate-common
     - mate-desktop-devel
