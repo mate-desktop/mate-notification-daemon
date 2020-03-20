@@ -52,7 +52,6 @@ requires:
     - autoconf-archive
     - clang
     - clang-analyzer
-    - cppcheck-htmlreport
     - desktop-file-utils
     - file
     - git
@@ -111,11 +110,6 @@ variables:
     -enable-checker security.insecureAPI.strcpy"'
 
 before_scripts:
-  # Debian - patch intltool-update
-  #- if [ ${DISTRO_NAME} == "debian" ];then
-  #-     curl -Ls -o debian.sh https://github.com/mate-desktop/mate-dev-scripts/raw/master/travis/debian.sh
-  #-     bash ./debian.sh
-  #- fi
   # Install mate-common fron tarball
   - cd ${START_DIR}
   - '[ -f mate-common-1.23.3.tar.xz ] || curl -Ls -o mate-common-1.23.3.tar.xz http://pub.mate-desktop.org/releases/1.23/mate-common-1.23.3.tar.xz'
@@ -142,11 +136,6 @@ build_scripts:
   - fi
 
 after_scripts:
-  - if [ ${DISTRO_NAME} == "fedora" ];then
-  -   cppcheck --xml --output-file=cppcheck.xml --enable=warning,style,performance,portability,information,missingInclude .
-  -   cppcheck-htmlreport --title=${REPO_NAME} --file=cppcheck.xml --report-dir=cppcheck-htmlreport
-  -   ./gen-index -l 20 -i https://github.com/${OWNER_NAME}/mate-notification-daemon/raw/master/data/icons/16x16/mate-notification-properties.png
-  - fi
   - make distcheck
 
 releases:
