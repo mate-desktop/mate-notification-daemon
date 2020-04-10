@@ -62,7 +62,7 @@ dnl ---------------------------------------------------------------------------
 dnl Warning flags
 dnl ---------------------------------------------------------------------------
 MATE_MAINTAINER_MODE_DEFINES
-MATE_COMPILE_WARNINGS([yes])
+MATE_COMPILE_WARNINGS
 
 dnl ---------------------------------------------------------------------------
 dnl Initialize Libtool
