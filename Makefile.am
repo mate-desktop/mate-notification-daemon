@@ -15,6 +15,7 @@ libtool: $(LIBTOOL_DEPS)
 
 DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-icon-update \
+	--enable-compile-warnings=no \
 	CFLAGS='-Wno-deprecated-declarations'
 
 DISTCLEANFILES =
