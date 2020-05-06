@@ -103,7 +103,7 @@ void notification_tick(GtkWindow *nw, glong remaining);
 #define DEFAULT_ARROW_HEIGHT  14
 #define DEFAULT_ARROW_WIDTH   22
 #define DEFAULT_ARROW_SKEW    -6
-#define BACKGROUND_OPACITY    0.90
+#define BACKGROUND_OPACITY    0.9
 #define GRADIENT_CENTER 0.7
 
 /* Support Nodoka Functions */
@@ -140,7 +140,7 @@ nodoka_rounded_rectangle (cairo_t * cr,
 static void
 fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
-	float alpha;
+	double alpha;
 	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
@@ -490,6 +490,7 @@ void
 set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 {
 	char *str;
+	size_t str_len;
 	char *quoted;
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	g_assert(windata != NULL);
@@ -507,7 +508,8 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 	xmlInitParser();
 	str = g_strconcat ("<markup>", "<span color=\"#EAEAEA\">", body, "</span>", "</markup>", NULL);
 	/* parse notification body */
-	doc = xmlReadMemory(str, strlen (str), "noname.xml", NULL, 0);
+	str_len = strlen (str);
+	doc = xmlReadMemory(str, (int) str_len, "noname.xml", NULL, 0);
 	g_free (str);
 	if (doc != NULL) {
 		xmlXPathContextPtr xpathCtx;

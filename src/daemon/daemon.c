@@ -96,7 +96,7 @@ typedef struct {
 
 typedef struct {
 	NotifyStack** stacks;
-	int n_stacks;
+	gsize n_stacks;
 	Atom workarea_atom;
 } NotifyScreen;
 
@@ -309,27 +309,27 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 
 	n_monitors = gdk_display_get_n_monitors(display);
 
-	if (n_monitors > nscreen->n_stacks)
+	if (n_monitors > (int) nscreen->n_stacks)
 	{
 		/* grow */
-		nscreen->stacks = g_renew(NotifyStack *, nscreen->stacks, n_monitors);
+		nscreen->stacks = g_renew(NotifyStack *, nscreen->stacks, (gsize) n_monitors);
 
 		/* add more stacks */
-		for (i = nscreen->n_stacks; i < n_monitors; i++)
+		for (i = (int) nscreen->n_stacks; i < n_monitors; i++)
 		{
 			create_stack_for_monitor(daemon, screen, gdk_display_get_monitor (display, i));
 		}
 
-		nscreen->n_stacks = n_monitors;
+		nscreen->n_stacks = (gsize) n_monitors;
 	}
-	else if (n_monitors < nscreen->n_stacks)
+	else if (n_monitors < (int) nscreen->n_stacks)
 	{
 		NotifyStack* last_stack;
 
 		last_stack = nscreen->stacks[n_monitors - 1];
 
 		/* transfer items before removing stacks */
-		for (i = n_monitors; i < nscreen->n_stacks; i++)
+		for (i = n_monitors; i < (int) nscreen->n_stacks; i++)
 		{
 			NotifyStack* stack = nscreen->stacks[i];
 			GList* windows = g_list_copy(notify_stack_get_windows(stack));
@@ -349,8 +349,8 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 		}
 
 		/* remove the extra stacks */
-		nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, n_monitors);
-		nscreen->n_stacks = n_monitors;
+		nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, (gsize) n_monitors);
+		nscreen->n_stacks = (gsize) n_monitors;
 	}
 }
 
@@ -358,12 +358,13 @@ static void create_stacks_for_screen(NotifyDaemon* daemon, GdkScreen *screen)
 {
 	GdkDisplay     *display;
 	NotifyScreen* nscreen;
-	int i;
+	int i, n_monitors;
 
 	nscreen = daemon->screen;
 	display = gdk_screen_get_display (screen);
+	n_monitors = gdk_display_get_n_monitors(display);
 
-	nscreen->n_stacks = gdk_display_get_n_monitors(display);
+	nscreen->n_stacks = (gsize) n_monitors;
 
 	nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, nscreen->n_stacks);
 
@@ -924,6 +925,7 @@ static GdkPixbuf * _notify_daemon_pixbuf_from_data_hint (GVariant *icon_data)
         GVariant       *data_variant;
         gsize           expected_len;
         guchar         *data;
+        gsize           data_size;
         GdkPixbuf      *pixbuf;
 
         g_variant_get (icon_data,
@@ -936,8 +938,7 @@ static GdkPixbuf * _notify_daemon_pixbuf_from_data_hint (GVariant *icon_data)
                        &n_channels,
                        &data_variant);
 
-        expected_len = (height - 1) * rowstride + width
-                * ((n_channels * bits_per_sample + 7) / 8);
+        expected_len = (gsize) ((height - 1) * rowstride + width * ((n_channels * bits_per_sample + 7) / 8));
 
         if (expected_len != g_variant_get_size (data_variant)) {
                 g_warning ("Expected image data to be of length %" G_GSIZE_FORMAT
@@ -947,8 +948,8 @@ static GdkPixbuf * _notify_daemon_pixbuf_from_data_hint (GVariant *icon_data)
                 return NULL;
         }
 
-        data = (guchar *) g_memdup (g_variant_get_data (data_variant),
-                                    g_variant_get_size (data_variant));
+        data_size = g_variant_get_size (data_variant);
+        data = (guchar *) g_memdup (g_variant_get_data (data_variant), (guint) data_size);
 
         pixbuf = gdk_pixbuf_new_from_data (data,
                                            GDK_COLORSPACE_RGB,
@@ -1033,12 +1034,12 @@ static GdkPixbuf* _notify_daemon_scale_pixbuf(GdkPixbuf *pixbuf, gboolean no_str
 		int scale_x;
 		int scale_y;
 
-		scale_x = (int) (pw * scale_factor);
-		scale_y = (int) (ph * scale_factor);
+		scale_x = (int) (((float) pw) * scale_factor);
+		scale_y = (int) (((float) ph) * scale_factor);
 		return gdk_pixbuf_scale_simple (pixbuf,
-										scale_x,
-										scale_y,
-										GDK_INTERP_BILINEAR);
+		                                scale_x,
+		                                scale_y,
+		                                GDK_INTERP_BILINEAR);
 	}
 	else
 	{
@@ -1271,8 +1272,8 @@ static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Wind
 		return;
 	}
 
-	x += width / 2;
-	y += height / 2;
+	x += (int)width / 2;
+	y += (int)height / 2;
 
 	theme_set_notification_arrow (nw, TRUE, x, y);
 	theme_move_notification (nw, x, y);
@@ -1534,7 +1535,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		{
 			/* screw it - dump it on the last one we'll get
 			 a monitors-changed signal soon enough*/
-			monitor_id = gdk_display_get_monitor (gdk_display_get_default(), daemon->screen->n_stacks - 1);
+			monitor_id = gdk_display_get_monitor (gdk_display_get_default(), (int) daemon->screen->n_stacks - 1);
 		}
 
 		notify_stack_add_window (daemon->screen->stacks[_gtk_get_monitor_num (monitor_id)], nw, new_notification);

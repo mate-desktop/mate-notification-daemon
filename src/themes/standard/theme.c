@@ -845,6 +845,7 @@ void notification_tick(GtkWindow* nw, glong remaining)
 void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 {
 	char* str;
+	size_t str_len;
 	char* quoted;
 	GtkRequisition req;
 	WindowData* windata;
@@ -864,7 +865,8 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 	xmlInitParser();
 	str = g_strconcat ("<markup>", body, "</markup>", NULL);
 	/* parse notification body */
-	doc = xmlReadMemory(str, strlen (str), "noname.xml", NULL, 0);
+	str_len = strlen (str);
+	doc = xmlReadMemory(str, (int) str_len, "noname.xml", NULL, 0);
 	g_free (str);
 	if (doc != NULL) {
 		xmlXPathContextPtr xpathCtx;
