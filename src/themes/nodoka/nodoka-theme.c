@@ -322,12 +322,12 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 
 	cairo_rectangle_int_t rect;
 	rect.x = 0;
-	rect.width = w;
+	rect.width = (int)w;
 	if (arrow_up)
 		rect.y = 0 + DEFAULT_ARROW_HEIGHT;
 	else
 		rect.y = 0;
-	rect.height = h - DEFAULT_ARROW_HEIGHT;
+	rect.height = (int)(h - DEFAULT_ARROW_HEIGHT);
 
 	cairo_move_to (cr, rect.x + radius, rect.y);
 
@@ -369,7 +369,7 @@ nodoka_rounded_rectangle_with_arrow (cairo_t * cr,
 static void
 fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
-	float alpha;
+	double alpha;
 	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
@@ -405,7 +405,7 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	GdkRGBA  center_color;
 	GdkRGBA  bottom_color;
 
-	float alpha;
+	double alpha;
 	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
@@ -475,7 +475,7 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 static void
 draw_border(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
-	float alpha;
+	double alpha;
 	if (windata->composited)
 		alpha = BACKGROUND_OPACITY;
 	else
@@ -876,6 +876,7 @@ void
 set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 {
 	char *str;
+	size_t str_len;
 	char* quoted;
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	g_assert(windata != NULL);
@@ -892,7 +893,8 @@ set_notification_text(GtkWindow *nw, const char *summary, const char *body)
 	xmlInitParser();
 	str = g_strconcat ("<markup>", "<span color=\"#000000\">", body, "</span>", "</markup>", NULL);
 	/* parse notification body */
-	doc = xmlReadMemory(str, strlen (str), "noname.xml", NULL, 0);
+	str_len = strlen (str);
+	doc = xmlReadMemory(str, (int) str_len, "noname.xml", NULL, 0);
 	g_free (str);
 	if (doc != NULL) {
 		xmlXPathContextPtr xpathCtx;

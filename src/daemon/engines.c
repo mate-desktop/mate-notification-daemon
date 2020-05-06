@@ -50,7 +50,7 @@ typedef struct {
 
 } ThemeEngine;
 
-static guint        theme_prop_notify_id = 0;
+static gulong       theme_prop_notify_id = 0;
 static ThemeEngine* active_engine = NULL;
 
 static ThemeEngine* load_theme_engine(const char *name)

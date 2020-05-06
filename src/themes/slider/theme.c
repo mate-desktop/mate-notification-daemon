@@ -495,6 +495,7 @@ void notification_tick(GtkWindow* nw, glong remaining)
 void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 {
 	char* str;
+	size_t str_len;
 	char* quoted;
 	GtkRequisition req;
 	WindowData* windata;
@@ -516,7 +517,8 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 	xmlInitParser();
 	str = g_strconcat ("<markup>", body, "</markup>", NULL);
 	/* parse notification body */
-	doc = xmlReadMemory(str, strlen (str), "noname.xml", NULL, 0);
+	str_len = strlen (str);
+	doc = xmlReadMemory(str, (int) str_len, "noname.xml", NULL, 0);
 	g_free (str);
 	if (doc != NULL) {
 		xmlXPathContextPtr xpathCtx;
@@ -613,8 +615,8 @@ static GdkPixbuf* scale_pixbuf(GdkPixbuf* pixbuf, int max_width, int max_height,
 		int scale_x;
 		int scale_y;
 
-		scale_x = (int) (pw * scale_factor);
-		scale_y = (int) (ph * scale_factor);
+		scale_x = (int) (((float) pw) * scale_factor);
+		scale_y = (int) (((float) ph) * scale_factor);
 
 		return gdk_pixbuf_scale_simple(pixbuf, scale_x, scale_y, GDK_INTERP_BILINEAR);
 	}

@@ -57,7 +57,7 @@ get_work_area (NotifyStack  *stack,
         int             format;
         gulong          num;
         gulong          leftovers;
-        gulong          max_len = 4 * 32;
+        long            max_len = 4 * 32;
         guchar         *ret_workarea;
         long           *workareas;
         int             result;
@@ -103,10 +103,10 @@ get_work_area (NotifyStack  *stack,
         }
 
         workareas = (long *) ret_workarea;
-        rect->x = workareas[disp_screen * 4];
-        rect->y = workareas[disp_screen * 4 + 1];
-        rect->width = workareas[disp_screen * 4 + 2];
-        rect->height = workareas[disp_screen * 4 + 3];
+        rect->x = (int) workareas[disp_screen * 4];
+        rect->y = (int) workareas[disp_screen * 4 + 1];
+        rect->width = (int) workareas[disp_screen * 4 + 2];
+        rect->height = (int) workareas[disp_screen * 4 + 3];
 
         XFree (ret_workarea);
 
@@ -287,8 +287,8 @@ notify_stack_shift_notifications (NotifyStack *stack,
         gint            x, y;
         gint            shiftx = 0;
         gint            shifty = 0;
-        int             i;
-        int             n_wins;
+        guint           i;
+        guint           n_wins;
 
         get_work_area (stack, &workarea);
         gdk_monitor_get_geometry (stack->monitor, &monitor);
