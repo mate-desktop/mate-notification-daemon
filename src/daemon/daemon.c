@@ -85,7 +85,7 @@ const PopupNotifyStackLocation popup_stack_locations[] = {
 
 typedef struct {
 	NotifyDaemon *daemon;
-	GDateTime    *expiration;
+	gint64        expiration;
 	GTimeSpan     paused_diff;
 	guint         id;
 	GtkWindow    *nw;
@@ -242,7 +242,6 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 	 */
 	g_signal_handlers_disconnect_by_func(nt->nw, _notification_destroyed_cb, nt->daemon);
 	gtk_widget_destroy(GTK_WIDGET(nt->nw));
-	g_date_time_unref (nt->expiration);
 	g_free(nt);
 }
 
@@ -738,7 +737,6 @@ static void _mouse_entered_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 {
 	NotifyTimeout* nt;
 	guint id;
-	GDateTime *now;
 
 	if (event->detail == GDK_NOTIFY_INFERIOR)
 	{
@@ -749,10 +747,7 @@ static void _mouse_entered_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 	nt = (NotifyTimeout*) g_hash_table_lookup(daemon->notification_hash, &id);
 
 	nt->paused = TRUE;
-	now = g_date_time_new_now_local ();
-
-	nt->paused_diff = g_date_time_difference (nt->expiration, now);
-	g_date_time_unref (now);
+	nt->paused_diff = nt->expiration - g_get_monotonic_time ();
 }
 
 static void _mouse_exitted_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaemon* daemon)
@@ -770,7 +765,7 @@ static void _mouse_exitted_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaem
 
 static gboolean _is_expired(gpointer key, NotifyTimeout* nt, gboolean* phas_more_timeouts)
 {
-	GDateTime *now;
+	gint64     now;
 	GTimeSpan  time_span;
 
 	if (!nt->has_timeout)
@@ -778,29 +773,23 @@ static gboolean _is_expired(gpointer key, NotifyTimeout* nt, gboolean* phas_more
 		return FALSE;
 	}
 
-	now = g_date_time_new_now_local ();
-	time_span = g_date_time_difference (nt->expiration, now);
+	now = g_get_monotonic_time ();
+	time_span = nt->expiration - now;
 
 	if (time_span <= 0)
 	{
-		g_date_time_unref (now);
 		theme_notification_tick(nt->nw, 0);
 		_emit_closed_signal(nt->nw, NOTIFYD_CLOSED_EXPIRED);
 		return TRUE;
 	}
 	else if (nt->paused)
 	{
-		if (nt->expiration)
-		{
-			g_date_time_unref (nt->expiration);
-		}
-		nt->expiration = g_date_time_add (now, nt->paused_diff);
+		nt->expiration = now + nt->paused_diff;
 	}
 	else
 	{
-		theme_notification_tick (nt->nw, time_span / 1000);
+		theme_notification_tick (nt->nw, time_span / G_TIME_SPAN_MILLISECOND);
 	}
-	g_date_time_unref (now);
 
 	*phas_more_timeouts = TRUE;
 
@@ -834,6 +823,8 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 	}
 	else
 	{
+		gint64 usec;
+
 		nt->has_timeout = TRUE;
 
 		if (timeout == -1)
@@ -843,25 +834,9 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 
 		theme_set_notification_timeout(nt->nw, timeout);
 
-		gint64 usec = (gint64) timeout * 1000;  /* convert from msec to usec */
+		usec = (gint64) timeout * G_TIME_SPAN_MILLISECOND;  /* convert from msec to usec */
 
-		/*
-		 * If it's less than 0, wrap around back to MAXLONG.
-		 * g_time_val_add() requires a glong, and anything larger than
-		 * MAXINT64 will be treated as a negative value.
-		 */
-		if (usec < 0)
-		{
-			usec = G_MAXINT64;
-		}
-
-		if (nt->expiration)
-		{
-			g_date_time_unref (nt->expiration);
-		}
-		GDateTime *now = g_date_time_new_now_local ();
-		nt->expiration = g_date_time_add (now, usec);
-		g_date_time_unref (now);
+		nt->expiration = usec + g_get_monotonic_time ();
 
 		if (daemon->timeout_source == 0)
 		{
