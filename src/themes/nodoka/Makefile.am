@@ -7,3 +7,5 @@ libnodoka_la_SOURCES = nodoka-theme.c
 libnodoka_la_CFLAGS = $(WARN_CFLAGS)
 libnodoka_la_LDFLAGS = -module -avoid-version -no-undefined
 libnodoka_la_LIBADD =  $(THEME_LIBS)
+
+-include $(top_srcdir)/git.mk

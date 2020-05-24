@@ -7,3 +7,5 @@ libcoco_la_SOURCES = coco-theme.c
 libcoco_la_CFLAGS = $(WARN_CFLAGS)
 libcoco_la_LDFLAGS = -module -avoid-version -no-undefined
 libcoco_la_LIBADD = $(THEME_LIBS)
+
+-include $(top_srcdir)/git.mk
