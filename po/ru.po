@@ -4,18 +4,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
-# Alexei Sorokin <sor.alexei@meowr.ru>, 2018
-# Дмитрий Михирев, 2018
-# theirix <theirix@gmail.com>, 2018
+# Stefano Karapetsas <stefano@karapetsas.com>, 2020
+# Alexei Sorokin, 2020
+# Дмитрий Михирев, 2020
+# theirix <theirix@gmail.com>, 2020
+# Aleksey Kabanov <ak099@mail.ru>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.23.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: theirix <theirix@gmail.com>, 2018\n"
+"PO-Revision-Date: 2020-02-15 14:27+0000\n"
+"Last-Translator: Aleksey Kabanov <ak099@mail.ru>, 2020\n"
 "Language-Team: Russian (https://www.transifex.com/mate/teams/13566/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -75,11 +76,11 @@ msgstr "Включение и выключение поддержки звука
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Не беспокоить"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Когда включено, уведомления не показываются."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -117,7 +118,7 @@ msgstr "Ошибка вывода уведомления: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Не удалось загрузить пользовательский интерфейс: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -131,13 +132,13 @@ msgstr "Изменить параметры всплывающих уведом�
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Уведомление;Тема"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
@@ -165,7 +166,7 @@ msgstr "_Монитор:"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Включить режим «Не беспокоить»"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"

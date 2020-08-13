@@ -4,20 +4,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
-# Marko Šterman <marko.chamillionaire@gmail.com>, 2018
-# Damir Jerovšek <jierro@windowslive.com>, 2018
-# worm <thewormhole@gmail.com>, 2018
-# Helena S <ele@tutamail.com>, 2018
-# Arnold Marko <arnold.marko@gmail.com>, 2019
+# Stefano Karapetsas <stefano@karapetsas.com>, 2020
+# Marko Šterman <marko.chamillionaire@gmail.com>, 2020
+# Damir Jerovšek <jierro@windowslive.com>, 2020
+# worm <thewormhole@gmail.com>, 2020
+# Helena S <ele@tutamail.com>, 2020
+# Arnold Marko <arnold.marko@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.23.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2019\n"
+"PO-Revision-Date: 2020-02-15 14:27+0000\n"
+"Last-Translator: Arnold Marko <arnold.marko@gmail.com>, 2020\n"
 "Language-Team: Slovenian (https://www.transifex.com/mate/teams/13566/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -77,11 +77,11 @@ msgstr "Vklopi in izklopi zvočno podporo za obvestila."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Ne moti"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Izbrana možnost omogoča, da se ne bodo prikazovala obvestila."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -119,7 +119,7 @@ msgstr "Napaka med prikazovanjem obvestila: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Uporabniškega vmesnika ni mogoče naložiti: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -167,7 +167,7 @@ msgstr "_Zaslon:"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Omogoči Ne moti"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"

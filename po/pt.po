@@ -4,18 +4,19 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Sérgio Marques <smarquespt@gmail.com>, 2018
-# Carlos Moreira, 2018
-# Rui <xymarior@yandex.com>, 2018
-# Manuela Silva <manuelarodsilva@gmail.com>, 2019
+# Sérgio Marques <smarquespt@gmail.com>, 2020
+# Carlos Moreira, 2020
+# Rui <xymarior@yandex.com>, 2020
+# Manuela Silva <manuelarodsilva@gmail.com>, 2020
+# Guilherme Campos <guilhermemiguel97@hotmail.com>, 2020
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.23.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Manuela Silva <manuelarodsilva@gmail.com>, 2019\n"
+"PO-Revision-Date: 2020-02-15 14:27+0000\n"
+"Last-Translator: Guilherme Campos <guilhermemiguel97@hotmail.com>, 2020\n"
 "Language-Team: Portuguese (https://www.transifex.com/mate/teams/13566/pt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,11 +77,11 @@ msgstr "Liga ou desliga o suporte de som das notificações."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Não perturbar"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Quando ligado, não são mostradas notificações."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -118,7 +119,7 @@ msgstr "Ocorreu um erro ao exibir a notificação: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Não foi possível carregar a interface do utilizador: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -132,13 +133,13 @@ msgstr "Defina as suas preferências das notificações de alerta"
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Notificação;Tema;"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
@@ -166,7 +167,7 @@ msgstr "_Monitor:"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Activar Não Perturbar"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"
