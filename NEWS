@@ -1,5 +1,17 @@
 ### mate-notification-daemon 1.25.0
 
+  * Translations update
+  * add git.mk to generate .gitignore
+  * daemon: Use monotonic time instead of real time
+  * Remove conversion warnings
+  * build: silent build warnings for distcheck
+  * Filter-out img elements from notification body
+  * The body of a notification may also contain hyperlinks
+  * build: do not override the default value for MATE_COMPILE_WARNINGS
+  * Rewrite mate-notification-properties.ui from scratch
+  * daemon: Remove warning about GTimeVal deprecation
+  * build: Remove generated files
+
 ### mate-notification-daemon 1.24.0
 
   * bump version
