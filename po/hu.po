@@ -7,6 +7,7 @@
 # Rezső Páder <rezso@rezso.net>, 2018
 # Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Falu <info@falu.me>, 2018
+# Balázs Meskó <meskobalazs@mailbox.org>, 2020
 # 
 msgid ""
 msgstr ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Falu <info@falu.me>, 2018\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>, 2020\n"
 "Language-Team: Hungarian (https://www.transifex.com/mate/teams/13566/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,11 +75,11 @@ msgstr "Be- illetve kikapcsolja az értesítések hangját."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Ne zavarjanak"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Ha be van kapcsolva, az értesítések nem jelennek meg."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -116,7 +117,7 @@ msgstr "Hiba az értesítés megjelenítésekor: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "A felhasználói felület nem tölthető be: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -130,13 +131,13 @@ msgstr "Felugró értesítések beállításai"
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Értesítés;Téma;"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
@@ -164,7 +165,7 @@ msgstr "_Monitor:"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "„Ne zavarjanak” bekapcsolása"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"

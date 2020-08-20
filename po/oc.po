@@ -7,6 +7,7 @@
 # Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Cédric Valmary <cvalmary@yahoo.fr>, 2018
 # Sébastien Denux <sebcxjo@gmail.com>, 2018
+# Quentin PAGÈS, 2020
 # 
 msgid ""
 msgstr ""
@@ -14,7 +15,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Sébastien Denux <sebcxjo@gmail.com>, 2018\n"
+"Last-Translator: Quentin PAGÈS, 2020\n"
 "Language-Team: Occitan (post 1500) (https://www.transifex.com/mate/teams/13566/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
-msgstr ""
+msgstr "Emplaçament de las fenèstras surgissentas"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:6
 msgid ""
@@ -35,11 +36,11 @@ msgstr ""
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:237
 msgid "Use Active Monitor"
-msgstr ""
+msgstr "Utilizar lo monitor actiu"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
-msgstr ""
+msgstr "Mostrar las notificacions sul monitor actiu."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
@@ -69,19 +70,19 @@ msgstr "Alucar e atudar lo supòrt sonòr per las notificacions."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Destorbar pas"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Quand es actiu aqueste mòde las notificacions son pas mostradas."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
-msgstr ""
+msgstr "Coco"
 
 #: src/capplet/mate-notification-properties.c:333
 msgid "Nodoka"
-msgstr ""
+msgstr "Nodoka"
 
 #: src/capplet/mate-notification-properties.c:337
 msgid "Slider"
@@ -111,31 +112,31 @@ msgstr "Error al moment d'afichar la notificacion: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Impossible de cargar l'interfàcia d'utilizaire : %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
-msgstr ""
+msgstr "Fenèstras de notificacions"
 
 #: src/capplet/mate-notification-properties.desktop.in:4
 msgid "Set your popup notification preferences"
-msgstr ""
+msgstr "Definir vòstras preferéncias de fenèstras contextualas"
 
 #. Translators: Do NOT translate or transliterate this text (this is an icon
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Notification;Theme;tèma;notificacion;"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
-msgstr ""
+msgstr "Paramètres de notificacion"
 
 #: src/capplet/mate-notification-properties.ui:58
 msgid "_Preview"
@@ -147,7 +148,7 @@ msgstr "<b>Opcions Generalas</b>"
 
 #: src/capplet/mate-notification-properties.ui:174
 msgid "P_osition:"
-msgstr ""
+msgstr "P_osicion :"
 
 #: src/capplet/mate-notification-properties.ui:191
 msgid "_Theme:"
@@ -159,32 +160,32 @@ msgstr "_Monitor :"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Activar Destorbar pas"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"
-msgstr ""
+msgstr "Amont a esquèrra"
 
 #: src/capplet/mate-notification-properties.ui:308
 msgid "Top Right"
-msgstr ""
+msgstr "Amont a drecha"
 
 #: src/capplet/mate-notification-properties.ui:312
 msgid "Bottom Left"
-msgstr ""
+msgstr "Aval a esquèrra"
 
 #: src/capplet/mate-notification-properties.ui:316
 msgid "Bottom Right"
-msgstr ""
+msgstr "Aval a drecha"
 
 #: src/daemon/daemon.c:1328
 msgid "Exceeded maximum number of notifications"
-msgstr ""
+msgstr "Nombre maximal de notificacions"
 
 #: src/daemon/daemon.c:1609
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr ""
+msgstr "%u es un pas identificant de notificacion valid"
 
 #: src/daemon/sound.c:36
 msgid "Notification"
@@ -193,15 +194,15 @@ msgstr "Notificacion"
 #: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
 #: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
 msgid "Notification summary text."
-msgstr ""
+msgstr "Resumit de la notificacion."
 
 #: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
 #: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
 msgid "Notification body text."
-msgstr ""
+msgstr "Tèxt del còs de la notificacion."
 
 #: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
 #: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
 #: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr ""
+msgstr "Tampar la notificacion."

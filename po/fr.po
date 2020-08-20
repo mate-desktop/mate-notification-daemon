@@ -9,6 +9,8 @@
 # Tubuntu <tubuntu@testimonium.be>, 2018
 # yoplait <yoplait@tememe.org>, 2018
 # brice nice <brice1024@yahoo.fr>, 2018
+# Rox fr <roxfr@outlook.fr>, 2020
+# Laurent Napias, 2020
 # 
 msgid ""
 msgstr ""
@@ -16,7 +18,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: brice nice <brice1024@yahoo.fr>, 2018\n"
+"Last-Translator: Laurent Napias, 2020\n"
 "Language-Team: French (https://www.transifex.com/mate/teams/13566/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -49,7 +51,7 @@ msgstr "Afficher la notification sur l'écran actif."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
-msgstr "Écran"
+msgstr "Moniteur"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:16
 msgid ""
@@ -77,11 +79,11 @@ msgstr "Active ou désactive la prise en charge du son pour les notifications."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Ne pas déranger"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Si activé, les notifications ne sont pas affichées."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -119,7 +121,7 @@ msgstr "Erreur lors de l'affichage d'une notification : %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Impossible de charger l'interface utilisateur: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -133,13 +135,13 @@ msgstr "Paramétrez vos préférences de notifications d’événements"
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Notification;Theme;"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
@@ -163,11 +165,11 @@ msgstr "_Thème :"
 
 #: src/capplet/mate-notification-properties.ui:206
 msgid "_Monitor:"
-msgstr "É_cran :"
+msgstr "_Moniteur :"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Activer Ne pas déranger"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"

@@ -4,11 +4,11 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Andika Triwidada <andika@gmail.com>, 2018
-# Aris S. Ripandi <inactive+riespandi@transifex.com>, 2018
+# e4b337ef88d89d25839dfa8ec011a002_3d7163d <f0ef974030fe7250832fc0f0f8f55974_17741>, 2018
 # Ibnu Daru Aji, 2018
 # Rendiyono Wahyu Saputro <rendi.7936@gmail.com>, 2018
 # Anton Toni Agung <vdrive6@gmail.com>, 2018
+# Andika Triwidada <andika@gmail.com>, 2020
 # 
 msgid ""
 msgstr ""
@@ -16,7 +16,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2019-11-07 12:05+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Anton Toni Agung <vdrive6@gmail.com>, 2018\n"
+"Last-Translator: Andika Triwidada <andika@gmail.com>, 2020\n"
 "Language-Team: Indonesian (https://www.transifex.com/mate/teams/13566/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
-msgstr "okasi popup"
+msgstr "Lokasi popup"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:6
 msgid ""
@@ -76,11 +76,11 @@ msgstr "Hidupkan dan hilangkan dukungan suara pada pemberitahuan."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Jangan ganggu"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Ketika difungsikan, pemberitahuan tidak ditunjukkan."
 
 #: src/capplet/mate-notification-properties.c:329
 msgid "Coco"
@@ -118,7 +118,7 @@ msgstr "Galat sewaktu menampilkan pemberitahuan: %s"
 #: src/capplet/mate-notification-properties.c:547
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Tidak bisa memuat antarmuka pengguna: %s"
 
 #: src/capplet/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -132,13 +132,13 @@ msgstr "Atur preferensi keluarnya notifikasi"
 #. file name)!
 #: src/capplet/mate-notification-properties.desktop.in:7
 msgid "mate-notification-properties"
-msgstr ""
+msgstr "mate-notification-properties"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Pemberitahuan;Tema;"
 
 #: src/capplet/mate-notification-properties.ui:9
 msgid "Notification Settings"
@@ -166,7 +166,7 @@ msgstr "_Monitor:"
 
 #: src/capplet/mate-notification-properties.ui:253
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "Fungsikan Jangan Ganggu"
 
 #: src/capplet/mate-notification-properties.ui:304
 msgid "Top Left"
