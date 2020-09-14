@@ -126,11 +126,70 @@ pkg_modules="
 	glib-2.0 >= $REQ_GLIB_VERSION, \
 	gio-2.0 >= $REQ_GLIB_VERSION, \
         $GMODULE_ADD \
-        libcanberra-gtk3 >= $REQ_LIBCANBERRA_GTK_VERSION, \
-	libwnck-3.0 \
-        x11 \
+        libcanberra-gtk3 >= $REQ_LIBCANBERRA_GTK_VERSION \
 "
 PKG_CHECK_MODULES(NOTIFICATION_DAEMON, $pkg_modules)
+
+dnl Will call AC_SUBSET on NOTIFICATION_DAEMON_* below after appending X11 and Wayland flags
+
+dnl ---------------------------------------------------------------------------
+dnl Support X11, Wayland or both for the daemon
+dnl ---------------------------------------------------------------------------
+
+dnl $enable_x11 and $enable_wayland will be set to "yes", "no" or "auto"
+AC_ARG_ENABLE(x11,
+	[AC_HELP_STRING([--enable-x11],
+		[Explicitly enable or disable X11 support
+		(default is to enable only if X development libraries are detected)])],
+	[enable_x11=$enableval],
+	[enable_x11=auto])
+
+AC_ARG_ENABLE(wayland,
+	[AC_HELP_STRING([--enable-wayland],
+		[Explicitly enable or disable Wayland support
+		(default is to enable only if Wayland client development library is detected)])],
+	[enable_wayland=$enableval],
+	[enable_wayland=auto])
+
+dnl Check if we have gtk-layer-shell installed, and thus should build with Wayland support
+have_wayland=no
+if test "x$enable_wayland" != "xno"; then
+	PKG_CHECK_MODULES(NOTIFICATION_DAEMON_WAYLAND, gtk-layer-shell-0, [
+		have_wayland=yes
+		AC_DEFINE(HAVE_WAYLAND, 1, [Have the Wayland development library])
+		NOTIFICATION_DAEMON_CFLAGS="$NOTIFICATION_DAEMON_CFLAGS $NOTIFICATION_DAEMON_WAYLAND_CFLAGS"
+		NOTIFICATION_DAEMON_LIBS="$NOTIFICATION_DAEMON_LIBS $NOTIFICATION_DAEMON_WAYLAND_LIBS"
+	], [
+		if test "x$enable_wayland" = "xyes"; then
+			AC_MSG_ERROR([Wayland enabled but GTK Layer Shell library not found])
+		fi
+	])
+fi
+
+dnl Check if we have the X development libraries
+have_x11=no
+if test "x$enable_x11" != "xno"; then
+	x11_pkg_modules="libwnck-3.0, x11"
+	PKG_CHECK_MODULES(NOTIFICATION_DAEMON_X11, $x11_pkg_modules, [
+		have_x11=yes
+		AC_DEFINE(HAVE_X11, 1, [Have the X11 development library])
+		NOTIFICATION_DAEMON_CFLAGS="$NOTIFICATION_DAEMON_CFLAGS $NOTIFICATION_DAEMON_X11_CFLAGS"
+		NOTIFICATION_DAEMON_LIBS="$NOTIFICATION_DAEMON_LIBS $NOTIFICATION_DAEMON_X11_LIBS"
+	], [
+		AC_MSG_ERROR([Did not find X11])
+		if test "x$enable_x11" = "xyes"; then
+			AC_MSG_ERROR([X development libraries not found])
+		fi
+	])
+fi
+
+AM_CONDITIONAL(ENABLE_WAYLAND, [test "x$have_wayland" = "xyes"])
+AM_CONDITIONAL(ENABLE_X11, [test "x$have_x11" = "xyes"])
+
+if test "x$have_x11" != "xyes" -a "x$have_wayland" != "xyes"; then
+  AC_MSG_ERROR([At least one backend must be enabled (--enable-x11 or --enable-wayland)])
+fi
+
 AC_SUBST(NOTIFICATION_DAEMON_CFLAGS)
 AC_SUBST(NOTIFICATION_DAEMON_LIBS)
 
@@ -244,6 +303,8 @@ echo "
 	compiler:                 ${CC}
 	cflags:	                  ${CFLAGS}
 	warning flags:            ${WARN_CFLAGS}
+	Wayland support:          ${have_wayland}
+	X11 support:              ${have_x11}
 
 	dbus-1 system.d           $DBUS_SYS_DIR
 	dbus-1 services           $DBUS_SERVICES_DIR
