@@ -78,6 +78,14 @@ int main (int argc, char *argv[])
 {
 	NotifyDaemon *daemon;
 
+	#if defined(HAVE_X11) && defined(HAVE_WAYLAND)
+		gdk_set_allowed_backends ("wayland,x11");
+	#elif defined(HAVE_WAYLAND)
+		gdk_set_allowed_backends ("wayland");
+	#else
+		gdk_set_allowed_backends ("x11");
+	#endif
+
 	gtk_init(&argc, &argv);
 
 	if (!parse_arguments (&argc, &argv))
