@@ -36,6 +36,8 @@
 void wayland_init_notification (GtkWindow* nw)
 {
 	gtk_layer_init_for_window (nw);
+	gtk_layer_set_layer (nw, GTK_LAYER_SHELL_LAYER_TOP);
+	gtk_layer_set_namespace (nw, "notification");
 }
 
 void wayland_move_notification (GtkWindow* nw, int x, int y)
