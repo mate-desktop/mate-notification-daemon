@@ -12,6 +12,11 @@ mate_notification_daemon_SOURCES = \
 	sound.h \
 	mnd-daemon.c
 
+if ENABLE_WAYLAND
+mate_notification_daemon_SOURCES += \
+	wayland.c
+endif
+
 mate_notification_daemon_LDADD = $(NOTIFICATION_DAEMON_LIBS)
 
 mate_notification_daemon_CFLAGS = $(WARN_CFLAGS)
