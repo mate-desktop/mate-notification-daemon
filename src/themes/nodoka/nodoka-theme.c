@@ -27,7 +27,6 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-#include <gdk/gdkx.h>
 
 #include <libxml/xpath.h>
 
@@ -133,18 +132,30 @@ activate_link (GtkLabel *label, const char *url, WindowData *windata)
 	return TRUE;
 }
 
+static void
+get_size_of_widgets_monitor(GtkWidget *widget, int *width, int *height)
+{
+	GdkWindow *window = gtk_widget_get_window (widget);
+	GdkMonitor *monitor = gdk_display_get_monitor_at_window (
+		gdk_window_get_display (window),
+		window);
+	GdkRectangle workarea;
+	gdk_monitor_get_workarea (monitor, &workarea);
+	if (width)  *width  = workarea.width;
+	if (height) *height = workarea.height;
+}
+
 /* Set if we have arrow down or arrow up */
 static GtkArrowType
 get_notification_arrow_type(GtkWidget *nw)
 {
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
-	int screen_height;
+	int monitor_height;
 
-	screen_height = HeightOfScreen (gdk_x11_screen_get_xscreen (
-		gdk_window_get_screen (gtk_widget_get_window (nw))));
+	get_size_of_widgets_monitor (nw, NULL, &monitor_height);
 
 	if (windata->arrow.position.y + windata->height + DEFAULT_ARROW_HEIGHT >
-		screen_height)
+		monitor_height)
 	{
 		return GTK_ARROW_DOWN;
 	}
@@ -158,12 +169,11 @@ get_notification_arrow_type(GtkWidget *nw)
 static void
 set_arrow_parameters (WindowData *windata)
 {
-	int screen_width;
+	int monitor_width;
 	int x,y;
 	GtkArrowType arrow_type;
 
-	screen_width = WidthOfScreen (gdk_x11_screen_get_xscreen (
-		gdk_window_get_screen (gtk_widget_get_window (windata->win))));
+	get_size_of_widgets_monitor (windata->win, &monitor_width, NULL);
 
 	/* Set arrow offset */
 	GtkAllocation alloc;
@@ -171,11 +181,11 @@ set_arrow_parameters (WindowData *windata)
 
 	if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW -
 		DEFAULT_ARROW_OFFSET + alloc.width) >
-			screen_width)
+			monitor_width)
 	{
 		windata->arrow.offset = windata->arrow.position.x -
 					DEFAULT_ARROW_SKEW -
-					(screen_width -
+					(monitor_width -
 						alloc.width);
 	}
 	else if ((windata->arrow.position.x - DEFAULT_ARROW_SKEW -
