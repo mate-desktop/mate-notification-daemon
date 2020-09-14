@@ -24,11 +24,13 @@
 #include "engines.h"
 #include "stack.h"
 
+#ifdef HAVE_X11
 #include <X11/Xproto.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
+#endif // HAVE_X11
 
 #define NOTIFY_STACK_SPACING 2
 #define WORKAREA_PADDING 6
@@ -47,6 +49,7 @@ GList* notify_stack_get_windows(NotifyStack *stack)
 	return stack->windows;
 }
 
+#ifdef HAVE_X11
 static gboolean
 get_work_area (NotifyStack  *stack,
                GdkRectangle *rect)
@@ -112,6 +115,7 @@ get_work_area (NotifyStack  *stack,
 
         return TRUE;
 }
+#endif // HAVE_X11
 
 static void
 get_origin_coordinates (NotifyStackLocation stack_location,
@@ -290,9 +294,19 @@ notify_stack_shift_notifications (NotifyStack *stack,
         guint           i;
         guint           n_wins;
 
-        get_work_area (stack, &workarea);
         gdk_monitor_get_geometry (stack->monitor, &monitor);
-        gdk_rectangle_intersect (&monitor, &workarea, &workarea);
+
+#ifdef HAVE_X11
+        if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
+        {
+                get_work_area (stack, &workarea);
+                gdk_rectangle_intersect (&monitor, &workarea, &workarea);
+        }
+        else
+#endif
+        { // Not using X11
+                workarea = monitor;
+        }
 
         add_padding_to_rect (&workarea);
 
