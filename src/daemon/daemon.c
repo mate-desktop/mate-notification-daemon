@@ -45,6 +45,11 @@
 #include <libwnck/libwnck.h>
 #endif // HAVE_X11
 
+#ifdef HAVE_WAYLAND
+#include <gdk/gdkwayland.h>
+#include "wayland.h"
+#endif // HAVE_WAYLAND
+
 #include "daemon.h"
 #include "engines.h"
 #include "stack.h"
@@ -1369,6 +1374,14 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	{
 		nw = theme_create_notification (url_clicked_cb);
 		g_object_set_data (G_OBJECT (nw), "_notify_daemon", daemon);
+
+#if HAVE_WAYLAND
+		if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+		{
+			wayland_init_notification (nw);
+		}
+#endif // HAVE_WAYLAND
+
 		gtk_widget_realize (GTK_WIDGET (nw));
 		new_notification = TRUE;
 
