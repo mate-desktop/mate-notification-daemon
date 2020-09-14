@@ -26,6 +26,11 @@
 #include "daemon.h"
 #include "engines.h"
 
+#ifdef HAVE_WAYLAND
+#include <gdk/gdkwayland.h>
+#include "wayland.h"
+#endif // HAVE_WAYLAND
+
 typedef struct {
 	GModule*    module;
 	guint       ref_count;
@@ -206,6 +211,12 @@ GtkWindow* theme_create_notification(UrlClickedCb url_clicked_cb)
 	GtkWindow* nw = engine->create_notification(url_clicked_cb);
 	g_object_set_data_full(G_OBJECT(nw), "_theme_engine", engine, (GDestroyNotify) theme_engine_unref);
 	engine->ref_count++;
+#if HAVE_WAYLAND
+	if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+	{
+		wayland_init_notification (nw);
+	}
+#endif // HAVE_WAYLAND
 	return nw;
 }
 
@@ -313,6 +324,12 @@ void theme_clear_notification_actions(GtkWindow* nw)
 
 void theme_move_notification(GtkWindow* nw, int x, int y)
 {
+#if HAVE_WAYLAND
+	if (GDK_IS_WAYLAND_DISPLAY (gdk_display_get_default ()))
+	{
+		wayland_move_notification (nw, x, y);
+	}
+#endif // HAVE_WAYLAND
 	ThemeEngine* engine = g_object_get_data(G_OBJECT(nw), "_theme_engine");
 	engine->move_notification(nw, x, y);
 }

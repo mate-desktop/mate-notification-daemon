@@ -30,5 +30,6 @@
 #include <gtk/gtk.h>
 
 void wayland_init_notification (GtkWindow* nw);
+void wayland_move_notification (GtkWindow* nw, int x, int y);
 
 #endif /* _WAYLAND_H */
