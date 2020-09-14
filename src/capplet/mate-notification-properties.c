@@ -356,7 +356,7 @@ static void notification_properties_dialog_setup_themes(NotificationAppletDialog
 	}
 	else
 	{
-		g_warning("Error opening themes dir");
+		g_warning("Error opening themes dir %s", ENGINES_DIR);
 	}
 
 	theme = g_settings_get_string(dialog->gsettings, GSETTINGS_KEY_THEME);
