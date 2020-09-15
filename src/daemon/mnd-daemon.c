@@ -46,6 +46,12 @@ static GOptionEntry entries[] =
 		NULL
 	},
 	{
+		"timeout", 't', G_OPTION_FLAG_NONE,
+		G_OPTION_ARG_INT, &exit_timeout_seconds,
+		"Set how long the daemon will sit idle, or -1 to never exit",
+		"seconds"
+	},
+	{
 		NULL
 	}
 };

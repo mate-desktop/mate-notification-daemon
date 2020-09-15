@@ -51,7 +51,6 @@
 
 #define MAX_NOTIFICATIONS 20
 #define IMAGE_SIZE 48
-#define IDLE_SECONDS 30
 #define NOTIFICATION_BUS_NAME      "org.freedesktop.Notifications"
 #define NOTIFICATION_BUS_PATH      "/org/freedesktop/Notifications"
 
@@ -61,6 +60,8 @@
 	(g_object_get_data(G_OBJECT(nw), "_notify_sender"))
 #define NW_GET_DAEMON(nw) \
 	(g_object_get_data(G_OBJECT(nw), "_notify_daemon"))
+
+int exit_timeout_seconds = 30; // Can be set by the --timout option, see mnd-daemon.c for details
 
 enum {
 	PROP_0,
@@ -251,14 +252,18 @@ static gboolean do_exit(gpointer user_data)
 	return FALSE;
 }
 
-static void add_exit_timeout(NotifyDaemon* daemon)
+static void add_exit_timeout_if_needed(NotifyDaemon* daemon)
 {
 	g_assert (daemon != NULL);
 
-	if (daemon->exit_timeout_source > 0)
+	if (daemon->exit_timeout_source > 0 ||
+		g_hash_table_size(daemon->notification_hash) > 0 ||
+		exit_timeout_seconds < 0)
+	{
 		return;
+	}
 
-	daemon->exit_timeout_source = g_timeout_add_seconds(IDLE_SECONDS, do_exit, NULL);
+	daemon->exit_timeout_source = g_timeout_add_seconds(exit_timeout_seconds, do_exit, NULL);
 }
 
 static void remove_exit_timeout(NotifyDaemon* daemon)
@@ -455,8 +460,6 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->timeout_source = 0;
 	daemon->skeleton = notify_daemon_notifications_skeleton_new ();
 
-	add_exit_timeout(daemon);
-
 	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
 	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
@@ -472,6 +475,8 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->idle_reposition_notify_ids = g_hash_table_new(NULL, NULL);
 	daemon->monitored_window_hash = g_hash_table_new(NULL, NULL);
 	daemon->notification_hash = g_hash_table_new_full(g_int_hash, g_int_equal, g_free, (GDestroyNotify) _notify_timeout_destroy);
+
+	add_exit_timeout_if_needed(daemon);
 }
 
 static void destroy_screen(NotifyDaemon* daemon)
@@ -604,10 +609,7 @@ static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_no
 
 		g_hash_table_remove(daemon->notification_hash, &id);
 
-		if (g_hash_table_size(daemon->notification_hash) == 0)
-		{
-			add_exit_timeout(daemon);
-		}
+		add_exit_timeout_if_needed(daemon);
 	}
 }
 
@@ -805,11 +807,7 @@ static gboolean _check_expiration(NotifyDaemon* daemon)
 	if (!has_more_timeouts)
 	{
 		daemon->timeout_source = 0;
-
-		if (g_hash_table_size (daemon->notification_hash) == 0)
-		{
-			add_exit_timeout(daemon);
-		}
+		add_exit_timeout_if_needed(daemon);
 	}
 
 	return has_more_timeouts;
