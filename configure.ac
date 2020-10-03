@@ -176,7 +176,6 @@ if test "x$enable_x11" != "xno"; then
 		NOTIFICATION_DAEMON_CFLAGS="$NOTIFICATION_DAEMON_CFLAGS $NOTIFICATION_DAEMON_X11_CFLAGS"
 		NOTIFICATION_DAEMON_LIBS="$NOTIFICATION_DAEMON_LIBS $NOTIFICATION_DAEMON_X11_LIBS"
 	], [
-		AC_MSG_ERROR([Did not find X11])
 		if test "x$enable_x11" = "xyes"; then
 			AC_MSG_ERROR([X development libraries not found])
 		fi
