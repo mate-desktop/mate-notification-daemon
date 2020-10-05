@@ -183,7 +183,6 @@ if test "x$enable_x11" != "xno"; then
 fi
 
 AM_CONDITIONAL(ENABLE_WAYLAND, [test "x$have_wayland" = "xyes"])
-AM_CONDITIONAL(ENABLE_X11, [test "x$have_x11" = "xyes"])
 
 if test "x$have_x11" != "xyes" -a "x$have_wayland" != "xyes"; then
   AC_MSG_ERROR([At least one backend must be enabled (--enable-x11 or --enable-wayland)])
