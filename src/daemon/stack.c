@@ -30,7 +30,7 @@
 #include <X11/Xutil.h>
 #include <X11/Xatom.h>
 #include <gdk/gdkx.h>
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 #define NOTIFY_STACK_SPACING 2
 #define WORKAREA_PADDING 6
@@ -115,7 +115,7 @@ get_work_area (NotifyStack  *stack,
 
         return TRUE;
 }
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 static void
 get_origin_coordinates (NotifyStackLocation stack_location,
@@ -304,7 +304,7 @@ notify_stack_shift_notifications (NotifyStack *stack,
         }
         else
 #endif
-        { // Not using X11
+        { /* Not using X11 */
                 workarea = monitor;
         }
 

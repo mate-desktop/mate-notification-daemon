@@ -29,7 +29,7 @@
 #ifdef HAVE_WAYLAND
 #include <gdk/gdkwayland.h>
 #include "wayland.h"
-#endif // HAVE_WAYLAND
+#endif /* HAVE_WAYLAND */
 
 typedef struct {
 	GModule*    module;
@@ -216,7 +216,7 @@ GtkWindow* theme_create_notification(UrlClickedCb url_clicked_cb)
 	{
 		wayland_init_notification (nw);
 	}
-#endif // HAVE_WAYLAND
+#endif /* HAVE_WAYLAND */
 	return nw;
 }
 
@@ -329,7 +329,7 @@ void theme_move_notification(GtkWindow* nw, int x, int y)
 	{
 		wayland_move_notification (nw, x, y);
 	}
-#endif // HAVE_WAYLAND
+#endif /* HAVE_WAYLAND */
 	ThemeEngine* engine = g_object_get_data(G_OBJECT(nw), "_theme_engine");
 	engine->move_notification(nw, x, y);
 }

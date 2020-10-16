@@ -43,7 +43,7 @@
 
 #define WNCK_I_KNOW_THIS_IS_UNSTABLE
 #include <libwnck/libwnck.h>
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 #include "daemon.h"
 #include "engines.h"
@@ -95,7 +95,7 @@ typedef struct {
 	guint         paused : 1;
 #ifdef HAVE_X11
 	Window        src_window_xid;
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 } NotifyTimeout;
 
 typedef struct {
@@ -103,7 +103,7 @@ typedef struct {
 	gsize n_stacks;
 #ifdef HAVE_X11
 	Atom workarea_atom;
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 } NotifyScreen;
 
 struct _NotifyDaemon {
@@ -141,7 +141,7 @@ static NotifyStackLocation get_stack_location_from_string(const gchar *slocation
 static GdkFilterReturn _notify_x11_filter(GdkXEvent* xevent, GdkEvent* event, NotifyDaemon* daemon);
 static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Window source);
 static void monitor_notification_source_windows(NotifyDaemon* daemon, NotifyTimeout* nt, Window source);
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, const gchar *app_name, guint id, const gchar *icon, const gchar *summary, const gchar *body, const gchar *const *actions, GVariant *hints, gint timeout, gpointer user_data);
 static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, guint arg_id, gpointer user_data);
@@ -400,7 +400,7 @@ static GdkFilterReturn screen_xevent_filter(GdkXEvent* xevent, GdkEvent* event, 
 
 	return GDK_FILTER_CONTINUE;
 }
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 static void create_screen(NotifyDaemon* daemon)
 {
@@ -426,7 +426,7 @@ static void create_screen(NotifyDaemon* daemon)
 		gdk_window_add_filter(gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->screen);
 		gdk_window_set_events(gdkwindow, gdk_window_get_events(gdkwindow) | GDK_PROPERTY_CHANGE_MASK);
 	}
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 	create_stacks_for_screen(daemon, screen);
 }
@@ -511,7 +511,7 @@ static void destroy_screen(NotifyDaemon* daemon)
 		gdkwindow = gdk_screen_get_root_window (screen);
 		gdk_window_remove_filter (gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->screen);
 	}
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 	for (i = 0; i < daemon->screen->n_stacks; i++) {
 		 g_clear_object (&daemon->screen->stacks[i]);
@@ -536,7 +536,7 @@ static void notify_daemon_finalize(GObject* object)
 	{
 		gdk_window_remove_filter(NULL, (GdkFilterFunc) _notify_x11_filter, daemon);
 	}
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 	if (daemon->skeleton != NULL)
 	{
@@ -759,7 +759,7 @@ static GdkFilterReturn _notify_x11_filter(GdkXEvent* xevent, GdkEvent* event, No
 
 	return GDK_FILTER_CONTINUE;
 }
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 static void _mouse_entered_cb(GtkWindow* nw, GdkEventCrossing* event, NotifyDaemon* daemon)
 {
@@ -1293,7 +1293,7 @@ static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Wind
 	 */
 	gtk_widget_queue_draw (GTK_WIDGET (nw));
 }
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 GQuark notify_daemon_error_quark(void)
 {
@@ -1329,7 +1329,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 #ifdef HAVE_X11
 	Window window_xid = None;
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 	if (g_hash_table_size (daemon->notification_hash) > MAX_NOTIFICATIONS)
 	{
@@ -1397,7 +1397,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		window_xid = (Window) g_variant_get_uint32 (data);
 		g_variant_unref(data);
 	} else
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 	/* deal with x, and y hints */
 	if (g_variant_lookup(hints, "x", "i", &x))
 	{
@@ -1509,7 +1509,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		 */
 	}
 	else
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 	if (use_pos_data && !theme_get_always_stack (nw))
 	{
 		/*
@@ -1583,14 +1583,14 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		monitor_notification_source_windows (daemon, nt, window_xid);
 		sync_notification_position (daemon, nw, window_xid);
 	}
-#endif // HAVE_X11
+#endif /* HAVE_X11 */
 
 	fullscreen_window = FALSE;
 #ifdef HAVE_X11
 	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()))
 		fullscreen_window = fullscreen_window_exists (GTK_WIDGET (nw));
-#endif // HAVE_X11
-	// fullscreen_window is assumed to be false on Wayland, as there is no trivial way to check
+#endif /* HAVE_X11 */
+	/* fullscreen_window is assumed to be false on Wayland, as there is no trivial way to check */
 
 	/* If there is no timeout, show the notification also if screensaver
 	 * is active or there are fullscreen windows
