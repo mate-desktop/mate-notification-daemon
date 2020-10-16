@@ -21,7 +21,7 @@
 #ifndef _WAYLAND_H
 #define _WAYLAND_H
 
-#ifdef PACKAGE_NAME // only check HAVE_WAYLAND if config.h has been included
+#ifdef PACKAGE_NAME /* only check HAVE_WAYLAND if config.h has been included */
 #ifndef HAVE_WAYLAND
 #error file should only be included when HAVE_WAYLAND is enabled
 #endif
