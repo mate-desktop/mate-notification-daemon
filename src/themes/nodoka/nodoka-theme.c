@@ -137,8 +137,8 @@ get_size_of_widgets_monitor(GtkWidget *widget, int *width, int *height)
 {
 	GdkWindow *window = gtk_widget_get_window (widget);
 	GdkMonitor *monitor = gdk_display_get_monitor_at_window (
-		gdk_window_get_display (window),
-		window);
+			gdk_window_get_display (window),
+			window);
 	GdkRectangle workarea;
 	gdk_monitor_get_workarea (monitor, &workarea);
 	if (width)  *width  = workarea.width;

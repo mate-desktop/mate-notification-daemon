@@ -1152,7 +1152,7 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 
 	g_return_val_if_fail (GDK_IS_X11_DISPLAY (gdk_display_get_default ()), FALSE);
 
-	wnck_screen = wnck_screen_get(GDK_SCREEN_XNUMBER(gdk_window_get_screen(gtk_widget_get_window(nw))));
+	wnck_screen = wnck_screen_get (GDK_SCREEN_XNUMBER (gdk_window_get_screen (gtk_widget_get_window (nw))));
 
 	wnck_screen_force_update (wnck_screen);
 
@@ -1500,8 +1500,8 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 #ifdef HAVE_X11
 	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()) &&
-		window_xid != None &&
-		!theme_get_always_stack (nw))
+	    window_xid != None &&
+	    !theme_get_always_stack (nw))
 	{
 		/*
 		 * Do nothing here if we were passed an XID; we'll call
