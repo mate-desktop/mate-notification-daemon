@@ -17,6 +17,4 @@ which mate-autogen || {
     exit 1
 }
 
-USE_MATE2_MACROS=1
-
 . mate-autogen
