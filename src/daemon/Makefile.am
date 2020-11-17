@@ -14,6 +14,7 @@ mate_notification_daemon_SOURCES = \
 
 if ENABLE_WAYLAND
 mate_notification_daemon_SOURCES += \
+	wayland.h \
 	wayland.c
 endif
 
