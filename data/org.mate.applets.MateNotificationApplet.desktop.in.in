@@ -1,0 +1,16 @@
+[Applet Factory]
+Id=MateNotificationAppletFactory
+Location=@LIBEXECDIR@/mate-notification-applet
+Name=Mate Notification Applet Factory
+Description=Mate Notification Applet Factory
+
+[MateNotificationApplet]
+Name=Do Not Disturb
+Description=Activate the do not disturb mode.
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+Icon=mate-notification-properties
+MateComponentId=OAFIID:MATE_Panel_Notification_Applet
+X-MATE-Bugzilla-Bugzilla=MATE
+X-MATE-Bugzilla-Product=mate-notification-daemon
+X-MATE-Bugzilla-Component=notification applet
+X-MATE-Bugzilla-Version=@VERSION@

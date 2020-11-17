@@ -12,17 +12,31 @@ icon32_DATA = icons/32x32/mate-notification-properties.png
 icon48_DATA = icons/48x48/mate-notification-properties.png
 iconscalable_DATA = icons/scalable/mate-notification-properties.svg
 
+servicedir       = $(DBUS_SERVICES_DIR)
+service_DATA     = org.freedesktop.mate.Notifications.service org.mate.panel.applet.MateNotificationAppletFactory.service
+service_in_files = $(service_DATA:=.in)
 
-servicedir   = $(DBUS_SERVICES_DIR)
-service_DATA = org.freedesktop.mate.Notifications.service
+appletdir        = $(datadir)/mate-panel/applets
+applet_DATA      = org.mate.applets.MateNotificationApplet.mate-panel-applet
+applet_in_files  = $(applet_DATA:.mate-panel-applet=.desktop.in)
 
-gsettingsschema_in_files = org.mate.NotificationDaemon.gschema.xml.in
-gsettings_SCHEMAS = $(gsettingsschema_in_files:.xml.in=.xml)
+$(applet_DATA): $(applet_in_files)
+	$(AM_V_GEN) $(MSGFMT) --desktop --keyword=Name --keyword=Description --template $< -d $(top_srcdir)/po -o $@
+
+desktopdir       = $(datadir)/applications
+desktop_DATA     = mate-notification-properties.desktop
+desktop_in_files = $(desktop_DATA:.desktop=.desktop.in)
+
+$(desktop_DATA): $(desktop_in_files)
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
+gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
+gsettingsschema_in_files = $(gsettings_SCHEMAS:=.in)
 @GSETTINGS_RULES@
 
 EXTRA_DIST = \
+	$(desktop_in_files) \
 	$(gsettingsschema_in_files) \
-	$(service_DATA) \
 	$(icon16_DATA) \
 	$(icon22_DATA) \
 	$(icon24_DATA) \
@@ -30,7 +44,14 @@ EXTRA_DIST = \
 	$(icon48_DATA) \
 	$(iconscalable_DATA)
 
-CLEANFILES = $(gsettings_SCHEMAS)
+CLEANFILES = \
+	$(applet_DATA) \
+	$(desktop_DATA) \
+	$(gsettings_SCHEMAS)
+
+DISTCLEANFILES = \
+	$(applet_in_files) \
+	$(service_DATA)
 
 gtk_update_icon_cache = $(UPDATE_ICON_CACHE) -f -t $(datadir)/icons/hicolor
 
