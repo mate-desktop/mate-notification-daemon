@@ -54,8 +54,6 @@
 #define MAX_NOTIFICATIONS 20
 #define IMAGE_SIZE 48
 #define IDLE_SECONDS 30
-#define NOTIFICATION_BUS_NAME      "org.freedesktop.Notifications"
-#define NOTIFICATION_BUS_PATH      "/org/freedesktop/Notifications"
 
 #define NW_GET_NOTIFY_ID(nw) \
 	(GPOINTER_TO_UINT(g_object_get_data(G_OBJECT(nw), "_notify_id")))
@@ -1534,7 +1532,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		/* If the "use-active-monitor" gsettings key is set to TRUE, then
 		 * get the monitor the pointer is at. Otherwise, get the monitor
 		 * number the user has set in gsettings. */
-		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE))
+		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR))
 		{
 			display = gdk_display_get_default ();
 			seat = gdk_display_get_default_seat (display);

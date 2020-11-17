@@ -28,8 +28,7 @@
 #define MATE_DESKTOP_USE_UNSTABLE_API
 #include <libmate-desktop/mate-desktop-utils.h>
 
-#define GSETTINGS_SCHEMA "org.mate.NotificationDaemon"
-#define GSETTINGS_KEY_DO_NOT_DISTURB "do-not-disturb"
+#include "constants.h"
 
 typedef struct
 {

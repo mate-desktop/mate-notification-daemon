@@ -28,13 +28,7 @@
 #include <glib-object.h>
 #include <gio/gio.h>
 
-#define GSETTINGS_SCHEMA             "org.mate.NotificationDaemon"
-#define GSETTINGS_KEY_THEME          "theme"
-#define GSETTINGS_KEY_POPUP_LOCATION "popup-location"
-#define GSETTINGS_KEY_SOUND_ENABLED  "sound-enabled"
-#define GSETTINGS_KEY_DO_NOT_DISTURB "do-not-disturb"
-#define GSETTINGS_KEY_MONITOR_NUMBER "monitor-number"
-#define GSETTINGS_KEY_USE_ACTIVE     "use-active-monitor"
+#include "constants.h"
 
 #define NOTIFY_TYPE_DAEMON (notify_daemon_get_type())
 G_DECLARE_FINAL_TYPE (NotifyDaemon, notify_daemon, NOTIFY, DAEMON, GObject)

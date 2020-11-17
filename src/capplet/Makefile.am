@@ -9,6 +9,7 @@ NULL =
 
 mate_notification_properties_CFLAGS = \
 	-I$(top_srcdir) \
+	-I$(top_srcdir)/src/common \
 	-I$(top_srcdir)/src/daemon \
 	$(NOTIFICATION_CAPPLET_CFLAGS) \
 	-DENGINES_DIR=\"$(libdir)/mate-notification-daemon/engines\" \
@@ -28,12 +29,14 @@ $(mate_notification_properties_resources_files): $(mate_notification_properties_
 		--target $@ --sourcedir $(srcdir) --generate --c-name notification_properties
 mate_notification_properties_SOURCES = \
 	$(mate_notification_properties_resources_files) \
+	../common/constants.h \
 	mate-notification-properties.c \
 	$(NULL)
 
 man_MANS = mate-notification-properties.1
 
 mate_notification_applet_CFLAGS = \
+	-I$(top_srcdir)/src/common \
 	$(NOTIFICATION_APPLET_CFLAGS) \
 	-DMATELOCALEDIR=\"$(datadir)/locale\" \
 	-DRESOURCE_PATH=\""/org/mate/panel/applet/notifications/"\" \
@@ -52,6 +55,7 @@ $(mate_notification_applet_resources_files): $(mate_notification_applet_resource
 		--target $@ --sourcedir $(srcdir) --generate --c-name notification_applet
 mate_notification_applet_SOURCES = \
 	$(mate_notification_applet_resources_files) \
+	../common/constants.h \
 	mate-notification-applet.c \
 	$(NULL)
 

@@ -2,6 +2,7 @@ libexec_PROGRAMS = mate-notification-daemon
 
 mate_notification_daemon_SOURCES = \
 	$(mate_notification_daemon_built_sources) \
+	../common/constants.h \
 	daemon.c \
 	daemon.h \
 	engines.c \
@@ -36,6 +37,7 @@ $(mate_notification_daemon_built_sources) : Makefile.am $(srcdir)/notificationda
 
 AM_CPPFLAGS = \
 	-I$(top_srcdir) \
+	-I$(top_srcdir)/src/common \
 	$(NOTIFICATION_DAEMON_CFLAGS) \
 	-DENGINES_DIR=\"$(libdir)/mate-notification-daemon/engines\"
 
