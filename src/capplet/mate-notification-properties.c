@@ -31,13 +31,7 @@
 #include <libnotify/notify.h>
 
 #include "stack.h"
-
-#define GSETTINGS_SCHEMA "org.mate.NotificationDaemon"
-#define GSETTINGS_KEY_THEME "theme"
-#define GSETTINGS_KEY_POPUP_LOCATION "popup-location"
-#define GSETTINGS_KEY_MONITOR_NUMBER "monitor-number"
-#define GSETTINGS_KEY_USE_ACTIVE_MONITOR "use-active-monitor"
-#define GSETTINGS_KEY_DO_NOT_DISTURB "do-not-disturb"
+#include "constants.h"
 
 typedef struct {
 	GSettings* gsettings;
