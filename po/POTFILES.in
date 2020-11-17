@@ -1,6 +1,8 @@
+data/mate-notification-properties.desktop.in
+data/org.mate.applets.MateNotificationApplet.desktop.in.in
 data/org.mate.NotificationDaemon.gschema.xml.in
+src/capplet/mate-notification-applet.c
 src/capplet/mate-notification-properties.c
-src/capplet/mate-notification-properties.desktop.in
 src/capplet/mate-notification-properties.ui
 src/daemon/daemon.c
 src/daemon/sound.c

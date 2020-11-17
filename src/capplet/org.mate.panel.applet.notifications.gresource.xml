@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/mate/panel/applet/notifications">
+    <file compressed="true" alias="menu.xml">mate-notification-applet-menu.xml</file>
+  </gresource>
+</gresources>

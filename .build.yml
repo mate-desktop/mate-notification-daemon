@@ -13,6 +13,7 @@ requires:
     - libwnck3
     - make
     - mate-common
+    - mate-panel
     - which
 
   debian:
@@ -36,6 +37,7 @@ requires:
     - libglib2.0-dev
     - libgtk-3-dev
     - libmate-desktop-dev
+    - libmate-panel-applet-dev
     - libnotify-dev
     - libpango1.0-dev
     - libstartup-notification0-dev
@@ -63,6 +65,7 @@ requires:
     - make
     - mate-common
     - mate-desktop-devel
+    - mate-panel-devel
 
   ubuntu:
     - autoconf-archive
@@ -81,6 +84,7 @@ requires:
     - libglib2.0-dev
     - libgtk-3-dev
     - libmate-desktop-dev
+    - libmate-panel-applet-dev
     - libnotify-dev
     - libpango1.0-dev
     - libstartup-notification0-dev

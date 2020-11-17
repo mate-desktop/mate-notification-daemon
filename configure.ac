@@ -130,6 +130,15 @@ pkg_modules="
 "
 PKG_CHECK_MODULES(NOTIFICATION_DAEMON, $pkg_modules)
 
+dnl ---------------------------------------------------------------------------
+dnl Requirements for panel applet
+dnl ---------------------------------------------------------------------------
+LIBPANEL4_REQUIRED=1.17.0
+LIBMATE_DESKTOP_REQUIRED=1.17.0
+PKG_CHECK_MODULES(NOTIFICATION_APPLET, mate-desktop-2.0 >= $LIBMATE_DESKTOP_REQUIRED libmatepanelapplet-4.0 >= $LIBPANEL4_REQUIRED gtk+-3.0 >= $GTK_REQUIRED glib-2.0 >= $REQ_GLIB_VERSION)
+AC_SUBST(NOTIFICATION_APPLET_CFLAGS)
+AC_SUBST(NOTIFICATION_APPLET_LIBS)
+
 dnl Will call AC_SUBSET on NOTIFICATION_DAEMON_* below after appending X11 and Wayland flags
 
 dnl ---------------------------------------------------------------------------
@@ -275,7 +284,9 @@ AC_CONFIG_FILES([
 Makefile
 data/Makefile
 data/org.freedesktop.mate.Notifications.service
+data/org.mate.applets.MateNotificationApplet.desktop.in
 data/org.mate.NotificationDaemon.gschema.xml
+data/org.mate.panel.applet.MateNotificationAppletFactory.service
 po/Makefile.in
 src/Makefile
 src/daemon/Makefile
