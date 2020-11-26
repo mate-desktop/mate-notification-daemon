@@ -59,7 +59,8 @@ static const char* notification_properties[] = {
 };
 
 static void
-applet_destroy (MateNotificationApplet *applet)
+applet_destroy (MatePanelApplet *applet_widget,
+                MateNotificationApplet *applet)
 {
   g_assert (applet);
 
@@ -187,7 +188,7 @@ applet_main (MatePanelApplet *applet_widget)
                    G_SETTINGS_BIND_DEFAULT);
 
   g_signal_connect (G_OBJECT (applet->applet), "destroy",
-                    G_CALLBACK (applet_destroy), NULL);
+                    G_CALLBACK (applet_destroy), applet);
 
   /* GSettings callback */
   g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_DO_NOT_DISTURB,
