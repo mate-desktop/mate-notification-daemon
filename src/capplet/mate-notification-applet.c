@@ -131,7 +131,35 @@ settings_changed (GSettings              *settings,
                       g_settings_get_boolean (settings, key));
 }
 
-static gboolean
+static void
+applet_draw_icon (MatePanelApplet *applet_widget,
+                  int arg1,
+                  MateNotificationApplet *applet)
+{
+  gint size, scale;
+
+  g_assert (applet);
+
+  size = (gint) mate_panel_applet_get_size (applet_widget);
+  scale = gtk_widget_get_scale_factor (GTK_WIDGET (applet_widget));
+
+  cairo_surface_t *image_on = gtk_icon_theme_load_surface (gtk_icon_theme_get_default (),
+                                                           "user-available",
+                                                           size, scale,
+                                                           NULL, 0, NULL);
+  cairo_surface_t *image_off = gtk_icon_theme_load_surface (gtk_icon_theme_get_default (),
+                                                            "user-invisible",
+                                                            size, scale,
+                                                            NULL, 0, NULL);
+
+  gtk_image_set_from_surface (GTK_IMAGE (applet->image_on), image_on);
+  gtk_image_set_from_surface (GTK_IMAGE (applet->image_off), image_off);
+
+  cairo_surface_destroy (image_on);
+  cairo_surface_destroy (image_off);
+}
+
+static MateNotificationApplet*
 applet_main (MatePanelApplet *applet_widget)
 {
   MateNotificationApplet *applet;
@@ -148,9 +176,15 @@ applet_main (MatePanelApplet *applet_widget)
   applet->applet = applet_widget;
   applet->settings = g_settings_new (GSETTINGS_SCHEMA);
 
+  /* needed to clamp ourselves to the panel size */
+  mate_panel_applet_set_flags (MATE_PANEL_APPLET (applet), MATE_PANEL_APPLET_EXPAND_MINOR);
+
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  applet->image_on  = gtk_image_new_from_icon_name ("user-available", GTK_ICON_SIZE_BUTTON);
-  applet->image_off = gtk_image_new_from_icon_name ("user-invisible", GTK_ICON_SIZE_BUTTON);
+
+  applet->image_on  = gtk_image_new ();
+  applet->image_off = gtk_image_new ();
+
+  applet_draw_icon (applet_widget, 0, applet);
 
   gtk_widget_set_tooltip_text (applet->image_off, N_("Do Not Disturb"));
   gtk_widget_set_tooltip_text (applet->image_on, N_("Notifications Enabled"));
@@ -193,21 +227,28 @@ applet_main (MatePanelApplet *applet_widget)
   g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_DO_NOT_DISTURB,
                     G_CALLBACK (settings_changed), applet);
 
-  return TRUE;
+  return applet;
 }
 
 static gboolean
-applet_factory (MatePanelApplet *applet,
+applet_factory (MatePanelApplet *applet_widget,
                 const gchar     *iid,
                 gpointer         data)
 {
-  gboolean retval = FALSE;
+  MateNotificationApplet *applet;
   (void) data;
 
-  if (!strcmp (iid, "MateNotificationApplet"))
-    retval = applet_main (applet);
+  if (!strcmp (iid, "MateNotificationApplet")) {
+    applet = applet_main (applet_widget);
 
-  return retval;
+    g_signal_connect (G_OBJECT (applet_widget), "change_size",
+                      G_CALLBACK (applet_draw_icon),
+                      (gpointer) applet);
+
+    return TRUE;
+  }
+
+  return FALSE;
 }
 
 MATE_PANEL_APPLET_OUT_PROCESS_FACTORY ("MateNotificationAppletFactory",
