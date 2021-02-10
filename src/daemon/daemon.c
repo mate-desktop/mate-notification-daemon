@@ -490,7 +490,7 @@ static void destroy_screen(NotifyDaemon* daemon)
 	gdkwindow = gdk_screen_get_root_window (screen);
 	gdk_window_remove_filter (gdkwindow, (GdkFilterFunc) screen_xevent_filter, daemon->screen);
 	for (i = 0; i < daemon->screen->n_stacks; i++) {
-		 g_clear_object (&daemon->screen->stacks[i]);
+		 g_clear_pointer (&daemon->screen->stacks[i], notify_stack_destroy);
 	}
 
 	g_free (daemon->screen->stacks);
