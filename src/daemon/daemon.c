@@ -512,7 +512,7 @@ static void destroy_screen(NotifyDaemon* daemon)
 #endif /* HAVE_X11 */
 
 	for (i = 0; i < daemon->screen->n_stacks; i++) {
-		 g_clear_object (&daemon->screen->stacks[i]);
+		 g_clear_pointer (&daemon->screen->stacks[i], notify_stack_destroy);
 	}
 
 	g_free (daemon->screen->stacks);
