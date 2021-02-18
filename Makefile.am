@@ -1,4 +1,8 @@
-SUBDIRS = po data src
+if USE_NLS
+PO_SUBDIR = po
+endif
+
+SUBDIRS = $(PO_SUBDIR) data src
 
 # Point to our macro directory and pick up user flags from the environment
 ACLOCAL_AMFLAGS  = -I m4 ${ACLOCAL_FLAGS}
