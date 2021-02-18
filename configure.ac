@@ -75,9 +75,10 @@ dnl ---------------------------------------------------------------------------
 dnl i18n stuff
 dnl ---------------------------------------------------------------------------
 
+AM_GNU_GETTEXT([external])
 AM_GNU_GETTEXT_VERSION([0.19.8])
 AM_GNU_GETTEXT_REQUIRE_VERSION([0.19.8])
-AM_GNU_GETTEXT([external])
+AM_CONDITIONAL([USE_NLS], [test "x${USE_NLS}" = "xyes"])
 
 AC_SUBST([GETTEXT_PACKAGE], [mate-notification-daemon])
 AC_DEFINE([GETTEXT_PACKAGE], [PACKAGE_TARNAME], [Define to the gettext package name.])
@@ -314,6 +315,7 @@ echo "
 	warning flags:            ${WARN_CFLAGS}
 	Wayland support:          ${have_wayland}
 	X11 support:              ${have_x11}
+	Native Language support:  ${USE_NLS}
 
 	dbus-1 system.d           $DBUS_SYS_DIR
 	dbus-1 services           $DBUS_SERVICES_DIR

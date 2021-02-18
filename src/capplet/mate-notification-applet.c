@@ -166,9 +166,11 @@ applet_main (MatePanelApplet *applet_widget)
   MateNotificationApplet *applet;
   GtkWidget *box;
 
+#ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, MATELOCALEDIR);
   bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
   textdomain (GETTEXT_PACKAGE);
+#endif /* ENABLE_NLS */
 
   g_set_application_name (_("Do Not Disturb"));
   gtk_window_set_default_icon_name ("mate-notification-properties");
@@ -202,7 +204,9 @@ applet_main (MatePanelApplet *applet_widget)
 
   /* set up context menu */
   applet->action_group = gtk_action_group_new ("Do Not Disturb Actions");
+#ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain (applet->action_group, GETTEXT_PACKAGE);
+#endif /* ENABLE_NLS */
   gtk_action_group_add_actions (applet->action_group, applet_menu_actions,
                                 G_N_ELEMENTS (applet_menu_actions), applet);
 

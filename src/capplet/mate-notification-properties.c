@@ -511,9 +511,11 @@ int main(int argc, char** argv)
 {
 	NotificationAppletDialog dialog = {NULL, }; /* <- ? */
 
+#ifdef ENABLE_NLS
 	bindtextdomain(GETTEXT_PACKAGE, NOTIFICATION_LOCALEDIR);
 	bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
 	textdomain(GETTEXT_PACKAGE);
+#endif /* ENABLE_NLS */
 
 	gtk_init(&argc, &argv);
 

@@ -21,14 +21,22 @@ applet_DATA      = org.mate.applets.MateNotificationApplet.mate-panel-applet
 applet_in_files  = $(applet_DATA:.mate-panel-applet=.desktop.in)
 
 $(applet_DATA): $(applet_in_files)
+if USE_NLS
 	$(AM_V_GEN) $(MSGFMT) --desktop --keyword=Name --keyword=Description --template $< -d $(top_srcdir)/po -o $@
+else
+	$(AM_V_GEN) cp -f $< $@
+endif
 
 desktopdir       = $(datadir)/applications
 desktop_DATA     = mate-notification-properties.desktop
 desktop_in_files = $(desktop_DATA:.desktop=.desktop.in)
 
 $(desktop_DATA): $(desktop_in_files)
+if USE_NLS
 	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+else
+	$(AM_V_GEN) sed '/^# Translators/d' < $< > $@
+endif
 
 gsettings_SCHEMAS = org.mate.NotificationDaemon.gschema.xml
 gsettingsschema_in_files = $(gsettings_SCHEMAS:=.in)
