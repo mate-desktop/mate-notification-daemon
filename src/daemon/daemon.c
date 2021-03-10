@@ -1525,7 +1525,6 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		GdkSeat *seat;
 		GdkDevice *pointer;
 		GdkScreen* screen;
-		gint x, y;
 
 		theme_set_notification_arrow (nw, FALSE, 0, 0);
 
@@ -1534,12 +1533,19 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		 * number the user has set in gsettings. */
 		if (g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR))
 		{
+			gint coordinate_x, coordinate_y;
+
 			display = gdk_display_get_default ();
 			seat = gdk_display_get_default_seat (display);
 			pointer = gdk_seat_get_pointer (seat);
 
-			gdk_device_get_position (pointer, &screen, &x, &y);
-			monitor_id = gdk_display_get_monitor_at_point (gdk_screen_get_display (screen), x, y);
+			gdk_device_get_position (pointer,
+			                         &screen,
+			                         &coordinate_x,
+			                         &coordinate_y);
+			monitor_id = gdk_display_get_monitor_at_point (gdk_screen_get_display (screen),
+			                                               coordinate_x,
+			                                               coordinate_y);
 		}
 		else
 		{
@@ -1604,14 +1610,14 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	}
 	else
 	{
-		_NotifyPendingClose* data;
+		_NotifyPendingClose *notification_data;
 
 		/* The notification was not shown, so queue up a close
 		 * for it */
-		data = g_new0 (_NotifyPendingClose, 1);
-		data->id = id;
-		data->daemon = g_object_ref (daemon);
-		g_idle_add ((GSourceFunc) _close_notification_not_shown, data);
+		notification_data = g_new0 (_NotifyPendingClose, 1);
+		notification_data->id = id;
+		notification_data->daemon = g_object_ref (daemon);
+		g_idle_add ((GSourceFunc) _close_notification_not_shown, notification_data);
 	}
 
 	g_free (sound_file);

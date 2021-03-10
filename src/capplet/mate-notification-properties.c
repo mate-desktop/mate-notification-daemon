@@ -70,7 +70,7 @@ static void notification_properties_position_notify(GSettings *settings, gchar *
 {
 	GtkTreeModel* model;
 	GtkTreeIter iter;
-	const char* location;
+	const char *location;
 	gboolean valid;
 
 	location = g_settings_get_string(dialog->gsettings, key);
@@ -80,18 +80,17 @@ static void notification_properties_position_notify(GSettings *settings, gchar *
 
 	for (valid = gtk_tree_model_get_iter_first(model, &iter); valid; valid = gtk_tree_model_iter_next(model, &iter))
 	{
-		gchar* key;
+		gchar *it_key;
 
-		gtk_tree_model_get(model, &iter, NOTIFY_POSITION_NAME, &key, -1);
+		gtk_tree_model_get(model, &iter, NOTIFY_POSITION_NAME, &it_key, -1);
 
-		if (g_str_equal(key, location))
+		if (g_str_equal(it_key, location))
 		{
 			gtk_combo_box_set_active_iter(GTK_COMBO_BOX(dialog->position_combo), &iter);
-			g_free(key);
+			g_free(it_key);
 			break;
 		}
-
-		g_free(key);
+		g_free (it_key);
 	}
 }
 
