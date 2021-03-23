@@ -1,6 +1,11 @@
+### mate-notification-daemon 1.24.2
+
+  * Translations update
+  * Use notify_stack_destroy() instead of g_clear_object()
+
 ### mate-notification-daemon 1.24.1
 
-  * tx: sync with transifex
+  * Translations update
   * build: silent build warnings for distcheck
   * Filter-out img elements from notification body
   * The body of a notification may also contain hyperlinks
