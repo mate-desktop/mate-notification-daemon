@@ -12,9 +12,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.23.0\n"
+"Project-Id-Version: mate-notification-daemon 1.24.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2019-11-07 12:05+0100\n"
+"POT-Creation-Date: 2020-08-13 12:12+0200\n"
 "PO-Revision-Date: 2020-02-15 14:27+0000\n"
 "Last-Translator: alibacha19 <alibacha19@gmail.com>, 2020\n"
 "Language-Team: Arabic (https://www.transifex.com/mate/teams/13566/ar/)\n"
@@ -127,12 +127,6 @@ msgstr "تنبيهات مُنبثقة"
 msgid "Set your popup notification preferences"
 msgstr "تحديدتفضيلات تنبيهاتك المنبثقة"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
-#: src/capplet/mate-notification-properties.desktop.in:7
-msgid "mate-notification-properties"
-msgstr ""
-
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: src/capplet/mate-notification-properties.desktop.in:14
@@ -196,18 +190,18 @@ msgstr "%u ليس هوية تنبيه صالحة"
 msgid "Notification"
 msgstr "تنبيه"
 
-#: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
-#: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
+#: src/themes/coco/coco-theme.c:464 src/themes/nodoka/nodoka-theme.c:811
+#: src/themes/slider/theme.c:416 src/themes/standard/theme.c:736
 msgid "Notification summary text."
 msgstr "ملخص نص التنبيهات."
 
-#: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
-#: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
+#: src/themes/coco/coco-theme.c:478 src/themes/nodoka/nodoka-theme.c:864
+#: src/themes/slider/theme.c:437 src/themes/standard/theme.c:788
 msgid "Notification body text."
 msgstr "نص بطن التنبيهات."
 
-#: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
-#: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
-#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
+#: src/themes/nodoka/nodoka-theme.c:825 src/themes/nodoka/nodoka-theme.c:827
+#: src/themes/slider/theme.c:398 src/themes/slider/theme.c:400
+#: src/themes/standard/theme.c:752 src/themes/standard/theme.c:754
 msgid "Closes the notification."
 msgstr "إغلاق التنبيهات"
