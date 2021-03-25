@@ -909,7 +909,11 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 
 	_calculate_timeout(daemon, nt, timeout);
 
+#if GLIB_CHECK_VERSION (2, 68, 0)
+	g_hash_table_insert(daemon->notification_hash, g_memdup2(&id, sizeof(guint)), nt);
+#else
 	g_hash_table_insert(daemon->notification_hash, g_memdup(&id, sizeof(guint)), nt);
+#endif
 	remove_exit_timeout(daemon);
 
 	return nt;
@@ -950,8 +954,11 @@ static GdkPixbuf * _notify_daemon_pixbuf_from_data_hint (GVariant *icon_data)
         }
 
         data_size = g_variant_get_size (data_variant);
+#if GLIB_CHECK_VERSION (2, 68, 0)
+        data = (guchar *) g_memdup2 (g_variant_get_data (data_variant), data_size);
+#else
         data = (guchar *) g_memdup (g_variant_get_data (data_variant), (guint) data_size);
-
+#endif
         pixbuf = gdk_pixbuf_new_from_data (data,
                                            GDK_COLORSPACE_RGB,
                                            has_alpha,
