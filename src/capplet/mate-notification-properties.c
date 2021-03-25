@@ -70,7 +70,7 @@ static void notification_properties_position_notify(GSettings *settings, gchar *
 {
 	GtkTreeModel* model;
 	GtkTreeIter iter;
-	const char *location;
+	char *location;
 	gboolean valid;
 
 	location = g_settings_get_string(dialog->gsettings, key);
@@ -90,8 +90,10 @@ static void notification_properties_position_notify(GSettings *settings, gchar *
 			g_free(it_key);
 			break;
 		}
-		g_free (it_key);
+		g_free(it_key);
 	}
+
+	g_free(location);
 }
 
 static void notification_properties_monitor_changed(GtkComboBox* widget, NotificationAppletDialog* dialog)
@@ -241,7 +243,7 @@ static void notification_properties_dialog_setup_monitors(NotificationAppletDial
 
 static void notification_properties_theme_notify(GSettings *settings, gchar *key, NotificationAppletDialog* dialog)
 {
-	const char* theme = g_settings_get_string(dialog->gsettings, key);
+	char* theme = g_settings_get_string(dialog->gsettings, key);
 
 	GtkTreeModel* model = gtk_combo_box_get_model(GTK_COMBO_BOX(dialog->theme_combo));
 
@@ -263,6 +265,8 @@ static void notification_properties_theme_notify(GSettings *settings, gchar *key
 
 		g_free(theme_name);
 	}
+
+	g_free(theme);
 }
 
 static void notification_properties_theme_changed(GtkComboBox* widget, NotificationAppletDialog* dialog)
