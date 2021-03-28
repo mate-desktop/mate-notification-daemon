@@ -181,7 +181,7 @@ static ThemeEngine* get_theme_engine(void)
 		}
 
 		char* enginename = g_settings_get_string(gsettings, GSETTINGS_KEY_THEME);
-		if (enginename == NULL)
+		if (enginename == NULL || *enginename == '\0')
 		{
 			active_engine = load_theme_engine("standard");
 			g_assert(active_engine != NULL);
@@ -196,10 +196,10 @@ static ThemeEngine* get_theme_engine(void)
 				active_engine = load_theme_engine("standard");
 			}
 
-			g_free(enginename);
-
 			g_assert(active_engine != NULL);
 		}
+
+		g_free(enginename);
 	}
 
 	return active_engine;
