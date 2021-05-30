@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR MATE Desktop Environment team
+# This file is distributed under the same license as the mate-notification-daemon package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: mate-notification-daemon 1.25.0\n"
+"Report-Msgid-Bugs-To: https://mate-desktop.org\n"
+"POT-Creation-Date: 2021-01-16 14:40+0100\n"
+"PO-Revision-Date: 2018-03-11 19:46+0000\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2021\n"
+"Language-Team: Limburgian (https://www.transifex.com/mate/teams/13566/li/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: li\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/mate-notification-properties.desktop.in:3
+msgid "Popup Notifications"
+msgstr ""
+
+#: data/mate-notification-properties.desktop.in:4
+msgid "Set your popup notification preferences"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/mate-notification-properties.desktop.in:14
+msgid "MATE;Notification;Theme;"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+msgid "Mate Notification Applet Factory"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
+#: src/capplet/mate-notification-applet.c:173
+#: src/capplet/mate-notification-applet.c:190
+msgid "Do Not Disturb"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:5
+msgid "Popup location"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:6
+msgid ""
+"Default popup location on the workspace for stack notifications. Allowed "
+"values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:10
+#: src/capplet/mate-notification-properties.ui:186
+msgid "Use Active Monitor"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:11
+msgid "Display the notification on the active monitor."
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:15
+msgid "Monitor"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:16
+msgid ""
+"Monitor to display the notification. Allowed values: -1 (display on active "
+"monitor) and 0 to n - 1 where n is the number of monitors."
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:20
+msgid "Current theme"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:21
+msgid "The theme used when displaying notifications."
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:25
+msgid "Sound Enabled"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:26
+msgid "Turns on and off sound support for notifications."
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:30
+msgid "Do not disturb"
+msgstr ""
+
+#: data/org.mate.NotificationDaemon.gschema.xml.in:31
+msgid "When enabled, notifications are not shown."
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:51
+msgid "_Preferences"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:53
+msgid "_About"
+msgstr "_Euver"
+
+#: src/capplet/mate-notification-applet.c:104
+msgid "About Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:106
+msgid "Copyright © 2021 MATE developers"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:107
+msgid "Activate the do not disturb mode quickly."
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:109
+msgid "translator-credits"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:191
+msgid "Notifications Enabled"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:210
+msgid "_Do not disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:211
+msgid "Enable/Disable do-not-disturb mode."
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:323
+msgid "Coco"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:327
+msgid "Nodoka"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:331
+msgid "Slider"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:335
+msgid "Standard theme"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:398
+msgid "Error initializing libmatenotify"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:411
+msgid "Notification Test"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:411
+msgid "Just a test"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:415
+#, c-format
+msgid "Error while displaying notification: %s"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:455
+#, c-format
+msgid "Could not load user interface: %s"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:18
+msgid "Notification Settings"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:36
+msgid "_Preview"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:52
+msgid "_Close"
+msgstr "_Sjloete"
+
+#: src/capplet/mate-notification-properties.ui:101
+msgid "_Theme:"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:115
+msgid "P_osition:"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:129
+msgid "_Monitor:"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:155
+msgid "Top Left"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:156
+msgid "Top Right"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:157
+msgid "Bottom Left"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:158
+msgid "Bottom Right"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:201
+msgid "Enable Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:222
+msgid "General Options"
+msgstr ""
+
+#: src/daemon/daemon.c:1334
+msgid "Exceeded maximum number of notifications"
+msgstr ""
+
+#: src/daemon/daemon.c:1634
+#, c-format
+msgid "%u is not a valid notification ID"
+msgstr ""
+
+#: src/daemon/sound.c:36
+msgid "Notification"
+msgstr ""
+
+#: src/themes/coco/coco-theme.c:464 src/themes/nodoka/nodoka-theme.c:821
+#: src/themes/slider/theme.c:416 src/themes/standard/theme.c:736
+msgid "Notification summary text."
+msgstr ""
+
+#: src/themes/coco/coco-theme.c:478 src/themes/nodoka/nodoka-theme.c:874
+#: src/themes/slider/theme.c:437 src/themes/standard/theme.c:788
+msgid "Notification body text."
+msgstr ""
+
+#: src/themes/nodoka/nodoka-theme.c:835 src/themes/nodoka/nodoka-theme.c:837
+#: src/themes/slider/theme.c:398 src/themes/slider/theme.c:400
+#: src/themes/standard/theme.c:752 src/themes/standard/theme.c:754
+msgid "Closes the notification."
+msgstr ""

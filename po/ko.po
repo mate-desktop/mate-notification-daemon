@@ -4,22 +4,47 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Seong-ho Cho <darkcircle.0426@gmail.com>, 2018
-# 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2018
+# 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2020
+# Seong-ho Cho <darkcircle.0426@gmail.com>, 2021
+# Jung Hee Lee <daemul72@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.23.0\n"
+"Project-Id-Version: mate-notification-daemon 1.25.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2019-11-07 12:05+0100\n"
+"POT-Creation-Date: 2021-01-16 14:40+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: 박정규(Jung-Kyu Park) <bagjunggyu@gmail.com>, 2018\n"
+"Last-Translator: Jung Hee Lee <daemul72@gmail.com>, 2021\n"
 "Language-Team: Korean (https://www.transifex.com/mate/teams/13566/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#: data/mate-notification-properties.desktop.in:3
+msgid "Popup Notifications"
+msgstr "팝업 알림"
+
+#: data/mate-notification-properties.desktop.in:4
+msgid "Set your popup notification preferences"
+msgstr "팝업 알림 기본 설정을 합니다"
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/mate-notification-properties.desktop.in:14
+msgid "MATE;Notification;Theme;"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+msgid "Mate Notification Applet Factory"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
+#: src/capplet/mate-notification-applet.c:173
+#: src/capplet/mate-notification-applet.c:190
+msgid "Do Not Disturb"
+msgstr ""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
@@ -34,7 +59,7 @@ msgstr ""
 "\"bottom_left\", \"bottom_right\"입니다."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
-#: src/capplet/mate-notification-properties.ui:237
+#: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
 msgstr "활성 모니터 사용"
 
@@ -76,113 +101,140 @@ msgstr ""
 msgid "When enabled, notifications are not shown."
 msgstr ""
 
-#: src/capplet/mate-notification-properties.c:329
+#: src/capplet/mate-notification-applet.c:51
+msgid "_Preferences"
+msgstr "기본 설정(_P)"
+
+#: src/capplet/mate-notification-applet.c:53
+msgid "_About"
+msgstr "정보(_A)"
+
+#: src/capplet/mate-notification-applet.c:104
+msgid "About Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:106
+msgid "Copyright © 2021 MATE developers"
+msgstr "Copyright © 2021 MATE developers"
+
+#: src/capplet/mate-notification-applet.c:107
+msgid "Activate the do not disturb mode quickly."
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:109
+msgid "translator-credits"
+msgstr ""
+"Elex https://launchpad.net/~mysticzizone\n"
+"Valmantas Palikša https://launchpad.net/~walmis\n"
+"Yoo Duk Nam https://launchpad.net/~yoo2001818\n"
+"onlyeriko https://launchpad.net/~onlyeriko\n"
+"Seong-ho Cho <darkcircle.0426@gmail.com>\n"
+"JungHee Lee <daemul72@gmail.com>\n"
+"MATE Desktop Environment Team <https://www.transifex.com/mate/teams/13566/ko/>"
+
+#: src/capplet/mate-notification-applet.c:191
+msgid "Notifications Enabled"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:210
+msgid "_Do not disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:211
+msgid "Enable/Disable do-not-disturb mode."
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:323
 msgid "Coco"
 msgstr "코코"
 
-#: src/capplet/mate-notification-properties.c:333
+#: src/capplet/mate-notification-properties.c:327
 msgid "Nodoka"
 msgstr "노도카"
 
-#: src/capplet/mate-notification-properties.c:337
+#: src/capplet/mate-notification-properties.c:331
 msgid "Slider"
 msgstr "슬라이더"
 
-#: src/capplet/mate-notification-properties.c:341
+#: src/capplet/mate-notification-properties.c:335
 msgid "Standard theme"
 msgstr "표준 테마"
 
-#: src/capplet/mate-notification-properties.c:490
+#: src/capplet/mate-notification-properties.c:398
 msgid "Error initializing libmatenotify"
 msgstr "libmatenotify 초기화 중 오류"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Notification Test"
 msgstr "알림 시험"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Just a test"
 msgstr "시험입니다"
 
-#: src/capplet/mate-notification-properties.c:507
+#: src/capplet/mate-notification-properties.c:415
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "알림 표시 중 오류가 발생했습니다: %s"
 
-#: src/capplet/mate-notification-properties.c:547
+#: src/capplet/mate-notification-properties.c:455
 #, c-format
 msgid "Could not load user interface: %s"
 msgstr ""
 
-#: src/capplet/mate-notification-properties.desktop.in:3
-msgid "Popup Notifications"
-msgstr "팝업 알림"
-
-#: src/capplet/mate-notification-properties.desktop.in:4
-msgid "Set your popup notification preferences"
-msgstr "팝업 알림 기본 설정을 합니다"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
-#: src/capplet/mate-notification-properties.desktop.in:7
-msgid "mate-notification-properties"
-msgstr ""
-
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
-#: src/capplet/mate-notification-properties.desktop.in:14
-msgid "MATE;Notification;Theme;"
-msgstr ""
-
-#: src/capplet/mate-notification-properties.ui:9
+#: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
 msgstr "알림 설정"
 
-#: src/capplet/mate-notification-properties.ui:58
+#: src/capplet/mate-notification-properties.ui:36
 msgid "_Preview"
 msgstr "미리 보기(_P)"
 
-#: src/capplet/mate-notification-properties.ui:113
-msgid "<b>General Options</b>"
-msgstr "<b>일반 옵션</b>"
+#: src/capplet/mate-notification-properties.ui:52
+msgid "_Close"
+msgstr "닫기(_C)"
 
-#: src/capplet/mate-notification-properties.ui:174
-msgid "P_osition:"
-msgstr "위치(_O):"
-
-#: src/capplet/mate-notification-properties.ui:191
+#: src/capplet/mate-notification-properties.ui:101
 msgid "_Theme:"
 msgstr "테마(_T):"
 
-#: src/capplet/mate-notification-properties.ui:206
+#: src/capplet/mate-notification-properties.ui:115
+msgid "P_osition:"
+msgstr "위치(_O):"
+
+#: src/capplet/mate-notification-properties.ui:129
 msgid "_Monitor:"
 msgstr "모니터(_M):"
 
-#: src/capplet/mate-notification-properties.ui:253
-msgid "Enable Do Not Disturb"
-msgstr ""
-
-#: src/capplet/mate-notification-properties.ui:304
+#: src/capplet/mate-notification-properties.ui:155
 msgid "Top Left"
 msgstr "좌측 상단"
 
-#: src/capplet/mate-notification-properties.ui:308
+#: src/capplet/mate-notification-properties.ui:156
 msgid "Top Right"
 msgstr "우측 상단"
 
-#: src/capplet/mate-notification-properties.ui:312
+#: src/capplet/mate-notification-properties.ui:157
 msgid "Bottom Left"
 msgstr "좌측 하단"
 
-#: src/capplet/mate-notification-properties.ui:316
+#: src/capplet/mate-notification-properties.ui:158
 msgid "Bottom Right"
 msgstr "우측 하단"
 
-#: src/daemon/daemon.c:1328
+#: src/capplet/mate-notification-properties.ui:201
+msgid "Enable Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-properties.ui:222
+msgid "General Options"
+msgstr "일반 옵션"
+
+#: src/daemon/daemon.c:1334
 msgid "Exceeded maximum number of notifications"
 msgstr "최대 알림 갯수를 넘었습니다"
 
-#: src/daemon/daemon.c:1609
+#: src/daemon/daemon.c:1634
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "유효하지 않은 %u 알림 ID 입니다"
@@ -191,18 +243,18 @@ msgstr "유효하지 않은 %u 알림 ID 입니다"
 msgid "Notification"
 msgstr "알림"
 
-#: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
-#: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
+#: src/themes/coco/coco-theme.c:464 src/themes/nodoka/nodoka-theme.c:821
+#: src/themes/slider/theme.c:416 src/themes/standard/theme.c:736
 msgid "Notification summary text."
 msgstr "알림 요약 텍스트."
 
-#: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
-#: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
+#: src/themes/coco/coco-theme.c:478 src/themes/nodoka/nodoka-theme.c:874
+#: src/themes/slider/theme.c:437 src/themes/standard/theme.c:788
 msgid "Notification body text."
 msgstr "알림 내용 텍스트."
 
-#: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
-#: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
-#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
+#: src/themes/nodoka/nodoka-theme.c:835 src/themes/nodoka/nodoka-theme.c:837
+#: src/themes/slider/theme.c:398 src/themes/slider/theme.c:400
+#: src/themes/standard/theme.c:752 src/themes/standard/theme.c:754
 msgid "Closes the notification."
 msgstr "알림 닫기."

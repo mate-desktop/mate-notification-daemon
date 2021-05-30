@@ -4,25 +4,51 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Alexei Sorokin, 2018
 # Дмитрий Михирев, 2018
 # theirix <theirix@gmail.com>, 2018
 # Aleksey Kabanov <ak099@mail.ru>, 2020
+# Stefano Karapetsas <stefano@karapetsas.com>, 2020
+# AlexL <loginov.alex.valer@gmail.com>, 2020
+# Дмитрий Астанков <mornie@basealt.ru>, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.23.0\n"
+"Project-Id-Version: mate-notification-daemon 1.25.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2019-11-07 12:05+0100\n"
+"POT-Creation-Date: 2021-01-16 14:40+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Aleksey Kabanov <ak099@mail.ru>, 2020\n"
+"Last-Translator: Дмитрий Астанков <mornie@basealt.ru>, 2021\n"
 "Language-Team: Russian (https://www.transifex.com/mate/teams/13566/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: data/mate-notification-properties.desktop.in:3
+msgid "Popup Notifications"
+msgstr "Всплывающие уведомления"
+
+#: data/mate-notification-properties.desktop.in:4
+msgid "Set your popup notification preferences"
+msgstr "Изменить параметры всплывающих уведомлений"
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/mate-notification-properties.desktop.in:14
+msgid "MATE;Notification;Theme;"
+msgstr "MATE;Уведомление;Тема;"
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+msgid "Mate Notification Applet Factory"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
+#: src/capplet/mate-notification-applet.c:173
+#: src/capplet/mate-notification-applet.c:190
+msgid "Do Not Disturb"
+msgstr ""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
@@ -37,7 +63,7 @@ msgstr ""
 "Допустимые значения: «top_left», «top_right», «bottom_left» и «bottom_right»"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
-#: src/capplet/mate-notification-properties.ui:237
+#: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
 msgstr "Использовать активный монитор"
 
@@ -82,113 +108,165 @@ msgstr "Не беспокоить"
 msgid "When enabled, notifications are not shown."
 msgstr "Когда включено, уведомления не показываются."
 
-#: src/capplet/mate-notification-properties.c:329
+#: src/capplet/mate-notification-applet.c:51
+msgid "_Preferences"
+msgstr "П_араметры"
+
+#: src/capplet/mate-notification-applet.c:53
+msgid "_About"
+msgstr "_О приложении"
+
+#: src/capplet/mate-notification-applet.c:104
+msgid "About Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:106
+msgid "Copyright © 2021 MATE developers"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:107
+msgid "Activate the do not disturb mode quickly."
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:109
+msgid "translator-credits"
+msgstr ""
+"Александр Сапрыкин <xelfium@gmail.com>\n"
+"Александр Сигачёв <ajvol2@gmail.com>\n"
+"Александр Соколов\n"
+"Александр Хромин\n"
+"Алексей Рочев <equeim@gmail.com>\n"
+"Алексей Сорокин <sor.alexei@meowr.ru>\n"
+"Андрей Иванков\n"
+"Андрей Носенко <awn@bcs.zp.ua>\n"
+"Антон Резник <t0xa@opensuse.org>\n"
+"Валек Филиппов <frob@df.ru>\n"
+"Валентин Сайков <saikov.vb@gmail.com>\n"
+"Василий Литвинов\n"
+"Виктор Кукшиев <andrey0bolkonsky@gmail.com>\n"
+"Владислав Агафонов <vlad648@gmail.com>\n"
+"Влад Орлов <monsta@inbox.ru>\n"
+"Глеб Мехренин <mehrenin@gmail.com>\n"
+"Денис Арефьев <arefevdns@mail.ru>\n"
+"Дмитрий Астанков <mornie@basealt.ru>\n"
+"Дмитрий Мандрык <dmandryk@gmail.com>\n"
+"Дмитрий Мастрюков <dmitry@taurussoft.org>\n"
+"Дмитрий Михирев <mikhirev@gmail.com>\n"
+"Дмитрий Яценко <d.acenko@gmail.com>\n"
+"Евгений Самусев <samusev@gmail.com>\n"
+"Константин Гусев <kilolife@gmail.com>\n"
+"Леонид Кантер <leon@asplinux.ru>\n"
+"Макс Валянский <max.valjanski@gmail.com>\n"
+"Павел Жовнер <zhovner@ukr.net>\n"
+"Сергей Колосов <m17.admin@gmail.com>\n"
+"Сергей Панов <sipan@mit.edu>\n"
+"Сергей Яковлев\n"
+"Юрий Козлов <yuray@komyakino.ru>\n"
+"Evolve32 <evolve32@ya.ru>"
+
+#: src/capplet/mate-notification-applet.c:191
+msgid "Notifications Enabled"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:210
+msgid "_Do not disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:211
+msgid "Enable/Disable do-not-disturb mode."
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:323
 msgid "Coco"
 msgstr "Coco"
 
-#: src/capplet/mate-notification-properties.c:333
+#: src/capplet/mate-notification-properties.c:327
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: src/capplet/mate-notification-properties.c:337
+#: src/capplet/mate-notification-properties.c:331
 msgid "Slider"
 msgstr "Слайдер"
 
-#: src/capplet/mate-notification-properties.c:341
+#: src/capplet/mate-notification-properties.c:335
 msgid "Standard theme"
 msgstr "Стандартная тема"
 
-#: src/capplet/mate-notification-properties.c:490
+#: src/capplet/mate-notification-properties.c:398
 msgid "Error initializing libmatenotify"
 msgstr "Ошибка инициализации libmatenotify"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Notification Test"
 msgstr "Тестовое уведомление"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Just a test"
 msgstr "Просто проверка"
 
-#: src/capplet/mate-notification-properties.c:507
+#: src/capplet/mate-notification-properties.c:415
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Ошибка вывода уведомления: %s"
 
-#: src/capplet/mate-notification-properties.c:547
+#: src/capplet/mate-notification-properties.c:455
 #, c-format
 msgid "Could not load user interface: %s"
 msgstr "Не удалось загрузить пользовательский интерфейс: %s"
 
-#: src/capplet/mate-notification-properties.desktop.in:3
-msgid "Popup Notifications"
-msgstr "Всплывающие уведомления"
-
-#: src/capplet/mate-notification-properties.desktop.in:4
-msgid "Set your popup notification preferences"
-msgstr "Изменить параметры всплывающих уведомлений"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
-#: src/capplet/mate-notification-properties.desktop.in:7
-msgid "mate-notification-properties"
-msgstr "mate-notification-properties"
-
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
-#: src/capplet/mate-notification-properties.desktop.in:14
-msgid "MATE;Notification;Theme;"
-msgstr "MATE;Уведомление;Тема;"
-
-#: src/capplet/mate-notification-properties.ui:9
+#: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
 msgstr "Настройка уведомлений"
 
-#: src/capplet/mate-notification-properties.ui:58
+#: src/capplet/mate-notification-properties.ui:36
 msgid "_Preview"
 msgstr "_Просмотр"
 
-#: src/capplet/mate-notification-properties.ui:113
-msgid "<b>General Options</b>"
-msgstr "<b>Общие параметры</b>"
+#: src/capplet/mate-notification-properties.ui:52
+msgid "_Close"
+msgstr "_Закрыть"
 
-#: src/capplet/mate-notification-properties.ui:174
-msgid "P_osition:"
-msgstr "П_озиция"
-
-#: src/capplet/mate-notification-properties.ui:191
+#: src/capplet/mate-notification-properties.ui:101
 msgid "_Theme:"
 msgstr "_Тема:"
 
-#: src/capplet/mate-notification-properties.ui:206
+#: src/capplet/mate-notification-properties.ui:115
+msgid "P_osition:"
+msgstr "П_озиция"
+
+#: src/capplet/mate-notification-properties.ui:129
 msgid "_Monitor:"
 msgstr "_Монитор:"
 
-#: src/capplet/mate-notification-properties.ui:253
-msgid "Enable Do Not Disturb"
-msgstr "Включить режим «Не беспокоить»"
-
-#: src/capplet/mate-notification-properties.ui:304
+#: src/capplet/mate-notification-properties.ui:155
 msgid "Top Left"
 msgstr "Верхний левый угол"
 
-#: src/capplet/mate-notification-properties.ui:308
+#: src/capplet/mate-notification-properties.ui:156
 msgid "Top Right"
 msgstr "Верхний правый угол"
 
-#: src/capplet/mate-notification-properties.ui:312
+#: src/capplet/mate-notification-properties.ui:157
 msgid "Bottom Left"
 msgstr "Левый нижний угол"
 
-#: src/capplet/mate-notification-properties.ui:316
+#: src/capplet/mate-notification-properties.ui:158
 msgid "Bottom Right"
 msgstr "Правый нижний угол"
 
-#: src/daemon/daemon.c:1328
+#: src/capplet/mate-notification-properties.ui:201
+msgid "Enable Do Not Disturb"
+msgstr "Включить режим «Не беспокоить»"
+
+#: src/capplet/mate-notification-properties.ui:222
+msgid "General Options"
+msgstr "Общие настройки"
+
+#: src/daemon/daemon.c:1334
 msgid "Exceeded maximum number of notifications"
 msgstr "Превышено максимальное количество уведомлений"
 
-#: src/daemon/daemon.c:1609
+#: src/daemon/daemon.c:1634
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u не является действительным ID уведомления"
@@ -197,18 +275,18 @@ msgstr "%u не является действительным ID уведомл�
 msgid "Notification"
 msgstr "Уведомление"
 
-#: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
-#: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
+#: src/themes/coco/coco-theme.c:464 src/themes/nodoka/nodoka-theme.c:821
+#: src/themes/slider/theme.c:416 src/themes/standard/theme.c:736
 msgid "Notification summary text."
 msgstr "Текст описания уведомления "
 
-#: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
-#: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
+#: src/themes/coco/coco-theme.c:478 src/themes/nodoka/nodoka-theme.c:874
+#: src/themes/slider/theme.c:437 src/themes/standard/theme.c:788
 msgid "Notification body text."
 msgstr "Текст уведомления"
 
-#: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
-#: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
-#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
+#: src/themes/nodoka/nodoka-theme.c:835 src/themes/nodoka/nodoka-theme.c:837
+#: src/themes/slider/theme.c:398 src/themes/slider/theme.c:400
+#: src/themes/standard/theme.c:752 src/themes/standard/theme.c:754
 msgid "Closes the notification."
 msgstr "Закрывает уведомление."

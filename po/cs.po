@@ -4,26 +4,50 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Ondřej Kolín <ondrej.kolin@gmail.com>, 2018
 # Lukáš Kvídera <lukas.kvidera@seznam.cz>, 2018
 # 6e833d5535e2fe0dd9dfa7fe5bf473f2_d78f422 <64c38a0ff10419c64e8e03d54c72b3bd_352524>, 2018
 # Roman Horník <roman.hornik@debian-linux.cz>, 2018
-# ToMáš Marný, 2019
+# Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# ToMáš Marný, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.23.0\n"
+"Project-Id-Version: mate-notification-daemon 1.25.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2019-11-07 12:05+0100\n"
+"POT-Creation-Date: 2021-01-16 14:40+0100\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: ToMáš Marný, 2019\n"
+"Last-Translator: ToMáš Marný, 2021\n"
 "Language-Team: Czech (https://www.transifex.com/mate/teams/13566/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;\n"
+
+#: data/mate-notification-properties.desktop.in:3
+msgid "Popup Notifications"
+msgstr "Vyskakovací oznámení"
+
+#: data/mate-notification-properties.desktop.in:4
+msgid "Set your popup notification preferences"
+msgstr "Nastavit předvolby vyskakovacích oznámení"
+
+#. Translators: Search terms to find this application. Do NOT translate or
+#. localize the semicolons! The list MUST also end with a semicolon!
+#: data/mate-notification-properties.desktop.in:14
+msgid "MATE;Notification;Theme;"
+msgstr "MATE;oznámení;oznamování;notifikace;motiv;téma;"
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+msgid "Mate Notification Applet Factory"
+msgstr ""
+
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
+#: src/capplet/mate-notification-applet.c:173
+#: src/capplet/mate-notification-applet.c:190
+msgid "Do Not Disturb"
+msgstr ""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
@@ -39,7 +63,7 @@ msgstr ""
 "\"bottom_right\""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
-#: src/capplet/mate-notification-properties.ui:237
+#: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
 msgstr "Použít aktivní monitor"
 
@@ -83,113 +107,146 @@ msgstr "Nerušit"
 msgid "When enabled, notifications are not shown."
 msgstr "Pokud je povoleno, oznámení se nezobrazí."
 
-#: src/capplet/mate-notification-properties.c:329
+#: src/capplet/mate-notification-applet.c:51
+msgid "_Preferences"
+msgstr "_Předvolby"
+
+#: src/capplet/mate-notification-applet.c:53
+msgid "_About"
+msgstr "O _aplikaci"
+
+#: src/capplet/mate-notification-applet.c:104
+msgid "About Do Not Disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:106
+msgid "Copyright © 2021 MATE developers"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:107
+msgid "Activate the do not disturb mode quickly."
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:109
+msgid "translator-credits"
+msgstr ""
+"Stanislav Brabec <utx@penguin.cz>\n"
+"Michal Bukovjan <bukm@centrum.cz>\n"
+"Miloslav Trmač <mitr@volny.cz>\n"
+"Petr Tomeš <ptomes@gmail.com>\n"
+"Jakub Friedl <jfriedl@suse.cz>\n"
+"Petr Tomeš <ptomes@gmail.com>\n"
+"Lukáš Novotný <lukasnov@cvs.gnome.org>\n"
+"Kamil Páral <ripper42@gmail.com>\n"
+"Petr Kovář <pknbe@volny.cz>\n"
+"Lucas Lommer <drom@kdyne.net>\n"
+"Tomas Bzatek <tbzatek@redhat.com>\n"
+"Petr Kovář <pknbe@volny.cz>\n"
+"Roman Horník <roman.hornik@debian-linux.cz>"
+
+#: src/capplet/mate-notification-applet.c:191
+msgid "Notifications Enabled"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:210
+msgid "_Do not disturb"
+msgstr ""
+
+#: src/capplet/mate-notification-applet.c:211
+msgid "Enable/Disable do-not-disturb mode."
+msgstr ""
+
+#: src/capplet/mate-notification-properties.c:323
 msgid "Coco"
 msgstr "Coco"
 
-#: src/capplet/mate-notification-properties.c:333
+#: src/capplet/mate-notification-properties.c:327
 msgid "Nodoka"
 msgstr "Nodoka"
 
-#: src/capplet/mate-notification-properties.c:337
+#: src/capplet/mate-notification-properties.c:331
 msgid "Slider"
 msgstr "Táhlo"
 
-#: src/capplet/mate-notification-properties.c:341
+#: src/capplet/mate-notification-properties.c:335
 msgid "Standard theme"
 msgstr "Standardní motiv"
 
-#: src/capplet/mate-notification-properties.c:490
+#: src/capplet/mate-notification-properties.c:398
 msgid "Error initializing libmatenotify"
 msgstr "Chyba během spouštění libmatenotify"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Notification Test"
 msgstr "Text oznámení"
 
-#: src/capplet/mate-notification-properties.c:503
+#: src/capplet/mate-notification-properties.c:411
 msgid "Just a test"
 msgstr "Toliko test"
 
-#: src/capplet/mate-notification-properties.c:507
+#: src/capplet/mate-notification-properties.c:415
 #, c-format
 msgid "Error while displaying notification: %s"
 msgstr "Chyba při zobrazování oznámení: %s"
 
-#: src/capplet/mate-notification-properties.c:547
+#: src/capplet/mate-notification-properties.c:455
 #, c-format
 msgid "Could not load user interface: %s"
 msgstr "Nelze načíst uživatelské rozhraní: %s"
 
-#: src/capplet/mate-notification-properties.desktop.in:3
-msgid "Popup Notifications"
-msgstr "Vyskakovací oznámení"
-
-#: src/capplet/mate-notification-properties.desktop.in:4
-msgid "Set your popup notification preferences"
-msgstr "Nastavit předvolby vyskakovacích oznámení"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon
-#. file name)!
-#: src/capplet/mate-notification-properties.desktop.in:7
-msgid "mate-notification-properties"
-msgstr "mate-notification-properties"
-
-#. Translators: Search terms to find this application. Do NOT translate or
-#. localize the semicolons! The list MUST also end with a semicolon!
-#: src/capplet/mate-notification-properties.desktop.in:14
-msgid "MATE;Notification;Theme;"
-msgstr "MATE;oznámení;oznamování;notifikace;motiv;téma;"
-
-#: src/capplet/mate-notification-properties.ui:9
+#: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
 msgstr "Nastavení upozornění"
 
-#: src/capplet/mate-notification-properties.ui:58
+#: src/capplet/mate-notification-properties.ui:36
 msgid "_Preview"
 msgstr "_Náhled"
 
-#: src/capplet/mate-notification-properties.ui:113
-msgid "<b>General Options</b>"
-msgstr "<b>Hlavní nastavení</b>"
+#: src/capplet/mate-notification-properties.ui:52
+msgid "_Close"
+msgstr "_Zavřít"
 
-#: src/capplet/mate-notification-properties.ui:174
-msgid "P_osition:"
-msgstr "_Pozice:"
-
-#: src/capplet/mate-notification-properties.ui:191
+#: src/capplet/mate-notification-properties.ui:101
 msgid "_Theme:"
 msgstr "_Motiv:"
 
-#: src/capplet/mate-notification-properties.ui:206
+#: src/capplet/mate-notification-properties.ui:115
+msgid "P_osition:"
+msgstr "_Pozice:"
+
+#: src/capplet/mate-notification-properties.ui:129
 msgid "_Monitor:"
 msgstr "_Monitor:"
 
-#: src/capplet/mate-notification-properties.ui:253
-msgid "Enable Do Not Disturb"
-msgstr "Povolit funkci Nerušit"
-
-#: src/capplet/mate-notification-properties.ui:304
+#: src/capplet/mate-notification-properties.ui:155
 msgid "Top Left"
 msgstr "Horní levý"
 
-#: src/capplet/mate-notification-properties.ui:308
+#: src/capplet/mate-notification-properties.ui:156
 msgid "Top Right"
 msgstr "Horní pravý"
 
-#: src/capplet/mate-notification-properties.ui:312
+#: src/capplet/mate-notification-properties.ui:157
 msgid "Bottom Left"
 msgstr "Spodní levý"
 
-#: src/capplet/mate-notification-properties.ui:316
+#: src/capplet/mate-notification-properties.ui:158
 msgid "Bottom Right"
 msgstr "Spodní pravý"
 
-#: src/daemon/daemon.c:1328
+#: src/capplet/mate-notification-properties.ui:201
+msgid "Enable Do Not Disturb"
+msgstr "Povolit funkci Nerušit"
+
+#: src/capplet/mate-notification-properties.ui:222
+msgid "General Options"
+msgstr "Obecná nastavení"
+
+#: src/daemon/daemon.c:1334
 msgid "Exceeded maximum number of notifications"
 msgstr "Překročen maximální počet oznámení"
 
-#: src/daemon/daemon.c:1609
+#: src/daemon/daemon.c:1634
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u není platným ID oznámení"
@@ -198,18 +255,18 @@ msgstr "%u není platným ID oznámení"
 msgid "Notification"
 msgstr "Oznámení"
 
-#: src/themes/coco/coco-theme.c:462 src/themes/nodoka/nodoka-theme.c:809
-#: src/themes/slider/theme.c:414 src/themes/standard/theme.c:734
+#: src/themes/coco/coco-theme.c:464 src/themes/nodoka/nodoka-theme.c:821
+#: src/themes/slider/theme.c:416 src/themes/standard/theme.c:736
 msgid "Notification summary text."
 msgstr "Souhrn textu upozornění."
 
-#: src/themes/coco/coco-theme.c:476 src/themes/nodoka/nodoka-theme.c:862
-#: src/themes/slider/theme.c:435 src/themes/standard/theme.c:786
+#: src/themes/coco/coco-theme.c:478 src/themes/nodoka/nodoka-theme.c:874
+#: src/themes/slider/theme.c:437 src/themes/standard/theme.c:788
 msgid "Notification body text."
 msgstr "Obsah textu upozornění."
 
-#: src/themes/nodoka/nodoka-theme.c:823 src/themes/nodoka/nodoka-theme.c:825
-#: src/themes/slider/theme.c:396 src/themes/slider/theme.c:398
-#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
+#: src/themes/nodoka/nodoka-theme.c:835 src/themes/nodoka/nodoka-theme.c:837
+#: src/themes/slider/theme.c:398 src/themes/slider/theme.c:400
+#: src/themes/standard/theme.c:752 src/themes/standard/theme.c:754
 msgid "Closes the notification."
 msgstr "Zavře upozornění."
