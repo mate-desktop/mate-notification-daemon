@@ -1,3 +1,36 @@
+### mate-notification-daemon 1.25.1
+
+  * Translations update
+  * daemon: g_memdup is dreprecated from glib 2.68
+  * engines.c: fix memory leak
+  * mate-notification-properties.c: fix memory leaks
+  * Remove shadow warnings [-Wshadow]
+  * travis: build with mate-common-1.24.2 from repos
+  * build: allow users to disable gettext support (--disable-nls)
+  * Use notify_stack_destroy() instead of g_clear_object() for stacks (which are not GObjects)]
+  * update resource for transifex
+  * Update copyright to 2021
+  * update issue template
+  * applet: Resize icon size with panel
+  * mate-notification-applet: avoid segfault after removing the applet
+  * Group common constants in a single file
+  * Add Do Not Disturb Applet
+  * build: Fix make distcheck
+  * Remove USE_MATE2_MACROS from autogen.sh (legacy)
+  * Formatting
+  * Use C-style comments
+  * Remove NOTIFICATION_DAEMON_* from src/themes/standard/Makefile.am
+  * Remove ENABLE_X11 AM_CONDITIONAL()
+  * Don't error if X11 libs not found if X11 not forced on
+  * Set layer and notificaiton
+  * Implement placement on Wayland
+  * Add initial Wayland backend
+  * Hide X11-specific code behind ifdefs and checks
+  * Remove X11 calls from nodoka-theme.c
+  * Use gdk_set_allowed_backends ()
+  * Support --enable-x11 and --enable-wayland
+  * Include directory in warning message when failed to open themes
+
 ### mate-notification-daemon 1.25.0
 
   * Translations update
