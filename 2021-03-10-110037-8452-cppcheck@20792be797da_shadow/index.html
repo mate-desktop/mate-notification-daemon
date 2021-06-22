@@ -1,0 +1,157 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cppcheck - HTML report - mate-notification-daemon</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+    </style>
+    <script>
+      function getStyle(el, styleProp) {
+        var y;
+
+        if (el.currentStyle) {
+          y = el.currentStyle[styleProp];
+        } else if (window.getComputedStyle) {
+          y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+        }
+
+        return y;
+      }
+
+      function toggle() {
+        var el = this.expandable_content;
+        var mark = this.expandable_marker;
+
+        if (el.style.display === "block") {
+          el.style.display = "none";
+          mark.textContent = "[+]";
+        } else {
+          el.style.display = "block";
+          mark.textContent = "[-]";
+        }
+      }
+
+      function initExpandables() {
+        var elements = document.querySelectorAll(".expandable");
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          var el = elements[i];
+          var clickable = el.querySelector("span");
+          var marker = clickable.querySelector(".marker");
+          var content = el.querySelector(".content");
+          var width = clickable.clientWidth - parseInt(getStyle(content, "padding-left")) - parseInt(getStyle(content, "padding-right"));
+          content.style.width = width + "px";
+          clickable.expandable_content = content;
+          clickable.expandable_marker = marker;
+          clickable.addEventListener("click", toggle);
+        }
+      }
+
+      function toggleDisplay(id) {
+        var elements = document.querySelectorAll("." + id);
+
+        for (var i = 0, len = elements.length; i < len; i++) {
+          elements[i].classList.toggle("d-none");
+        }
+      }
+
+      function toggleAll() {
+        var elements = document.querySelectorAll("input");
+
+        // starting from 1 since 0 is the "toggle all" input
+        for (var i = 1, len = elements.length; i < len; i++) {
+          var el = elements[i];
+
+          if (el.checked) {
+            el.checked = false;
+          } else {
+            el.checked = true;
+          }
+
+          toggleDisplay(el.id);
+        }
+      }
+      window.addEventListener("load", initExpandables);
+    </script>
+  </head>
+  <body>
+    <div id="header" class="header">
+      <h1>Cppcheck report - mate-notification-daemon: </h1>
+    </div>
+    <div class="wrapper">
+      <div id="menu_index">
+       <p id="filename"><a href="index.html">Defect summary;</a> </p>
+
+       <label><input type="checkbox" onclick="toggleAll()" checked> Toggle all</label>
+       <table>
+           <tr><th>Show</th><th>#</th><th>Defect ID</th></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="unreadVariable" name="unreadVariable" checked></td><td>14</td><td>unreadVariable</td></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="unusedStructMember" name="unusedStructMember" checked></td><td>8</td><td>unusedStructMember</td></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="variableScope" name="variableScope" checked></td><td>7</td><td>variableScope</td></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="missingInclude" name="missingInclude" checked></td><td>1</td><td>missingInclude</td></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="nullPointerRedundantCheck" name="nullPointerRedundantCheck" checked></td><td>1</td><td>nullPointerRedundantCheck</td></tr>
+            <tr><td><input type="checkbox" onclick="toggleDisplay(this.id)" id="redundantAssignment" name="redundantAssignment" checked></td><td>1</td><td>redundantAssignment</td></tr>
+           <tr><td></td><td>32</td><td>total</td></tr>
+       </table>
+       <p><a href="stats.html">Statistics</a></p>
+    </div>
+    <div id="content_index">
+
+       <table>
+       <tr><th>Line</th><th>Id</th><th>CWE</th><th>Severity</th><th>Message</th></tr>
+       <tr><td colspan="5"><a href="7.html"></a></td></tr>
+         <tr class="missingInclude"><td></td><td>missingInclude</td><td></td><td>information</td><td>Cppcheck cannot find all the include files (use --check-config for details)</td></tr>
+       <tr><td colspan="5"><a href="0.html">src/capplet/mate-notification-applet-resources.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="0.html#line-10">10</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::alignment&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="0.html#line-10">10</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::ptr&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="0.html#line-39">39</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::alignment&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="0.html#line-39">39</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::ptr&apos; is never used.</td></tr>
+       <tr><td colspan="5"><a href="1.html">src/capplet/mate-notification-applet.c</a></td></tr>
+       <tr class="variableScope"><td><a href="1.html#line-243">243</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;applet&apos; can be reduced.</td></tr>
+       <tr><td colspan="5"><a href="2.html">src/capplet/mate-notification-properties-resources.c</a></td></tr>
+       <tr class="unusedStructMember"><td><a href="2.html#line-10">10</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::alignment&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="2.html#line-10">10</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::ptr&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="2.html#line-111">111</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::alignment&apos; is never used.</td></tr>
+       <tr class="unusedStructMember"><td><a href="2.html#line-111">111</a></td><td>unusedStructMember</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >union member &apos;Anonymous0::ptr&apos; is never used.</td></tr>
+       <tr><td colspan="5"><a href="3.html">src/capplet/mate-notification-properties.c</a></td></tr>
+       <tr class="redundantAssignment"><td><a href="3.html#line-81">81</a></td><td>redundantAssignment</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;valid&apos; is reassigned a value before the old one has been used.</td></tr>
+       <tr class="variableScope"><td><a href="3.html#line-296">296</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;filename&apos; can be reduced.</td></tr>
+       <tr class="variableScope"><td><a href="3.html#line-298">298</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;theme_name&apos; can be reduced.</td></tr>
+       <tr class="variableScope"><td><a href="3.html#line-299">299</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;theme_label&apos; can be reduced.</td></tr>
+       <tr><td colspan="5"><a href="4.html">src/daemon/daemon.c</a></td></tr>
+       <tr class="variableScope"><td><a href="4.html#line-1524">1524</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;display&apos; can be reduced.</td></tr>
+       <tr class="variableScope"><td><a href="4.html#line-1525">1525</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;seat&apos; can be reduced.</td></tr>
+       <tr class="variableScope"><td><a href="4.html#line-1526">1526</a></td><td>variableScope</td><td><a href="https://cwe.mitre.org/data/definitions/398.html">398</a></td><td>style</td><td >The scope of the variable &apos;pointer&apos; can be reduced.</td></tr>
+       <tr class="nullPointerRedundantCheck"><td><a href="4.html#line-1602">1602</a></td><td>nullPointerRedundantCheck</td><td><a href="https://cwe.mitre.org/data/definitions/476.html">476</a></td><td>warning</td><td >Either the condition &apos;if(nt)&apos; is redundant or there is possible null pointer dereference: nt.</td></tr>
+       <tr><td colspan="5"><a href="5.html">src/themes/nodoka/nodoka-theme.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-432">432</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.green&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-433">433</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.blue&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-443">443</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.red&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-444">444</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.green&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-445">445</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.blue&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-456">456</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.red&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-457">457</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.green&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="5.html#line-458">458</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;center_color.blue&apos; is assigned a value that is never used.</td></tr>
+       <tr><td colspan="5"><a href="6.html">src/themes/standard/theme.c</a></td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-416">416</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;i&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-448">448</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;i&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-468">468</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;arrow_side1_width&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-469">469</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;arrow_offset&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-473">473</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;arrow_side2_width&apos; is assigned a value that is never used.</td></tr>
+       <tr class="unreadVariable"><td><a href="6.html#line-474">474</a></td><td>unreadVariable</td><td><a href="https://cwe.mitre.org/data/definitions/563.html">563</a></td><td>style</td><td >Variable &apos;arrow_offset&apos; is assigned a value that is never used.</td></tr>
+       </table>
+      </div> <!-- /.wrapper -->
+    </div>
+    <div id="footer" class="footer">
+      <p>
+        Cppcheck 2.3 - a tool for static C/C++ code analysis<br>
+        <br>
+        Internet: <a href="http://cppcheck.net">http://cppcheck.net</a><br>
+        IRC: <a href="irc://irc.freenode.net/cppcheck">irc://irc.freenode.net/cppcheck</a><br>
+      </p>
+    </div>
+  </body>
+</html>
