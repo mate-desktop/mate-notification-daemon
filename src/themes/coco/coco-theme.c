@@ -5,6 +5,7 @@
  * Copyright (C) 2012 - Stefano Karapetsas <stefano@karapetsas.com>
  * Copyright (C) 2010 - Eduardo Grajeda
  * Copyright (C) 2008 - Martin Sourada
+ * Copyright (C) 2012-2021 MATE Developers
  *
  * notification-daemon-engine-coco is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General Public License as

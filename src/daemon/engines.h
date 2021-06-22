@@ -4,6 +4,7 @@
  * Copyright (C) 2005 John (J5) Palmieri <johnp@redhat.com>
  * Copyright (C) 2010 Red Hat, Inc.
  * Copyright (C) 2011 Perberos <perberos@gmail.com>
+ * Copyright (C) 2012-2021 MATE Developers
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

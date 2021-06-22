@@ -3,6 +3,7 @@
  * mnd-daemon.c: This file is part of mate-notification-daemon
  *
  * Copyright (C) 2018 Wu Xiaotian <yetist@gmail.com>
+ * Copyright (C) 2018-2021 MATE Developers
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

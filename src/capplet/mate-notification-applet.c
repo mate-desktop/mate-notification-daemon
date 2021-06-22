@@ -1,6 +1,7 @@
 /* mate-notification-applet.c - MATE Notification Applet
  *
  * Copyright (c) 2020 Robert Buj <robert.buj@gmail.com>
+ * Copyright (C) 2020-2021 MATE Developers
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
