@@ -63,11 +63,14 @@ static gboolean parse_arguments (int    *argc, char ***argv)
 	error = NULL;
 	if (g_option_context_parse (context, argc, argv, &error) == FALSE)
 	{
+		g_option_context_free (context);
 		g_warning ("Failed to parse command line arguments: %s", error->message);
 		g_error_free (error);
 
 		return FALSE;
 	}
+
+	g_option_context_free (context);
 
 	if (debug)
 		g_setenv ("G_MESSAGES_DEBUG", "all", FALSE);
