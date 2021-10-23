@@ -900,7 +900,7 @@ void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
 		if ((body_label_text == NULL) || (strlen (body_label_text) == 0)) {
 			goto render_fail;
 		}
-		goto renrer_ok;
+		goto render_ok;
 	}
 
 render_fail:
@@ -909,7 +909,7 @@ render_fail:
 	gtk_label_set_markup (GTK_LABEL (windata->body_label), quoted);
 	g_free (quoted);
 
-renrer_ok:
+render_ok:
 	xmlCleanupParser ();
 
 	if (body == NULL || *body == '\0')
