@@ -102,9 +102,9 @@ void notification_tick(GtkWindow *nw, glong remaining);
 //#define ENABLE_GRADIENT_LOOK
 
 #ifdef ENABLE_GRADIENT_LOOK
-	#define STRIPE_WIDTH 45
+#define STRIPE_WIDTH 45
 #else
-	#define STRIPE_WIDTH 30
+#define STRIPE_WIDTH 30
 #endif
 
 #define WIDTH         400
@@ -148,14 +148,12 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 
     gtk_widget_get_allocation(widget, &allocation);
 
-    #ifdef ENABLE_GRADIENT_LOOK
+#ifdef ENABLE_GRADIENT_LOOK
+    cairo_pattern_t *gradient;
+    int              gradient_y;
 
-        cairo_pattern_t *gradient;
-        int              gradient_y;
-
-        gradient_y = allocation.height - BOTTOM_GRADIENT_HEIGHT;
-
-    #endif
+    gradient_y = allocation.height - BOTTOM_GRADIENT_HEIGHT;
+#endif
 
     context = gtk_widget_get_style_context (windata->win);
 
@@ -179,17 +177,17 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 
     cairo_fill(cr);
 
-    #ifdef ENABLE_GRADIENT_LOOK
-        /* Add a very subtle gradient to the bottom of the notification */
-        gradient = cairo_pattern_create_linear(0, gradient_y, 0, allocation.height);
-        cairo_pattern_add_color_stop_rgba(gradient, 0, 0, 0, 0, 0);
-        cairo_pattern_add_color_stop_rgba(gradient, 1, 0, 0, 0, 0.15);
-        cairo_rectangle(cr, 0, gradient_y, allocation.width, BOTTOM_GRADIENT_HEIGHT);
+#ifdef ENABLE_GRADIENT_LOOK
+    /* Add a very subtle gradient to the bottom of the notification */
+    gradient = cairo_pattern_create_linear(0, gradient_y, 0, allocation.height);
+    cairo_pattern_add_color_stop_rgba(gradient, 0, 0, 0, 0, 0);
+    cairo_pattern_add_color_stop_rgba(gradient, 1, 0, 0, 0, 0.15);
+    cairo_rectangle(cr, 0, gradient_y, allocation.width, BOTTOM_GRADIENT_HEIGHT);
 
-        cairo_set_source(cr, gradient);
-        cairo_fill(cr);
-        cairo_pattern_destroy(gradient);
-    #endif
+    cairo_set_source(cr, gradient);
+    cairo_fill(cr);
+    cairo_pattern_destroy(gradient);
+#endif
 }
 
 static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
@@ -199,10 +197,10 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 	int              stripe_x;
 	int              stripe_y;
 	int              stripe_height;
-	#ifdef ENABLE_GRADIENT_LOOK
-		cairo_pattern_t* gradient;
-		double           r, g, b;
-	#endif
+#ifdef ENABLE_GRADIENT_LOOK
+	cairo_pattern_t* gradient;
+	double           r, g, b;
+#endif
 
 	context = gtk_widget_get_style_context (widget);
 
@@ -247,21 +245,21 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 
 	cairo_rectangle(cr, stripe_x, stripe_y, STRIPE_WIDTH, stripe_height);
 
-	#ifdef ENABLE_GRADIENT_LOOK
-		r = color.red / 65535.0;
-		g = color.green / 65535.0;
-		b = color.blue / 65535.0;
+#ifdef ENABLE_GRADIENT_LOOK
+	r = color.red / 65535.0;
+	g = color.green / 65535.0;
+	b = color.blue / 65535.0;
 
-		gradient = cairo_pattern_create_linear(stripe_x, 0, STRIPE_WIDTH, 0);
-		cairo_pattern_add_color_stop_rgba(gradient, 0, r, g, b, 1);
-		cairo_pattern_add_color_stop_rgba(gradient, 1, r, g, b, 0);
-		cairo_set_source(cr, gradient);
-		cairo_fill(cr);
-		cairo_pattern_destroy(gradient);
-	#else
-		gdk_cairo_set_source_rgba (cr, &bg);
-		cairo_fill(cr);
-	#endif
+	gradient = cairo_pattern_create_linear(stripe_x, 0, STRIPE_WIDTH, 0);
+	cairo_pattern_add_color_stop_rgba(gradient, 0, r, g, b, 1);
+	cairo_pattern_add_color_stop_rgba(gradient, 1, r, g, b, 0);
+	cairo_set_source(cr, gradient);
+	cairo_fill(cr);
+	cairo_pattern_destroy(gradient);
+#else
+	gdk_cairo_set_source_rgba (cr, &bg);
+	cairo_fill(cr);
+#endif
 }
 
 static GtkArrowType get_notification_arrow_type(GtkWidget* nw)
