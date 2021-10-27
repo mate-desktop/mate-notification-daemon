@@ -186,7 +186,6 @@ static void name_lost_handler_cb (GDBusConnection *connection,
 	gtk_main_quit();
 }
 
-
 static void notify_daemon_constructed (GObject *object)
 {
 	NotifyDaemon *daemon;
@@ -1394,7 +1393,6 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	/*
 	 *XXX This needs to handle file URIs and all that.
 	 */
-
 
 #ifdef HAVE_X11
 	if (GDK_IS_X11_DISPLAY (gdk_display_get_default ()) &&
