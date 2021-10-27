@@ -302,22 +302,24 @@ src/themes/standard/Makefile
 AC_OUTPUT
 
 echo "
-			$PACKAGE_NAME $PACKAGE_VERSION
-			================================
+Configure summary:
 
-	prefix:                   ${prefix}
-	exec_prefix:              ${exec_prefix}
-	bindir:                   ${bindir}
-	datadir:                  ${datadir}
-	source code location:     ${srcdir}
-	compiler:                 ${CC}
-	cflags:	                  ${CFLAGS}
-	warning flags:            ${WARN_CFLAGS}
-	Wayland support:          ${have_wayland}
-	X11 support:              ${have_x11}
-	Native Language support:  ${USE_NLS}
+    ${PACKAGE_STRING}
+    `echo $PACKAGE_STRING | sed "s/./=/g"`
 
-	dbus-1 system.d           $DBUS_SYS_DIR
-	dbus-1 services           $DBUS_SERVICES_DIR
+    prefix ......................: ${prefix}
+    exec_prefix .................: ${exec_prefix}
+    bindir ......................: ${bindir}
+    datadir .....................: ${datadir}
+    source code location ........: ${srcdir}
+    compiler ....................: ${CC}
+    cflags ......................: ${CFLAGS}
+    warning flags ...............: ${WARN_CFLAGS}
+    Wayland support .............: ${have_wayland}
+    X11 support .................: ${have_x11}
+    Native Language support .....: ${USE_NLS}
+
+    dbus-1 system.d .............: $DBUS_SYS_DIR
+    dbus-1 services .............: $DBUS_SERVICES_DIR
 
 "
