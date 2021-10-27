@@ -69,7 +69,6 @@ get_work_area (NotifyStack  *stack,
 
 	workarea = XInternAtom(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), "_NET_WORKAREA", True);
 
-
         disp_screen = GDK_SCREEN_XNUMBER (stack->screen);
 
         /* Defaults in case of error */
@@ -80,7 +79,6 @@ get_work_area (NotifyStack  *stack,
 
         if (workarea == None)
                 return FALSE;
-
 
 	win = XRootWindow(GDK_DISPLAY_XDISPLAY(gdk_display_get_default()), disp_screen);
 
@@ -96,7 +94,6 @@ get_work_area (NotifyStack  *stack,
 		&num,
 		&leftovers,
 		&ret_workarea);
-
 
         if (result != Success
             || type == None

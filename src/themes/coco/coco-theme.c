@@ -66,7 +66,6 @@ typedef struct
 	GtkTextDirection rtl;
 } WindowData;
 
-
 enum
 {
 	URGENCY_LOW,
@@ -344,8 +343,6 @@ action_clicked_cb(GtkWidget *w, GdkEventButton *event,
 	action_cb(nw, key);
 }
 
-
-
 /* Required functions */
 
 /* Checking if we support this notification daemon version */
@@ -451,7 +448,6 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_widget_set_margin_start (vbox, 8);
 	gtk_widget_show (vbox);
 	gtk_box_pack_start (GTK_BOX (windata->main_hbox), vbox, TRUE, TRUE, 0);
-
 
 	windata->summary_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->summary_label);
@@ -707,7 +703,6 @@ move_notification(GtkWidget *nw, int x, int y)
 
     gtk_window_move(GTK_WINDOW(nw), x, y);
 }
-
 
 /* Optional Functions */
 

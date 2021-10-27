@@ -22,8 +22,6 @@
  * Boston, MA  02110-1301  USA
  */
 
-
-
 #include "config.h"
 
 #include <glib/gi18n.h>
@@ -81,7 +79,6 @@ typedef struct
 	UrlClickedCb url_clicked;
 
 } WindowData;
-
 
 enum
 {
@@ -403,7 +400,6 @@ fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 	cairo_fill (cr);
 }
 
-
 static void
 draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
@@ -462,7 +458,6 @@ draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 			bottom_color.blue = 147 / 255.0 * color_mult;
 			break;
 	}
-
 
 	cairo_pattern_t *pattern;
 	pattern = cairo_pattern_create_linear (0, 0, 0, windata->height);
@@ -696,8 +691,6 @@ action_clicked_cb(GtkWidget *w, GdkEventButton *event,
 
 	action_cb(nw, key);
 }
-
-
 
 /* Required functions */
 
@@ -1121,7 +1114,6 @@ move_notification(GtkWidget *nw, int x, int y)
 		gtk_window_move(GTK_WINDOW(nw), x, y);
 	}
 }
-
 
 /* Optional Functions */
 

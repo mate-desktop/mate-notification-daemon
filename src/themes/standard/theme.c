@@ -666,7 +666,6 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 	windata->composited = FALSE;
 
-
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
 
 	visual = gdk_screen_get_rgba_visual(screen);
