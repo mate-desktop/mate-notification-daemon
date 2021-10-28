@@ -509,11 +509,12 @@ static void notification_properties_dialog_finalize(NotificationAppletDialog* di
 		notify_notification_close(dialog->preview, NULL);
 		dialog->preview = NULL;
 	}
+	g_free (dialog);
 }
 
 int main(int argc, char** argv)
 {
-	NotificationAppletDialog dialog = {NULL, }; /* <- ? */
+	NotificationAppletDialog *dialog;
 
 #ifdef ENABLE_NLS
 	bindtextdomain(GETTEXT_PACKAGE, NOTIFICATION_LOCALEDIR);
@@ -525,15 +526,16 @@ int main(int argc, char** argv)
 
 	notify_init("mate-notification-properties");
 
-	if (!notification_properties_dialog_init(&dialog))
+	dialog = g_new0 (NotificationAppletDialog, 1);
+	if (!notification_properties_dialog_init (dialog))
 	{
-		notification_properties_dialog_finalize(&dialog);
+		notification_properties_dialog_finalize (dialog);
 		return 1;
 	}
 
 	gtk_main();
 
-	notification_properties_dialog_finalize(&dialog);
+	notification_properties_dialog_finalize (dialog);
 
 	return 0;
 }
