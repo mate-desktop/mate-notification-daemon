@@ -148,14 +148,14 @@ dnl ---------------------------------------------------------------------------
 
 dnl $enable_x11 and $enable_wayland will be set to "yes", "no" or "auto"
 AC_ARG_ENABLE(x11,
-	[AC_HELP_STRING([--enable-x11],
+	[AS_HELP_STRING([--enable-x11],
 		[Explicitly enable or disable X11 support
 		(default is to enable only if X development libraries are detected)])],
 	[enable_x11=$enableval],
 	[enable_x11=auto])
 
 AC_ARG_ENABLE(wayland,
-	[AC_HELP_STRING([--enable-wayland],
+	[AS_HELP_STRING([--enable-wayland],
 		[Explicitly enable or disable Wayland support
 		(default is to enable only if Wayland client development library is detected)])],
 	[enable_wayland=$enableval],
@@ -274,7 +274,7 @@ AC_DEFINE_UNQUOTED(DBUS_SERVICES_DIR, "$DBUS_SERVICES_DIR", [Where services dir 
 dnl ---------------------------------------------------------------------------
 dnl Enabel/disable icon cache generation
 dnl ---------------------------------------------------------------------------
-AC_ARG_ENABLE(icon-update, AC_HELP_STRING([--disable-icon-update],
+AC_ARG_ENABLE(icon-update, AS_HELP_STRING([--disable-icon-update],
                                         [Disable icon cache update]))
 if (test "$enable_icon_update" != no); then
         AC_PATH_PROG(UPDATE_ICON_CACHE, [gtk-update-icon-cache])
