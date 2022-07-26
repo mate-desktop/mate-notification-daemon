@@ -90,19 +90,13 @@ void set_notification_timeout(GtkWindow *nw, glong timeout);
 void set_notification_hints(GtkWindow *nw, GVariant *hints);
 void notification_tick(GtkWindow *nw, glong remaining);
 
-#define STRIPE_WIDTH  32
 #define WIDTH         300
 #define IMAGE_SIZE    32
 #define IMAGE_PADDING 10
-#define SPACER_LEFT   30
 #define PIE_RADIUS    12
 #define PIE_WIDTH     (2 * PIE_RADIUS)
 #define PIE_HEIGHT    (2 * PIE_RADIUS)
 #define BODY_X_OFFSET (IMAGE_SIZE + 8)
-#define DEFAULT_ARROW_OFFSET  (SPACER_LEFT + 12)
-#define DEFAULT_ARROW_HEIGHT  14
-#define DEFAULT_ARROW_WIDTH   22
-#define DEFAULT_ARROW_SKEW    -6
 #define BACKGROUND_OPACITY    0.9
 #define GRADIENT_CENTER 0.7
 

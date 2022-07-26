@@ -109,7 +109,6 @@ void notification_tick(GtkWindow *nw, glong remaining);
 
 #define WIDTH         400
 #define IMAGE_SIZE    32
-#define IMAGE_PADDING 10
 #define SPACER_LEFT   30
 #define PIE_RADIUS    12
 #define PIE_WIDTH     (2 * PIE_RADIUS)
@@ -119,7 +118,6 @@ void notification_tick(GtkWindow *nw, glong remaining);
 #define DEFAULT_ARROW_HEIGHT  14
 #define DEFAULT_ARROW_WIDTH   28
 #define BACKGROUND_OPACITY    0.92
-#define BOTTOM_GRADIENT_HEIGHT 30
 
 static void
 get_background_color (GtkStyleContext *context,

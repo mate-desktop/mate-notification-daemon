@@ -58,8 +58,6 @@
 
 #define NW_GET_NOTIFY_ID(nw) \
 	(GPOINTER_TO_UINT(g_object_get_data(G_OBJECT(nw), "_notify_id")))
-#define NW_GET_NOTIFY_SENDER(nw) \
-	(g_object_get_data(G_OBJECT(nw), "_notify_sender"))
 #define NW_GET_DAEMON(nw) \
 	(g_object_get_data(G_OBJECT(nw), "_notify_daemon"))
 
