@@ -11,9 +11,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.25.1\n"
+"Project-Id-Version: mate-notification-daemon 1.26.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2021-06-22 08:18+0200\n"
+"POT-Creation-Date: 2022-10-29 15:33+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Moo, 2021\n"
 "Language-Team: Lithuanian (https://www.transifex.com/mate/teams/13566/lt/)\n"
@@ -118,7 +118,7 @@ msgstr ""
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
-msgstr ""
+msgstr "Autorių teisės © 2021 MATE kūrėjai"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
@@ -141,11 +141,11 @@ msgstr ""
 
 #: src/capplet/mate-notification-applet.c:194
 msgid "Notifications Enabled"
-msgstr ""
+msgstr "Pranešimai įjungti"
 
 #: src/capplet/mate-notification-applet.c:215
 msgid "_Do not disturb"
-msgstr ""
+msgstr "_Netrukdyti"
 
 #: src/capplet/mate-notification-applet.c:216
 msgid "Enable/Disable do-not-disturb mode."
@@ -237,11 +237,11 @@ msgstr "Įjungti būseną „Netrukdyti“"
 msgid "General Options"
 msgstr "Bendriniai parametrai"
 
-#: src/daemon/daemon.c:1342
+#: src/daemon/daemon.c:1341
 msgid "Exceeded maximum number of notifications"
 msgstr "Viršytas leistinų pranešimų kiekis"
 
-#: src/daemon/daemon.c:1648
+#: src/daemon/daemon.c:1646
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nėra tinkamas pranešimo ID"
@@ -250,18 +250,18 @@ msgstr "%u nėra tinkamas pranešimo ID"
 msgid "Notification"
 msgstr "Pranešimas"
 
-#: src/themes/coco/coco-theme.c:465 src/themes/nodoka/nodoka-theme.c:822
-#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:737
+#: src/themes/coco/coco-theme.c:461 src/themes/nodoka/nodoka-theme.c:815
+#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Pranešimo santraukos tekstas."
 
-#: src/themes/coco/coco-theme.c:479 src/themes/nodoka/nodoka-theme.c:875
-#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:789
+#: src/themes/coco/coco-theme.c:475 src/themes/nodoka/nodoka-theme.c:868
+#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Pranešimo pagrindinės dalies tekstas."
 
-#: src/themes/nodoka/nodoka-theme.c:836 src/themes/nodoka/nodoka-theme.c:838
+#: src/themes/nodoka/nodoka-theme.c:829 src/themes/nodoka/nodoka-theme.c:831
 #: src/themes/slider/theme.c:399 src/themes/slider/theme.c:401
-#: src/themes/standard/theme.c:753 src/themes/standard/theme.c:755
+#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Užveria pranešimą."

@@ -10,9 +10,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.25.1\n"
+"Project-Id-Version: mate-notification-daemon 1.26.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2021-06-22 08:18+0200\n"
+"POT-Creation-Date: 2022-10-29 15:33+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2021\n"
 "Language-Team: Basque (https://www.transifex.com/mate/teams/13566/eu/)\n"
@@ -229,11 +229,11 @@ msgstr "Aktibatu Ez Molestatzea"
 msgid "General Options"
 msgstr "Aukera orokorrak"
 
-#: src/daemon/daemon.c:1342
+#: src/daemon/daemon.c:1341
 msgid "Exceeded maximum number of notifications"
 msgstr "Gehienezko jakinarazpen kopurua gainditu da"
 
-#: src/daemon/daemon.c:1648
+#: src/daemon/daemon.c:1646
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u ez da baliozko jakinarazpen ID bat"
@@ -242,18 +242,18 @@ msgstr "%u ez da baliozko jakinarazpen ID bat"
 msgid "Notification"
 msgstr "Jakinarazpena"
 
-#: src/themes/coco/coco-theme.c:465 src/themes/nodoka/nodoka-theme.c:822
-#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:737
+#: src/themes/coco/coco-theme.c:461 src/themes/nodoka/nodoka-theme.c:815
+#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr "Jakinarazpenaren laburpen testua."
 
-#: src/themes/coco/coco-theme.c:479 src/themes/nodoka/nodoka-theme.c:875
-#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:789
+#: src/themes/coco/coco-theme.c:475 src/themes/nodoka/nodoka-theme.c:868
+#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr "Jakinarazpenaren gorputzaren testua."
 
-#: src/themes/nodoka/nodoka-theme.c:836 src/themes/nodoka/nodoka-theme.c:838
+#: src/themes/nodoka/nodoka-theme.c:829 src/themes/nodoka/nodoka-theme.c:831
 #: src/themes/slider/theme.c:399 src/themes/slider/theme.c:401
-#: src/themes/standard/theme.c:753 src/themes/standard/theme.c:755
+#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr "Jakinarazpena ixten du."

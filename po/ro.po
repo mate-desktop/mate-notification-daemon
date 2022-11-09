@@ -4,15 +4,15 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# corneliu.e <corneliueva@yahoo.com>, 2018
+# 3d5ab56b1b83fefceeab671c39a98a6d_999ae54, 2018
 # Polihron Alexandru (APoliTech) <ppolihron@gmail.com>, 2018
 # Daniel <danny3@tutanota.com>, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.25.1\n"
+"Project-Id-Version: mate-notification-daemon 1.26.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2021-06-22 08:18+0200\n"
+"POT-Creation-Date: 2022-10-29 15:33+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Daniel <danny3@tutanota.com>, 2021\n"
 "Language-Team: Romanian (https://www.transifex.com/mate/teams/13566/ro/)\n"
@@ -226,11 +226,11 @@ msgstr ""
 msgid "General Options"
 msgstr "Opțiuni generale"
 
-#: src/daemon/daemon.c:1342
+#: src/daemon/daemon.c:1341
 msgid "Exceeded maximum number of notifications"
 msgstr "Numărul maxim de notificări a fost depașit"
 
-#: src/daemon/daemon.c:1648
+#: src/daemon/daemon.c:1646
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nu este un ID de notificare valid"
@@ -239,18 +239,18 @@ msgstr "%u nu este un ID de notificare valid"
 msgid "Notification"
 msgstr "Notificare"
 
-#: src/themes/coco/coco-theme.c:465 src/themes/nodoka/nodoka-theme.c:822
-#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:737
+#: src/themes/coco/coco-theme.c:461 src/themes/nodoka/nodoka-theme.c:815
+#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:734
 msgid "Notification summary text."
 msgstr ""
 
-#: src/themes/coco/coco-theme.c:479 src/themes/nodoka/nodoka-theme.c:875
-#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:789
+#: src/themes/coco/coco-theme.c:475 src/themes/nodoka/nodoka-theme.c:868
+#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:786
 msgid "Notification body text."
 msgstr ""
 
-#: src/themes/nodoka/nodoka-theme.c:836 src/themes/nodoka/nodoka-theme.c:838
+#: src/themes/nodoka/nodoka-theme.c:829 src/themes/nodoka/nodoka-theme.c:831
 #: src/themes/slider/theme.c:399 src/themes/slider/theme.c:401
-#: src/themes/standard/theme.c:753 src/themes/standard/theme.c:755
+#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
 msgstr ""

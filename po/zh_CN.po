@@ -5,21 +5,19 @@
 # 
 # Translators:
 # e0c668032ced196bd60f2b6a070d982d_8f72ae0, 2018
-# Christopher M <i@cicku.me>, 2018
+# ᴄʜʀɪsᴛᴏᴘʜᴇʀ ᴍᴇɴɢ, 2018
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018
-# shuyu liu <liushuyu011@gmail.com>, 2018
 # 玉堂白鹤 <yjwork@qq.com>, 2020
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
-# a73a47e368cc011d8f94528bd9d5d3f1_91fccdf <1b07f49e2a323989c85dd26d526f7bb9_871526>, 2021
-# Wenbin Lv <wenbin816@gmail.com>, 2021
+# Wenbin Lv <wenbin816@gmail.com>, 2022
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.25.1\n"
+"Project-Id-Version: mate-notification-daemon 1.26.0\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2021-06-22 08:18+0200\n"
+"POT-Creation-Date: 2022-10-29 15:33+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Wenbin Lv <wenbin816@gmail.com>, 2021\n"
+"Last-Translator: Wenbin Lv <wenbin816@gmail.com>, 2022\n"
 "Language-Team: Chinese (China) (https://www.transifex.com/mate/teams/13566/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +37,7 @@ msgstr "设置弹出通知首选项"
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: data/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr "MATE;Notification;Theme;"
+msgstr "MATE;Notification;Theme;通知;主题;"
 
 #: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
 msgid "Mate Notification Applet Factory"
@@ -60,17 +58,16 @@ msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
-"工作区上放置通知的默认弹出区域。允许的值为：“top_left”(左上)，“top_right”(右上)，“bottom_left”(左下) "
-"和“bottom_right”(右下)"
+"工作区上放置通知的默认弹出区域。允许的值为：“top_left”（左上）、“top_right”（右上）、“bottom_left”（左下）和“bottom_right”（右下）"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
-msgstr "使用活动的显视器"
+msgstr "使用活动的显示器"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
-msgstr "在活动的显示器上显示通知"
+msgstr "在活动的显示器上显示通知。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
@@ -80,7 +77,7 @@ msgstr "显示器"
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "显示通知的显示器。可取的值：-1 (活动的显示器上) 和 0 到 n-1，n为显示器编号。"
+msgstr "显示通知的显示器。可取的值：-1（活动的显示器上）和 0 到 n - 1，n 为显示器数量。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
@@ -96,7 +93,7 @@ msgstr "声音已启用"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:26
 msgid "Turns on and off sound support for notifications."
-msgstr "为通知打开和关闭声音支持"
+msgstr "为通知打开和关闭声音支持。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
@@ -120,7 +117,7 @@ msgstr "关于请勿打扰"
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
-msgstr "版权所有 © 2021 MATE 开发者"
+msgstr "Copyright © 2021 MATE 开发者"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
@@ -139,8 +136,9 @@ msgstr ""
 "Mingye Wang <arthur200126@gmail.com>, 2015-2016\n"
 "白铭骢 <jeffbai@aosc.xyz>, 2015-2016\n"
 "刘子兴 <liushuyu@aosc.xyz>, 2015-2016\n"
-"比丘<shenshuaiwen@gmail.com>,2018-2019\n"
-"xingpj<xingjiapeng10@163.com>,2020"
+"比丘<shenshuaiwen@gmail.com>, 2018-2019\n"
+"xingpj<xingjiapeng10@163.com>, 2020\n"
+"Wenbin Lv <wenbin816@gmail.com>, 2021-2022"
 
 #: src/capplet/mate-notification-applet.c:194
 msgid "Notifications Enabled"
@@ -152,7 +150,7 @@ msgstr "请勿打扰(_D)"
 
 #: src/capplet/mate-notification-applet.c:216
 msgid "Enable/Disable do-not-disturb mode."
-msgstr "启用/禁用请勿打扰模式。"
+msgstr "启用或禁用请勿打扰模式。"
 
 #: src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -164,7 +162,7 @@ msgstr "Nodoka"
 
 #: src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "滑块"
+msgstr "Slider"
 
 #: src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
@@ -180,7 +178,7 @@ msgstr "通知测试"
 
 #: src/capplet/mate-notification-properties.c:415
 msgid "Just a test"
-msgstr "仅仅一个测试"
+msgstr "只是一个测试"
 
 #: src/capplet/mate-notification-properties.c:419
 #, c-format
@@ -194,7 +192,7 @@ msgstr "无法加载用户界面：%s"
 
 #: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
-msgstr "通知设定"
+msgstr "通知设置"
 
 #: src/capplet/mate-notification-properties.ui:36
 msgid "_Preview"
@@ -240,11 +238,11 @@ msgstr "启用请勿打扰"
 msgid "General Options"
 msgstr "通用选项"
 
-#: src/daemon/daemon.c:1342
+#: src/daemon/daemon.c:1341
 msgid "Exceeded maximum number of notifications"
 msgstr "超过了通知的最大数目"
 
-#: src/daemon/daemon.c:1648
+#: src/daemon/daemon.c:1646
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u 不是有效的通知 ID"
@@ -253,18 +251,18 @@ msgstr "%u 不是有效的通知 ID"
 msgid "Notification"
 msgstr "通知"
 
-#: src/themes/coco/coco-theme.c:465 src/themes/nodoka/nodoka-theme.c:822
-#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:737
+#: src/themes/coco/coco-theme.c:461 src/themes/nodoka/nodoka-theme.c:815
+#: src/themes/slider/theme.c:417 src/themes/standard/theme.c:734
 msgid "Notification summary text."
-msgstr "通知摘要文本"
+msgstr "通知摘要文本。"
 
-#: src/themes/coco/coco-theme.c:479 src/themes/nodoka/nodoka-theme.c:875
-#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:789
+#: src/themes/coco/coco-theme.c:475 src/themes/nodoka/nodoka-theme.c:868
+#: src/themes/slider/theme.c:438 src/themes/standard/theme.c:786
 msgid "Notification body text."
-msgstr "通知主体文本"
+msgstr "通知主体文本。"
 
-#: src/themes/nodoka/nodoka-theme.c:836 src/themes/nodoka/nodoka-theme.c:838
+#: src/themes/nodoka/nodoka-theme.c:829 src/themes/nodoka/nodoka-theme.c:831
 #: src/themes/slider/theme.c:399 src/themes/slider/theme.c:401
-#: src/themes/standard/theme.c:753 src/themes/standard/theme.c:755
+#: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr "关闭通知"
+msgstr "关闭通知。"
