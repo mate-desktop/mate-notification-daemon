@@ -1,3 +1,16 @@
+### mate-notification-daemon 1.27.0
+
+  * tx: sync with transifex
+  * configure.ac: The macro 'AC_HELP_STRING' is obsolete
+  * tx: update resource
+  * tx: migrate config file
+  * themes: fix typo
+  * ci: drop -Wunused-parameter compiler cflag from debian build
+  * build: show configure summary using a pretty format
+  * Use a blank line at most
+  * theme: remove whitespaces before #define, #ifdef, and #endif
+  * Add AssumedAppArmorLabel to dbus service file
+
 ### mate-notification-daemon 1.26.0
 
   * Translations update
