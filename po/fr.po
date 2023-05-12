@@ -4,29 +4,29 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# mauron, 2018
-# yoplait <yoplait@tememe.org>, 2018
-# brice nice <brice1024@yahoo.fr>, 2018
-# roxfr <roxfr@outlook.fr>, 2020
-# Tubuntu, 2020
+# mauron, 2021
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# Tubuntu, 2021
+# yoplait <yoplait@tememe.org>, 2021
 # jeremy shields <jeremy.shields@orange.fr>, 2021
+# brice nice <brice1024@yahoo.fr>, 2021
 # Laurent Napias, 2021
 # Stéphane PETRUS <stephane.petrus@posteo.net>, 2021
+# roxfr <roxfr@outlook.fr>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Stéphane PETRUS <stephane.petrus@posteo.net>, 2021\n"
-"Language-Team: French (https://www.transifex.com/mate/teams/13566/fr/)\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
+"Last-Translator: roxfr <roxfr@outlook.fr>, 2021\n"
+"Language-Team: French (https://app.transifex.com/mate/teams/13566/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: fr\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: data/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -62,9 +62,9 @@ msgid ""
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
 "Emplacement par défaut des bulles de notification sur l'espace de travail "
-"pour l'empilement des notifications. Les valeurs possibles sont : « top_left"
-" » (en haut à gauche), « top_right » (en haut à droite), « bottom_left » (en"
-" bas à gauche) et  « bottom_right » (en bas à droite)."
+"pour l'empilement des notifications. Les valeurs possibles sont : "
+"« top_left » (en haut à gauche), « top_right » (en haut à droite), "
+"« bottom_left » (en bas à gauche) et  « bottom_right » (en bas à droite)."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186

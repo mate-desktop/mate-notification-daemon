@@ -4,22 +4,23 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# e4b337ef88d89d25839dfa8ec011a002_3d7163d <f0ef974030fe7250832fc0f0f8f55974_17741>, 2018
-# Ibnu Daru Aji, 2018
-# Rendiyono Wahyu Saputro <rendi.7936@gmail.com>, 2018
-# Anton Toni Agung <vdrive6@gmail.com>, 2018
-# La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2020
-# Willy Sudiarto Raharjo <willysr@slackware-id.org>, 2021
 # Andika Triwidada <andika@gmail.com>, 2021
+# e4b337ef88d89d25839dfa8ec011a002_3d7163d <f0ef974030fe7250832fc0f0f8f55974_17741>, 2021
+# Ibnu Daru Aji, 2021
+# Willy Sudiarto Raharjo <willysr@slackware-id.org>, 2021
+# La Ode Muh. Fadlun Akbar <fadlun.net@gmail.com>, 2021
+# Rendiyono Wahyu Saputro <rendi.7936@gmail.com>, 2021
+# Anton Toni Agung <vdrive6@gmail.com>, 2021
+# Triyan W. Nugroho <triyan.wn@gmail.com>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Andika Triwidada <andika@gmail.com>, 2021\n"
-"Language-Team: Indonesian (https://www.transifex.com/mate/teams/13566/id/)\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
+"Last-Translator: Triyan W. Nugroho <triyan.wn@gmail.com>, 2021\n"
+"Language-Team: Indonesian (https://app.transifex.com/mate/teams/13566/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -136,7 +137,8 @@ msgstr ""
 "Dirgita <dirgita@gmail.com>\n"
 "Tim MATE Indonesia <http://id.mate.org>\n"
 "Kukuh Syafaat <syafaatkukuh@gmail.com>, 2017.\n"
-"Andika Triwidada <andika@gmail.com>, 2020, 2021."
+"Andika Triwidada <andika@gmail.com>, 2020, 2021.\n"
+"Triyan W. Nugroho <triyan.wn@gmail.com>, 2021."
 
 #: src/capplet/mate-notification-applet.c:194
 msgid "Notifications Enabled"

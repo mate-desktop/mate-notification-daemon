@@ -4,9 +4,9 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
-# Sébastien Denux <sebcxjo@gmail.com>, 2018
+# Stefano Karapetsas <stefano@karapetsas.com>, 2021
 # Cédric Valmary <cvalmary@yahoo.fr>, 2021
+# Sébastien Denux <sebcxjo@gmail.com>, 2021
 # Quentin PAGÈS, 2021
 # 
 msgid ""
@@ -14,9 +14,9 @@ msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
 "Last-Translator: Quentin PAGÈS, 2021\n"
-"Language-Team: Occitan (post 1500) (https://www.transifex.com/mate/teams/13566/oc/)\n"
+"Language-Team: Occitan (post 1500) (https://app.transifex.com/mate/teams/13566/oc/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -56,6 +56,9 @@ msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
+"Emplaçament per defaut de las fenèstras sorgissentas sul burèu per las "
+"notificacions. Valors autorizadas : « top_left », « top_right », "
+"« bottom_left » e « bottom_right »"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186
@@ -75,6 +78,8 @@ msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr ""
+"Monitor ont afichat la notificacion. Valors autorizadas : -1 (afichatge sul "
+"monitor actiu) e 0 fins a n - 1 ont n es lo numèro del monitor."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
@@ -148,7 +153,7 @@ msgstr "Nodoka"
 
 #: src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr ""
+msgstr "Cursor"
 
 #: src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"

@@ -4,13 +4,13 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# vitorgatti <vitorgatti@yahoo.com.br>, 2018
-# Aldo Oliveira <america103@gmail.com>, 2018
-# 65f2af3cfa184c075942a0418b98d2de_d688669, 2018
-# Victor Gonçalves <hotcyv@gmail.com>, 2018
-# Roger Araújo <roger.rf@gmail.com>, 2018
-# Samuel Henrique <samueloph@debian.org>, 2020
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# vitorgatti <vitorgatti@yahoo.com.br>, 2021
+# Aldo Oliveira <america103@gmail.com>, 2021
+# 65f2af3cfa184c075942a0418b98d2de_d688669, 2021
+# Victor Gonçalves <hotcyv@gmail.com>, 2021
+# Samuel Henrique <samueloph@debian.org>, 2021
+# Roger Araújo <roger.rf@gmail.com>, 2021
 # Josué Teodoro Moreira <jteodomo@gmail.com>, 2021
 # 
 msgid ""
@@ -18,14 +18,14 @@ msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
 "Last-Translator: Josué Teodoro Moreira <jteodomo@gmail.com>, 2021\n"
-"Language-Team: Portuguese (Brazil) (https://www.transifex.com/mate/teams/13566/pt_BR/)\n"
+"Language-Team: Portuguese (Brazil) (https://app.transifex.com/mate/teams/13566/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: pt_BR\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: data/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"

@@ -4,20 +4,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Rax Garfield <admin@dvizho.ks.ua>, 2018
-# zubr139, 2018
-# Шаповалов Анатолій Романович <elrond.716.smith@gmail.com>, 2018
-# Юрій Яновський <lytvyn349@ukr.net>, 2021
+# Rax Garfield <admin@dvizho.ks.ua>, 2021
+# zubr139, 2021
 # Микола Ткач <chistomov@gmail.com>, 2021
+# Шаповалов Анатолій Романович <elrond.716.smith@gmail.com>, 2021
+# Юрій Яновський <lytvyn349@ukr.net>, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Микола Ткач <chistomov@gmail.com>, 2021\n"
-"Language-Team: Ukrainian (https://www.transifex.com/mate/teams/13566/uk/)\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
+"Last-Translator: Юрій Яновський <lytvyn349@ukr.net>, 2021\n"
+"Language-Team: Ukrainian (https://app.transifex.com/mate/teams/13566/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -58,7 +58,7 @@ msgid ""
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
 "Типове розташування виринних сповіщень на робочому просторі. Можна "
-"розташовувати згори ліворуч, згори праворуч, знизу ліворуч чи знизу "
+"розташовувати згори ліворуч, згори праворуч, знизу ліворуч, або знизу "
 "праворуч."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
@@ -104,7 +104,7 @@ msgstr "Не турбувати"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr "Якщо увімкнено, сповіщення не відображаються."
+msgstr "Якщо увімкнено, сповіщення не показуються."
 
 #: src/capplet/mate-notification-applet.c:52
 msgid "_Preferences"

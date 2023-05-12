@@ -4,20 +4,20 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# 83471bf16eb03bd248ce865f88678158_08f49ba <b37580a9d5c210d723d81df1f8c6f8f2_815>, 2018
-# Stefano Karapetsas <stefano@karapetsas.com>, 2018
+# 83471bf16eb03bd248ce865f88678158_08f49ba <b37580a9d5c210d723d81df1f8c6f8f2_815>, 2021
+# Stefano Karapetsas <stefano@karapetsas.com>, 2021
 # Allan Nordhøy <epost@anotheragency.no>, 2021
-# 87d96f43665dd9fb55eba4603e184cae, 2021
 # heskjestad <cato@heskjestad.xyz>, 2021
+# 87d96f43665dd9fb55eba4603e184cae, 2021
 # 
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: heskjestad <cato@heskjestad.xyz>, 2021\n"
-"Language-Team: Norwegian Bokmål (https://www.transifex.com/mate/teams/13566/nb/)\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
+"Last-Translator: 87d96f43665dd9fb55eba4603e184cae, 2021\n"
+"Language-Team: Norwegian Bokmål (https://app.transifex.com/mate/teams/13566/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -108,7 +108,7 @@ msgstr "Slå på for å ikke vise varslinger."
 
 #: src/capplet/mate-notification-applet.c:52
 msgid "_Preferences"
-msgstr "Innstillinger"
+msgstr "Innstillin_ger"
 
 #: src/capplet/mate-notification-applet.c:54
 msgid "_About"

@@ -4,12 +4,12 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Giuseppe Pignataro <rogepix@gmail.com>, 2018
-# LuKePicci <luca.piccirillo@gmail.com>, 2018
-# Antonio Gschossmann <gschossmannantonio@gmail.com>, 2018
-# Enrico B. <enricobe@hotmail.com>, 2019
-# Dario Di Nucci <linkin88mail@gmail.com>, 2020
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# Dario Di Nucci <linkin88mail@gmail.com>, 2021
+# Giuseppe Pignataro <rogepix@gmail.com>, 2021
+# LuKePicci <luca.piccirillo@gmail.com>, 2021
+# Enrico B. <enricobe@hotmail.com>, 2021
+# Antonio Gschossmann <gschossmannantonio@gmail.com>, 2021
 # Alessandro Volturno <alelvb@inwind.it>, 2021
 # 
 msgid ""
@@ -17,14 +17,14 @@ msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.25.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2021-06-22 08:18+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
+"PO-Revision-Date: 2021-09-19 13:40+0000\n"
 "Last-Translator: Alessandro Volturno <alelvb@inwind.it>, 2021\n"
-"Language-Team: Italian (https://www.transifex.com/mate/teams/13566/it/)\n"
+"Language-Team: Italian (https://app.transifex.com/mate/teams/13566/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
 
 #: data/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -114,7 +114,7 @@ msgstr "_Preferenze"
 
 #: src/capplet/mate-notification-applet.c:54
 msgid "_About"
-msgstr "Inform_azioni"
+msgstr "Informazioni"
 
 #: src/capplet/mate-notification-applet.c:105
 msgid "About Do Not Disturb"
@@ -130,7 +130,7 @@ msgstr "Attiva rapidamente la modalità non disturbare."
 
 #: src/capplet/mate-notification-applet.c:110
 msgid "translator-credits"
-msgstr " Alessandro Volturno, 2020"
+msgstr "Alessandro Volturno, 2021"
 
 #: src/capplet/mate-notification-applet.c:194
 msgid "Notifications Enabled"
