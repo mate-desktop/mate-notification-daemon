@@ -1,3 +1,11 @@
+### mate-notification-daemon 1.26.1
+
+  * Translations update
+  * mnd-daemon: fix memory leak
+  * mnd-daemon: fix memory leak
+  * daemon: fix memory leak
+  * Add AssumedAppArmorLabel to dbus service file
+
 ### mate-notification-daemon 1.26.0
 
   * Translations update
