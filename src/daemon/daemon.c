@@ -261,6 +261,15 @@ static gboolean do_exit(gpointer user_data)
 
 static void add_exit_timeout(NotifyDaemon* daemon)
 {
+	GdkDisplay *display = gdk_screen_get_display (gdk_screen_get_default());
+	/*Do not timeout if not running in X11 As wayland sessions are usually controlled
+	 *by the wayland compositor. We need to keep the daemon running on wayland for now.
+	 *In the future, it may be possible to bring back the timeout on wayland to reduce
+	* the  number of daemons running at all time. This would depend on how dbus
+	* interaction in the final released mate-wayland session works
+	 */
+	if (!(GDK_IS_X11_DISPLAY (display)))
+		return;
 	g_assert (daemon != NULL);
 
 	if (daemon->exit_timeout_source > 0)
