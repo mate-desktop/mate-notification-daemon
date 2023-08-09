@@ -284,6 +284,7 @@ AM_CONDITIONAL([ICON_UPDATE], [test -n "$UPDATE_ICON_CACHE"])
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
+data/mate-notification-daemon.desktop.in
 data/org.freedesktop.mate.Notifications.service
 data/org.mate.applets.MateNotificationApplet.desktop.in
 data/org.mate.NotificationDaemon.gschema.xml

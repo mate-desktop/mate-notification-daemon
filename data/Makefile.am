@@ -16,6 +16,17 @@ servicedir       = $(DBUS_SERVICES_DIR)
 service_DATA     = org.freedesktop.mate.Notifications.service org.mate.panel.applet.MateNotificationAppletFactory.service
 service_in_files = $(service_DATA:=.in)
 
+autostartdir   = $(sysconfdir)/xdg/autostart
+autostart_in_files = mate-notification-daemon.desktop.in
+autostart_DATA = $(autostart_in_files:.desktop.in=.desktop)
+
+$(autostart_DATA): $(autostart_in_files)
+if USE_NLS
+	$(AM_V_GEN) $(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+else
+	$(AM_V_GEN) sed '/^# Translators/d' < $< > $@
+endif
+
 appletdir        = $(datadir)/mate-panel/applets
 applet_DATA      = org.mate.applets.MateNotificationApplet.mate-panel-applet
 applet_in_files  = $(applet_DATA:.mate-panel-applet=.desktop.in)
@@ -43,6 +54,7 @@ gsettingsschema_in_files = $(gsettings_SCHEMAS:=.in)
 @GSETTINGS_RULES@
 
 EXTRA_DIST = \
+	$(autostart_in_files) \
 	$(desktop_in_files) \
 	$(gsettingsschema_in_files) \
 	$(icon16_DATA) \
@@ -53,6 +65,7 @@ EXTRA_DIST = \
 	$(iconscalable_DATA)
 
 CLEANFILES = \
+	$(autostart_DATA) \
 	$(applet_DATA) \
 	$(desktop_DATA) \
 	$(gsettings_SCHEMAS)
