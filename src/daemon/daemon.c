@@ -1126,6 +1126,7 @@ static gboolean screensaver_active(GtkWidget* nw)
 	if (proxy == NULL) {
 		g_warning("Failed to get dbus connection: %s", error->message);
 		g_error_free (error);
+		return active;
 	}
 
 	variant = g_dbus_proxy_call_sync (proxy,
