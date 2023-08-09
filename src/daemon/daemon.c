@@ -66,6 +66,7 @@
 enum {
 	PROP_0,
 	PROP_REPLACE,
+	PROP_IDLE_EXIT,
 	LAST_PROP
 };
 
@@ -119,6 +120,7 @@ struct _NotifyDaemon {
 	NotifyDaemonNotifications *skeleton;
 	guint              bus_name_id;
 	gboolean           replace;
+	gboolean           idle_exit;
 
 	NotifyStackLocation stack_location;
 	NotifyScreen* screen;
@@ -220,6 +222,9 @@ static void notify_daemon_set_property (GObject      *object,
 		case PROP_REPLACE:
 			daemon->replace = g_value_get_boolean (value);
 			break;
+		case PROP_IDLE_EXIT:
+			daemon->idle_exit = g_value_get_boolean (value);
+			break;
 		default:
 			G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
 			break;
@@ -237,6 +242,12 @@ static void notify_daemon_class_init(NotifyDaemonClass* daemon_class)
 		g_param_spec_boolean ("replace", "replace", "replace", FALSE,
 				G_PARAM_CONSTRUCT_ONLY | G_PARAM_WRITABLE |
 				G_PARAM_STATIC_STRINGS);
+	properties[PROP_IDLE_EXIT] =
+		g_param_spec_boolean ("idle-exit", "idle-exit",
+				      "Whether to exit when idle", FALSE,
+				      G_PARAM_CONSTRUCT_ONLY |
+				      G_PARAM_WRITABLE |
+				      G_PARAM_STATIC_STRINGS);
 
 	g_object_class_install_properties (object_class, LAST_PROP, properties);
 }
@@ -262,6 +273,9 @@ static gboolean do_exit(gpointer user_data)
 static void add_exit_timeout(NotifyDaemon* daemon)
 {
 	g_assert (daemon != NULL);
+
+	if (! daemon->idle_exit)
+		return;
 
 	if (daemon->exit_timeout_source > 0)
 		return;
@@ -1691,7 +1705,10 @@ static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications 
 	return TRUE;
 }
 
-NotifyDaemon* notify_daemon_new (gboolean replace)
+NotifyDaemon* notify_daemon_new (gboolean replace, gboolean idle_exit)
 {
-	return g_object_new (NOTIFY_TYPE_DAEMON, "replace", replace, NULL);
+	return g_object_new (NOTIFY_TYPE_DAEMON,
+			     "replace", replace,
+			     "idle-exit", idle_exit,
+			     NULL);
 }
