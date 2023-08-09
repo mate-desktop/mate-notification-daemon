@@ -51,7 +51,8 @@ typedef enum {
 
 G_BEGIN_DECLS
 
-NotifyDaemon*     notify_daemon_new        (gboolean replace);
+NotifyDaemon*     notify_daemon_new        (gboolean replace,
+                                            gboolean idle_exit);
 
 GQuark notify_daemon_error_quark(void);
 

@@ -31,6 +31,7 @@
 
 static gboolean debug = FALSE;
 static gboolean replace = FALSE;
+static gboolean idle_exit = FALSE;
 
 static GOptionEntry entries[] =
 {
@@ -44,6 +45,12 @@ static GOptionEntry entries[] =
 		"replace", 'r', G_OPTION_FLAG_NONE,
 		G_OPTION_ARG_NONE, &replace,
 		"Replace a currently running application",
+		NULL
+	},
+	{
+		"idle-exit", 'i', G_OPTION_FLAG_NONE,
+		G_OPTION_ARG_NONE, &idle_exit,
+		"Auto-exit when idle, useful if run through D-Bus activation",
 		NULL
 	},
 	{
@@ -95,7 +102,7 @@ int main (int argc, char *argv[])
 	if (!parse_arguments (&argc, &argv))
 		return EXIT_FAILURE;
 
-	daemon = notify_daemon_new (replace);
+	daemon = notify_daemon_new (replace, idle_exit);
 
 	gtk_main();
 
