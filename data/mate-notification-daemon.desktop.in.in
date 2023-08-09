@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=MATE Notification Daemon
+Comment=Display notifications
+Exec=@LIBEXECDIR@/mate-notification-daemon
+Terminal=false
+Type=Application
+OnlyShowIn=MATE;
+NoDisplay=true
+X-MATE-Autostart-Phase=Application
+X-MATE-Autostart-Notify=true
+X-MATE-Bugzilla-Bugzilla=MATE
+X-MATE-Bugzilla-Product=mate-notification-daemon
+X-MATE-Bugzilla-Component=general
+X-MATE-Bugzilla-Version=@VERSION@
