@@ -1,6 +1,7 @@
 [Applet Factory]
 Id=MateNotificationAppletFactory
-Location=@LIBEXECDIR@/mate-notification-applet
+Location=@APPLET_LOCATION@
+InProcess=@ENABLE_IN_PROCESS@
 Name=Mate Notification Applet Factory
 Description=Mate Notification Applet Factory
 

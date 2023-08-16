@@ -3,8 +3,12 @@ define generate_resources_deps
 endef
 
 bin_PROGRAMS = mate-notification-properties
-libexec_PROGRAMS = mate-notification-applet
 
+if ENABLE_IN_PROCESS
+pkglib_LTLIBRARIES = libmate-notification-applet.la
+else
+libexec_PROGRAMS = mate-notification-applet
+endif
 NULL =
 
 mate_notification_properties_CFLAGS = \
@@ -35,6 +39,33 @@ mate_notification_properties_SOURCES = \
 
 man_MANS = mate-notification-properties.1
 
+if ENABLE_IN_PROCESS
+
+libmate_notification_applet_la_SOURCES = \
+	$(mate_notification_applet_resources_files) \
+	../common/constants.h \
+	mate-notification-applet.c \
+	$(NULL)
+
+libmate_notification_applet_la_CFLAGS = \
+	-I$(top_srcdir)/src/common \
+	$(NOTIFICATION_APPLET_CFLAGS) \
+	-DMATELOCALEDIR=\"$(datadir)/locale\" \
+	-DRESOURCE_PATH=\""/org/mate/panel/applet/notifications/"\" \
+	$(WARN_CFLAGS) \
+	$(NULL)
+
+libmate_notification_applet_la_LIBADD = \
+	$(NOTIFICATION_APPLET_LIBS) \
+	$(NULL)
+
+else
+mate_notification_applet_SOURCES = \
+	$(mate_notification_applet_resources_files) \
+	../common/constants.h \
+	mate-notification-applet.c \
+	$(NULL)
+
 mate_notification_applet_CFLAGS = \
 	-I$(top_srcdir)/src/common \
 	$(NOTIFICATION_APPLET_CFLAGS) \
@@ -47,17 +78,15 @@ mate_notification_applet_LDADD = \
 	$(NOTIFICATION_APPLET_LIBS) \
 	$(NULL)
 
+endif
+
 mate_notification_applet_resources_xml   = org.mate.panel.applet.notifications.gresource.xml
 mate_notification_applet_resources_deps  = $(call generate_resources_deps $(mate_notification_applet_resources_xml))
 mate_notification_applet_resources_files = mate-notification-applet-resources.h mate-notification-applet-resources.c
 $(mate_notification_applet_resources_files): $(mate_notification_applet_resources_xml) Makefile $(mate_notification_applet_resources_deps)
 	$(AM_V_GEN) XMLLINT=$(XMLLINT) $(GLIB_COMPILE_RESOURCES) $< \
 		--target $@ --sourcedir $(srcdir) --generate --c-name notification_applet
-mate_notification_applet_SOURCES = \
-	$(mate_notification_applet_resources_files) \
-	../common/constants.h \
-	mate-notification-applet.c \
-	$(NULL)
+
 
 BUILT_SOURCES = \
 	$(mate_notification_properties_resources_files) \

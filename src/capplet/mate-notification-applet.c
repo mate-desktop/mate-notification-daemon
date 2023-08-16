@@ -173,16 +173,19 @@ applet_main (MatePanelApplet *applet_widget)
   textdomain (GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
 
+#ifndef ENABLE_IN_PROCESS
   g_set_application_name (_("Do Not Disturb"));
+#endif
   gtk_window_set_default_icon_name ("mate-notification-properties");
 
   applet = g_new (MateNotificationApplet, 1);
   applet->applet = applet_widget;
   applet->settings = g_settings_new (GSETTINGS_SCHEMA);
 
+#ifndef ENABLE_IN_PROCESS
   /* needed to clamp ourselves to the panel size */
   mate_panel_applet_set_flags (MATE_PANEL_APPLET (applet), MATE_PANEL_APPLET_EXPAND_MINOR);
-
+#endif
   box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
   applet->image_on  = gtk_image_new ();
@@ -257,7 +260,7 @@ applet_factory (MatePanelApplet *applet_widget,
   return FALSE;
 }
 
-MATE_PANEL_APPLET_OUT_PROCESS_FACTORY ("MateNotificationAppletFactory",
+PANEL_APPLET_FACTORY ("MateNotificationAppletFactory",
                                        PANEL_TYPE_APPLET,
                                        "Do Not Disturb Applet",
                                        applet_factory,
