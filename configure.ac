@@ -198,6 +198,28 @@ if test "x$have_x11" != "xyes" -a "x$have_wayland" != "xyes"; then
   AC_MSG_ERROR([At least one backend must be enabled (--enable-x11 or --enable-wayland)])
 fi
 
+AC_ARG_ENABLE([in-process],
+              [AS_HELP_STRING([--enable-in-process],
+                              [Build do not disturb applet in-process so it can be used in wayland])],
+              [enable_in_process=$enableval],
+              [enable_in_process=no])
+
+# Automake conditional on whether to build in-process
+AM_CONDITIONAL([ENABLE_IN_PROCESS], [test "x$enable_in_process" = "xyes"])
+# Automake value expected to be substitued in .mate-panel-apple.* for the value of "InProcess"
+AS_IF([test "x$enable_in_process" = "xyes"],
+      [AC_SUBST([ENABLE_IN_PROCESS], [true])],
+      [AC_SUBST([ENABLE_IN_PROCESS], [false])])
+# C conditional on whether to build in-process
+AS_IF([test "x$enable_in_process" = "xyes"],
+      [AC_DEFINE([ENABLE_IN_PROCESS], [1], [building in-process])])
+
+# Convenience C define selecting the right applet factory
+AS_IF([test "x$enable_in_process" = "xyes"],
+      [factory=MATE_PANEL_APPLET_IN_PROCESS_FACTORY],
+      [factory=MATE_PANEL_APPLET_OUT_PROCESS_FACTORY])
+AC_DEFINE_UNQUOTED([PANEL_APPLET_FACTORY], [$factory], [Panel applet factory])
+
 AC_SUBST(NOTIFICATION_DAEMON_CFLAGS)
 AC_SUBST(NOTIFICATION_DAEMON_LIBS)
 
@@ -250,6 +272,11 @@ AS_AC_EXPAND(SYSCONFDIR, $sysconfdir)
 AS_AC_EXPAND(LIBDIR, $libdir)
 AS_AC_EXPAND(DATADIR, $datadir)
 AS_AC_EXPAND(LIBEXECDIR, $libexecdir)
+
+# Get the applet location
+AS_IF([test "x$enable_in_process" = "xyes"],
+      [AS_AC_EXPAND(APPLET_LOCATION, $libdir/mate-notification-daemon/libmate-notification-applet.so)],
+      [AS_AC_EXPAND(APPLET_LOCATION, $libexecdir/mate-notification-applet)])
 
 AC_ARG_WITH(dbus-sys, [  --with-dbus-sys=<dir>   where D-BUS system.d directory is])
 AC_ARG_WITH(dbus-services, [  --with-dbus-services=<dir>   where D-BUS services directory is])
@@ -318,6 +345,7 @@ Configure summary:
     warning flags ...............: ${WARN_CFLAGS}
     Wayland support .............: ${have_wayland}
     X11 support .................: ${have_x11}
+    Applet in-process............: ${enable_in_process}
     Native Language support .....: ${USE_NLS}
 
     dbus-1 system.d .............: $DBUS_SYS_DIR

@@ -12,9 +12,15 @@ icon32_DATA = icons/32x32/mate-notification-properties.png
 icon48_DATA = icons/48x48/mate-notification-properties.png
 iconscalable_DATA = icons/scalable/mate-notification-properties.svg
 
+if ENABLE_IN_PROCESS
+servicedir       = $(DBUS_SERVICES_DIR)
+service_DATA     = org.freedesktop.mate.Notifications.service
+service_in_files = $(service_DATA:=.in)
+else
 servicedir       = $(DBUS_SERVICES_DIR)
 service_DATA     = org.freedesktop.mate.Notifications.service org.mate.panel.applet.MateNotificationAppletFactory.service
 service_in_files = $(service_DATA:=.in)
+endif
 
 autostartdir   = $(sysconfdir)/xdg/autostart
 autostart_in_files = mate-notification-daemon.desktop.in
