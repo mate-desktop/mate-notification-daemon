@@ -1129,6 +1129,9 @@ static gboolean screensaver_active(GtkWidget* nw)
 	GVariant *variant;
 	GDBusProxy *proxy = NULL;
 
+	if (!(GDK_IS_X11_DISPLAY (gdk_display_get_default ())))
+		return FALSE;
+
 	proxy = g_dbus_proxy_new_for_bus_sync(G_BUS_TYPE_SESSION,
 			G_DBUS_PROXY_FLAGS_NONE,
 			NULL,
