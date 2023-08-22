@@ -4,8 +4,8 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Benedikt Straub <benedikt-straub@web.de>, 2019
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
+# Benedikt Straub <benedikt-straub@web.de>, 2023
 # 
 msgid ""
 msgstr ""
@@ -13,8 +13,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2022-10-29 15:33+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2021\n"
-"Language-Team: Low German (https://www.transifex.com/mate/teams/13566/nds/)\n"
+"Last-Translator: Benedikt Straub <benedikt-straub@web.de>, 2023\n"
+"Language-Team: Low German (https://app.transifex.com/mate/teams/13566/nds/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -33,17 +33,17 @@ msgstr "Sett de Instellungen för Vörkoom-Narichten"
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: data/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr ""
+msgstr "MATE;Mitdeelens;Thema;"
 
 #: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
 msgid "Mate Notification Applet Factory"
-msgstr ""
+msgstr "Fabrik för dat Mitdeelens-Rebeet"
 
 #: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
 #: src/capplet/mate-notification-applet.c:176
 #: src/capplet/mate-notification-applet.c:193
 msgid "Do Not Disturb"
-msgstr ""
+msgstr "Nich stören"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
@@ -96,11 +96,11 @@ msgstr "Maakt Gedrüüs-Unnerstütten för Narichten at oder ut."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr ""
+msgstr "Nich stören"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr ""
+msgstr "Wenn an, worden keene Mitdeelens wiest."
 
 #: src/capplet/mate-notification-applet.c:52
 msgid "_Preferences"
@@ -112,15 +112,15 @@ msgstr "_Över"
 
 #: src/capplet/mate-notification-applet.c:105
 msgid "About Do Not Disturb"
-msgstr ""
+msgstr "Över »Nich stören«"
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
-msgstr ""
+msgstr "Copyright © 2021 MATE-Entwicklers"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
-msgstr ""
+msgstr "Fix de Nich-Stören-Modus anknipsen."
 
 #: src/capplet/mate-notification-applet.c:110
 msgid "translator-credits"
@@ -131,15 +131,15 @@ msgstr ""
 
 #: src/capplet/mate-notification-applet.c:194
 msgid "Notifications Enabled"
-msgstr ""
+msgstr "Mitdeelens an"
 
 #: src/capplet/mate-notification-applet.c:215
 msgid "_Do not disturb"
-msgstr ""
+msgstr "_Nich stören"
 
 #: src/capplet/mate-notification-applet.c:216
 msgid "Enable/Disable do-not-disturb mode."
-msgstr ""
+msgstr "De Nich-Stören-Modus an- of utknipsen."
 
 #: src/capplet/mate-notification-properties.c:327
 msgid "Coco"
@@ -177,7 +177,7 @@ msgstr "Fehler bi'm Wiesen vun eener Naricht: %s"
 #: src/capplet/mate-notification-properties.c:459
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr ""
+msgstr "Kunn de Brukerschnittstee nich laden: %s"
 
 #: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
@@ -189,7 +189,7 @@ msgstr "_Utblick"
 
 #: src/capplet/mate-notification-properties.ui:52
 msgid "_Close"
-msgstr "_Sluten"
+msgstr "Di_chtmaken"
 
 #: src/capplet/mate-notification-properties.ui:101
 msgid "_Theme:"
@@ -221,11 +221,11 @@ msgstr "Unnen rechts"
 
 #: src/capplet/mate-notification-properties.ui:201
 msgid "Enable Do Not Disturb"
-msgstr ""
+msgstr "»Nich stören« anknipsen"
 
 #: src/capplet/mate-notification-properties.ui:222
 msgid "General Options"
-msgstr ""
+msgstr "Allgemeene Instellens:"
 
 #: src/daemon/daemon.c:1341
 msgid "Exceeded maximum number of notifications"
