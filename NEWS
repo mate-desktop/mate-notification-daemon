@@ -1,6 +1,18 @@
+### mate-notification-daemon 1.27.1
+
+  * update translations
+  * wayland: do not attempt to connect to x11 screensaver
+  * Wayland: Allow building do not disturb applet in process
+  * Auto-start m-n-d with session
+  * Only exit on idle when explicitly requested
+  * Fix potential crash if org.mate.ScreenSaver doesn't respond
+  * Fix build warnings about missing field initializer
+  * mnd-daemon: fix memory leak
+  * daemon: fix memory leak
+
 ### mate-notification-daemon 1.27.0
 
-  * tx: sync with transifex
+  * update translations
   * configure.ac: The macro 'AC_HELP_STRING' is obsolete
   * tx: update resource
   * tx: migrate config file
