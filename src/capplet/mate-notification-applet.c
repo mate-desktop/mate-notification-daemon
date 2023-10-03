@@ -193,8 +193,8 @@ applet_main (MatePanelApplet *applet_widget)
 
   applet_draw_icon (applet_widget, 0, applet);
 
-  gtk_widget_set_tooltip_text (applet->image_off, N_("Do Not Disturb"));
-  gtk_widget_set_tooltip_text (applet->image_on, N_("Notifications Enabled"));
+  gtk_widget_set_tooltip_text (applet->image_off, _("Do Not Disturb"));
+  gtk_widget_set_tooltip_text (applet->image_on, _("Notifications Enabled"));
 
   gtk_box_pack_start (GTK_BOX (box), applet->image_on,
                       TRUE, TRUE, 0);
@@ -215,8 +215,8 @@ applet_main (MatePanelApplet *applet_widget)
                                 G_N_ELEMENTS (applet_menu_actions), applet);
 
   GtkToggleAction *do_not_disturb_toggle_action =
-    gtk_toggle_action_new ("DoNotDisturb", N_("_Do not disturb"),
-                           N_("Enable/Disable do-not-disturb mode."), NULL);
+    gtk_toggle_action_new ("DoNotDisturb", _("_Do not disturb"),
+                           _("Enable/Disable do-not-disturb mode."), NULL);
 
   gtk_action_group_add_action (applet->action_group,
                                GTK_ACTION (do_not_disturb_toggle_action));
