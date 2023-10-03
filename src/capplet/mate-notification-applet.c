@@ -22,7 +22,7 @@
 #include "config.h"
 
 #include <glib.h>
-#include <glib/gi18n.h>
+#include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <mate-panel-applet.h>
 
@@ -166,12 +166,6 @@ applet_main (MatePanelApplet *applet_widget)
 {
   MateNotificationApplet *applet;
   GtkWidget *box;
-
-#ifdef ENABLE_NLS
-  bindtextdomain (GETTEXT_PACKAGE, MATELOCALEDIR);
-  bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-  textdomain (GETTEXT_PACKAGE);
-#endif /* ENABLE_NLS */
 
 #ifndef ENABLE_IN_PROCESS
   g_set_application_name (_("Do Not Disturb"));
