@@ -28,6 +28,8 @@
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
 
+#include <libxml/parser.h>
+#include <libxml/xmlmemory.h>
 #include <libxml/xpath.h>
 
 /* Define basic coco types */
