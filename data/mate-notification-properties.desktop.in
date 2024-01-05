@@ -8,6 +8,6 @@ Terminal=false
 Type=Application
 StartupNotify=true
 Categories=GTK;Settings;DesktopSettings;
-OnlyShowIn=MATE;
+OnlyShowIn=MATE;MATE-wayland;
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=MATE;Notification;Theme;
