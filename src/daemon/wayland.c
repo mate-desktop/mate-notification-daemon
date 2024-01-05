@@ -51,10 +51,10 @@ void wayland_move_notification (GtkWindow* nw, int x, int y)
 	gdk_monitor_get_workarea (monitor, &workarea);
 	GtkRequisition  req;
 	gtk_widget_get_preferred_size (GTK_WIDGET (nw), NULL, &req);
-	int left_gap = x;
-	int top_gap = y;
-	int right_gap = workarea.width - x - req.width;
-	int bottom_gap = workarea.height - y - req.height;
+	int left_gap = x - workarea.x;
+	int top_gap = y - workarea.y;
+	int right_gap = workarea.x + workarea.width - x - req.width;
+	int bottom_gap = workarea.y + workarea.height - y - req.height;
 
 	if (left_gap < right_gap)
 	{
