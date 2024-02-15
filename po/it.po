@@ -4,7 +4,7 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # 
 # Translators:
-# Giuseppe Pignataro <rogepix@gmail.com>, 2018
+# Giuseppe Pignataro (Fastbyte01) <rogepix@gmail.com>, 2018
 # Antonio Gschossmann <gschossmannantonio@gmail.com>, 2018
 # Enrico B. <enricobe@hotmail.com>, 2019
 # Dario Di Nucci <linkin88mail@gmail.com>, 2020
@@ -13,9 +13,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Alessandro Volturno <alelvb@inwind.it>, 2022\n"
 "Language-Team: Italian (https://app.transifex.com/mate/teams/13566/it/)\n"
@@ -39,13 +39,13 @@ msgstr "Imposta le preferenze delle notifiche a comparsa"
 msgid "MATE;Notification;Theme;"
 msgstr "MATE;Notification;Theme;"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr "Impostazioni dell'applet Notifiche di Mate"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
 msgstr "Non disturbare"
 
@@ -131,15 +131,15 @@ msgstr "Attiva rapidamente la modalità non disturbare."
 msgid "translator-credits"
 msgstr " Alessandro Volturno, 2020-2022"
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr "Notifiche abilitate"
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr "Non _Disturbare"
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr "Attiva/disattiva la modalità non-disturbare"
 
@@ -229,11 +229,11 @@ msgstr "Abilita Non Disturbare"
 msgid "General Options"
 msgstr "Impostazioni Generali"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "Superato il numero massimo di notifiche"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u non è un ID di notifica valido"

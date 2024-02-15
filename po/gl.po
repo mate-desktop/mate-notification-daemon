@@ -10,9 +10,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Miguel Anxo Bouzada <mbouzada@gmail.com>, 2021\n"
 "Language-Team: Galician (https://app.transifex.com/mate/teams/13566/gl/)\n"
@@ -36,13 +36,13 @@ msgstr "Estabeleza as súas preferencias para as notificacións emerxentes"
 msgid "MATE;Notification;Theme;"
 msgstr "MATE;Notificación;Tema;"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr "Factoría do miniaplicativo Notificación do Mate"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
 msgstr "Non molestar"
 
@@ -130,15 +130,15 @@ msgstr ""
 "Miguel Anxo Bouzada <mbouzada@gmail.com>\n"
 "Proxecto Trasno <proxecto@trasno.gal>"
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr "Notificacións activadas"
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr "_Non molestar"
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr "Activar/Desactivar o modo Non molestar"
 
@@ -228,11 +228,11 @@ msgstr "Activar o Non molestar"
 msgid "General Options"
 msgstr "Opcións xerais"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "Excedeuse o número máximo de notificacións"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u non é un ID de notificación correcto"

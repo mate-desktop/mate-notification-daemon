@@ -14,9 +14,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Toni Estévez <toni.estevez@gmail.com>, 2021\n"
 "Language-Team: Spanish (https://app.transifex.com/mate/teams/13566/es/)\n"
@@ -40,13 +40,13 @@ msgstr "Configurar las preferencias de las notificaciones emergentes"
 msgid "MATE;Notification;Theme;"
 msgstr "MATE;notificaciones;tema;"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr "Fábrica de la miniaplicación Notificaciones de MATE"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
 msgstr "No molestar"
 
@@ -138,15 +138,15 @@ msgstr ""
 "Francisco Javier F. Serrador <serrador@cvs.gnome.org>, 2003-2006\n"
 "Pablo Gonzalo del Campo <pablodc@bigfoot.com>, 2002-2003"
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr "Notificaciones activadas"
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr "_No molestar"
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr "Activar/desactivar el modo no molestar."
 
@@ -236,11 +236,11 @@ msgstr "Activar la opción de no molestar"
 msgid "General Options"
 msgstr "Opciones generales"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "Se excedió el número máximo de notificaciones"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u no es un ID de notificación válido"

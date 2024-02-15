@@ -7,15 +7,15 @@
 # Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # fbc955180bc2b956cb4ef52d00eb80a0_91487f8, 2018
 # ABE Tsunehiko, 2021
-# Green <usergreen@users.osdn.me>, 2021
+# Green <usergreen@users.osdn.me>, 2024
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Green <usergreen@users.osdn.me>, 2021\n"
+"Last-Translator: Green <usergreen@users.osdn.me>, 2024\n"
 "Language-Team: Japanese (https://app.transifex.com/mate/teams/13566/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,15 +37,15 @@ msgstr "ポップアップ通知の設定をします"
 msgid "MATE;Notification;Theme;"
 msgstr "MATE;Notification;Theme;"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr "MATE ポップアップ通知アプレット・ファクトリ"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
-msgstr "妨げない"
+msgstr "邪魔しないモード"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
@@ -56,27 +56,27 @@ msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
-"通知情報を積み重ねてポップアップ表示するデフォルトの場所です。指定可能な値: "
+"通知情報を積み重ねてポップアップ表示する既定の場所です。指定可能な値: "
 "\"top_left\"、\"top_right\"、\"bottom_left\"、\"bottom_right\""
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
-msgstr "アクティブモニターを使う"
+msgstr "アクティブモニタを使う"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
-msgstr "通知をアクティブモニターに表示します。"
+msgstr "通知をアクティブモニタに表示します。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
-msgstr "モニター"
+msgstr "モニタ"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:16
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
-msgstr "通知を表示するモニター。-1(アクティブモニターに表示)または0〜n-1のモニター番号を指定可能です。"
+msgstr "通知を表示するモニタ。-1 (アクティブモニタに表示) または 0〜n-1 のモニタ番号を指定可能です。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
@@ -96,7 +96,7 @@ msgstr "通知時にサウンドを鳴らすかどうかを指定します。"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr "妨げない"
+msgstr "邪魔しないモード"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
@@ -112,7 +112,7 @@ msgstr "情報(_A)"
 
 #: src/capplet/mate-notification-applet.c:105
 msgid "About Do Not Disturb"
-msgstr "Do Not Disturb について"
+msgstr "邪魔しないモード (Do Not Disturb) について"
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
@@ -120,7 +120,7 @@ msgstr "Copyright © 2021 MATE 開発者"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
-msgstr "「do not disturb mode」をすぐに起動する。"
+msgstr "邪魔しないモードを今すぐ起動する。"
 
 #: src/capplet/mate-notification-applet.c:110
 msgid "translator-credits"
@@ -139,15 +139,15 @@ msgstr ""
 "日本GNOMEユーザー会 http://www.gnome.gr.jp/ \n"
 "MATE 文書化チーム https://www.transifex.com/mate/ "
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr "通知機能が有効"
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr "妨げない(_D)"
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr "「妨げない」モードの有効/無効"
 
@@ -187,7 +187,7 @@ msgstr "ポップアップ通知に失敗しました: %s"
 #: src/capplet/mate-notification-properties.c:459
 #, c-format
 msgid "Could not load user interface: %s"
-msgstr "ユーザー・インターフェースを読み込めませんでした: %s"
+msgstr "ユーザインタフェースを読み込めませんでした: %s"
 
 #: src/capplet/mate-notification-properties.ui:18
 msgid "Notification Settings"
@@ -211,7 +211,7 @@ msgstr "位置(_O):"
 
 #: src/capplet/mate-notification-properties.ui:129
 msgid "_Monitor:"
-msgstr "モニター(_M):"
+msgstr "モニタ(_M):"
 
 #: src/capplet/mate-notification-properties.ui:155
 msgid "Top Left"
@@ -231,17 +231,17 @@ msgstr "右下隅"
 
 #: src/capplet/mate-notification-properties.ui:201
 msgid "Enable Do Not Disturb"
-msgstr "Do Not Disturb を有効にする"
+msgstr "邪魔しないモードを有効にする"
 
 #: src/capplet/mate-notification-properties.ui:222
 msgid "General Options"
 msgstr "全般の設定"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "通知の最大数を超過しました"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u は有効な通知 ID ではありません"

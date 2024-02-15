@@ -9,9 +9,9 @@
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
 "Last-Translator: Elvis M. Lukšić <meluksic@yahoo.com>, 2021\n"
 "Language-Team: Croatian (https://app.transifex.com/mate/teams/13566/hr/)\n"
@@ -35,13 +35,13 @@ msgstr "Postavi vlastite prilagodbe iskačućih obavijesti"
 msgid "MATE;Notification;Theme;"
 msgstr ""
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr ""
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
 msgstr ""
 
@@ -150,15 +150,15 @@ msgstr ""
 "  civix https://launchpad.net/~civix\n"
 "  young https://launchpad.net/~davorin-sego"
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr ""
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr ""
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr ""
 
@@ -248,11 +248,11 @@ msgstr ""
 msgid "General Options"
 msgstr "Opće mogućnosti"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "Prekoračen je najviši mogući broj obavijesti"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u nije ispravni označivač obavijesti"

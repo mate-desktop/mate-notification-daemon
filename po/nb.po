@@ -8,15 +8,15 @@
 # Stefano Karapetsas <stefano@karapetsas.com>, 2018
 # Allan Nordhøy <epost@anotheragency.no>, 2021
 # 87d96f43665dd9fb55eba4603e184cae, 2021
-# heskjestad <cato@heskjestad.xyz>, 2021
+# Kaci Heskjestad, 2021
 # 
 msgid ""
 msgstr ""
-"Project-Id-Version: mate-notification-daemon 1.26.0\n"
+"Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
-"POT-Creation-Date: 2022-10-29 15:33+0200\n"
+"POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: heskjestad <cato@heskjestad.xyz>, 2021\n"
+"Last-Translator: Kaci Heskjestad, 2021\n"
 "Language-Team: Norwegian Bokmål (https://app.transifex.com/mate/teams/13566/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,13 +38,13 @@ msgstr "Angi dine preferanser for oppsprettsvarsler"
 msgid "MATE;Notification;Theme;"
 msgstr "MATE;varsling;tema;"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:5
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
 msgstr "Fabrikk for varslinger i MATE"
 
-#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:9
-#: src/capplet/mate-notification-applet.c:176
-#: src/capplet/mate-notification-applet.c:193
+#: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
+#: src/capplet/mate-notification-applet.c:177
+#: src/capplet/mate-notification-applet.c:196
 msgid "Do Not Disturb"
 msgstr "Ikke forstyrr"
 
@@ -140,15 +140,15 @@ msgstr ""
 "\n"
 "Av totalt 11597 tekststrenger."
 
-#: src/capplet/mate-notification-applet.c:194
+#: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
 msgstr "Varslinger er slått på"
 
-#: src/capplet/mate-notification-applet.c:215
+#: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
 msgstr "_Ikke forstyrr"
 
-#: src/capplet/mate-notification-applet.c:216
+#: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
 msgstr "Slå på/av «ikke forstyrr»-modus."
 
@@ -238,11 +238,11 @@ msgstr "Slå på «ikke forstyrr»"
 msgid "General Options"
 msgstr "Generelle innstillinger"
 
-#: src/daemon/daemon.c:1341
+#: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
 msgstr "Oversteget maksimalt antall varslinger"
 
-#: src/daemon/daemon.c:1646
+#: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
 msgstr "%u er ikke en gyldig varsel-ID"
