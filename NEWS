@@ -1,6 +1,14 @@
+### mate-notification-daemon 1.28.0
+
+  * Translations update
+  * Fix positioning on Wayland when output is not at position 0, 0
+  * fix building with libxml 2.12.0
+  * applet: Do not override the process' text domain
+  * applet: Actually use translations
+
 ### mate-notification-daemon 1.27.1
 
-  * update translations
+  * Translations update
   * wayland: do not attempt to connect to x11 screensaver
   * Wayland: Allow building do not disturb applet in process
   * Auto-start m-n-d with session
@@ -12,7 +20,7 @@
 
 ### mate-notification-daemon 1.27.0
 
-  * update translations
+  * Translations update
   * configure.ac: The macro 'AC_HELP_STRING' is obsolete
   * tx: update resource
   * tx: migrate config file
