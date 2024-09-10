@@ -50,6 +50,11 @@ GList* notify_stack_get_windows(NotifyStack *stack)
 	return stack->windows;
 }
 
+GdkMonitor* notify_stack_get_monitor(NotifyStack *stack)
+{
+	return stack->monitor;
+}
+
 #ifdef HAVE_X11
 static gboolean
 get_work_area (NotifyStack  *stack,
