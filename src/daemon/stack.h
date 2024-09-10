@@ -46,6 +46,7 @@ void notify_stack_set_location(NotifyStack* stack, NotifyStackLocation location)
 void notify_stack_add_window(NotifyStack* stack, GtkWindow* nw, gboolean new_notification);
 void notify_stack_remove_window(NotifyStack* stack, GtkWindow* nw);
 GList* notify_stack_get_windows(NotifyStack* stack);
+GdkMonitor* notify_stack_get_monitor(NotifyStack* stack);
 void notify_stack_queue_update_position(NotifyStack* stack);
 
 #endif /* _NOTIFY_STACK_H_ */

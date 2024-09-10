@@ -323,54 +323,68 @@ static void on_screen_monitors_changed(GdkScreen* screen, NotifyDaemon* daemon)
 	GdkDisplay     *display;
 	NotifyScreen* nscreen;
 	int n_monitors;
-	int i;
 
 	nscreen = daemon->screen;
 	display = gdk_screen_get_display (screen);
 
 	n_monitors = gdk_display_get_n_monitors(display);
 
-	if (n_monitors > (int) nscreen->n_stacks)
+	if (n_monitors != (int) nscreen->n_stacks)
 	{
-		/* grow */
-		nscreen->stacks = g_renew(NotifyStack *, nscreen->stacks, (gsize) n_monitors);
+		NotifyStack **new_stacks = g_malloc (sizeof *new_stacks * n_monitors);
 
-		/* add more stacks */
-		for (i = (int) nscreen->n_stacks; i < n_monitors; i++)
+		/* create the new list, either moving over from the existing stacks,
+		 * or creating new ones as needed */
+		for (int i = 0; i < n_monitors; i++)
 		{
-			create_stack_for_monitor(daemon, screen, gdk_display_get_monitor (display, i));
+			GdkMonitor *monitor = gdk_display_get_monitor (display, i);
+			gsize j;
+
+			for (j = 0; j < nscreen->n_stacks; j++)
+			{
+				if (nscreen->stacks[j] != NULL &&
+				    notify_stack_get_monitor (nscreen->stacks[j]) == monitor)
+				{
+					new_stacks[i] = nscreen->stacks[j];
+					nscreen->stacks[j] = NULL;
+					break;
+				}
+			}
+			/* not found, create it */
+			if (j >= nscreen->n_stacks)
+				new_stacks[i] = notify_stack_new (daemon, screen, monitor, daemon->stack_location);
 		}
-
-		nscreen->n_stacks = (gsize) n_monitors;
-	}
-	else if (n_monitors < (int) nscreen->n_stacks)
-	{
-		NotifyStack* last_stack;
-
-		last_stack = nscreen->stacks[n_monitors - 1];
-
-		/* transfer items before removing stacks */
-		for (i = n_monitors; i < (int) nscreen->n_stacks; i++)
+		/* transfer items and remove old stacks */
+		for (gsize i = 0; i < nscreen->n_stacks; i++)
 		{
 			NotifyStack* stack = nscreen->stacks[i];
-			GList* windows = g_list_copy(notify_stack_get_windows(stack));
-			GList* l;
 
-			for (l = windows; l != NULL; l = l->next)
+			/* if it has been moved over to the new ones, ignore it */
+			if (stack == NULL)
+				continue;
+
+			if (n_monitors > 0) /* always true, but just to be safe */
 			{
-				/* skip removing the window from the old stack since it will try
-				 * to unrealize the window.
-				 * And the stack is going away anyhow. */
-				notify_stack_add_window(last_stack, l->data, TRUE);
+				int target_idx = n_monitors - 1;
+				GList* windows = g_list_copy (notify_stack_get_windows (stack));
+
+				for (GList *l = windows; l != NULL; l = l->next)
+				{
+					/* skip removing the window from the old stack since it will try
+					 * to unrealize the window.
+					 * And the stack is going away anyhow. */
+					notify_stack_add_window (new_stacks[target_idx], l->data, TRUE);
+				}
+
+				g_list_free(windows);
 			}
 
-			g_list_free(windows);
 			notify_stack_destroy(stack);
 			nscreen->stacks[i] = NULL;
 		}
 
-		/* remove the extra stacks */
-		nscreen->stacks = g_renew(NotifyStack*, nscreen->stacks, (gsize) n_monitors);
+		g_free (nscreen->stacks);
+		nscreen->stacks = new_stacks;
 		nscreen->n_stacks = (gsize) n_monitors;
 	}
 }
