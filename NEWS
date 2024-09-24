@@ -1,3 +1,9 @@
+### mate-notification-daemon 1.28.1
+
+  * Try and fix Travis deploy
+  * daemon: Properly update the set of monitors when it changes
+  * ci: use ubuntu jammy as docker
+
 ### mate-notification-daemon 1.28.0
 
   * Translations update
