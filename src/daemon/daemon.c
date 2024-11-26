@@ -266,7 +266,7 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 
 static gboolean do_exit(gpointer user_data)
 {
-	exit(0);
+	gtk_main_quit();
 	return FALSE;
 }
 
