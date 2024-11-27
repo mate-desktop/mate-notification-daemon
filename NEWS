@@ -1,3 +1,9 @@
+### mate-notification-daemon 1.28.2
+
+  * ci: fix known "edge" deployment issue
+  * Update daemon.c remove exit / replace with gtk_main_quit
+  * Try to fix start of travis build process
+
 ### mate-notification-daemon 1.28.1
 
   * Try and fix Travis deploy
