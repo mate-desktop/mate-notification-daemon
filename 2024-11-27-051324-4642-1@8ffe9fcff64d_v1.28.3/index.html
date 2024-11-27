@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>rootdir - scan-build results</title>
+<link type="text/css" rel="stylesheet" href="scanview.css"/>
+<script src="sorttable.js"></script>
+<script language='javascript' type="text/javascript">
+function SetDisplay(RowClass, DisplayVal)
+{
+  var Rows = document.getElementsByTagName("tr");
+  for ( var i = 0 ; i < Rows.length; ++i ) {
+    if (Rows[i].className == RowClass) {
+      Rows[i].style.display = DisplayVal;
+    }
+  }
+}
+
+function CopyCheckedStateToCheckButtons(SummaryCheckButton) {
+  var Inputs = document.getElementsByTagName("input");
+  for ( var i = 0 ; i < Inputs.length; ++i ) {
+    if (Inputs[i].type == "checkbox") {
+      if(Inputs[i] != SummaryCheckButton) {
+        Inputs[i].checked = SummaryCheckButton.checked;
+        Inputs[i].onclick();
+      }
+    }
+  }
+}
+
+function returnObjById( id ) {
+    if (document.getElementById)
+        var returnVar = document.getElementById(id);
+    else if (document.all)
+        var returnVar = document.all[id];
+    else if (document.layers)
+        var returnVar = document.layers[id];
+    return returnVar;
+}
+
+var NumUnchecked = 0;
+
+function ToggleDisplay(CheckButton, ClassName) {
+  if (CheckButton.checked) {
+    SetDisplay(ClassName, "");
+    if (--NumUnchecked == 0) {
+      returnObjById("AllBugsCheck").checked = true;
+    }
+  }
+  else {
+    SetDisplay(ClassName, "none");
+    NumUnchecked++;
+    returnObjById("AllBugsCheck").checked = false;
+  }
+}
+</script>
+<!-- SUMMARYENDHEAD -->
+</head>
+<body>
+<h1>rootdir - scan-build results</h1>
+
+<table>
+<tr><th>User:</th><td>root@11dbe4dd72b3</td></tr>
+<tr><th>Working Directory:</th><td>/rootdir</td></tr>
+<tr><th>Command Line:</th><td>make -j 2</td></tr>
+<tr><th>Clang Version:</th><td>clang version 19.1.0 (Fedora 19.1.0-1.fc41)
+</td></tr>
+<tr><th>Date:</th><td>Wed Nov 27 05:13:24 2024</td></tr>
+</table>
+<h2>Analyzer Failures</h2>
+<p>The analyzer had problems processing the following files:</p>
+<table>
+<thead><tr><td>Problem</td><td>Source File</td><td>Preprocessed File</td><td>STDERR Output</td></tr></thead>
+<tr><td>Other Error</td><td>daemon/daemon.c</td><td><a href="failures/clang_other_error_7WOOfu.i">clang_other_error_7WOOfu.i</a></td><td><a href="failures/clang_other_error_7WOOfu.i.stderr.txt">clang_other_error_7WOOfu.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/daemon.c" file="failures/clang_other_error_7WOOfu.i" clangfile="failures/clang_other_error_7WOOfu.clang.i" stderr="failures/clang_other_error_7WOOfu.i.stderr.txt" info="failures/clang_other_error_7WOOfu.i.info.txt" -->
+<tr><td>Other Error</td><td>daemon/sound.c</td><td><a href="failures/clang_other_error_Jbwo6t.i">clang_other_error_Jbwo6t.i</a></td><td><a href="failures/clang_other_error_Jbwo6t.i.stderr.txt">clang_other_error_Jbwo6t.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/sound.c" file="failures/clang_other_error_Jbwo6t.i" clangfile="failures/clang_other_error_Jbwo6t.clang.i" stderr="failures/clang_other_error_Jbwo6t.i.stderr.txt" info="failures/clang_other_error_Jbwo6t.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/coco/coco-theme.c</td><td><a href="failures/clang_other_error_KAdaBT.i">clang_other_error_KAdaBT.i</a></td><td><a href="failures/clang_other_error_KAdaBT.i.stderr.txt">clang_other_error_KAdaBT.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/coco/coco-theme.c" file="failures/clang_other_error_KAdaBT.i" clangfile="failures/clang_other_error_KAdaBT.clang.i" stderr="failures/clang_other_error_KAdaBT.i.stderr.txt" info="failures/clang_other_error_KAdaBT.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/slider/theme.c</td><td><a href="failures/clang_other_error_KyaCQ4.i">clang_other_error_KyaCQ4.i</a></td><td><a href="failures/clang_other_error_KyaCQ4.i.stderr.txt">clang_other_error_KyaCQ4.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/slider/theme.c" file="failures/clang_other_error_KyaCQ4.i" clangfile="failures/clang_other_error_KyaCQ4.clang.i" stderr="failures/clang_other_error_KyaCQ4.i.stderr.txt" info="failures/clang_other_error_KyaCQ4.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/slider/theme.c</td><td><a href="failures/clang_other_error_NRqyvP.i">clang_other_error_NRqyvP.i</a></td><td><a href="failures/clang_other_error_NRqyvP.i.stderr.txt">clang_other_error_NRqyvP.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/slider/theme.c" file="failures/clang_other_error_NRqyvP.i" clangfile="failures/clang_other_error_NRqyvP.clang.i" stderr="failures/clang_other_error_NRqyvP.i.stderr.txt" info="failures/clang_other_error_NRqyvP.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/nodoka/nodoka-theme.c</td><td><a href="failures/clang_other_error_SGo0h5.i">clang_other_error_SGo0h5.i</a></td><td><a href="failures/clang_other_error_SGo0h5.i.stderr.txt">clang_other_error_SGo0h5.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/nodoka/nodoka-theme.c" file="failures/clang_other_error_SGo0h5.i" clangfile="failures/clang_other_error_SGo0h5.clang.i" stderr="failures/clang_other_error_SGo0h5.i.stderr.txt" info="failures/clang_other_error_SGo0h5.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/standard/theme.c</td><td><a href="failures/clang_other_error_T6Pu5i.i">clang_other_error_T6Pu5i.i</a></td><td><a href="failures/clang_other_error_T6Pu5i.i.stderr.txt">clang_other_error_T6Pu5i.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/standard/theme.c" file="failures/clang_other_error_T6Pu5i.i" clangfile="failures/clang_other_error_T6Pu5i.clang.i" stderr="failures/clang_other_error_T6Pu5i.i.stderr.txt" info="failures/clang_other_error_T6Pu5i.i.info.txt" -->
+<tr><td>Other Error</td><td>daemon/mnd-daemon.c</td><td><a href="failures/clang_other_error__IKitY.i">clang_other_error__IKitY.i</a></td><td><a href="failures/clang_other_error__IKitY.i.stderr.txt">clang_other_error__IKitY.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/mnd-daemon.c" file="failures/clang_other_error__IKitY.i" clangfile="failures/clang_other_error__IKitY.clang.i" stderr="failures/clang_other_error__IKitY.i.stderr.txt" info="failures/clang_other_error__IKitY.i.info.txt" -->
+<tr><td>Other Error</td><td>daemon/stack.c</td><td><a href="failures/clang_other_error__Nof2N.i">clang_other_error__Nof2N.i</a></td><td><a href="failures/clang_other_error__Nof2N.i.stderr.txt">clang_other_error__Nof2N.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/stack.c" file="failures/clang_other_error__Nof2N.i" clangfile="failures/clang_other_error__Nof2N.clang.i" stderr="failures/clang_other_error__Nof2N.i.stderr.txt" info="failures/clang_other_error__Nof2N.i.info.txt" -->
+<tr><td>Other Error</td><td>daemon/engines.c</td><td><a href="failures/clang_other_error_b8iPMo.i">clang_other_error_b8iPMo.i</a></td><td><a href="failures/clang_other_error_b8iPMo.i.stderr.txt">clang_other_error_b8iPMo.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/engines.c" file="failures/clang_other_error_b8iPMo.i" clangfile="failures/clang_other_error_b8iPMo.clang.i" stderr="failures/clang_other_error_b8iPMo.i.stderr.txt" info="failures/clang_other_error_b8iPMo.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/nodoka/nodoka-theme.c</td><td><a href="failures/clang_other_error_gEKfIE.i">clang_other_error_gEKfIE.i</a></td><td><a href="failures/clang_other_error_gEKfIE.i.stderr.txt">clang_other_error_gEKfIE.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/nodoka/nodoka-theme.c" file="failures/clang_other_error_gEKfIE.i" clangfile="failures/clang_other_error_gEKfIE.clang.i" stderr="failures/clang_other_error_gEKfIE.i.stderr.txt" info="failures/clang_other_error_gEKfIE.i.info.txt" -->
+<tr><td>Other Error</td><td>capplet/mate-notification-applet.c</td><td><a href="failures/clang_other_error_j_c3Oi.i">clang_other_error_j_c3Oi.i</a></td><td><a href="failures/clang_other_error_j_c3Oi.i.stderr.txt">clang_other_error_j_c3Oi.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="capplet/mate-notification-applet.c" file="failures/clang_other_error_j_c3Oi.i" clangfile="failures/clang_other_error_j_c3Oi.clang.i" stderr="failures/clang_other_error_j_c3Oi.i.stderr.txt" info="failures/clang_other_error_j_c3Oi.i.info.txt" -->
+<tr><td>Other Error</td><td>capplet/mate-notification-properties-resources.c</td><td><a href="failures/clang_other_error_k5kLVH.i">clang_other_error_k5kLVH.i</a></td><td><a href="failures/clang_other_error_k5kLVH.i.stderr.txt">clang_other_error_k5kLVH.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="capplet/mate-notification-properties-resources.c" file="failures/clang_other_error_k5kLVH.i" clangfile="failures/clang_other_error_k5kLVH.clang.i" stderr="failures/clang_other_error_k5kLVH.i.stderr.txt" info="failures/clang_other_error_k5kLVH.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/coco/coco-theme.c</td><td><a href="failures/clang_other_error_kljrTG.i">clang_other_error_kljrTG.i</a></td><td><a href="failures/clang_other_error_kljrTG.i.stderr.txt">clang_other_error_kljrTG.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/coco/coco-theme.c" file="failures/clang_other_error_kljrTG.i" clangfile="failures/clang_other_error_kljrTG.clang.i" stderr="failures/clang_other_error_kljrTG.i.stderr.txt" info="failures/clang_other_error_kljrTG.i.info.txt" -->
+<tr><td>Other Error</td><td>themes/standard/theme.c</td><td><a href="failures/clang_other_error_lsU4yY.i">clang_other_error_lsU4yY.i</a></td><td><a href="failures/clang_other_error_lsU4yY.i.stderr.txt">clang_other_error_lsU4yY.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="themes/standard/theme.c" file="failures/clang_other_error_lsU4yY.i" clangfile="failures/clang_other_error_lsU4yY.clang.i" stderr="failures/clang_other_error_lsU4yY.i.stderr.txt" info="failures/clang_other_error_lsU4yY.i.info.txt" -->
+<tr><td>Other Error</td><td>daemon/mnd-dbus-generated.c</td><td><a href="failures/clang_other_error_swjmtW.i">clang_other_error_swjmtW.i</a></td><td><a href="failures/clang_other_error_swjmtW.i.stderr.txt">clang_other_error_swjmtW.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="daemon/mnd-dbus-generated.c" file="failures/clang_other_error_swjmtW.i" clangfile="failures/clang_other_error_swjmtW.clang.i" stderr="failures/clang_other_error_swjmtW.i.stderr.txt" info="failures/clang_other_error_swjmtW.i.info.txt" -->
+<tr><td>Other Error</td><td>capplet/mate-notification-properties.c</td><td><a href="failures/clang_other_error_sx8I3H.i">clang_other_error_sx8I3H.i</a></td><td><a href="failures/clang_other_error_sx8I3H.i.stderr.txt">clang_other_error_sx8I3H.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="capplet/mate-notification-properties.c" file="failures/clang_other_error_sx8I3H.i" clangfile="failures/clang_other_error_sx8I3H.clang.i" stderr="failures/clang_other_error_sx8I3H.i.stderr.txt" info="failures/clang_other_error_sx8I3H.i.info.txt" -->
+<tr><td>Other Error</td><td>capplet/mate-notification-applet-resources.c</td><td><a href="failures/clang_other_error_xaAwx5.i">clang_other_error_xaAwx5.i</a></td><td><a href="failures/clang_other_error_xaAwx5.i.stderr.txt">clang_other_error_xaAwx5.i.stderr.txt</a></td></tr>
+  <!-- REPORTPROBLEM src="capplet/mate-notification-applet-resources.c" file="failures/clang_other_error_xaAwx5.i" clangfile="failures/clang_other_error_xaAwx5.clang.i" stderr="failures/clang_other_error_xaAwx5.i.stderr.txt" info="failures/clang_other_error_xaAwx5.i.info.txt" -->
+</table>
+<p>Please consider submitting preprocessed files as <a href="http://clang-analyzer.llvm.org/filing_bugs.html">bug reports</a>. <!-- REPORTCRASHES --> </p>
+</body></html>
