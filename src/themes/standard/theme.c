@@ -797,6 +797,13 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 
 	windata->actions_box = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 	gtk_widget_set_halign (windata->actions_box, GTK_ALIGN_END);
+
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_widget_add_css_class (windata->actions_box, "actions-box");
+	#else
+		gtk_style_context_add_class (gtk_widget_get_style_context (windata->actions_box), "actions-box");
+	#endif
+
 	gtk_widget_show(windata->actions_box);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->actions_box, FALSE, TRUE, 0);
 
