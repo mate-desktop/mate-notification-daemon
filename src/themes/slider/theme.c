@@ -364,6 +364,12 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_container_add(GTK_CONTAINER(win), main_vbox);
 	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 12);
 
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_widget_add_css_class (main_vbox, "notification-box");
+	#else
+		gtk_style_context_add_class (gtk_widget_get_style_context (main_vbox), "notification-box");
+	#endif
+
 	windata->main_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(windata->main_hbox);
 	gtk_box_pack_start(GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
