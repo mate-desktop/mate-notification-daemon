@@ -640,11 +640,15 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 			gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
 			gtk_widget_show(windata->pie_countdown);
 
+			#if GTK_CHECK_VERSION (4,0,0)
+				gtk_widget_add_css_class (windata->pie_countdown, "countdown");
+			#else
+				gtk_style_context_add_class (gtk_widget_get_style_context (windata->pie_countdown), "countdown");
+			#endif
+
 			gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
-			gtk_widget_set_size_request(windata->pie_countdown,
-						    PIE_WIDTH, PIE_HEIGHT);
-			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw",
-					 G_CALLBACK(countdown_expose_cb), windata);
+			gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
+			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK (countdown_expose_cb), windata);
 		}
 	}
 
