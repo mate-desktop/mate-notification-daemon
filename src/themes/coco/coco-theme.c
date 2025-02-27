@@ -420,8 +420,10 @@ create_notification(UrlClickedCb url_clicked)
 
 	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_add_css_class (main_vbox, "notification-box");
+		gtk_widget_add_css_class (main_vbox, "coco-theme");
 	#else
 		gtk_style_context_add_class (gtk_widget_get_style_context (main_vbox), "notification-box");
+		gtk_style_context_add_class (gtk_widget_get_style_context (main_vbox), "coco-theme");
 	#endif
 
 	g_signal_connect (G_OBJECT (main_vbox), "draw",
