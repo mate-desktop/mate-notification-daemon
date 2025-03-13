@@ -172,7 +172,17 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 		return;
 
 	gdouble arc_angle = 1.0 - (gdouble)windata->remaining / (gdouble)windata->timeout;
-	cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
+	
+	// .notification-box .countdown:active { color:#aabbcc; }
+	GdkRGBA colorFront, colorBack;
+	GtkStyleContext *context = gtk_widget_get_style_context (pie);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_ACTIVE, &colorFront);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &colorBack);
+	if (gdk_rgba_equal (&colorFront, &colorBack))
+		cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
+	else
+		cairo_set_source_rgba (cr, colorFront.red, colorFront.green, colorFront.blue, colorFront.alpha);
+	
 	cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
 					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
