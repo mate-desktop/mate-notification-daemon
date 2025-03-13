@@ -292,16 +292,13 @@ configure_event_cb(GtkWidget *nw,
 }
 
 static gboolean
-countdown_expose_cb(GtkWidget *pie,
-					cairo_t *cr,
-					WindowData *windata)
+countdown_expose_cb(GtkWidget *pie, cairo_t *cr, WindowData *windata)
 {
 	cairo_t *cr2;
 	cairo_surface_t *surface;
 	GtkAllocation alloc;
 
-	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-
+	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 	gtk_widget_get_allocation (pie, &alloc);
 
 	surface = cairo_surface_create_similar (cairo_get_target (cr),
@@ -310,13 +307,10 @@ countdown_expose_cb(GtkWidget *pie,
 						alloc.height);
 
 	cr2 = cairo_create (surface);
-
-	cairo_translate (cr2, -alloc.x, -alloc.y);
-	fill_background (pie, windata, cr2);
-	cairo_translate (cr2, alloc.x, alloc.y);
-	draw_pie (pie, windata, cr2);
+	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0); // transparent background color
+	cairo_paint (cr2);
+	draw_pie (pie, windata, cr2); // countdown
 	cairo_fill (cr2);
-
 	cairo_destroy (cr2);
 
 	cairo_save (cr);
