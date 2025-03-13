@@ -172,7 +172,17 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 		return;
 
 	gdouble arc_angle = 1.0 - (gdouble)windata->remaining / (gdouble)windata->timeout;
-	cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
+	
+	// .notification-box .countdown:active { color:#aabbcc; }
+	GdkRGBA colorFront, colorBack;
+	GtkStyleContext *context = gtk_widget_get_style_context (pie);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_ACTIVE, &colorFront);
+	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &colorBack);
+	if (gdk_rgba_equal (&colorFront, &colorBack))
+		cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
+	else
+		cairo_set_source_rgba (cr, colorFront.red, colorFront.green, colorFront.blue, colorFront.alpha);
+	
 	cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
 					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
@@ -282,16 +292,13 @@ configure_event_cb(GtkWidget *nw,
 }
 
 static gboolean
-countdown_expose_cb(GtkWidget *pie,
-					cairo_t *cr,
-					WindowData *windata)
+countdown_expose_cb(GtkWidget *pie, cairo_t *cr, WindowData *windata)
 {
 	cairo_t *cr2;
 	cairo_surface_t *surface;
 	GtkAllocation alloc;
 
-	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-
+	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 	gtk_widget_get_allocation (pie, &alloc);
 
 	surface = cairo_surface_create_similar (cairo_get_target (cr),
@@ -300,13 +307,10 @@ countdown_expose_cb(GtkWidget *pie,
 						alloc.height);
 
 	cr2 = cairo_create (surface);
-
-	cairo_translate (cr2, -alloc.x, -alloc.y);
-	fill_background (pie, windata, cr2);
-	cairo_translate (cr2, alloc.x, alloc.y);
-	draw_pie (pie, windata, cr2);
+	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0); // transparent background color
+	cairo_paint (cr2);
+	draw_pie (pie, windata, cr2); // countdown
 	cairo_fill (cr2);
-
 	cairo_destroy (cr2);
 
 	cairo_save (cr);
