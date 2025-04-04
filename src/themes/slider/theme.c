@@ -1,9 +1,8 @@
-/* -*- Mode: C; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*-
- *
+/*
  * Copyright (C) 2006-2007 Christian Hammond <chipx86@chipx86.com>
  * Copyright (C) 2009 Red Hat, Inc.
  * Copyright (C) 2011 Perberos <perberos@gmail.com>
- * Copyright (C) 2012-2021 MATE Developers
+ * Copyright (C) 2012-2025 MATE Developers
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -234,14 +233,10 @@ static void paint_window (GtkWidget  *widget,
 						windata->height);
 
 	cr2 = cairo_create (surface);
-
-	/* transparent background */
 	cairo_rectangle (cr2, 0, 0, windata->width, windata->height);
-	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0);
+	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0); // transparent background color
 	cairo_fill (cr2);
-
 	fill_background (widget, windata, cr2);
-
 	cairo_destroy(cr2);
 
 	cairo_save (cr);
@@ -694,45 +689,37 @@ paint_countdown (GtkWidget  *pie,
 	cairo_t* cr2;
 	cairo_surface_t* surface;
 
-	context = gtk_widget_get_style_context(windata->win);
-
+	// :selected { background-color:#aabbcc; }   or
+	// .notification-box .countdown:selected { background-color:#aabbcc; }
+	context = gtk_widget_get_style_context (pie);
 	gtk_style_context_save (context);
 	gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
-
 	get_background_color (context, GTK_STATE_FLAG_SELECTED, &bg);
-
 	gtk_style_context_restore (context);
 
 	gtk_widget_get_allocation(pie, &allocation);
-	cairo_set_operator(cr, CAIRO_OPERATOR_SOURCE);
-	surface = cairo_surface_create_similar(cairo_get_target(cr),
-                                           CAIRO_CONTENT_COLOR_ALPHA,
-                                           allocation.width,
-                                           allocation.height);
+	cairo_set_operator(cr, CAIRO_OPERATOR_OVER);
+	surface = cairo_surface_create_similar (cairo_get_target(cr),
+                                             CAIRO_CONTENT_COLOR_ALPHA,
+                                             allocation.width,
+                                             allocation.height);
 
 	cr2 = cairo_create (surface);
-
-	fill_background (pie, windata, cr2);
-
 	if (windata->timeout > 0)
 	{
 		gdouble pct = (gdouble) windata->remaining / (gdouble) windata->timeout;
-
 		gdk_cairo_set_source_rgba (cr2, &bg);
-
 		cairo_move_to (cr2, PIE_RADIUS, PIE_RADIUS);
 		cairo_arc_negative (cr2, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS, -G_PI_2, -(pct * G_PI * 2) - G_PI_2);
 		cairo_line_to (cr2, PIE_RADIUS, PIE_RADIUS);
 		cairo_fill (cr2);
 	}
-
-	cairo_destroy(cr2);
+	cairo_destroy (cr2);
 
 	cairo_save (cr);
 	cairo_set_source_surface (cr, surface, 0, 0);
 	cairo_paint (cr);
 	cairo_restore (cr);
-
 	cairo_surface_destroy(surface);
 }
 
@@ -765,7 +752,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 
 	g_assert(windata != NULL);
 
-	if (!gtk_widget_get_visible(windata->actions_box))
+	if (gtk_widget_get_visible(windata->actions_box))
 	{
 		gtk_widget_show(windata->actions_box);
 		update_content_hbox_visibility(windata);
@@ -785,7 +772,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 
 			gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
 			gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
-			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK (on_countdown_draw), windata);
+			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(on_countdown_draw), windata);
 		}
 	}
 
