@@ -419,8 +419,12 @@ fill_background(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 static void
 draw_stripe(GtkWidget *widget, WindowData *windata, cairo_t *cr)
 {
+	int stripe_x = 0;
+	if (gtk_widget_get_direction (widget) == GTK_TEXT_DIR_RTL)
+		stripe_x = windata->width - STRIPE_WIDTH - stripe_x;
+
 	cairo_save (cr);
-	cairo_rectangle (cr, 0, 0, STRIPE_WIDTH, windata->height);
+	cairo_rectangle (cr, stripe_x, 0, STRIPE_WIDTH, windata->height);
 	cairo_clip (cr);
 
 	gdouble  color_mult = 1.0;
