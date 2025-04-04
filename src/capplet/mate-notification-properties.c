@@ -46,7 +46,8 @@ typedef struct {
 	GtkWidget* dnd_checkbox;
 	GtkWidget* monitor_label;
 
-	NotifyNotification* preview;
+	NotifyNotification* preview1;
+	NotifyNotification* preview2;
 } NotificationAppletDialog;
 
 enum {
@@ -387,12 +388,17 @@ static void show_message(NotificationAppletDialog* dialog, const gchar* message)
 
 static void notification_properties_dialog_preview_closed(NotifyNotification* preview, NotificationAppletDialog* dialog)
 {
-	if (preview == dialog->preview)
-	{
-		dialog->preview = NULL;
-	}
+	if (preview == dialog->preview1)
+		dialog->preview1 = NULL;
+	else if (preview == dialog->preview2)
+		dialog->preview2 = NULL;
 
 	g_object_unref(preview);
+}
+
+static gboolean notification_properties_dialog_preview_action(void *data) {
+	// @todo call notification_properties_dialog_preview_closed
+	return FALSE;
 }
 
 static void notification_properties_dialog_preview(NotificationAppletDialog* dialog)
@@ -405,16 +411,23 @@ static void notification_properties_dialog_preview(NotificationAppletDialog* dia
 
 	GError* error = NULL;
 
-	if (dialog->preview)
+	if (dialog->preview1)
 	{
-		notify_notification_close(dialog->preview, NULL);
-		g_object_unref(dialog->preview);
-		dialog->preview = NULL;
+		notify_notification_close(dialog->preview1, NULL);
+		g_object_unref(dialog->preview1);
+		dialog->preview1 = NULL;
+	}
+	if (dialog->preview2)
+	{
+		notify_notification_close(dialog->preview2, NULL);
+		g_object_unref(dialog->preview2);
+		dialog->preview2 = NULL;
 	}
 
-	dialog->preview = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information");
+	dialog->preview1 = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information");
+	notify_notification_set_timeout (dialog->preview1, 50000);
 
-	if (!notify_notification_show(dialog->preview, &error))
+	if (!notify_notification_show(dialog->preview1, &error))
 	{
 		char* message = g_strdup_printf(_("Error while displaying notification: %s"), error->message);
 		show_message(dialog, message);
@@ -422,7 +435,20 @@ static void notification_properties_dialog_preview(NotificationAppletDialog* dia
 		g_free(message);
 	}
 
-	g_signal_connect(dialog->preview, "closed", G_CALLBACK(notification_properties_dialog_preview_closed), dialog);
+	dialog->preview2 = notify_notification_new(_("Notification Test"), _("Just a test"), "dialog-information");
+	notify_notification_add_action (dialog->preview2, "nothing", _("Close"), NOTIFY_ACTION_CALLBACK (notification_properties_dialog_preview_action), NULL, NULL);
+	notify_notification_set_timeout (dialog->preview2, 50000);
+
+	if (!notify_notification_show(dialog->preview2, &error))
+	{
+		char* message = g_strdup_printf(_("Error while displaying notification: %s"), error->message);
+		show_message(dialog, message);
+		g_error_free(error);
+		g_free(message);
+	}
+
+	g_signal_connect(dialog->preview1, "closed", G_CALLBACK(notification_properties_dialog_preview_closed), dialog);
+	g_signal_connect(dialog->preview2, "closed", G_CALLBACK(notification_properties_dialog_preview_closed), dialog);
 }
 
 static void notification_properties_dialog_response(GtkWidget* widget, int response, NotificationAppletDialog* dialog)
@@ -491,7 +517,8 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 
 	gtk_widget_show_all(dialog->dialog);
 
-	dialog->preview = NULL;
+	dialog->preview1 = NULL;
+	dialog->preview2 = NULL;
 
 	return TRUE;
 }
@@ -504,11 +531,17 @@ static void notification_properties_dialog_finalize(NotificationAppletDialog* di
 		dialog->dialog = NULL;
 	}
 
-	if (dialog->preview)
+	if (dialog->preview1)
 	{
-		notify_notification_close(dialog->preview, NULL);
-		dialog->preview = NULL;
+		notify_notification_close(dialog->preview1, NULL);
+		dialog->preview1 = NULL;
 	}
+	if (dialog->preview2)
+	{
+		notify_notification_close(dialog->preview2, NULL);
+		dialog->preview2 = NULL;
+	}
+
 	g_free (dialog);
 }
 

@@ -1,11 +1,8 @@
 /*
- * coco-theme.c
- * This file is part of notification-daemon-engine-coco
- *
  * Copyright (C) 2012 - Stefano Karapetsas <stefano@karapetsas.com>
  * Copyright (C) 2010 - Eduardo Grajeda
  * Copyright (C) 2008 - Martin Sourada
- * Copyright (C) 2012-2021 MATE Developers
+ * Copyright (C) 2012-2025 MATE Developers
  *
  * notification-daemon-engine-coco is free software; you can redistribute it
  * and/or modify it under the terms of the GNU General Public License as
@@ -110,6 +107,24 @@ void notification_tick(GtkWindow *nw, glong remaining);
 
 /* Support Nodoka Functions */
 
+static void
+get_background_color (GtkStyleContext *context,
+                      GtkStateFlags    state,
+                      GdkRGBA         *color)
+{
+        GdkRGBA *c;
+
+        g_return_if_fail (color != NULL);
+        g_return_if_fail (GTK_IS_STYLE_CONTEXT (context));
+
+        gtk_style_context_get (context, state,
+                               "background-color", &c,
+                               NULL);
+
+        *color = *c;
+        gdk_rgba_free (c);
+}
+
 /* Handle clicking on link */
 static gboolean
 activate_link (GtkLabel *label, const char *url, WindowData *windata)
@@ -172,17 +187,28 @@ draw_pie(GtkWidget *pie, WindowData *windata, cairo_t *cr)
 		return;
 
 	gdouble arc_angle = 1.0 - (gdouble)windata->remaining / (gdouble)windata->timeout;
-	
-	// .notification-box .countdown:active { color:#aabbcc; }
-	GdkRGBA colorFront, colorBack;
-	GtkStyleContext *context = gtk_widget_get_style_context (pie);
-	gtk_style_context_get_color (context, GTK_STATE_FLAG_ACTIVE, &colorFront);
-	gtk_style_context_get_color (context, GTK_STATE_FLAG_NORMAL, &colorBack);
-	if (gdk_rgba_equal (&colorFront, &colorBack))
-		cairo_set_source_rgba (cr, 1.0, 0.4, 0.0, 0.3);
+	GtkStyleContext *context;
+	GdkRGBA orig, bg;
+
+	// :selected { background-color:#aabbcc; } ignored -> 1.0, 1.0, 1.0, 0.3
+	context = gtk_widget_get_style_context (windata->win);
+	gtk_style_context_save (context);
+	gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+	get_background_color (context, GTK_STATE_FLAG_SELECTED, &orig);
+	gtk_style_context_restore (context);
+
+	// .notification-box .countdown:selected { background-color:#aabbcc; }
+	context = gtk_widget_get_style_context (pie);
+	gtk_style_context_save (context);
+	gtk_style_context_set_state (context, GTK_STATE_FLAG_SELECTED);
+	get_background_color (context, GTK_STATE_FLAG_SELECTED, &bg);
+	gtk_style_context_restore (context);
+
+	if (gdk_rgba_equal (&orig, &bg))
+		cairo_set_source_rgba (cr, 1.0, 1.0, 1.0, 0.3);
 	else
-		cairo_set_source_rgba (cr, colorFront.red, colorFront.green, colorFront.blue, colorFront.alpha);
-	
+		cairo_set_source_rgba (cr, bg.red, bg.green, bg.blue, bg.alpha);
+
 	cairo_move_to(cr, PIE_RADIUS, PIE_RADIUS);
 	cairo_arc_negative(cr, PIE_RADIUS, PIE_RADIUS, PIE_RADIUS,
 					-G_PI/2, (-0.25 + arc_angle)*2*G_PI);
@@ -265,7 +291,6 @@ paint_window (GtkWidget  *widget,
 	cairo_restore (cr);
 
 	update_shape_region (surface, windata);
-
 	cairo_surface_destroy (surface);
 }
 
@@ -301,11 +326,7 @@ countdown_expose_cb(GtkWidget *pie, cairo_t *cr, WindowData *windata)
 	cairo_set_operator (cr, CAIRO_OPERATOR_OVER);
 	gtk_widget_get_allocation (pie, &alloc);
 
-	surface = cairo_surface_create_similar (cairo_get_target (cr),
-						CAIRO_CONTENT_COLOR_ALPHA,
-						alloc.width,
-						alloc.height);
-
+	surface = cairo_surface_create_similar (cairo_get_target (cr), CAIRO_CONTENT_COLOR_ALPHA, alloc.width, alloc.height);
 	cr2 = cairo_create (surface);
 	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0); // transparent background color
 	cairo_paint (cr2);
@@ -446,7 +467,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start (GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
 	gtk_container_set_border_width(GTK_CONTAINER(windata->main_hbox), 13);
 
-    /* The icon goes at the left */
+	/* The icon goes at the left */
 	windata->iconbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_show(windata->iconbox);
 	gtk_box_pack_start(GTK_BOX(windata->main_hbox), windata->iconbox,
@@ -456,7 +477,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_box_pack_start(GTK_BOX(windata->iconbox), windata->icon,
 					   FALSE, FALSE, 0);
 
-    /* The title and the text at the right */
+	/* The title and the text at the right */
 	vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
 	gtk_widget_set_halign (vbox, GTK_ALIGN_START);
 	gtk_widget_set_margin_start (vbox, 8);
@@ -642,6 +663,7 @@ add_notification_action(GtkWindow *nw, const char *text, const char *key,
 		if (!windata->pie_countdown) {
 			windata->pie_countdown = gtk_drawing_area_new();
 			gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
+			gtk_widget_set_valign (windata->pie_countdown, GTK_ALIGN_CENTER);
 			gtk_widget_show(windata->pie_countdown);
 
 			#if GTK_CHECK_VERSION (4,0,0)
