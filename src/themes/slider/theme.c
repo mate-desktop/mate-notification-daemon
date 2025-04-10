@@ -211,56 +211,40 @@ update_shape_region (cairo_surface_t *surface,
 	windata->last_height = windata->height;
 }
 
-static void paint_window (GtkWidget  *widget,
-			  cairo_t    *cr,
-			  WindowData *windata)
+static void paint_window (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 {
-	cairo_surface_t *surface;
 	cairo_t *cr2;
+	cairo_surface_t *surface;
+
+	if (windata->width == 0 || windata->height == 0) {
 		GtkAllocation allocation;
-
 		gtk_widget_get_allocation (windata->win, &allocation);
-
-	if (windata->width == 0 || windata->height == 0)
-	{
-		windata->width = MAX (allocation.width, 1);
-		windata->height = MAX (allocation.height, 1);
+		windata->width = allocation.width;
+		windata->height = allocation.height;
 	}
 
-	surface = cairo_surface_create_similar (cairo_get_target (cr),
-						CAIRO_CONTENT_COLOR_ALPHA,
-						windata->width,
-						windata->height);
-
+	surface = cairo_surface_create_similar (cairo_get_target (cr), CAIRO_CONTENT_COLOR_ALPHA, windata->width, windata->height);
 	cr2 = cairo_create (surface);
 	cairo_rectangle (cr2, 0, 0, windata->width, windata->height);
 	cairo_set_source_rgba (cr2, 0.0, 0.0, 0.0, 0.0); // transparent background color
 	cairo_fill (cr2);
+
 	fill_background (widget, windata, cr2);
-	cairo_destroy(cr2);
+	cairo_destroy (cr2);
 
 	cairo_save (cr);
 	cairo_set_operator (cr, CAIRO_OPERATOR_SOURCE);
-	cairo_set_source_surface(cr, surface, 0, 0);
-	cairo_paint(cr);
-	update_shape_region (surface, windata);
+	cairo_set_source_surface (cr, surface, 0, 0);
+	cairo_paint (cr);
 	cairo_restore (cr);
 
-	cairo_surface_destroy(surface);
+	update_shape_region (surface, windata);
+	cairo_surface_destroy (surface);
 }
 
-static gboolean on_window_map(GtkWidget* widget, GdkEvent* event, WindowData* windata)
-{
-	return FALSE;
-}
-
-static gboolean
-on_draw (GtkWidget  *widget,
-	 cairo_t    *cr,
-	 WindowData *windata)
+static gboolean on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 {
 	paint_window (widget, cr, windata);
-
 	return FALSE;
 }
 
@@ -286,21 +270,15 @@ static gboolean on_configure_event(GtkWidget* widget, GdkEventConfigure* event, 
 	windata->width = event->width;
 	windata->height = event->height;
 
-	gtk_widget_queue_draw(widget);
+	gtk_widget_queue_draw (widget);
 
 	return FALSE;
 }
 
-static void on_window_realize(GtkWidget* widget, WindowData* windata)
+static void on_composited_changed (GtkWidget* window, WindowData* windata)
 {
-	/* Nothing */
-}
-
-static void on_composited_changed(GtkWidget* window, WindowData* windata)
-{
-	windata->composited = gdk_screen_is_composited(gtk_widget_get_screen(window));
-
-	gtk_widget_queue_draw (windata->win);
+	windata->composited = gdk_screen_is_composited (gtk_widget_get_screen(window));
+	gtk_widget_queue_draw (window);
 }
 
 GtkWindow* create_notification(UrlClickedCb url_clicked)
@@ -322,42 +300,29 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	win = gtk_window_new(GTK_WINDOW_POPUP);
 	gtk_window_set_resizable(GTK_WINDOW(win), FALSE);
 	gtk_widget_set_app_paintable(win, TRUE);
-	g_signal_connect(G_OBJECT(win), "map-event", G_CALLBACK(on_window_map), windata);
-	g_signal_connect(G_OBJECT(win), "draw", G_CALLBACK(on_draw), windata);
-	g_signal_connect(G_OBJECT(win), "realize", G_CALLBACK(on_window_realize), windata);
-
 	windata->win = win;
-
 	windata->composited = FALSE;
-
 	screen = gtk_window_get_screen(GTK_WINDOW(win));
-
 	visual = gdk_screen_get_rgba_visual(screen);
-	if (visual != NULL)
-	{
+
+	if (visual != NULL) {
 		gtk_widget_set_visual(win, visual);
-
 		if (gdk_screen_is_composited(screen))
-		{
 			windata->composited = TRUE;
-		}
 	}
-
-	g_signal_connect(win, "composited-changed", G_CALLBACK(on_composited_changed), windata);
 
 	gtk_window_set_title(GTK_WINDOW(win), "Notification");
 	gtk_window_set_type_hint(GTK_WINDOW(win), GDK_WINDOW_TYPE_HINT_NOTIFICATION);
 	gtk_widget_add_events(win, GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK);
+	gtk_widget_set_size_request(win, WIDTH, -1);
 
 	g_object_set_data_full(G_OBJECT(win), "windata", windata, (GDestroyNotify) destroy_windata);
 	atk_object_set_role(gtk_widget_get_accessible(win), ATK_ROLE_ALERT);
 
-	g_signal_connect(G_OBJECT(win), "configure-event", G_CALLBACK(on_configure_event), windata);
-
-	main_vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-	gtk_widget_show(main_vbox);
-	gtk_container_add(GTK_CONTAINER(win), main_vbox);
-	gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 12);
+	main_vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+	gtk_widget_show (main_vbox);
+	gtk_container_add (GTK_CONTAINER (win), main_vbox);
+	gtk_container_set_border_width (GTK_CONTAINER (main_vbox), 12);
 
 	#if GTK_CHECK_VERSION (4,0,0)
 		gtk_widget_add_css_class (main_vbox, "notification-box");
@@ -366,6 +331,10 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 		gtk_style_context_add_class (gtk_widget_get_style_context (main_vbox), "notification-box");
 		gtk_style_context_add_class (gtk_widget_get_style_context (main_vbox), "slider-theme");
 	#endif
+
+	g_signal_connect (G_OBJECT (win), "draw", G_CALLBACK (on_draw), windata);
+	g_signal_connect (G_OBJECT (win), "configure-event", G_CALLBACK (on_configure_event), windata);
+	g_signal_connect (G_OBJECT (win), "composited-changed", G_CALLBACK (on_composited_changed), windata);
 
 	windata->main_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_widget_show(windata->main_hbox);
@@ -436,7 +405,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_label_set_yalign (GTK_LABEL (windata->body_label), 0.0);
 	gtk_label_set_line_wrap(GTK_LABEL(windata->body_label), TRUE);
 	gtk_label_set_line_wrap_mode (GTK_LABEL (windata->body_label), PANGO_WRAP_WORD_CHAR);
-    gtk_label_set_max_width_chars (GTK_LABEL (windata->body_label), 50);
+	gtk_label_set_max_width_chars (GTK_LABEL (windata->body_label), 50);
 	g_signal_connect_swapped(G_OBJECT(windata->body_label), "activate-link", G_CALLBACK(windata->url_clicked), win);
 
 	atkobj = gtk_widget_get_accessible(windata->body_label);
@@ -446,8 +415,12 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	gtk_widget_set_halign (windata->actions_box, GTK_ALIGN_END);
 
 	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_widget_add_css_class (windata->summary_label, "summary");
+		gtk_widget_add_css_class (windata->body_label, "body");
 		gtk_widget_add_css_class (windata->actions_box, "actions-box");
 	#else
+		gtk_style_context_add_class (gtk_widget_get_style_context (windata->summary_label), "summary");
+		gtk_style_context_add_class (gtk_widget_get_style_context (windata->body_label), "body");
 		gtk_style_context_add_class (gtk_widget_get_style_context (windata->actions_box), "actions-box");
 	#endif
 
