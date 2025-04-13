@@ -24,7 +24,6 @@
 
 #include <glib/gi18n.h>
 #include <gtk/gtk.h>
-
 #include <libxml/parser.h>
 #include <libxml/xmlmemory.h>
 #include <libxml/xpath.h>
@@ -84,25 +83,24 @@ enum {
 	URGENCY_CRITICAL
 };
 
-gboolean theme_check_init(unsigned int major_ver, unsigned int minor_ver,
+gboolean theme_check_init (unsigned int major_ver, unsigned int minor_ver,
 			  unsigned int micro_ver);
-void get_theme_info(char **theme_name, char **theme_ver, char **author,
+void get_theme_info (char **theme_name, char **theme_ver, char **author,
 		    char **homepage);
-GtkWindow* create_notification(UrlClickedCb url_clicked);
-void set_notification_text(GtkWindow *nw, const char *summary,
+GtkWindow* create_notification (UrlClickedCb url_clicked);
+void set_notification_text (GtkWindow *nw, const char *summary,
 			   const char *body);
-void set_notification_icon(GtkWindow *nw, GdkPixbuf *pixbuf);
-void set_notification_arrow(GtkWidget *nw, gboolean visible, int x, int y);
-void add_notification_action(GtkWindow *nw, const char *text, const char *key,
+void set_notification_icon (GtkWindow *nw, GdkPixbuf *pixbuf);
+void set_notification_arrow (GtkWidget *nw, gboolean visible, int x, int y);
+void add_notification_action (GtkWindow *nw, const char *text, const char *key,
 			     ActionInvokedCb cb);
-void clear_notification_actions(GtkWindow *nw);
-void move_notification(GtkWidget *nw, int x, int y);
-void set_notification_timeout(GtkWindow *nw, glong timeout);
-void set_notification_hints(GtkWindow *nw, GVariant *hints);
-void notification_tick(GtkWindow *nw, glong remaining);
+void clear_notification_actions (GtkWindow *nw);
+void move_notification (GtkWidget *nw, int x, int y);
+void set_notification_timeout (GtkWindow *nw, glong timeout);
+void set_notification_hints (GtkWindow *nw, GVariant *hints);
+void notification_tick (GtkWindow *nw, glong remaining);
 
 //#define ENABLE_GRADIENT_LOOK
-
 #ifdef ENABLE_GRADIENT_LOOK
 #define STRIPE_WIDTH 45
 #else
@@ -123,10 +121,7 @@ void notification_tick(GtkWindow *nw, glong remaining);
 #define BACKGROUND_OPACITY    0.92
 #define BOTTOM_GRADIENT_HEIGHT 30
 
-static void
-get_background_color (GtkStyleContext *context,
-                      GtkStateFlags    state,
-                      GdkRGBA         *color)
+static void get_background_color (GtkStyleContext *context, GtkStateFlags state, GdkRGBA *color)
 {
         GdkRGBA *c;
 
@@ -141,7 +136,7 @@ get_background_color (GtkStyleContext *context,
         gdk_rgba_free (c);
 }
 
-static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
+static void fill_background (GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
     GtkStyleContext *context;
     GdkRGBA bg;
@@ -191,7 +186,7 @@ static void fill_background(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 #endif
 }
 
-static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
+static void draw_stripe (GtkWidget* widget, WindowData* windata, cairo_t* cr)
 {
 	GtkStyleContext* context;
 	GdkRGBA bg;
@@ -263,7 +258,7 @@ static void draw_stripe(GtkWidget* widget, WindowData* windata, cairo_t* cr)
 #endif
 }
 
-static GtkArrowType get_notification_arrow_type(GtkWidget* nw)
+static GtkArrowType get_notification_arrow_type (GtkWidget* nw)
 {
 	WindowData*     windata;
 	GdkScreen*      screen;
@@ -297,7 +292,7 @@ static GtkArrowType get_notification_arrow_type(GtkWidget* nw)
 		i++;\
 	} G_STMT_END
 
-static void create_border_with_arrow(GtkWidget* nw, WindowData* windata)
+static void create_border_with_arrow (GtkWidget* nw, WindowData* windata)
 {
 	int             width;
 	int             height;
@@ -486,7 +481,7 @@ static void create_border_with_arrow(GtkWidget* nw, WindowData* windata)
 	g_free(shape_points);
 }
 
-static void draw_border(GtkWidget* widget, WindowData *windata, cairo_t* cr)
+static void draw_border (GtkWidget* widget, WindowData *windata, cairo_t* cr)
 {
 	cairo_set_source_rgba(cr, 0.0, 0.0, 0.0, 1.0);
 	cairo_set_line_width(cr, 1.0);
@@ -556,7 +551,7 @@ static gboolean on_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 	return FALSE;
 }
 
-static void destroy_windata(WindowData* windata)
+static void destroy_windata (WindowData* windata)
 {
 	if (windata->window_region != NULL)
 	{
@@ -566,7 +561,7 @@ static void destroy_windata(WindowData* windata)
 	g_free(windata);
 }
 
-static void update_spacers(GtkWidget* nw)
+static void update_spacers (GtkWidget* nw)
 {
 	WindowData* windata;
 
@@ -597,7 +592,7 @@ static void update_spacers(GtkWidget* nw)
 	}
 }
 
-static void update_content_hbox_visibility(WindowData* windata)
+static void update_content_hbox_visibility (WindowData* windata)
 {
 	/*
 	 * This is all a hack, but until we have a libview-style ContentBox,
@@ -630,14 +625,14 @@ static void on_composited_changed (GtkWidget* window, WindowData* windata)
 	gtk_widget_queue_draw (window);
 }
 
-static gboolean activate_link(GtkLabel* label, const char* url, WindowData* windata)
+static gboolean activate_link (GtkLabel* label, const char* url, WindowData* windata)
 {
 	windata->url_clicked(GTK_WINDOW(windata->win), url);
 
 	return TRUE;
 }
 
-GtkWindow* create_notification(UrlClickedCb url_clicked)
+GtkWindow* create_notification (UrlClickedCb url_clicked)
 {
 	GtkWidget* spacer;
 	GtkWidget* win;
@@ -803,7 +798,7 @@ GtkWindow* create_notification(UrlClickedCb url_clicked)
 	return GTK_WINDOW(win);
 }
 
-void set_notification_hints(GtkWindow *nw, GVariant *hints)
+void set_notification_hints (GtkWindow *nw, GVariant *hints)
 {
 	WindowData *windata = g_object_get_data(G_OBJECT(nw), "windata");
 	guint8 urgency;
@@ -829,7 +824,7 @@ void set_notification_hints(GtkWindow *nw, GVariant *hints)
 	}
 }
 
-void set_notification_timeout(GtkWindow* nw, glong timeout)
+void set_notification_timeout (GtkWindow* nw, glong timeout)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -838,7 +833,7 @@ void set_notification_timeout(GtkWindow* nw, glong timeout)
 	windata->timeout = timeout;
 }
 
-void notification_tick(GtkWindow* nw, glong remaining)
+void notification_tick (GtkWindow* nw, glong remaining)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -850,7 +845,7 @@ void notification_tick(GtkWindow* nw, glong remaining)
 	}
 }
 
-void set_notification_text(GtkWindow* nw, const char* summary, const char* body)
+void set_notification_text (GtkWindow* nw, const char* summary, const char* body)
 {
 	char* str;
 	size_t str_len;
@@ -944,7 +939,7 @@ render_ok:
 	gtk_widget_set_size_request(windata->summary_label, WIDTH - (1 * 2) - (10 * 2) - SPACER_LEFT - req.width - (6 * 2), -1);
 }
 
-void set_notification_icon(GtkWindow* nw, GdkPixbuf* pixbuf)
+void set_notification_icon (GtkWindow* nw, GdkPixbuf* pixbuf)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -968,7 +963,7 @@ void set_notification_icon(GtkWindow* nw, GdkPixbuf* pixbuf)
 	update_content_hbox_visibility(windata);
 }
 
-void set_notification_arrow(GtkWidget* nw, gboolean visible, int x, int y)
+void set_notification_arrow (GtkWidget* nw, gboolean visible, int x, int y)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -981,10 +976,7 @@ void set_notification_arrow(GtkWidget* nw, gboolean visible, int x, int y)
 	update_spacers(nw);
 }
 
-static void
-paint_countdown (GtkWidget  *pie,
-                 cairo_t    *cr,
-                 WindowData *windata)
+static void paint_countdown (GtkWidget *pie, cairo_t *cr, WindowData *windata)
 {
     GtkStyleContext *context;
     GdkRGBA bg;
@@ -1026,15 +1018,14 @@ paint_countdown (GtkWidget  *pie,
     cairo_surface_destroy(surface);
 }
 
-static gboolean
-on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
+static gboolean on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 {
 	paint_countdown (widget, cr, windata);
 
 	return FALSE;
 }
 
-static void action_clicked_cb(GtkWidget* w, GdkEventButton* event, ActionInvokedCb action_cb)
+static void action_clicked_cb (GtkWidget* w, GdkEventButton* event, ActionInvokedCb action_cb)
 {
 	GtkWindow* nw;
 	const char* key;
@@ -1043,7 +1034,7 @@ static void action_clicked_cb(GtkWidget* w, GdkEventButton* event, ActionInvoked
 	action_cb(nw, key);
 }
 
-void add_notification_action(GtkWindow* nw, const char* text, const char* key, ActionInvokedCb cb)
+void add_notification_action (GtkWindow* nw, const char* text, const char* key, ActionInvokedCb cb)
 {
 	WindowData* windata;
 	GtkWidget* label;
@@ -1125,7 +1116,7 @@ add_button:
 	gtk_widget_show_all(windata->actions_box);
 }
 
-void clear_notification_actions(GtkWindow* nw)
+void clear_notification_actions (GtkWindow* nw)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -1135,7 +1126,7 @@ void clear_notification_actions(GtkWindow* nw)
 	gtk_container_foreach(GTK_CONTAINER(windata->actions_box), (GtkCallback) gtk_widget_destroy, NULL);
 }
 
-void move_notification(GtkWidget* nw, int x, int y)
+void move_notification (GtkWidget* nw, int x, int y)
 {
 	WindowData* windata = g_object_get_data(G_OBJECT(nw), "windata");
 
@@ -1151,7 +1142,7 @@ void move_notification(GtkWidget* nw, int x, int y)
 	}
 }
 
-void get_theme_info(char** theme_name, char** theme_ver, char** author, char** homepage)
+void get_theme_info (char** theme_name, char** theme_ver, char** author, char** homepage)
 {
 	*theme_name = g_strdup("Standard");
 
@@ -1161,7 +1152,7 @@ void get_theme_info(char** theme_name, char** theme_ver, char** author, char** h
 	*homepage = g_strdup("http://www.galago-project.org/");
 }
 
-gboolean theme_check_init(unsigned int major_ver, unsigned int minor_ver, unsigned int micro_ver)
+gboolean theme_check_init (unsigned int major_ver, unsigned int minor_ver, unsigned int micro_ver)
 {
 	return major_ver == NOTIFICATION_DAEMON_MAJOR_VERSION && minor_ver == NOTIFICATION_DAEMON_MINOR_VERSION && micro_ver == NOTIFICATION_DAEMON_MICRO_VERSION;
 }
