@@ -69,17 +69,13 @@ enum
 	URGENCY_CRITICAL
 };
 
-gboolean theme_check_init (unsigned int major_ver, unsigned int minor_ver,
-			  unsigned int micro_ver);
-void get_theme_info (char **theme_name, char **theme_ver, char **author,
-		    char **homepage);
+gboolean theme_check_init (unsigned int major_ver, unsigned int minor_ver, unsigned int micro_ver);
+void get_theme_info (char **theme_name, char **theme_ver, char **author, char **homepage);
 GtkWindow* create_notification (UrlClickedCb url_clicked);
-void set_notification_text (GtkWindow *nw, const char *summary,
-			   const char *body);
+void set_notification_text (GtkWindow *nw, const char *summary, const char *body);
 void set_notification_icon (GtkWindow *nw, GdkPixbuf *pixbuf);
 void set_notification_arrow (GtkWidget *nw, gboolean visible, int x, int y);
-void add_notification_action (GtkWindow *nw, const char *text, const char *key,
-			     ActionInvokedCb cb);
+void add_notification_action (GtkWindow *nw, const char *text, const char *key, ActionInvokedCb cb);
 void clear_notification_actions (GtkWindow *nw);
 void move_notification (GtkWidget *nw, int x, int y);
 void set_notification_timeout (GtkWindow *nw, glong timeout);
@@ -104,17 +100,14 @@ void notification_tick (GtkWindow *nw, glong remaining);
 
 static void get_background_color (GtkStyleContext *context, GtkStateFlags state, GdkRGBA *color)
 {
-        GdkRGBA *c;
+	g_return_if_fail (color != NULL);
+	g_return_if_fail (GTK_IS_STYLE_CONTEXT (context));
 
-        g_return_if_fail (color != NULL);
-        g_return_if_fail (GTK_IS_STYLE_CONTEXT (context));
+	GdkRGBA *c;
+	gtk_style_context_get (context, state, "background-color", &c, NULL);
 
-        gtk_style_context_get (context, state,
-                               "background-color", &c,
-                               NULL);
-
-        *color = *c;
-        gdk_rgba_free (c);
+	*color = *c;
+	gdk_rgba_free (c);
 }
 
 static gboolean activate_link (GtkLabel *label, const char *url, WindowData *windata)
