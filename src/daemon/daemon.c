@@ -1371,7 +1371,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	if (g_hash_table_size (daemon->notification_hash) > MAX_NOTIFICATIONS)
 	{
 		g_dbus_method_invocation_return_error (invocation, notify_daemon_error_quark(), 1, _("Exceeded maximum number of notifications"));
-		return FALSE;
+		return TRUE;
 	}
 
 	/* Grab the settings */
@@ -1676,7 +1676,7 @@ static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotificatio
 	if (id == 0)
 	{
 		g_dbus_method_invocation_return_error (invocation, notify_daemon_error_quark(), 100,  _("%u is not a valid notification ID"), id);
-		return FALSE;
+		return TRUE;
 	}
 	else
 	{
