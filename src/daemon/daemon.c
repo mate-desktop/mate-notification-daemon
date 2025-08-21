@@ -93,6 +93,7 @@ typedef struct {
 	GtkWindow    *nw;
 	guint         has_timeout : 1;
 	guint         paused : 1;
+	guint         resident : 1;
 #ifdef HAVE_X11
 	Window        src_window_xid;
 #endif /* HAVE_X11 */
@@ -869,9 +870,22 @@ static gboolean _check_expiration(NotifyDaemon* daemon)
 	return has_more_timeouts;
 }
 
-static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int timeout)
+static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int timeout, gboolean resident)
 {
-	if (timeout == 0)
+	GSettings *gsettings = g_settings_new ("org.mate.NotificationDaemon");
+	gboolean persistence_enabled = g_settings_get_boolean (gsettings, "enable-persistence");
+	g_object_unref (gsettings);
+
+	nt->resident = resident && persistence_enabled;
+
+	if (timeout == -1)
+	{
+		GSettings *gsettings = g_settings_new ("org.mate.NotificationDaemon");
+		timeout = g_settings_get_int (gsettings, "default-timeout");
+		g_object_unref (gsettings);
+	}
+
+	if (timeout == 0 || nt->resident)
 	{
 		nt->has_timeout = FALSE;
 	}
@@ -880,11 +894,6 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 		gint64 usec;
 
 		nt->has_timeout = TRUE;
-
-		if (timeout == -1)
-		{
-			timeout = NOTIFY_DAEMON_DEFAULT_TIMEOUT;
-		}
 
 		theme_set_notification_timeout(nt->nw, timeout);
 
@@ -925,7 +934,7 @@ static guint _generate_id(NotifyDaemon* daemon)
 	return id;
 }
 
-static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, int timeout)
+static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, int timeout, gboolean resident)
 {
 	NotifyTimeout* nt;
 	guint id = _generate_id(daemon);
@@ -935,7 +944,7 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 	nt->nw = nw;
 	nt->daemon = daemon;
 
-	_calculate_timeout(daemon, nt, timeout);
+	_calculate_timeout(daemon, nt, timeout, resident);
 
 #if GLIB_CHECK_VERSION (2, 68, 0)
 	g_hash_table_insert(daemon->notification_hash, g_memdup2(&id, sizeof(guint)), nt);
@@ -1363,6 +1372,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	GdkPixbuf* pixbuf;
 	GSettings* gsettings;
 	gboolean fullscreen_window;
+	gboolean resident = FALSE;
+	gboolean transient = FALSE;
+	const gchar *desktop_entry = NULL;
+	const gchar *category = NULL;
 
 #ifdef HAVE_X11
 	Window window_xid = None;
@@ -1472,6 +1485,14 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		}
 	}
 
+	/* process resident and transient hints for persistence */
+	g_variant_lookup(hints, "resident", "b", &resident);
+	g_variant_lookup(hints, "transient", "b", &transient);
+
+	g_variant_lookup(hints, "desktop-entry", "s", &desktop_entry);
+	// TODO: Use 'category' for future category-based notification settings
+	g_variant_lookup(hints, "category", "s", &category);
+
 	/* set up action buttons */
 	for (i = 0; actions[i] != NULL; i += 2)
 	{
@@ -1490,20 +1511,20 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	pixbuf = NULL;
 
-	if (g_variant_lookup(hints, "image_data", "@(iiibiiay)", &data))
+	/* According to the Desktop Notifications Specification 1.3 spec, icons have the following precedence:
+	 * 1. image-data (or image_data)
+	 * 2. image-path (or image_path)
+	 * 3. icon (which falls back to the desktop entry)
+	 * 4. icon_data (for backward compatibility)
+	 */
+	if (g_variant_lookup(hints, "image-data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image-data", "@(iiibiiay)", &data))
+	else if (g_variant_lookup(hints, "image_data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
-		g_variant_unref(data);
-	}
-	else if (g_variant_lookup(hints, "image_path", "@s", &data))
-	{
-		const char *path = g_variant_get_string (data, NULL);
-		pixbuf = _notify_daemon_pixbuf_from_path (path);
 		g_variant_unref(data);
 	}
 	else if (g_variant_lookup(hints, "image-path", "@s", &data))
@@ -1512,9 +1533,46 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		pixbuf = _notify_daemon_pixbuf_from_path (path);
 		g_variant_unref(data);
 	}
+	else if (g_variant_lookup(hints, "image_path", "@s", &data))
+	{
+		const char *path = g_variant_get_string (data, NULL);
+		pixbuf = _notify_daemon_pixbuf_from_path (path);
+		g_variant_unref(data);
+	}
 	else if (*icon != '\0')
 	{
 		pixbuf = _notify_daemon_pixbuf_from_path (icon);
+	}
+	else if (desktop_entry != NULL && *desktop_entry != '\0')
+	{
+		/* Use desktop-entry to resolve application icon as fallback */
+		gchar *desktop_file = g_strdup_printf("%s.desktop", desktop_entry);
+		gchar *icon_name = NULL;
+
+		/* Try to get icon from desktop file */
+		GKeyFile *key_file = g_key_file_new();
+		const gchar * const *search_dirs = g_get_system_data_dirs();
+
+		for (const gchar * const *dir = search_dirs; *dir != NULL; dir++)
+		{
+			gchar *desktop_path = g_build_filename(*dir, "applications", desktop_file, NULL);
+			if (g_key_file_load_from_file(key_file, desktop_path, G_KEY_FILE_NONE, NULL))
+			{
+				icon_name = g_key_file_get_string(key_file, "Desktop Entry", "Icon", NULL);
+				g_free(desktop_path);
+				break;
+			}
+			g_free(desktop_path);
+		}
+
+		if (icon_name != NULL)
+		{
+			pixbuf = _notify_daemon_pixbuf_from_path (icon_name);
+			g_free(icon_name);
+		}
+
+		g_key_file_free(key_file);
+		g_free(desktop_file);
 	}
 	else if (g_variant_lookup(hints, "icon_data", "@(iiibiiay)", &data))
 	{
@@ -1604,7 +1662,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	if (id == 0)
 	{
-		nt = _store_notification (daemon, nw, timeout);
+		nt = _store_notification (daemon, nw, timeout, resident && !transient);
 		return_id = nt->id;
 	}
 	else
@@ -1664,7 +1722,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	if (nt)
 	{
-		_calculate_timeout (daemon, nt, timeout);
+		_calculate_timeout (daemon, nt, timeout, resident && !transient);
 	}
 
 	notify_daemon_notifications_complete_notify ( object, invocation, return_id);
@@ -1701,6 +1759,7 @@ static gboolean notify_daemon_get_capabilities( NotifyDaemonNotifications *objec
 	g_variant_builder_add (builder, "s", "body-markup");
 	g_variant_builder_add (builder, "s", "icon-static");
 	g_variant_builder_add (builder, "s", "sound");
+	g_variant_builder_add (builder, "s", "persistence");
 	value = g_variant_new ("as", builder);
 	g_variant_builder_unref (builder);
 	notify_daemon_notifications_complete_get_capabilities (
@@ -1718,7 +1777,7 @@ static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications 
 			"Notification Daemon",
 			"MATE",
 			PACKAGE_VERSION,
-			"1.1");
+			"1.3");
 	return TRUE;
 }
 
