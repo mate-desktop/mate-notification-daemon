@@ -28,6 +28,9 @@
 #define GSETTINGS_KEY_POPUP_LOCATION     "popup-location"
 #define GSETTINGS_KEY_SOUND_ENABLED      "sound-enabled"
 #define GSETTINGS_KEY_USE_ACTIVE_MONITOR "use-active-monitor"
+#define GSETTINGS_KEY_DEFAULT_TIMEOUT    "default-timeout"
+#define GSETTINGS_KEY_ENABLE_PERSISTENCE "enable-persistence"
+#define GSETTINGS_KEY_SHOW_COUNTDOWN     "show-countdown"
 #define NOTIFICATION_BUS_NAME            "org.freedesktop.Notifications"
 #define NOTIFICATION_BUS_PATH            "/org/freedesktop/Notifications"
 
