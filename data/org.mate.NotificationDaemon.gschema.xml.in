@@ -30,5 +30,16 @@
       <summary>Do not disturb</summary>
       <description>When enabled, notifications are not shown.</description>
     </key>
+    <key name="default-timeout" type="i">
+      <range min="0" max="300000"/>
+      <default>7000</default>
+      <summary>Default timeout</summary>
+      <description>Default timeout for notifications in milliseconds. Use 0 for no timeout (persistent).</description>
+    </key>
+    <key name="enable-persistence" type="b">
+      <default>true</default>
+      <summary>Enable persistence</summary>
+      <description>Allow notifications to be persistent when requested by applications.</description>
+    </key>
   </schema>
 </schemalist>

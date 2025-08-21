@@ -34,8 +34,6 @@
 #define NOTIFY_TYPE_DAEMON (notify_daemon_get_type())
 G_DECLARE_FINAL_TYPE (NotifyDaemon, notify_daemon, NOTIFY, DAEMON, GObject)
 
-#define NOTIFY_DAEMON_DEFAULT_TIMEOUT 7000
-
 enum {
 	URGENCY_LOW,
 	URGENCY_NORMAL,
