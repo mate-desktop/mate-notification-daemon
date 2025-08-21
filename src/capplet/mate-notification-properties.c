@@ -45,6 +45,9 @@ typedef struct {
 	GtkWidget* active_checkbox;
 	GtkWidget* dnd_checkbox;
 	GtkWidget* monitor_label;
+	GtkWidget* timeout_spin;
+	GtkWidget* persistence_checkbox;
+	GtkWidget* countdown_checkbox;
 
 	NotifyNotification* preview1;
 	NotifyNotification* preview2;
@@ -494,6 +497,9 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	dialog->active_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "use_active_check"));
 	dialog->dnd_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "do_not_disturb_check"));
 	dialog->monitor_label = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_label"));
+	dialog->timeout_spin = GTK_WIDGET(gtk_builder_get_object(builder, "timeout_spin"));
+	dialog->persistence_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "enable_persistence_check"));
+	dialog->countdown_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "show_countdown_check"));
 
 	g_object_unref (builder);
 
@@ -504,6 +510,11 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR, dialog->active_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB, dialog->dnd_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
+
+	GtkAdjustment *timeout_adjustment = gtk_spin_button_get_adjustment(GTK_SPIN_BUTTON(dialog->timeout_spin));
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DEFAULT_TIMEOUT, timeout_adjustment, "value", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_ENABLE_PERSISTENCE, dialog->persistence_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_SHOW_COUNTDOWN, dialog->countdown_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 
 	notification_properties_dialog_setup_themes (dialog);
 	notification_properties_dialog_setup_positions (dialog);
