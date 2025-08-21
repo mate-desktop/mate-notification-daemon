@@ -41,5 +41,10 @@
       <summary>Enable persistence</summary>
       <description>Allow notifications to be persistent when requested by applications.</description>
     </key>
+    <key name="show-countdown" type="b">
+      <default>false</default>
+      <summary>Show countdown</summary>
+      <description>Show countdown timer for all non-persistent notifications. If false, only show it for those waiting for user actions.</description>
+    </key>
   </schema>
 </schemalist>

@@ -83,6 +83,8 @@ void set_notification_timeout(GtkWindow *nw, glong timeout);
 void set_notification_hints(GtkWindow *nw, GVariant *hints);
 void notification_tick(GtkWindow *nw, glong remaining);
 gboolean get_always_stack(GtkWidget* nw);
+static gboolean on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata);
+static void create_pie_countdown(WindowData* windata);
 
 #define WIDTH          400
 #define DEFAULT_X0     0
@@ -490,6 +492,22 @@ void set_notification_timeout(GtkWindow *nw, glong timeout)
 	g_assert(windata != NULL);
 
 	windata->timeout = timeout;
+
+	/* Check if we should show countdown for all timed notifications */
+	if (timeout > 0)
+	{
+		GSettings *gsettings = g_settings_new ("org.mate.NotificationDaemon");
+		gboolean show_countdown = g_settings_get_boolean (gsettings, "show-countdown");
+		g_object_unref (gsettings);
+
+		if (show_countdown)
+		{
+			/* Ensure actions_box is visible for countdown */
+			gtk_widget_show(windata->actions_box);
+			update_content_hbox_visibility(windata);
+			create_pie_countdown(windata);
+		}
+	}
 }
 
 void notification_tick(GtkWindow* nw, glong remaining)
@@ -731,6 +749,27 @@ on_countdown_draw (GtkWidget *widget, cairo_t *cr, WindowData *windata)
 	return FALSE;
 }
 
+static void create_pie_countdown(WindowData* windata)
+{
+	if (windata->pie_countdown != NULL)
+		return; /* Already created */
+
+	windata->pie_countdown = gtk_drawing_area_new();
+	gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
+	gtk_widget_set_valign (windata->pie_countdown, GTK_ALIGN_CENTER);
+	gtk_widget_show(windata->pie_countdown);
+
+	#if GTK_CHECK_VERSION (4,0,0)
+		gtk_widget_add_css_class (windata->pie_countdown, "countdown");
+	#else
+		gtk_style_context_add_class (gtk_widget_get_style_context (windata->pie_countdown), "countdown");
+	#endif
+
+	gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
+	gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
+	g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(on_countdown_draw), windata);
+}
+
 static void on_action_clicked(GtkWidget* w, GdkEventButton *event, ActionInvokedCb action_cb)
 {
 	GtkWindow* nw = g_object_get_data(G_OBJECT(w), "_nw");
@@ -756,24 +795,7 @@ void add_notification_action(GtkWindow* nw, const char* text, const char* key, A
 	{
 		gtk_widget_show(windata->actions_box);
 		update_content_hbox_visibility(windata);
-
-		/* Don't try to re-add a pie_countdown */
-		if (!windata->pie_countdown) {
-			windata->pie_countdown = gtk_drawing_area_new();
-			gtk_widget_set_halign (windata->pie_countdown, GTK_ALIGN_END);
-			gtk_widget_set_valign (windata->pie_countdown, GTK_ALIGN_CENTER);
-			gtk_widget_show(windata->pie_countdown);
-
-			#if GTK_CHECK_VERSION (4,0,0)
-				gtk_widget_add_css_class (windata->pie_countdown, "countdown");
-			#else
-				gtk_style_context_add_class (gtk_widget_get_style_context (windata->pie_countdown), "countdown");
-			#endif
-
-			gtk_box_pack_end (GTK_BOX (windata->actions_box), windata->pie_countdown, FALSE, TRUE, 0);
-			gtk_widget_set_size_request(windata->pie_countdown, PIE_WIDTH, PIE_HEIGHT);
-			g_signal_connect(G_OBJECT(windata->pie_countdown), "draw", G_CALLBACK(on_countdown_draw), windata);
-		}
+		create_pie_countdown(windata);
 	}
 
 	if (windata->action_icons) {
