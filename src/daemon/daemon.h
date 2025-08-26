@@ -47,6 +47,19 @@ typedef enum {
 	NOTIFYD_CLOSED_RESERVED = 4
 } NotifydClosedReason;
 
+typedef struct {
+	guint id;                   /* Original notification ID */
+	gchar *app_name;            /* Application name */
+	gchar *app_icon;            /* Icon name/path */
+	gchar *summary;             /* Notification title */
+	gchar *body;                /* Notification body */
+	gint64 timestamp;           /* When notification appeared */
+	gint64 closed_timestamp;    /* When notification was closed */
+	NotifydClosedReason reason; /* How it was closed */
+	guint urgency;              /* Low/Normal/Critical */
+	gboolean read;              /* Has user seen this in history */
+} NotificationHistoryItem;
+
 G_BEGIN_DECLS
 
 NotifyDaemon*     notify_daemon_new        (gboolean replace,
