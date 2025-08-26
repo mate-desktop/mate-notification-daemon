@@ -97,6 +97,15 @@ typedef struct {
 #ifdef HAVE_X11
 	Window        src_window_xid;
 #endif /* HAVE_X11 */
+
+	/* Data for notification history */
+	gchar        *app_name;
+	gchar        *app_icon;
+	gchar        *summary;
+	gchar        *body;
+	guint         urgency;
+	gint64        timestamp;
+	NotifydClosedReason close_reason;
 } NotifyTimeout;
 
 typedef struct {
@@ -125,6 +134,11 @@ struct _NotifyDaemon {
 
 	NotifyStackLocation stack_location;
 	NotifyScreen* screen;
+
+	/* Notification history */
+	GQueue *notification_history;
+	guint history_max_items;
+	gboolean history_enabled;
 };
 
 typedef struct {
@@ -139,6 +153,15 @@ static void _emit_closed_signal(GtkWindow* nw, NotifydClosedReason reason);
 static void _action_invoked_cb(GtkWindow* nw, const char* key);
 static NotifyStackLocation get_stack_location_from_string(const gchar *slocation);
 
+static void _init_notification_history(NotifyDaemon* daemon);
+static void _cleanup_notification_history(NotifyDaemon* daemon);
+static void _add_notification_to_history(NotifyDaemon* daemon, guint id,
+					 const gchar *app_name, const gchar *app_icon,
+					 const gchar *summary, const gchar *body, guint urgency,
+					 NotifydClosedReason reason);
+static void _history_item_free(NotificationHistoryItem* item);
+static void _trim_notification_history(NotifyDaemon* daemon);
+
 #ifdef HAVE_X11
 static GdkFilterReturn _notify_x11_filter(GdkXEvent* xevent, GdkEvent* event, NotifyDaemon* daemon);
 static void sync_notification_position(NotifyDaemon* daemon, GtkWindow* nw, Window source);
@@ -149,6 +172,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, guint arg_id, gpointer user_data);
 static gboolean notify_daemon_get_capabilities( NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation);
 static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
+static gboolean notify_daemon_get_notification_history (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
+static gboolean notify_daemon_clear_notification_history (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
+static gboolean notify_daemon_get_notification_count (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
+static gboolean notify_daemon_mark_all_notifications_as_read (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data);
 
 static GParamSpec *properties[LAST_PROP] = { NULL };
 
@@ -169,6 +196,10 @@ static void bus_acquired_handler_cb (GDBusConnection *connection,
 	g_signal_connect (daemon->skeleton, "handle-close-notification", G_CALLBACK (notify_daemon_close_notification_handler), daemon);
 	g_signal_connect (daemon->skeleton, "handle-get-capabilities", G_CALLBACK (notify_daemon_get_capabilities), daemon);
 	g_signal_connect (daemon->skeleton, "handle-get-server-information", G_CALLBACK (notify_daemon_get_server_information), daemon);
+	g_signal_connect (daemon->skeleton, "handle-get-notification-history", G_CALLBACK (notify_daemon_get_notification_history), daemon);
+	g_signal_connect (daemon->skeleton, "handle-clear-notification-history", G_CALLBACK (notify_daemon_clear_notification_history), daemon);
+	g_signal_connect (daemon->skeleton, "handle-get-notification-count", G_CALLBACK (notify_daemon_get_notification_count), daemon);
+	g_signal_connect (daemon->skeleton, "handle-mark-all-notifications-as-read", G_CALLBACK (notify_daemon_mark_all_notifications_as_read), daemon);
 
 	exported = g_dbus_interface_skeleton_export (G_DBUS_INTERFACE_SKELETON (daemon->skeleton),
 			connection, NOTIFICATION_BUS_PATH, &error);
@@ -262,6 +293,12 @@ static void _notify_timeout_destroy(NotifyTimeout* nt)
 	 */
 	g_signal_handlers_disconnect_by_func(nt->nw, _notification_destroyed_cb, nt->daemon);
 	gtk_widget_destroy(GTK_WIDGET(nt->nw));
+
+	g_free(nt->app_name);
+	g_free(nt->app_icon);
+	g_free(nt->summary);
+	g_free(nt->body);
+
 	g_free(nt);
 }
 
@@ -511,6 +548,8 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 
 	daemon->screen = NULL;
 
+	_init_notification_history(daemon);
+
 	create_screen(daemon);
 
 	daemon->idle_reposition_notify_ids = g_hash_table_new(NULL, NULL);
@@ -583,6 +622,8 @@ static void notify_daemon_finalize(GObject* object)
 
 	destroy_screen(daemon);
 
+	_cleanup_notification_history(daemon);
+
 	if (daemon->bus_name_id > 0)
 	{
 		g_bus_unown_name (daemon->bus_name_id);
@@ -648,6 +689,12 @@ static void _close_notification(NotifyDaemon* daemon, guint id, gboolean hide_no
 
 	if (nt != NULL)
 	{
+		/* Add notification to history right before closing. This way we can access it later (e.g. from the applet) */
+		_add_notification_to_history(daemon, nt->id,
+					     nt->app_name, nt->app_icon,
+					     nt->summary, nt->body, nt->urgency,
+					     reason);
+
 		_emit_closed_signal(nt->nw, reason);
 
 		if (hide_notification)
@@ -834,6 +881,13 @@ static gboolean _is_expired(gpointer key, NotifyTimeout* nt, gboolean* phas_more
 	if (time_span <= 0)
 	{
 		theme_notification_tick(nt->nw, 0);
+
+		/* Add to history before removing (same as in _close_notification, since that function won't be called from here) */
+		_add_notification_to_history(nt->daemon, nt->id,
+					     nt->app_name, nt->app_icon,
+					     nt->summary, nt->body, nt->urgency,
+					     NOTIFYD_CLOSED_EXPIRED);
+
 		_emit_closed_signal(nt->nw, NOTIFYD_CLOSED_EXPIRED);
 		return TRUE;
 	}
@@ -934,7 +988,10 @@ static guint _generate_id(NotifyDaemon* daemon)
 	return id;
 }
 
-static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, int timeout, gboolean resident)
+static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw,
+					  int timeout, gboolean resident,
+					  const gchar *app_name, const gchar *app_icon,
+					  const gchar *summary, const gchar *body, guint urgency)
 {
 	NotifyTimeout* nt;
 	guint id = _generate_id(daemon);
@@ -943,6 +1000,15 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw, i
 	nt->id = id;
 	nt->nw = nw;
 	nt->daemon = daemon;
+
+	/* Store notification data for history */
+	nt->app_name = g_strdup(app_name ? app_name : "");
+	nt->app_icon = g_strdup(app_icon ? app_icon : "");
+	nt->summary = g_strdup(summary ? summary : "");
+	nt->body = g_strdup(body ? body : "");
+	nt->urgency = urgency;
+	nt->timestamp = g_get_real_time();
+	nt->close_reason = NOTIFYD_CLOSED_EXPIRED; /* Default to expired, since we don't care about active notifications */
 
 	_calculate_timeout(daemon, nt, timeout, resident);
 
@@ -1386,6 +1452,8 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	gboolean transient = FALSE;
 	const gchar *desktop_entry = NULL;
 	const gchar *category = NULL;
+	gchar *resolved_icon = NULL; /* Store resolved icon name in history */
+	guint urgency = URGENCY_NORMAL; /* Default to normal urgency */
 
 #ifdef HAVE_X11
 	Window window_xid = None;
@@ -1402,14 +1470,6 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	sound_enabled = g_settings_get_boolean (gsettings, GSETTINGS_KEY_SOUND_ENABLED);
 	do_not_disturb = g_settings_get_boolean (gsettings, GSETTINGS_KEY_DO_NOT_DISTURB);
 	g_object_unref (gsettings);
-
-	/* If we are in do-not-disturb mode, just grab a new id and close the notification */
-	if (do_not_disturb)
-	{
-		return_id = _generate_id (daemon);
-		notify_daemon_notifications_complete_notify (object, invocation, return_id);
-		return TRUE;
-	}
 
 	if (id > 0)
 	{
@@ -1503,6 +1563,19 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	// TODO: Use 'category' for future category-based notification settings
 	g_variant_lookup(hints, "category", "s", &category);
 
+	/* Get urgency from hints */
+	if (g_variant_lookup(hints, "urgency", "@*", &data))
+	{
+		if (g_variant_is_of_type (data, G_VARIANT_TYPE_BYTE))
+		{
+			urgency = g_variant_get_byte(data);
+			/* Make sure it's in a valid range */
+			if (urgency > URGENCY_CRITICAL)
+				urgency = URGENCY_CRITICAL;
+		}
+		g_variant_unref(data);
+	}
+
 	/* set up action buttons */
 	for (i = 0; actions[i] != NULL; i += 2)
 	{
@@ -1541,17 +1614,20 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	{
 		const char *path = g_variant_get_string (data, NULL);
 		pixbuf = _notify_daemon_pixbuf_from_path (path);
+		resolved_icon = g_strdup(path);
 		g_variant_unref(data);
 	}
 	else if (g_variant_lookup(hints, "image_path", "@s", &data))
 	{
 		const char *path = g_variant_get_string (data, NULL);
 		pixbuf = _notify_daemon_pixbuf_from_path (path);
+		resolved_icon = g_strdup(path);
 		g_variant_unref(data);
 	}
 	else if (*icon != '\0')
 	{
 		pixbuf = _notify_daemon_pixbuf_from_path (icon);
+		resolved_icon = g_strdup(icon);
 	}
 	else if (desktop_entry != NULL && *desktop_entry != '\0')
 	{
@@ -1578,6 +1654,11 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		if (icon_name != NULL)
 		{
 			pixbuf = _notify_daemon_pixbuf_from_path (icon_name);
+
+			if (!resolved_icon && (*icon == '\0' || icon == NULL)) {
+				resolved_icon = g_strdup(icon_name);
+			}
+
 			g_free(icon_name);
 		}
 
@@ -1672,7 +1753,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	if (id == 0)
 	{
-		nt = _store_notification (daemon, nw, timeout, resident && !transient);
+		nt = _store_notification (daemon, nw,
+					  timeout, resident && !transient,
+					  app_name, resolved_icon ? resolved_icon : icon,
+					  summary, body, urgency);
 		return_id = nt->id;
 	}
 	else
@@ -1707,11 +1791,14 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	 */
 	if (!nt->has_timeout || (!screensaver_active (GTK_WIDGET (nw)) && !fullscreen_window))
 	{
-		theme_show_notification (nw);
-
-		if (sound_file != NULL)
+		if (!do_not_disturb)
 		{
-			sound_play_file (GTK_WIDGET (nw), sound_file);
+			theme_show_notification (nw);
+
+			if (sound_file != NULL)
+			{
+				sound_play_file (GTK_WIDGET (nw), sound_file);
+			}
 		}
 	}
 	else
@@ -1733,6 +1820,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	if (nt)
 	{
 		_calculate_timeout (daemon, nt, timeout, resident && !transient);
+	}
+
+	if (resolved_icon) {
+		g_free(resolved_icon);
 	}
 
 	notify_daemon_notifications_complete_notify ( object, invocation, return_id);
@@ -1789,6 +1880,156 @@ static gboolean notify_daemon_get_server_information (NotifyDaemonNotifications 
 			PACKAGE_VERSION,
 			"1.3");
 	return TRUE;
+}
+
+static gboolean notify_daemon_get_notification_history (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data)
+{
+	NotifyDaemon *daemon = NOTIFY_DAEMON (user_data);
+	GVariantBuilder *builder;
+	GList *items;
+
+	if (!daemon->notification_history || !daemon->history_enabled) {
+		/* Return empty array if history is disabled or not initialized */
+		builder = g_variant_builder_new (G_VARIANT_TYPE ("a(ussssxxuub)"));
+		notify_daemon_notifications_complete_get_notification_history (object, invocation, g_variant_new ("a(ussssxxuub)", builder));
+		g_variant_builder_unref (builder);
+		return TRUE;
+	}
+
+	builder = g_variant_builder_new (G_VARIANT_TYPE ("a(ussssxxuub)"));
+
+	for (items = g_queue_peek_head_link(daemon->notification_history); items != NULL; items = items->next) {
+		NotificationHistoryItem *item = (NotificationHistoryItem *) items->data;
+
+		/* Mark notification as read when reading through history */
+		item->read = TRUE;
+
+		g_variant_builder_add (builder, "(ussssxxuub)",
+		                       item->id,
+		                       item->app_name,
+		                       item->app_icon,
+		                       item->summary,
+		                       item->body,
+		                       item->timestamp,
+		                       item->closed_timestamp,
+		                       (guint) item->reason,
+		                       item->urgency,
+		                       item->read);
+	}
+
+	notify_daemon_notifications_complete_get_notification_history (object, invocation, g_variant_new ("a(ussssxxuub)", builder));
+	g_variant_builder_unref (builder);
+	return TRUE;
+}
+
+static gboolean notify_daemon_clear_notification_history (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data)
+{
+	NotifyDaemon *daemon = NOTIFY_DAEMON (user_data);
+
+	if (daemon->notification_history) {
+		g_queue_free_full(daemon->notification_history, (GDestroyNotify)_history_item_free);
+		daemon->notification_history = g_queue_new();
+	}
+
+	notify_daemon_notifications_complete_clear_notification_history (object, invocation);
+	return TRUE;
+}
+
+static gboolean notify_daemon_mark_all_notifications_as_read (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data)
+{
+	NotifyDaemon *daemon = NOTIFY_DAEMON (user_data);
+	GList *items;
+
+	if (daemon->notification_history && daemon->history_enabled) {
+		for (items = g_queue_peek_head_link(daemon->notification_history); items != NULL; items = items->next) {
+			NotificationHistoryItem *item = (NotificationHistoryItem *) items->data;
+			item->read = TRUE;
+		}
+	}
+
+	notify_daemon_notifications_complete_mark_all_notifications_as_read (object, invocation);
+	return TRUE;
+}
+
+static gboolean notify_daemon_get_notification_count (NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation, gpointer user_data)
+{
+	NotifyDaemon *daemon = NOTIFY_DAEMON (user_data);
+	guint count = 0;
+	GList *items;
+
+	if (daemon->notification_history && daemon->history_enabled) {
+		/* Count unread notifications */
+		for (items = g_queue_peek_head_link(daemon->notification_history); items != NULL; items = items->next) {
+			NotificationHistoryItem *item = (NotificationHistoryItem *) items->data;
+			if (!item->read) {
+				count++;
+			}
+		}
+	}
+
+	notify_daemon_notifications_complete_get_notification_count (object, invocation, count);
+	return TRUE;
+}
+
+static void _history_item_free(NotificationHistoryItem* item)
+{
+	if (item) {
+		g_free(item->app_name);
+		g_free(item->app_icon);
+		g_free(item->summary);
+		g_free(item->body);
+		g_free(item);
+	}
+}
+
+static void _init_notification_history(NotifyDaemon* daemon)
+{
+	daemon->notification_history = g_queue_new();
+	daemon->history_max_items = 100; /* Default max items */
+	daemon->history_enabled = TRUE;  /* Default enabled */
+}
+
+static void _cleanup_notification_history(NotifyDaemon* daemon)
+{
+	if (daemon->notification_history) {
+		g_queue_free_full(daemon->notification_history, (GDestroyNotify)_history_item_free);
+		daemon->notification_history = NULL;
+	}
+}
+
+static void _trim_notification_history(NotifyDaemon* daemon)
+{
+	if (!daemon->notification_history)
+		return;
+
+	while (g_queue_get_length(daemon->notification_history) > daemon->history_max_items) {
+		NotificationHistoryItem* item = g_queue_pop_tail(daemon->notification_history);
+		_history_item_free(item);
+	}
+}
+
+static void _add_notification_to_history(NotifyDaemon* daemon, guint id,
+					 const gchar *app_name, const gchar *app_icon,
+					 const gchar *summary, const gchar *body, guint urgency,
+					 NotifydClosedReason reason)
+{
+	if (!daemon->history_enabled || !daemon->notification_history)
+		return;
+
+	NotificationHistoryItem* item = g_new0(NotificationHistoryItem, 1);
+	item->id = id;
+	item->app_name = g_strdup(app_name ? app_name : "");
+	item->app_icon = g_strdup(app_icon ? app_icon : "");
+	item->summary = g_strdup(summary ? summary : "");
+	item->body = g_strdup(body ? body : "");
+	item->timestamp = g_get_real_time();
+	item->closed_timestamp = g_get_real_time();
+	item->reason = reason;
+	item->urgency = urgency;
+	item->read = FALSE; /* Mark as unread initially */
+
+	g_queue_push_head(daemon->notification_history, item);
+	_trim_notification_history(daemon);
 }
 
 NotifyDaemon* notify_daemon_new (gboolean replace, gboolean idle_exit)
