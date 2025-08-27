@@ -25,11 +25,13 @@
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <mate-panel-applet.h>
+#include <gio/gio.h>
 
 #define MATE_DESKTOP_USE_UNSTABLE_API
 #include <libmate-desktop/mate-desktop-utils.h>
 
 #include "constants.h"
+#include "mate-notification-applet-dbus.h"
 
 typedef struct
 {
@@ -39,6 +41,8 @@ typedef struct
   GtkWidget       *image_off;
   GtkActionGroup  *action_group;
   GSettings       *settings;
+
+  MateNotificationDBusContext    *dbus_context;
 } MateNotificationApplet;
 
 static void
@@ -47,6 +51,9 @@ show_about      (GtkAction              *action,
 static void
 call_properties (GtkAction              *action,
                  MateNotificationApplet *applet);
+
+static void
+setup_daemon_connection (MateNotificationApplet *applet);
 
 static const GtkActionEntry applet_menu_actions [] = {
   { "Preferences", "document-properties", N_("_Preferences"),
@@ -64,6 +71,10 @@ applet_destroy (MatePanelApplet *applet_widget,
                 MateNotificationApplet *applet)
 {
   g_assert (applet);
+
+  if (applet->dbus_context) {
+    dbus_context_free (applet->dbus_context);
+  }
 
   g_object_unref (applet->settings);
   g_object_unref (applet->action_group);
@@ -161,6 +172,12 @@ applet_draw_icon (MatePanelApplet *applet_widget,
   cairo_surface_destroy (image_off);
 }
 
+static void
+setup_daemon_connection (MateNotificationApplet *applet)
+{
+  dbus_context_connect (applet->dbus_context);
+}
+
 static MateNotificationApplet*
 applet_main (MatePanelApplet *applet_widget)
 {
@@ -175,6 +192,9 @@ applet_main (MatePanelApplet *applet_widget)
   applet = g_new (MateNotificationApplet, 1);
   applet->applet = applet_widget;
   applet->settings = g_settings_new (GSETTINGS_SCHEMA);
+
+  /* Initialize D-Bus context */
+  applet->dbus_context = dbus_context_new ();
 
 #ifndef ENABLE_IN_PROCESS
   /* needed to clamp ourselves to the panel size */
@@ -229,6 +249,8 @@ applet_main (MatePanelApplet *applet_widget)
   /* GSettings callback */
   g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_DO_NOT_DISTURB,
                     G_CALLBACK (settings_changed), applet);
+
+  setup_daemon_connection (applet);
 
   return applet;
 }
