@@ -80,12 +80,15 @@ popup_destroyed_cb (GtkWidget                      *popup,
 
 static GtkWidget *
 create_notification_row (guint id, const gchar *app_name, const gchar *app_icon,
-                         const gchar *summary, const gchar *body, gint64 timestamp)
+                         const gchar *summary, const gchar *body, gint64 timestamp, guint urgency)
 {
   GtkWidget *row, *hbox, *icon_image, *content_box;
   GtkWidget *title_label, *body_label, *time_label;
   GDateTime *dt;
   gchar *time_str, *markup;
+
+  /* Urgency constants matching daemon.h */
+  enum { URGENCY_LOW = 0, URGENCY_NORMAL = 1, URGENCY_CRITICAL = 2 };
 
   /* Format timestamp */
   dt = g_date_time_new_from_unix_local (timestamp / G_TIME_SPAN_SECOND);
@@ -96,6 +99,29 @@ create_notification_row (guint id, const gchar *app_name, const gchar *app_icon,
   row = gtk_list_box_row_new ();
   hbox = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 12);
   gtk_container_set_border_width (GTK_CONTAINER (hbox), 6);
+
+  const gchar *row_css = NULL;
+
+  switch (urgency) {
+    case URGENCY_CRITICAL:
+      row_css = "row { box-shadow: inset 30px 0 0 0 #CC0000; }";
+      break;
+    case URGENCY_LOW:
+      row_css = "row { opacity: 0.6; }";
+      break;
+    case URGENCY_NORMAL:
+    default:
+      break;
+  }
+
+  /* Apply CSS styling for urgency */
+  if (row_css != NULL) {
+    GtkCssProvider *provider = gtk_css_provider_new ();
+    gtk_css_provider_load_from_data (provider, row_css, -1, NULL);
+    GtkStyleContext *row_context = gtk_widget_get_style_context (row);
+    gtk_style_context_add_provider (row_context, GTK_STYLE_PROVIDER (provider), GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    g_object_unref (provider);
+  }
 
   icon_image = create_notification_icon (app_icon);
 
@@ -342,7 +368,7 @@ show_notification_history (MateNotificationHistoryContext *context)
                                 &timestamp, &closed_timestamp, &reason, &urgency, &read)) {
       notification_count++;
       /* Add each notification as a new row in the list */
-      GtkWidget *row = create_notification_row (id, app_name, app_icon, summary, body, timestamp);
+      GtkWidget *row = create_notification_row (id, app_name, app_icon, summary, body, timestamp, urgency);
       gtk_list_box_insert (GTK_LIST_BOX (list_box), row, -1);
     }
 
