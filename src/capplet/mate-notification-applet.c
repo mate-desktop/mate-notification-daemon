@@ -40,6 +40,8 @@ typedef struct
 
   GtkWidget       *image_on;
   GtkWidget       *image_off;
+  GtkWidget       *overlay;
+  GtkWidget       *count_label;
   GtkActionGroup  *action_group;
   GSettings       *settings;
   guint            unread_count;
@@ -70,6 +72,10 @@ static void
 setup_daemon_connection (MateNotificationApplet *applet);
 static void
 update_unread_count     (MateNotificationApplet *applet);
+static void
+update_applet_display   (MateNotificationApplet *applet);
+static void
+update_count_badge      (MateNotificationApplet *applet);
 static gboolean
 periodic_update_count   (MateNotificationApplet *applet);
 
@@ -78,6 +84,8 @@ static gboolean
 applet_button_press_cb  (GtkWidget              *widget,
                          GdkEventButton         *event,
                          MateNotificationApplet *applet);
+static void
+toggle_do_not_disturb   (MateNotificationApplet *applet);
 
 static const GtkActionEntry applet_menu_actions [] = {
   { "ShowHistory", "document-open-recent", N_("_Show History"),
@@ -174,6 +182,7 @@ show_about (GtkAction              *action,
             MateNotificationApplet *applet)
 {
   static const char *authors[] = {
+    "MATE Developers",
     "Robert Buj <robert.buj@gmail.com>",
     NULL
   };
@@ -208,8 +217,7 @@ settings_changed (GSettings              *settings,
                   MateNotificationApplet *applet)
 {
   if (g_strcmp0 (GSETTINGS_KEY_DO_NOT_DISTURB, key) == 0)
-    set_status_image (applet,
-                      g_settings_get_boolean (settings, key));
+    update_applet_display (applet);
 }
 
 static void
@@ -259,6 +267,37 @@ static void
 update_unread_count (MateNotificationApplet *applet)
 {
   applet->unread_count = dbus_context_get_notification_count (applet->dbus_context);
+  update_applet_display (applet);
+}
+
+static void
+update_applet_display (MateNotificationApplet *applet)
+{
+  gchar *tooltip_text;
+  gboolean dnd_active;
+
+  dnd_active = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB);
+
+  /* Update tooltip based on number of unread notifications and user state */
+  if (applet->unread_count > 99)
+    tooltip_text = g_strdup (_("(99+ unread)"));
+  else if (applet->unread_count > 0)
+    tooltip_text = g_strdup_printf ("(%d unread)", applet->unread_count);
+  else
+    tooltip_text = g_strdup ("");
+
+  if (dnd_active)
+    tooltip_text = g_strdup_printf ("Do Not Disturb %s", tooltip_text);
+  else if (!dbus_context_is_available (applet->dbus_context))
+    tooltip_text = g_strdup (_("Notifications (daemon unavailable)"));
+  else
+    tooltip_text = g_strdup_printf ("Notifications %s", tooltip_text);
+
+  gtk_widget_set_tooltip_text (GTK_WIDGET (applet->applet), tooltip_text);
+  g_free (tooltip_text);
+
+  set_status_image (applet, dnd_active);
+  update_count_badge (applet);
 }
 
 static gboolean
@@ -274,12 +313,45 @@ applet_button_press_cb (GtkWidget              *widget,
       return TRUE;
 
     case 2: /* Middle click */
+      toggle_do_not_disturb (applet);
+      return TRUE;
+
     case 3: /* Right click handled by context menu */
     default:
       break;
   }
 
   return FALSE;
+}
+
+static void
+toggle_do_not_disturb (MateNotificationApplet *applet)
+{
+  gboolean current_state;
+
+  current_state = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB);
+  g_settings_set_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB, !current_state);
+}
+
+static void
+update_count_badge (MateNotificationApplet *applet)
+{
+  gchar *count_text;
+
+  if (applet->unread_count > 0) {
+    /* Show badge with count */
+    if (applet->unread_count > 99) {
+      count_text = g_strdup ("99+");
+    } else {
+      count_text = g_strdup_printf ("%u", applet->unread_count);
+    }
+    gtk_label_set_text (GTK_LABEL (applet->count_label), count_text);
+    gtk_widget_show (applet->count_label);
+    g_free (count_text);
+  } else {
+    /* Hide badge when no unread notifications */
+    gtk_widget_hide (applet->count_label);
+  }
 }
 
 static gboolean
@@ -315,21 +387,53 @@ applet_main (MatePanelApplet *applet_widget)
   /* needed to clamp ourselves to the panel size */
   mate_panel_applet_set_flags (MATE_PANEL_APPLET (applet), MATE_PANEL_APPLET_EXPAND_MINOR);
 #endif
-  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
 
+  /* Create overlay for icons and count badge */
+  applet->overlay = gtk_overlay_new ();
+
+  /* Create container for the two state icons */
+  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
   applet->image_on  = gtk_image_new ();
   applet->image_off = gtk_image_new ();
 
   applet_draw_icon (applet_widget, 0, applet);
 
-  gtk_widget_set_tooltip_text (applet->image_off, _("Do Not Disturb"));
-  gtk_widget_set_tooltip_text (applet->image_on, _("Notifications Enabled"));
+  gtk_box_pack_start (GTK_BOX (box), applet->image_on, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (box), applet->image_off, TRUE, TRUE, 0);
 
-  gtk_box_pack_start (GTK_BOX (box), applet->image_on,
-                      TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (box), applet->image_off,
-                      TRUE, TRUE, 0);
-  gtk_container_add (GTK_CONTAINER (applet_widget), box);
+  /* Add icon box as main overlay child */
+  gtk_container_add (GTK_CONTAINER (applet->overlay), box);
+
+  /* Create count badge label */
+  applet->count_label = gtk_label_new ("");
+  gtk_widget_set_name (applet->count_label, "notification-count-badge");
+  gtk_widget_set_halign (applet->count_label, GTK_ALIGN_END);
+  gtk_widget_set_valign (applet->count_label, GTK_ALIGN_END);
+  GtkCssProvider *css_provider = gtk_css_provider_new ();
+  const gchar *css_data =
+    "#notification-count-badge {"
+    "  background-color: rgba(255,255,255,0.9);"
+    "  color: #000000;"
+    "  border-radius: 8px;"
+    "  min-width: 12px;"
+    "  min-height: 4px;"
+    "  padding: 1px 1px;"
+    "  font-size: 10px;"
+    "  font-weight: bold;"
+    "  text-shadow: none;"
+    "  border: 1px solid rgba(0,0,0,0.1);"
+    "}";
+  gtk_css_provider_load_from_data (css_provider, css_data, -1, NULL);
+  gtk_style_context_add_provider (gtk_widget_get_style_context (applet->count_label),
+                                  GTK_STYLE_PROVIDER (css_provider),
+                                  GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+  g_object_unref (css_provider);
+
+  /* Add count label as overlay */
+  gtk_overlay_add_overlay (GTK_OVERLAY (applet->overlay), applet->count_label);
+
+  /* Add overlay to applet */
+  gtk_container_add (GTK_CONTAINER (applet_widget), applet->overlay);
 
   set_status_image (applet,
                     g_settings_get_boolean (applet->settings,
