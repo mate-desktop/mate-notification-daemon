@@ -32,6 +32,7 @@
 
 #include "constants.h"
 #include "mate-notification-applet-dbus.h"
+#include "mate-notification-applet-history.h"
 
 typedef struct
 {
@@ -41,8 +42,11 @@ typedef struct
   GtkWidget       *image_off;
   GtkActionGroup  *action_group;
   GSettings       *settings;
+  guint            unread_count;
+  guint            update_timer_id;
 
   MateNotificationDBusContext    *dbus_context;
+  MateNotificationHistoryContext *history_context;
 } MateNotificationApplet;
 
 static void
@@ -51,11 +55,37 @@ show_about      (GtkAction              *action,
 static void
 call_properties (GtkAction              *action,
                  MateNotificationApplet *applet);
+static void
+call_show_history (GtkAction              *action,
+                   MateNotificationApplet *applet);
+void
+call_clear_history (GtkAction              *action,
+                    MateNotificationApplet *applet);
+static void
+call_mark_all_read (GtkAction              *action,
+                    MateNotificationApplet *applet);
 
+/* D-Bus and notification history functions */
 static void
 setup_daemon_connection (MateNotificationApplet *applet);
+static void
+update_unread_count     (MateNotificationApplet *applet);
+static gboolean
+periodic_update_count   (MateNotificationApplet *applet);
+
+/* Click handler functions */
+static gboolean
+applet_button_press_cb  (GtkWidget              *widget,
+                         GdkEventButton         *event,
+                         MateNotificationApplet *applet);
 
 static const GtkActionEntry applet_menu_actions [] = {
+  { "ShowHistory", "document-open-recent", N_("_Show History"),
+    NULL, NULL, G_CALLBACK (call_show_history) },
+  { "ClearHistory", "edit-clear", N_("_Clear History"),
+    NULL, NULL, G_CALLBACK (call_clear_history) },
+  { "MarkAllRead", "edit-select-all", N_("_Mark All as Read"),
+    NULL, NULL, G_CALLBACK (call_mark_all_read) },
   { "Preferences", "document-properties", N_("_Preferences"),
     NULL, NULL, G_CALLBACK (call_properties) },
   { "About", "help-about", N_("_About"),
@@ -72,13 +102,51 @@ applet_destroy (MatePanelApplet *applet_widget,
 {
   g_assert (applet);
 
+  if (applet->update_timer_id > 0)
+    g_source_remove (applet->update_timer_id);
+
   if (applet->dbus_context) {
     dbus_context_free (applet->dbus_context);
+  }
+
+  if (applet->history_context) {
+    history_context_free (applet->history_context);
   }
 
   g_object_unref (applet->settings);
   g_object_unref (applet->action_group);
   g_free (applet);
+}
+
+static void
+call_show_history (GtkAction              *action,
+                   MateNotificationApplet *applet)
+{
+  (void) action;
+
+  if (applet->history_context)
+    show_notification_history (applet->history_context);
+}
+
+void
+call_clear_history (GtkAction              *action,
+                    MateNotificationApplet *applet)
+{
+  (void) action;
+
+  if (dbus_context_clear_notification_history (applet->dbus_context))
+    update_unread_count (applet);
+}
+
+static void
+call_mark_all_read (GtkAction              *action,
+                    MateNotificationApplet *applet)
+{
+  (void) action;
+
+  /* Update count after marking all as read */
+  if (dbus_context_mark_all_notifications_as_read (applet->dbus_context))
+    update_unread_count (applet);
 }
 
 static void
@@ -175,7 +243,52 @@ applet_draw_icon (MatePanelApplet *applet_widget,
 static void
 setup_daemon_connection (MateNotificationApplet *applet)
 {
-  dbus_context_connect (applet->dbus_context);
+  if (dbus_context_connect (applet->dbus_context)) {
+    update_unread_count (applet);
+  } else {
+    applet->unread_count = 0;
+  }
+
+  /* Update history context with new daemon connection */
+  if (applet->history_context) {
+    history_context_update_dbus (applet->history_context, applet->dbus_context);
+  }
+}
+
+static void
+update_unread_count (MateNotificationApplet *applet)
+{
+  applet->unread_count = dbus_context_get_notification_count (applet->dbus_context);
+}
+
+static gboolean
+applet_button_press_cb (GtkWidget              *widget,
+                        GdkEventButton         *event,
+                        MateNotificationApplet *applet)
+{
+  switch (event->button) {
+    case 1: /* Left click */
+      if (applet->history_context) {
+        show_notification_history (applet->history_context);
+      }
+      return TRUE;
+
+    case 2: /* Middle click */
+    case 3: /* Right click handled by context menu */
+    default:
+      break;
+  }
+
+  return FALSE;
+}
+
+static gboolean
+periodic_update_count (MateNotificationApplet *applet)
+{
+  if (applet && dbus_context_is_available (applet->dbus_context)) {
+    update_unread_count (applet);
+  }
+  return TRUE; /* Continue periodic updates */
 }
 
 static MateNotificationApplet*
@@ -193,8 +306,10 @@ applet_main (MatePanelApplet *applet_widget)
   applet->applet = applet_widget;
   applet->settings = g_settings_new (GSETTINGS_SCHEMA);
 
-  /* Initialize D-Bus context */
+  /* Initialize D-Bus context and notification state */
   applet->dbus_context = dbus_context_new ();
+  applet->unread_count = 0;
+  applet->update_timer_id = 0;
 
 #ifndef ENABLE_IN_PROCESS
   /* needed to clamp ourselves to the panel size */
@@ -219,6 +334,11 @@ applet_main (MatePanelApplet *applet_widget)
   set_status_image (applet,
                     g_settings_get_boolean (applet->settings,
                                             GSETTINGS_KEY_DO_NOT_DISTURB));
+
+  /* click handling */
+  gtk_widget_add_events (GTK_WIDGET (applet_widget), GDK_BUTTON_PRESS_MASK);
+  g_signal_connect (G_OBJECT (applet_widget), "button-press-event",
+                    G_CALLBACK (applet_button_press_cb), applet);
 
   /* set up context menu */
   applet->action_group = gtk_action_group_new ("Do Not Disturb Actions");
@@ -250,7 +370,18 @@ applet_main (MatePanelApplet *applet_widget)
   g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_DO_NOT_DISTURB,
                     G_CALLBACK (settings_changed), applet);
 
+  /* Create new history context */
+  applet->history_context = history_context_new (applet->dbus_context,
+                                                 GTK_WIDGET (applet->applet),
+                                                 G_CALLBACK (update_unread_count),
+                                                 applet,
+                                                 applet->settings);
+
   setup_daemon_connection (applet);
+
+  /* Set up periodic updates every few seconds */
+#define NOTIFICATION_UPDATE_COUNT 5
+  applet->update_timer_id = g_timeout_add_seconds (NOTIFICATION_UPDATE_COUNT, (GSourceFunc) periodic_update_count, applet);
 
   return applet;
 }
