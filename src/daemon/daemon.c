@@ -528,6 +528,20 @@ static void on_popup_location_changed(GSettings *settings, gchar *key, NotifyDae
 	}
 }
 
+static void on_history_enabled_changed(GSettings *settings, gchar *key, NotifyDaemon* daemon)
+{
+	gboolean history_enabled;
+
+	history_enabled = g_settings_get_boolean(daemon->gsettings, key);
+	daemon->history_enabled = history_enabled;
+
+	if (!history_enabled && daemon->notification_history) {
+		/* Wipe the history when disabled to preserve privacy */
+		g_queue_free_full(daemon->notification_history, (GDestroyNotify)_history_item_free);
+		daemon->notification_history = g_queue_new();
+	}
+}
+
 static void notify_daemon_init(NotifyDaemon* daemon)
 {
 	gchar *location;
@@ -541,6 +555,7 @@ static void notify_daemon_init(NotifyDaemon* daemon)
 	daemon->gsettings = g_settings_new (GSETTINGS_SCHEMA);
 
 	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_POPUP_LOCATION, G_CALLBACK (on_popup_location_changed), daemon);
+	g_signal_connect (daemon->gsettings, "changed::" GSETTINGS_KEY_HISTORY_ENABLED, G_CALLBACK (on_history_enabled_changed), daemon);
 
 	location = g_settings_get_string (daemon->gsettings, GSETTINGS_KEY_POPUP_LOCATION);
 	daemon->stack_location = get_stack_location_from_string(location);
@@ -1986,7 +2001,7 @@ static void _init_notification_history(NotifyDaemon* daemon)
 {
 	daemon->notification_history = g_queue_new();
 	daemon->history_max_items = 100; /* Default max items */
-	daemon->history_enabled = TRUE;  /* Default enabled */
+	daemon->history_enabled = g_settings_get_boolean(daemon->gsettings, GSETTINGS_KEY_HISTORY_ENABLED);
 }
 
 static void _cleanup_notification_history(NotifyDaemon* daemon)

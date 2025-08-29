@@ -46,5 +46,10 @@
       <summary>Show countdown</summary>
       <description>Show countdown timer for all non-persistent notifications. If false, only show it for those waiting for user actions.</description>
     </key>
+    <key name="history-enabled" type="b">
+      <default>true</default>
+      <summary>Enable notification history</summary>
+      <description>When enabled, notifications are stored in history for later viewing. When disabled, no notification history is kept for privacy. Note: This only controls MATE's notification daemon storage; other applications may still have access to notifications through system logs or other means.</description>
+    </key>
   </schema>
 </schemalist>
