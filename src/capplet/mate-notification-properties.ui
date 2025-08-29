@@ -218,6 +218,22 @@
                         <property name="position">2</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkCheckButton" id="history_enabled_check">
+                        <property name="label" translatable="yes">Enable Notification History</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">start</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="tooltip_text" translatable="yes">When enabled, notifications are stored for later viewing. When disabled, no notification history is kept for privacy. Note: This only controls MATE's notification storage; system logs may still contain notification data.</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                 </child>
               </object>

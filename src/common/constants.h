@@ -31,6 +31,7 @@
 #define GSETTINGS_KEY_DEFAULT_TIMEOUT    "default-timeout"
 #define GSETTINGS_KEY_ENABLE_PERSISTENCE "enable-persistence"
 #define GSETTINGS_KEY_SHOW_COUNTDOWN     "show-countdown"
+#define GSETTINGS_KEY_HISTORY_ENABLED    "history-enabled"
 #define NOTIFICATION_BUS_NAME            "org.freedesktop.Notifications"
 #define NOTIFICATION_BUS_PATH            "/org/freedesktop/Notifications"
 
