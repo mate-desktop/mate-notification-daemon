@@ -245,6 +245,12 @@ show_notification_history (MateNotificationHistoryContext *context)
     return;
   }
 
+  /* Check if history is enabled */
+  if (context->settings && !g_settings_get_boolean (context->settings, GSETTINGS_KEY_HISTORY_ENABLED)) {
+    g_warning ("Cannot show history: history is disabled for privacy");
+    return;
+  }
+
   /* If popup already exists, destroy it (basically toggle off) */
   if (context->history_popup) {
     gtk_widget_destroy (context->history_popup);

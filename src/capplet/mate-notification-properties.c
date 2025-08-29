@@ -44,6 +44,7 @@ typedef struct {
 	GtkWidget* preview_button;
 	GtkWidget* active_checkbox;
 	GtkWidget* dnd_checkbox;
+	GtkWidget* history_checkbox;
 	GtkWidget* monitor_label;
 	GtkWidget* timeout_spin;
 	GtkWidget* persistence_checkbox;
@@ -496,6 +497,7 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	dialog->theme_combo = GTK_WIDGET(gtk_builder_get_object(builder, "theme_combo"));
 	dialog->active_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "use_active_check"));
 	dialog->dnd_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "do_not_disturb_check"));
+	dialog->history_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "history_enabled_check"));
 	dialog->monitor_label = GTK_WIDGET(gtk_builder_get_object(builder, "monitor_label"));
 	dialog->timeout_spin = GTK_WIDGET(gtk_builder_get_object(builder, "timeout_spin"));
 	dialog->persistence_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "enable_persistence_check"));
@@ -510,6 +512,7 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_USE_ACTIVE_MONITOR, dialog->active_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DO_NOT_DISTURB, dialog->dnd_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_HISTORY_ENABLED, dialog->history_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 
 	GtkAdjustment *timeout_adjustment = gtk_spin_button_get_adjustment(GTK_SPIN_BUTTON(dialog->timeout_spin));
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DEFAULT_TIMEOUT, timeout_adjustment, "value", G_SETTINGS_BIND_DEFAULT);
