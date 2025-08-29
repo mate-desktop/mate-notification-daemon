@@ -6,8 +6,8 @@ Name=Mate Notification Applet Factory
 Description=Mate Notification Applet Factory
 
 [MateNotificationApplet]
-Name=Do Not Disturb
-Description=Activate the do not disturb mode.
+Name=Notification Status
+Description=Monitor and control notification status.
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=mate-notification-properties
 MateComponentId=OAFIID:MATE_Panel_Notification_Applet
