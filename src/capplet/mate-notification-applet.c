@@ -38,8 +38,7 @@ typedef struct
 {
   MatePanelApplet *applet;
 
-  GtkWidget       *image_on;
-  GtkWidget       *image_off;
+  GtkWidget       *status_image;
   GtkWidget       *overlay;
   GtkWidget       *count_label;
   GtkActionGroup  *action_group;
@@ -202,13 +201,36 @@ show_about (GtkAction              *action,
 
 static void
 set_status_image (MateNotificationApplet *applet,
-                  gboolean                active)
+                  gboolean                dnd_active,
+                  gboolean                history_enabled)
 {
+  const char *icon_name;
+  gint size, scale;
+  cairo_surface_t *surface;
+
+  if (dnd_active && history_enabled) {
+    icon_name = "user-busy";
+  } else if (dnd_active && !history_enabled) {
+    icon_name = "user-offline";
+  } else if (!dnd_active && !history_enabled) {
+    icon_name = "user-invisible";
+  } else {
+    icon_name = "user-available";
+  }
+
+  size = (gint) mate_panel_applet_get_size (applet->applet);
+  scale = gtk_widget_get_scale_factor (GTK_WIDGET (applet->applet));
+
+  surface = gtk_icon_theme_load_surface (gtk_icon_theme_get_default (),
+                                         icon_name,
+                                         size, scale,
+                                         NULL, 0, NULL);
+  if (surface) {
+    gtk_image_set_from_surface (GTK_IMAGE (applet->status_image), surface);
+    cairo_surface_destroy (surface);
+  }
+
   gtk_widget_show_all (GTK_WIDGET (applet->applet));
-  if (active)
-    gtk_widget_hide (applet->image_on);
-  else
-    gtk_widget_hide (applet->image_off);
 }
 
 static void
@@ -216,36 +238,17 @@ settings_changed (GSettings              *settings,
                   gchar                  *key,
                   MateNotificationApplet *applet)
 {
-  if (g_strcmp0 (GSETTINGS_KEY_DO_NOT_DISTURB, key) == 0)
+  if (g_strcmp0 (GSETTINGS_KEY_DO_NOT_DISTURB, key) == 0 ||
+      g_strcmp0 (GSETTINGS_KEY_HISTORY_ENABLED, key) == 0)
     update_applet_display (applet);
 }
 
 static void
-applet_draw_icon (MatePanelApplet *applet_widget,
-                  int arg1,
-                  MateNotificationApplet *applet)
+applet_size_changed (MatePanelApplet *applet_widget,
+                     int arg1,
+                     MateNotificationApplet *applet)
 {
-  gint size, scale;
-
-  g_assert (applet);
-
-  size = (gint) mate_panel_applet_get_size (applet_widget);
-  scale = gtk_widget_get_scale_factor (GTK_WIDGET (applet_widget));
-
-  cairo_surface_t *image_on = gtk_icon_theme_load_surface (gtk_icon_theme_get_default (),
-                                                           "user-available",
-                                                           size, scale,
-                                                           NULL, 0, NULL);
-  cairo_surface_t *image_off = gtk_icon_theme_load_surface (gtk_icon_theme_get_default (),
-                                                            "user-invisible",
-                                                            size, scale,
-                                                            NULL, 0, NULL);
-
-  gtk_image_set_from_surface (GTK_IMAGE (applet->image_on), image_on);
-  gtk_image_set_from_surface (GTK_IMAGE (applet->image_off), image_off);
-
-  cairo_surface_destroy (image_on);
-  cairo_surface_destroy (image_off);
+  update_applet_display (applet);
 }
 
 static void
@@ -275,11 +278,15 @@ update_applet_display (MateNotificationApplet *applet)
 {
   gchar *tooltip_text;
   gboolean dnd_active;
+  gboolean history_enabled;
 
   dnd_active = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB);
+  history_enabled = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_HISTORY_ENABLED);
 
   /* Update tooltip based on number of unread notifications and user state */
-  if (applet->unread_count > 99)
+  if (!history_enabled)
+    tooltip_text = g_strdup (_("(privacy mode)"));
+  else if (applet->unread_count > 99)
     tooltip_text = g_strdup (_("(99+ unread)"));
   else if (applet->unread_count > 0)
     tooltip_text = g_strdup_printf ("(%d unread)", applet->unread_count);
@@ -296,7 +303,7 @@ update_applet_display (MateNotificationApplet *applet)
   gtk_widget_set_tooltip_text (GTK_WIDGET (applet->applet), tooltip_text);
   g_free (tooltip_text);
 
-  set_status_image (applet, dnd_active);
+  set_status_image (applet, dnd_active, history_enabled);
   update_count_badge (applet);
 }
 
@@ -337,9 +344,10 @@ static void
 update_count_badge (MateNotificationApplet *applet)
 {
   gchar *count_text;
+  gboolean history_enabled = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_HISTORY_ENABLED);
 
-  if (applet->unread_count > 0) {
-    /* Show badge with count */
+  /* Only show count badges when history is enabled and there are notifications */
+  if (history_enabled && applet->unread_count > 0) {
     if (applet->unread_count > 99) {
       count_text = g_strdup ("99+");
     } else {
@@ -367,7 +375,6 @@ static MateNotificationApplet*
 applet_main (MatePanelApplet *applet_widget)
 {
   MateNotificationApplet *applet;
-  GtkWidget *box;
 
 #ifndef ENABLE_IN_PROCESS
   g_set_application_name (_("Do Not Disturb"));
@@ -385,24 +392,17 @@ applet_main (MatePanelApplet *applet_widget)
 
 #ifndef ENABLE_IN_PROCESS
   /* needed to clamp ourselves to the panel size */
-  mate_panel_applet_set_flags (MATE_PANEL_APPLET (applet), MATE_PANEL_APPLET_EXPAND_MINOR);
+  mate_panel_applet_set_flags (MATE_PANEL_APPLET (applet->applet), MATE_PANEL_APPLET_EXPAND_MINOR);
 #endif
 
   /* Create overlay for icons and count badge */
   applet->overlay = gtk_overlay_new ();
 
-  /* Create container for the two state icons */
-  box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 0);
-  applet->image_on  = gtk_image_new ();
-  applet->image_off = gtk_image_new ();
+  /* Create status icon */
+  applet->status_image = gtk_image_new ();
 
-  applet_draw_icon (applet_widget, 0, applet);
-
-  gtk_box_pack_start (GTK_BOX (box), applet->image_on, TRUE, TRUE, 0);
-  gtk_box_pack_start (GTK_BOX (box), applet->image_off, TRUE, TRUE, 0);
-
-  /* Add icon box as main overlay child */
-  gtk_container_add (GTK_CONTAINER (applet->overlay), box);
+  /* Add status icon as main overlay child */
+  gtk_container_add (GTK_CONTAINER (applet->overlay), applet->status_image);
 
   /* Create count badge label */
   applet->count_label = gtk_label_new ("");
@@ -436,8 +436,8 @@ applet_main (MatePanelApplet *applet_widget)
   gtk_container_add (GTK_CONTAINER (applet_widget), applet->overlay);
 
   set_status_image (applet,
-                    g_settings_get_boolean (applet->settings,
-                                            GSETTINGS_KEY_DO_NOT_DISTURB));
+                    g_settings_get_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB),
+                    g_settings_get_boolean (applet->settings, GSETTINGS_KEY_HISTORY_ENABLED));
 
   /* click handling */
   gtk_widget_add_events (GTK_WIDGET (applet_widget), GDK_BUTTON_PRESS_MASK);
@@ -459,6 +459,13 @@ applet_main (MatePanelApplet *applet_widget)
   gtk_action_group_add_action (applet->action_group,
                                GTK_ACTION (do_not_disturb_toggle_action));
 
+  GtkToggleAction *history_toggle_action =
+    gtk_toggle_action_new ("HistoryEnabled", _("_Enable History"),
+                           _("Enable/Disable notification history."), NULL);
+
+  gtk_action_group_add_action (applet->action_group,
+                               GTK_ACTION (history_toggle_action));
+
   mate_panel_applet_setup_menu_from_resource  (applet->applet,
                                                RESOURCE_PATH "menu.xml",
                                                applet->action_group);
@@ -467,11 +474,17 @@ applet_main (MatePanelApplet *applet_widget)
                    do_not_disturb_toggle_action, "active",
                    G_SETTINGS_BIND_DEFAULT);
 
+  g_settings_bind (applet->settings, "history-enabled",
+                   history_toggle_action, "active",
+                   G_SETTINGS_BIND_DEFAULT);
+
   g_signal_connect (G_OBJECT (applet->applet), "destroy",
                     G_CALLBACK (applet_destroy), applet);
 
-  /* GSettings callback */
+  /* GSettings callbacks */
   g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_DO_NOT_DISTURB,
+                    G_CALLBACK (settings_changed), applet);
+  g_signal_connect (G_OBJECT (applet->settings), "changed::" GSETTINGS_KEY_HISTORY_ENABLED,
                     G_CALLBACK (settings_changed), applet);
 
   /* Create new history context */
@@ -502,7 +515,7 @@ applet_factory (MatePanelApplet *applet_widget,
     applet = applet_main (applet_widget);
 
     g_signal_connect (G_OBJECT (applet_widget), "change_size",
-                      G_CALLBACK (applet_draw_icon),
+                      G_CALLBACK (applet_size_changed),
                       (gpointer) applet);
 
     return TRUE;
