@@ -45,6 +45,10 @@ libmate_notification_applet_la_SOURCES = \
 	$(mate_notification_applet_resources_files) \
 	../common/constants.h \
 	mate-notification-applet.c \
+	mate-notification-applet-dbus.h \
+	mate-notification-applet-dbus.c \
+	mate-notification-applet-history.h \
+	mate-notification-applet-history.c \
 	$(NULL)
 
 libmate_notification_applet_la_CFLAGS = \
@@ -64,6 +68,10 @@ mate_notification_applet_SOURCES = \
 	$(mate_notification_applet_resources_files) \
 	../common/constants.h \
 	mate-notification-applet.c \
+	mate-notification-applet-dbus.h \
+	mate-notification-applet-dbus.c \
+	mate-notification-applet-history.h \
+	mate-notification-applet-history.c \
 	$(NULL)
 
 mate_notification_applet_CFLAGS = \
@@ -104,6 +112,8 @@ EXTRA_DIST = \
 	$(mate_notification_properties_resources_xml) \
 	mate-notification-applet-menu.xml \
 	mate-notification-properties.ui \
+	mate-notification-applet-dbus.h \
+	mate-notification-applet-history.h \
 	$(NULL)
 
 -include $(top_srcdir)/git.mk

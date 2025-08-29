@@ -30,6 +30,20 @@
       <arg type="s" name="return_spec_version" direction="out"/>
     </method>
 
+    <method name="GetNotificationHistory">
+      <arg type="a(ussssxxuub)" name="history_items" direction="out"/>
+    </method>
+
+    <method name="ClearNotificationHistory">
+    </method>
+
+    <method name="GetNotificationCount">
+      <arg type="u" name="count" direction="out"/>
+    </method>
+
+    <method name="MarkAllNotificationsAsRead">
+    </method>
+
     <signal name="ActionInvoked">
 	    <arg type="u" name="id" />
 	    <arg type="s" name="action_key" />
