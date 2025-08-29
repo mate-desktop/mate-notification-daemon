@@ -189,10 +189,10 @@ show_about (GtkAction              *action,
   (void) applet;
 
   gtk_show_about_dialog (NULL,
-                         "title", _("About Do Not Disturb"),
+                         "title", _("About Notification Status"),
                          "version", VERSION,
                          "copyright", _("Copyright \xc2\xa9 2021 MATE developers"),
-                         "comments", _("Activate the do not disturb mode quickly."),
+                         "comments", _("Monitor and control notification status."),
                          "authors", authors,
                          "translator-credits", _("translator-credits"),
                          "logo_icon_name", "mate-notification-properties",
@@ -377,7 +377,7 @@ applet_main (MatePanelApplet *applet_widget)
   MateNotificationApplet *applet;
 
 #ifndef ENABLE_IN_PROCESS
-  g_set_application_name (_("Do Not Disturb"));
+  g_set_application_name (_("Notification Status"));
 #endif
   gtk_window_set_default_icon_name ("mate-notification-properties");
 
@@ -445,7 +445,7 @@ applet_main (MatePanelApplet *applet_widget)
                     G_CALLBACK (applet_button_press_cb), applet);
 
   /* set up context menu */
-  applet->action_group = gtk_action_group_new ("Do Not Disturb Actions");
+  applet->action_group = gtk_action_group_new ("Notification Status Actions");
 #ifdef ENABLE_NLS
   gtk_action_group_set_translation_domain (applet->action_group, GETTEXT_PACKAGE);
 #endif /* ENABLE_NLS */
@@ -526,6 +526,6 @@ applet_factory (MatePanelApplet *applet_widget,
 
 PANEL_APPLET_FACTORY ("MateNotificationAppletFactory",
                                        PANEL_TYPE_APPLET,
-                                       "Do Not Disturb Applet",
+                                       "Notification Status Applet",
                                        applet_factory,
                                        NULL)
