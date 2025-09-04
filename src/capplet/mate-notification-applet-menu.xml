@@ -1,3 +1,8 @@
 <menuitem name="DoNotDisturb Item" action="DoNotDisturb" />
+<separator />
+<menuitem name="ShowHistory Item" action="ShowHistory" />
+<menuitem name="ClearHistory Item" action="ClearHistory" />
+<menuitem name="MarkAllRead Item" action="MarkAllRead" />
+<separator />
 <menuitem name="Preferences Item" action="Preferences" />
 <menuitem name="About Item" action="About" />
