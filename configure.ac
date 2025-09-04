@@ -179,7 +179,7 @@ fi
 dnl Check if we have the X development libraries
 have_x11=no
 if test "x$enable_x11" != "xno"; then
-	x11_pkg_modules="libwnck-3.0, x11"
+	x11_pkg_modules="libwnck-3.0 >= 43.0, x11"
 	PKG_CHECK_MODULES(NOTIFICATION_DAEMON_X11, $x11_pkg_modules, [
 		have_x11=yes
 		AC_DEFINE(HAVE_X11, 1, [Have the X11 development library])

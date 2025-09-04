@@ -1192,22 +1192,29 @@ static gboolean screensaver_active(GtkWidget* nw)
 #ifdef HAVE_X11
 static gboolean fullscreen_window_exists(GtkWidget* nw)
 {
+	WnckHandle* wnck_handle;
 	WnckScreen* wnck_screen;
 	WnckWorkspace* wnck_workspace;
 	GList* l;
+	gboolean retval = FALSE;
 
 	g_return_val_if_fail (GDK_IS_X11_DISPLAY (gdk_display_get_default ()), FALSE);
 
-	wnck_screen = wnck_screen_get (GDK_SCREEN_XNUMBER (gdk_window_get_screen (gtk_widget_get_window (nw))));
+	wnck_handle = wnck_handle_new (WNCK_CLIENT_TYPE_APPLICATION);
+
+	g_return_val_if_fail (WNCK_IS_HANDLE (wnck_handle), FALSE);
+
+	wnck_screen = wnck_handle_get_screen (wnck_handle, GDK_SCREEN_XNUMBER (gdk_window_get_screen (gtk_widget_get_window (nw))));
+
+	if (!wnck_screen)
+		goto cleanup;
 
 	wnck_screen_force_update (wnck_screen);
 
 	wnck_workspace = wnck_screen_get_active_workspace (wnck_screen);
 
 	if (!wnck_workspace)
-	{
-		return FALSE;
-	}
+		goto cleanup;
 
 	for (l = wnck_screen_get_windows_stacked (wnck_screen); l != NULL; l = l->next)
 	{
@@ -1228,12 +1235,15 @@ static gboolean fullscreen_window_exists(GtkWidget* nw)
 
 			if (sw == w && sh == h)
 			{
-				return TRUE;
+				retval = TRUE;
+				goto cleanup;
 			}
 		}
 	}
 
-	return FALSE;
+cleanup:
+	g_clear_object (&wnck_handle);
+	return retval;
 }
 
 static Window get_window_parent(GdkDisplay* display, Window window, Window* root)
