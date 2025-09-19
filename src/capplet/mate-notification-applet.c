@@ -345,6 +345,24 @@ toggle_do_not_disturb (MateNotificationApplet *applet)
   g_settings_set_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB, !current_state);
 }
 
+static gboolean
+notification_applet_activate (MatePanelApplet        *applet_widget,
+                              const gchar            *action,
+                              guint32                 timestamp,
+                              MateNotificationApplet *applet)
+{
+  if (g_strcmp0 (action, "show-history") == 0) {
+    if (applet->history_context) {
+      show_notification_history (applet->history_context);
+    }
+    return TRUE;
+  } else if (g_strcmp0 (action, "toggle-dnd") == 0) {
+    toggle_do_not_disturb (applet);
+    return TRUE;
+  }
+  return FALSE;
+}
+
 static void
 update_count_badge (MateNotificationApplet *applet)
 {
@@ -448,6 +466,10 @@ applet_main (MatePanelApplet *applet_widget)
   gtk_widget_add_events (GTK_WIDGET (applet_widget), GDK_BUTTON_PRESS_MASK);
   g_signal_connect (G_OBJECT (applet_widget), "button-press-event",
                     G_CALLBACK (applet_button_press_cb), applet);
+
+  /* D-Bus activation handling */
+  g_signal_connect (G_OBJECT (applet_widget), "activate",
+                    G_CALLBACK (notification_applet_activate), applet);
 
   /* set up context menu */
   applet->action_group = gtk_action_group_new ("Notification Status Actions");
