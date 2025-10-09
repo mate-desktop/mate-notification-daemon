@@ -688,6 +688,13 @@ typedef struct {
 	gint id;
 } IdleRepositionData;
 
+static void idle_reposition_data_destroy(gpointer user_data)
+{
+	IdleRepositionData* data = (IdleRepositionData*) user_data;
+	g_object_unref(data->daemon);
+	g_free(data);
+}
+
 static gboolean idle_reposition_notification(IdleRepositionData* data)
 {
 	NotifyDaemon* daemon;
@@ -706,8 +713,6 @@ static gboolean idle_reposition_notification(IdleRepositionData* data)
 	}
 
 	g_hash_table_remove(daemon->idle_reposition_notify_ids, GINT_TO_POINTER(notify_id));
-	g_object_unref(daemon);
-	g_free(data);
 
 	return FALSE;
 }
@@ -730,7 +735,7 @@ static void _queue_idle_reposition_notification(NotifyDaemon* daemon, gint notif
 	data->id = notify_id;
 
 	/* We do this as a short timeout to avoid repositioning spam */
-	idle_id = g_timeout_add_full(G_PRIORITY_LOW, 50, (GSourceFunc) idle_reposition_notification, data, NULL);
+	idle_id = g_timeout_add_full(G_PRIORITY_LOW, 50, (GSourceFunc) idle_reposition_notification, data, idle_reposition_data_destroy);
 	g_hash_table_insert(daemon->idle_reposition_notify_ids, GINT_TO_POINTER(notify_id), GUINT_TO_POINTER(idle_id));
 }
 
