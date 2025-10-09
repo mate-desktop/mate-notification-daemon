@@ -1756,14 +1756,24 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 							      g_settings_get_int(daemon->gsettings, GSETTINGS_KEY_MONITOR_NUMBER));
 		}
 
-		if (_gtk_get_monitor_num (monitor_id) >= daemon->screen->n_stacks)
+		/* If the monitor was disconnected or invalid, fall back to the last available monitor */
+		if (monitor_id == NULL && daemon->screen->n_stacks > 0)
+		{
+			monitor_id = gdk_display_get_monitor (gdk_display_get_default(), (int) daemon->screen->n_stacks - 1);
+		}
+
+		if (monitor_id != NULL && _gtk_get_monitor_num (monitor_id) >= daemon->screen->n_stacks)
 		{
 			/* screw it - dump it on the last one we'll get
 			 a monitors-changed signal soon enough*/
 			monitor_id = gdk_display_get_monitor (gdk_display_get_default(), (int) daemon->screen->n_stacks - 1);
 		}
 
-		notify_stack_add_window (daemon->screen->stacks[_gtk_get_monitor_num (monitor_id)], nw, new_notification);
+		/* If we still don't have a valid monitor, something is seriously wrong */
+		if (monitor_id != NULL && daemon->screen->n_stacks > 0)
+		{
+			notify_stack_add_window (daemon->screen->stacks[_gtk_get_monitor_num (monitor_id)], nw, new_notification);
+		}
 	}
 
 	if (id == 0)
