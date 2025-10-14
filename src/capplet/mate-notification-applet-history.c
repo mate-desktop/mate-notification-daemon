@@ -219,6 +219,55 @@ history_context_update_dbus (MateNotificationHistoryContext *context,
   }
 }
 
+static void
+position_popup_window (GtkWidget *popup,
+                       GtkWidget *reference_widget,
+                       GdkScreen *screen,
+                       gint popup_width,
+                       gint popup_height)
+{
+  gint x, y;
+  GdkWindow *window;
+
+  window = gtk_widget_get_window (reference_widget);
+  if (!window) {
+    return;
+  }
+
+  gdk_window_get_origin (window, &x, &y);
+
+  /* Calculate popup dimensions */
+  gint applet_height = gtk_widget_get_allocated_height (reference_widget);
+
+  /* Get screen dimensions */
+  gint screen_width = gdk_screen_get_width (screen);
+  gint screen_height = gdk_screen_get_height (screen);
+
+  /* Calculate initial position below applet */
+  gint popup_x = x;
+  gint popup_y = y + applet_height;
+
+  /* Check if popup extends beyond screen boundaries and adjust */
+  if (popup_x + popup_width > screen_width) {
+    popup_x = screen_width - popup_width;
+  }
+  if (popup_x < 0) {
+    popup_x = 0;
+  }
+
+  /* If popup extends below screen, place it above the applet instead */
+  if (popup_y + popup_height > screen_height) {
+    popup_y = y - popup_height;
+    /* If it still doesn't fit above, center it vertically */
+    if (popup_y < 0) {
+      popup_y = (screen_height - popup_height) / 2;
+      if (popup_y < 0) popup_y = 0;
+    }
+  }
+
+  gtk_window_move (GTK_WINDOW (popup), popup_x, popup_y);
+}
+
 void
 show_notification_history (MateNotificationHistoryContext *context)
 {
@@ -237,8 +286,6 @@ show_notification_history (MateNotificationHistoryContext *context)
   gint64 timestamp, closed_timestamp;
   guint reason;
   gboolean read;
-  gint x, y;
-  GdkWindow *window;
 
   if (!dbus_context_is_available (context->dbus_context)) {
     g_warning ("Cannot show history: daemon not available");
@@ -365,12 +412,8 @@ show_notification_history (MateNotificationHistoryContext *context)
   gtk_box_pack_end (GTK_BOX (button_box), clear_button, FALSE, FALSE, 0);
   gtk_box_pack_start (GTK_BOX (vbox), button_box, FALSE, FALSE, 0);
 
-  /* Place popup window below the applet */
-  window = gtk_widget_get_window (context->main_widget);
-  if (window) {
-    gdk_window_get_origin (window, &x, &y);
-    gtk_window_move (GTK_WINDOW (popup), x, y + gtk_widget_get_allocated_height (context->main_widget));
-  }
+  /* Position popup window with boundary checking */
+  position_popup_window (popup, context->main_widget, screen, 450, content_height + 100);
 
   /* Set popup size based on content (with space for buttons) */
   gtk_window_set_default_size (GTK_WINDOW (popup), 450, content_height + 100);

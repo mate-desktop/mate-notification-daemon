@@ -1,4 +1,5 @@
 <menuitem name="DoNotDisturb Item" action="DoNotDisturb" />
+<menuitem name="HistoryEnabled Item" action="HistoryEnabled" />
 <separator />
 <menuitem name="ShowHistory Item" action="ShowHistory" />
 <menuitem name="ClearHistory Item" action="ClearHistory" />
