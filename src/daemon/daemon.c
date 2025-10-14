@@ -32,6 +32,8 @@
 #include <glib/gi18n.h>
 #include <glib.h>
 #include <glib-object.h>
+#include <gio/gio.h>
+#include <gio/gdesktopappinfo.h>
 #include <gtk/gtk.h>
 
 #ifdef HAVE_X11
@@ -1702,6 +1704,40 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 		g_key_file_free(key_file);
 		g_free(desktop_file);
+	}
+	else if (app_name != NULL && *app_name != '\0')
+	{
+		/* Fallback: Try to find icon from desktop key file based on the app_name */
+		gchar *desktop_key = g_ascii_strdown(app_name, -1);
+		for (gchar *p = desktop_key; *p != '\0'; p++) {
+			if (*p == ' ') *p = '-';
+		}
+		gchar *desktop_id = g_strdup_printf("%s.desktop", desktop_key);
+		GDesktopAppInfo *app_info = g_desktop_app_info_new(desktop_id);
+
+		if (app_info != NULL)
+		{
+			GIcon *gicon = g_app_info_get_icon(G_APP_INFO(app_info));
+			if (gicon != NULL)
+			{
+				GtkIconInfo *icon_info = gtk_icon_theme_lookup_by_gicon(gtk_icon_theme_get_default(),
+											gicon,
+											IMAGE_SIZE,
+											GTK_ICON_LOOKUP_USE_BUILTIN);
+				if (icon_info != NULL)
+				{
+					pixbuf = gtk_icon_info_load_icon(icon_info, NULL);
+					if (pixbuf != NULL && !resolved_icon && (*icon == '\0' || icon == NULL)) {
+						resolved_icon = g_strdup(g_icon_to_string(gicon));
+					}
+					g_object_unref(icon_info);
+				}
+			}
+			g_object_unref(app_info);
+		}
+
+		g_free(desktop_id);
+		g_free(desktop_key);
 	}
 	else if (g_variant_lookup(hints, "icon_data", "@(iiibiiay)", &data))
 	{
