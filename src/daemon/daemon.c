@@ -1640,36 +1640,47 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	 * 3. icon (which falls back to the desktop entry)
 	 * 4. icon_data (for backward compatibility)
 	 */
-	if (g_variant_lookup(hints, "image-data", "@(iiibiiay)", &data))
+	if (pixbuf == NULL && g_variant_lookup(hints, "image-data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image_data", "@(iiibiiay)", &data))
+
+	if (pixbuf == NULL && g_variant_lookup(hints, "image_data", "@(iiibiiay)", &data))
 	{
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
 		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image-path", "@s", &data))
+
+	if (pixbuf == NULL && g_variant_lookup(hints, "image-path", "@s", &data))
 	{
 		const char *path = g_variant_get_string (data, NULL);
 		pixbuf = _notify_daemon_pixbuf_from_path (path);
-		resolved_icon = g_strdup(path);
+		if (pixbuf != NULL) {
+			resolved_icon = g_strdup(path);
+		}
 		g_variant_unref(data);
 	}
-	else if (g_variant_lookup(hints, "image_path", "@s", &data))
+
+	if (pixbuf == NULL && g_variant_lookup(hints, "image_path", "@s", &data))
 	{
 		const char *path = g_variant_get_string (data, NULL);
 		pixbuf = _notify_daemon_pixbuf_from_path (path);
-		resolved_icon = g_strdup(path);
+		if (pixbuf != NULL) {
+			resolved_icon = g_strdup(path);
+		}
 		g_variant_unref(data);
 	}
-	else if (*icon != '\0')
+
+	if (pixbuf == NULL && icon != NULL && *icon != '\0')
 	{
 		pixbuf = _notify_daemon_pixbuf_from_path (icon);
-		resolved_icon = g_strdup(icon);
+		if (pixbuf != NULL) {
+			resolved_icon = g_strdup(icon);
+		}
 	}
-	else if (desktop_entry != NULL && *desktop_entry != '\0')
+
+	if (pixbuf == NULL && desktop_entry != NULL && *desktop_entry != '\0')
 	{
 		/* Use desktop-entry to resolve application icon as fallback */
 		gchar *desktop_file = g_strdup_printf("%s.desktop", desktop_entry);
@@ -1695,7 +1706,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		{
 			pixbuf = _notify_daemon_pixbuf_from_path (icon_name);
 
-			if (!resolved_icon && (*icon == '\0' || icon == NULL)) {
+			if (pixbuf != NULL && !resolved_icon) {
 				resolved_icon = g_strdup(icon_name);
 			}
 
@@ -1705,9 +1716,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		g_key_file_free(key_file);
 		g_free(desktop_file);
 	}
-	else if (app_name != NULL && *app_name != '\0')
+
+	if (pixbuf == NULL && app_name != NULL && *app_name != '\0')
 	{
-		/* Fallback: Try to find icon from desktop key file based on the app_name */
+		/* Fallback: Try to derive desktop entry from app_name */
 		gchar *desktop_key = g_ascii_strdown(app_name, -1);
 		for (gchar *p = desktop_key; *p != '\0'; p++) {
 			if (*p == ' ') *p = '-';
@@ -1727,7 +1739,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 				if (icon_info != NULL)
 				{
 					pixbuf = gtk_icon_info_load_icon(icon_info, NULL);
-					if (pixbuf != NULL && !resolved_icon && (*icon == '\0' || icon == NULL)) {
+					if (pixbuf != NULL && !resolved_icon) {
 						resolved_icon = g_strdup(g_icon_to_string(gicon));
 					}
 					g_object_unref(icon_info);
@@ -1739,7 +1751,8 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		g_free(desktop_id);
 		g_free(desktop_key);
 	}
-	else if (g_variant_lookup(hints, "icon_data", "@(iiibiiay)", &data))
+
+	if (pixbuf == NULL && g_variant_lookup(hints, "icon_data", "@(iiibiiay)", &data))
 	{
 		g_warning("\"icon_data\" hint is deprecated, please use \"image_data\" instead");
 		pixbuf = _notify_daemon_pixbuf_from_data_hint (data);
