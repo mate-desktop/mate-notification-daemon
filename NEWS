@@ -1,3 +1,25 @@
+### mate-notification-daemon 1.29.0
+
+  * daemon: Fix use-after-free crash in idle reposition timeout
+  * daemon: Fix crash when monitor is disconnected
+  * history: Add enable/disable toggle
+  * capplet: Add notification count badge
+  * capplet: Add notification history context module
+  * capplet: Add D-Bus context for notification daemon communication
+  * daemon: Add notification history tracking API
+  * daemon: Bump libwnck to 43.0
+  * capplet: Add timeout and persistence controls
+  * daemon: implement Desktop Notifications Specification 1.3
+  * daemon: report dbus method invocation as handled on error
+  * Fix background of nodoka theme in RTL
+  * Crate a second notification with a button
+  * Use transparent background for the coutdown
+  * Allow to set countdown color from CSS
+  * Add countdown CSS class
+  * Add actions-box CSS class
+  * Add also theme name
+  * Add notification-box CSS class
+
 ### mate-notification-daemon 1.28.3
 
   * ci:fix faraday version issue blocking Travis deployment
