@@ -9,7 +9,7 @@
 # Νίκος Κοντ. <nkontopos@gmail.com>, 2018
 # 437c9d6e19936ed69f57bed9e0fe4716, 2018
 # gapan <vlahavas@gmail.com>, 2020
-# Efstathios Iosifidis <iefstathios@gmail.com>, 2021
+# Efstathios Iosifidis <eiosifidis@gmail.com>, 2021
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
 # Alexandros Kapetanios <alexandros@gnugr.org>, 2021
 # 

@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Imants Liepiņš <imzzinator@gmail.com>, 2018
-# duck <voiceofwise1@gmail.com>, 2020
+# reki the human <voiceofwise1@gmail.com>, 2020
 # Rihards Priedītis <rprieditis@gmail.com>, 2021
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
 # 

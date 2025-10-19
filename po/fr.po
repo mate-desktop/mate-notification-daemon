@@ -7,7 +7,7 @@
 # mauron, 2018
 # yoplait <yoplait@tememe.org>, 2018
 # brice nice <brice1024@yahoo.fr>, 2018
-# roxfr <roxfr@outlook.fr>, 2020
+# roxfr, 2020
 # Tubuntu, 2020
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
 # jeremy shields <jeremy.shields@orange.fr>, 2021
