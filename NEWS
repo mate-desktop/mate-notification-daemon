@@ -1,3 +1,15 @@
+### mate-notification-daemon 1.28.5
+
+  * Update translations
+  * daemon: Fix use-after-free crash in idle reposition timeout
+  * daemon: Fix crash when monitor is disconnected
+  * daemon: Bump libwnck to 43.0
+  * daemon: report dbus method invocation as handled on error
+
+### mate-notification-daemon 1.28.4
+
+  * (deleted-contained development commits)
+
 ### mate-notification-daemon 1.28.3
 
   * ci:fix faraday version issue blocking Travis deployment
