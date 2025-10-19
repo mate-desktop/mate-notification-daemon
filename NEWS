@@ -1,5 +1,6 @@
 ### mate-notification-daemon 1.29.0
 
+  * update translations
   * daemon: Fix use-after-free crash in idle reposition timeout
   * daemon: Fix crash when monitor is disconnected
   * history: Add enable/disable toggle
