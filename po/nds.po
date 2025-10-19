@@ -5,7 +5,7 @@
 # 
 # Translators:
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
-# Benedikt Straub <benedikt-straub@web.de>, 2023
+# Benedikt Straub <benedikt-straub@web.de>, 2025
 # 
 msgid ""
 msgstr ""
@@ -13,7 +13,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Benedikt Straub <benedikt-straub@web.de>, 2023\n"
+"Last-Translator: Benedikt Straub <benedikt-straub@web.de>, 2025\n"
 "Language-Team: Low German (https://app.transifex.com/mate/teams/13566/nds/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -92,7 +92,7 @@ msgstr "Gedrüüs an"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:26
 msgid "Turns on and off sound support for notifications."
-msgstr "Maakt Gedrüüs-Unnerstütten för Narichten at oder ut."
+msgstr "Maakt Gedrüüs-Unnerstütten för Narichten at of ut."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
@@ -104,7 +104,7 @@ msgstr "Wenn an, worden keene Mitdeelens wiest."
 
 #: src/capplet/mate-notification-applet.c:52
 msgid "_Preferences"
-msgstr "_Eegenschapten"
+msgstr "_Eegenskuppen"
 
 #: src/capplet/mate-notification-applet.c:54
 msgid "_About"
