@@ -315,6 +315,9 @@ static void add_exit_timeout(NotifyDaemon* daemon)
 	if (! daemon->idle_exit)
 		return;
 
+	if (daemon->history_enabled)
+		return;
+
 	if (daemon->exit_timeout_source > 0)
 		return;
 
