@@ -286,12 +286,25 @@ static void notify_daemon_class_init(NotifyDaemonClass* daemon_class)
 
 static void _notify_timeout_destroy(NotifyTimeout* nt)
 {
+	gpointer value;
+
 	/*
 	 * Disconnect the destroy handler to avoid a loop since the id
 	 * won't be removed from the hash table before the widget is
 	 * destroyed.
 	 */
 	g_signal_handlers_disconnect_by_func(nt->nw, _notification_destroyed_cb, nt->daemon);
+
+	/* Cancel any pending idle reposition for this notification */
+	if (g_hash_table_lookup_extended(nt->daemon->idle_reposition_notify_ids,
+	                                 GINT_TO_POINTER(nt->id),
+	                                 NULL, &value))
+	{
+		guint source_id = GPOINTER_TO_UINT(value);
+		g_source_remove(source_id);
+		g_hash_table_remove(nt->daemon->idle_reposition_notify_ids, GINT_TO_POINTER(nt->id));
+	}
+
 	gtk_widget_destroy(GTK_WIDGET(nt->nw));
 
 	g_free(nt->app_name);
