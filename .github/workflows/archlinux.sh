@@ -18,10 +18,15 @@ requires=(
 requires+=(
 	autoconf-archive
 	gcc
+	gettext
 	git
 	glib2-devel
+	libcanberra
+	libnotify
+	libwnck3
 	make
 	mate-common
+	mate-panel
 	python
 	which
 )
