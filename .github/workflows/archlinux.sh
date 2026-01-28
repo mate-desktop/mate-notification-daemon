@@ -11,18 +11,18 @@ infoend() {
 # Required packages on Archlinux
 requires=(
 	ccache # Use ccache to speed up build
+	clang  # Build with clang on Archlinux
 )
 
+# https://gitlab.archlinux.org/archlinux/packaging/packages/mate-notification-daemon
 requires+=(
 	autoconf-archive
 	gcc
 	git
-	gtk3
-	libnotify
-	libwnck3
+	glib2-devel
 	make
 	mate-common
-	mate-panel
+	python
 	which
 )
 

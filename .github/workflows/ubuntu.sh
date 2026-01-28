@@ -13,6 +13,7 @@ requires=(
 	ccache # Use ccache to speed up build
 )
 
+# https://git.launchpad.net/ubuntu/+source/mate-notification-daemon/tree/debian/control
 requires+=(
 	autoconf-archive
 	autopoint

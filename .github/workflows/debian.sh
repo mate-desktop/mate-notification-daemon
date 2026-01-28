@@ -13,6 +13,7 @@ requires=(
 	ccache # Use ccache to speed up build
 )
 
+# https://salsa.debian.org/debian-mate-team/mate-notification-daemon
 requires+=(
 	autoconf-archive
 	autopoint

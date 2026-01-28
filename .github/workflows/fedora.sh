@@ -13,6 +13,7 @@ requires=(
 	ccache # Use ccache to speed up build
 )
 
+# https://src.fedoraproject.org/cgit/rpms/mate-notification-daemon.git
 requires+=(
 	autoconf-archive
 	desktop-file-utils
