@@ -276,32 +276,37 @@ update_unread_count (MateNotificationApplet *applet)
 static void
 update_applet_display (MateNotificationApplet *applet)
 {
-  gchar *tooltip_text;
   gboolean dnd_active;
   gboolean history_enabled;
 
   dnd_active = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_DO_NOT_DISTURB);
   history_enabled = g_settings_get_boolean (applet->settings, GSETTINGS_KEY_HISTORY_ENABLED);
 
-  /* Update tooltip based on number of unread notifications and user state */
-  if (!history_enabled)
-    tooltip_text = g_strdup (_("(privacy mode)"));
-  else if (applet->unread_count > 99)
-    tooltip_text = g_strdup (_("(99+ unread)"));
-  else if (applet->unread_count > 0)
-    tooltip_text = g_strdup_printf ("(%d unread)", applet->unread_count);
-  else
-    tooltip_text = g_strdup ("");
+  g_autoptr(GString) tooltip = g_string_new (NULL);
 
+  /* Prefix */
   if (dnd_active)
-    tooltip_text = g_strdup_printf ("Do Not Disturb %s", tooltip_text);
+    g_string_append (tooltip, "Do Not Disturb");
   else if (!dbus_context_is_available (applet->dbus_context))
-    tooltip_text = g_strdup (_("Notifications (daemon unavailable)"));
+    {
+      gtk_widget_set_tooltip_text (GTK_WIDGET (applet->applet),
+                                   _("Notifications (daemon unavailable)"));
+      set_status_image (applet, dnd_active, history_enabled);
+      update_count_badge (applet);
+      return;
+    }
   else
-    tooltip_text = g_strdup_printf ("Notifications %s", tooltip_text);
+    g_string_append (tooltip, "Notifications");
 
-  gtk_widget_set_tooltip_text (GTK_WIDGET (applet->applet), tooltip_text);
-  g_free (tooltip_text);
+  /* Suffix */
+  if (!history_enabled)
+    g_string_append_printf (tooltip, " %s", _("(privacy mode)"));
+  else if (applet->unread_count > 99)
+    g_string_append_printf (tooltip, " %s", _("(99+ unread)"));
+  else if (applet->unread_count > 0)
+    g_string_append_printf (tooltip, " (%d unread)", applet->unread_count);
+
+  gtk_widget_set_tooltip_text (GTK_WIDGET (applet->applet), tooltip->str);
 
   set_status_image (applet, dnd_active, history_enabled);
   update_count_badge (applet);
