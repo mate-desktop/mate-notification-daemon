@@ -32,6 +32,7 @@
 static gboolean debug = FALSE;
 static gboolean replace = FALSE;
 static gboolean idle_exit = FALSE;
+static gboolean show_version = FALSE;
 
 static GOptionEntry entries[] =
 {
@@ -51,6 +52,12 @@ static GOptionEntry entries[] =
 		"idle-exit", 'i', G_OPTION_FLAG_NONE,
 		G_OPTION_ARG_NONE, &idle_exit,
 		"Auto-exit when idle, useful if run through D-Bus activation",
+		NULL
+	},
+	{
+		"version", 'v', G_OPTION_FLAG_NONE,
+		G_OPTION_ARG_NONE, &show_version,
+		"Version of this application",
 		NULL
 	},
 	{
@@ -101,6 +108,12 @@ int main (int argc, char *argv[])
 
 	if (!parse_arguments (&argc, &argv))
 		return EXIT_FAILURE;
+
+	if (show_version)
+	{
+		g_print ("%s %s\n", PACKAGE, VERSION);
+		return EXIT_SUCCESS;
+	}
 
 	daemon = notify_daemon_new (replace, idle_exit);
 
