@@ -249,6 +249,7 @@ update_shape_region (cairo_surface_t *surface,
 
 	windata->last_width = windata->width;
 	windata->last_height = windata->height;
+	gtk_widget_queue_draw (GTK_WIDGET (windata->win));
 }
 
 static void
