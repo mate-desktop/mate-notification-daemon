@@ -758,8 +758,14 @@ static void _notification_destroyed_cb(GtkWindow* nw, NotifyDaemon* daemon)
 	/*
 	 * This usually won't happen, but can if notification-daemon dies before
 	 * all notifications are closed. Mark them as expired.
+	 *
+	 * But if instead the notification's close button was clicked, the
+	 * "_user_closed" flag will be set on the window, so we send the
+	 * correct reason.
 	 */
-	_close_notification(daemon, NW_GET_NOTIFY_ID(nw), FALSE, NOTIFYD_CLOSED_EXPIRED);
+	gboolean user_closed = GPOINTER_TO_INT(g_object_get_data(G_OBJECT(nw), "_user_closed"));
+	_close_notification(daemon, NW_GET_NOTIFY_ID(nw), FALSE,
+	                    user_closed ? NOTIFYD_CLOSED_USER : NOTIFYD_CLOSED_EXPIRED);
 }
 
 #ifdef HAVE_X11

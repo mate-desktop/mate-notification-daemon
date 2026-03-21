@@ -748,6 +748,13 @@ get_theme_info(char **theme_name,
 	*homepage = g_strdup("https://nodoka.fedorahosted.org/");
 }
 
+static void
+close_button_clicked_cb(GtkButton* button, GtkWidget* win)
+{
+	g_object_set_data(G_OBJECT(win), "_user_closed", GINT_TO_POINTER(1));
+	gtk_widget_destroy(win);
+}
+
 /* Create new notification */
 GtkWindow *
 create_notification(UrlClickedCb url_clicked)
@@ -860,8 +867,8 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
 	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
 	gtk_widget_set_size_request(close_button, 24, 24);
-	g_signal_connect_swapped(G_OBJECT(close_button), "clicked",
-							 G_CALLBACK(gtk_widget_destroy), win);
+	g_signal_connect(G_OBJECT(close_button), "clicked",
+	                 G_CALLBACK(close_button_clicked_cb), win);
 
 	atkobj = gtk_widget_get_accessible(close_button);
 	atk_action_set_description(ATK_ACTION(atkobj), 0,
