@@ -1834,8 +1834,10 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 #endif /* HAVE_X11 */
 	/* fullscreen_window is assumed to be false on Wayland, as there is no trivial way to check */
 
+	gboolean force_display = g_settings_get_boolean (daemon->gsettings, GSETTINGS_KEY_FORCE_DISPLAY);
+
 	/* If on DnD or screensaver, suppress and close notification */
-	if (do_not_disturb || (screensaver_active (GTK_WIDGET (nw)) && urgency != URGENCY_CRITICAL))
+	if (do_not_disturb || (!force_display && screensaver_active (GTK_WIDGET (nw)) && urgency != URGENCY_CRITICAL))
 	{
 		_NotifyPendingClose *notification_data;
 
@@ -1848,12 +1850,12 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 	}
 	else
 	{
-		/* Show if critical or no fullscreen window */
-		if (urgency == URGENCY_CRITICAL || !fullscreen_window)
+		/* Show if critical, force-display, or no fullscreen window */
+		if (force_display || urgency == URGENCY_CRITICAL || !fullscreen_window)
 			theme_show_notification (nw);
 
-		/* Play sound unless low urgency during fullscreen */
-		if (sound_file != NULL && !(fullscreen_window && urgency == URGENCY_LOW))
+		/* Play sound unless low urgency during fullscreen (when not force-display) */
+		if (sound_file != NULL && (force_display || !(fullscreen_window && urgency == URGENCY_LOW)))
 			sound_play_file (GTK_WIDGET (nw), sound_file);
 	}
 
