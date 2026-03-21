@@ -960,7 +960,7 @@ static gboolean _check_expiration(NotifyDaemon* daemon)
 	return has_more_timeouts;
 }
 
-static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int timeout, gboolean resident)
+static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int timeout, gboolean resident, guint urgency)
 {
 	GSettings *gsettings = g_settings_new ("org.mate.NotificationDaemon");
 	gboolean persistence_enabled = g_settings_get_boolean (gsettings, "enable-persistence");
@@ -975,7 +975,9 @@ static void _calculate_timeout(NotifyDaemon* daemon, NotifyTimeout* nt, int time
 		g_object_unref (gsettings);
 	}
 
-	if (timeout == 0 || nt->resident)
+	/* Per the spec, critical notifications should not automatically
+	 * expire. They should only be closed by user action. */
+	if (timeout == 0 || nt->resident || urgency == URGENCY_CRITICAL)
 	{
 		nt->has_timeout = FALSE;
 	}
@@ -1046,7 +1048,7 @@ static NotifyTimeout* _store_notification(NotifyDaemon* daemon, GtkWindow* nw,
 	nt->timestamp = g_get_real_time();
 	nt->close_reason = NOTIFYD_CLOSED_EXPIRED; /* Default to expired, since we don't care about active notifications */
 
-	_calculate_timeout(daemon, nt, timeout, resident);
+	_calculate_timeout(daemon, nt, timeout, resident, urgency);
 
 #if GLIB_CHECK_VERSION (2, 68, 0)
 	g_hash_table_insert(daemon->notification_hash, g_memdup2(&id, sizeof(guint)), nt);
@@ -1832,22 +1834,8 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 #endif /* HAVE_X11 */
 	/* fullscreen_window is assumed to be false on Wayland, as there is no trivial way to check */
 
-	/* If there is no timeout, show the notification also if screensaver
-	 * is active or there are fullscreen windows
-	 */
-	if (!nt->has_timeout || (!screensaver_active (GTK_WIDGET (nw)) && !fullscreen_window))
-	{
-		if (!do_not_disturb)
-		{
-			theme_show_notification (nw);
-
-			if (sound_file != NULL)
-			{
-				sound_play_file (GTK_WIDGET (nw), sound_file);
-			}
-		}
-	}
-	else
+	/* If on DnD or screensaver, suppress and close notification */
+	if (do_not_disturb || (screensaver_active (GTK_WIDGET (nw)) && urgency != URGENCY_CRITICAL))
 	{
 		_NotifyPendingClose *notification_data;
 
@@ -1858,6 +1846,16 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 		notification_data->daemon = g_object_ref (daemon);
 		g_idle_add ((GSourceFunc) _close_notification_not_shown, notification_data);
 	}
+	else
+	{
+		/* Show if critical or no fullscreen window */
+		if (urgency == URGENCY_CRITICAL || !fullscreen_window)
+			theme_show_notification (nw);
+
+		/* Play sound unless low urgency during fullscreen */
+		if (sound_file != NULL && !(fullscreen_window && urgency == URGENCY_LOW))
+			sound_play_file (GTK_WIDGET (nw), sound_file);
+	}
 
 	g_free (sound_file);
 
@@ -1865,7 +1863,7 @@ static gboolean notify_daemon_notify_handler(NotifyDaemonNotifications *object, 
 
 	if (nt)
 	{
-		_calculate_timeout (daemon, nt, timeout, resident && !transient);
+		_calculate_timeout (daemon, nt, timeout, resident && !transient, urgency);
 	}
 
 	if (resolved_icon) {
