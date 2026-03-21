@@ -347,6 +347,22 @@
                         <property name="position">2</property>
                       </packing>
                     </child>
+                    <child>
+                      <object class="GtkCheckButton" id="force_display_check">
+                        <property name="label" translatable="yes">Force Display All Notifications</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">False</property>
+                        <property name="halign">start</property>
+                        <property name="draw_indicator">True</property>
+                        <property name="tooltip_text" translatable="yes">Show all notifications regardless of urgency, fullscreen, or screensaver state. Do Not Disturb still takes precedence.</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
                   </object>
                 </child>
               </object>

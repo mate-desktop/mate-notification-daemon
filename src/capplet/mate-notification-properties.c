@@ -49,6 +49,7 @@ typedef struct {
 	GtkWidget* timeout_spin;
 	GtkWidget* persistence_checkbox;
 	GtkWidget* countdown_checkbox;
+	GtkWidget* force_display_checkbox;
 
 	NotifyNotification* preview1;
 	NotifyNotification* preview2;
@@ -502,6 +503,7 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	dialog->timeout_spin = GTK_WIDGET(gtk_builder_get_object(builder, "timeout_spin"));
 	dialog->persistence_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "enable_persistence_check"));
 	dialog->countdown_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "show_countdown_check"));
+	dialog->force_display_checkbox = GTK_WIDGET(gtk_builder_get_object(builder, "force_display_check"));
 
 	g_object_unref (builder);
 
@@ -518,6 +520,7 @@ static gboolean notification_properties_dialog_init(NotificationAppletDialog* di
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_DEFAULT_TIMEOUT, timeout_adjustment, "value", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_ENABLE_PERSISTENCE, dialog->persistence_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_SHOW_COUNTDOWN, dialog->countdown_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
+	g_settings_bind (dialog->gsettings, GSETTINGS_KEY_FORCE_DISPLAY, dialog->force_display_checkbox, "active", G_SETTINGS_BIND_DEFAULT);
 
 	notification_properties_dialog_setup_themes (dialog);
 	notification_properties_dialog_setup_positions (dialog);
