@@ -90,19 +90,13 @@ void set_notification_hints(GtkWindow *nw, GVariant *hints);
 void notification_tick(GtkWindow *nw, glong remaining);
 static void create_pie_countdown(WindowData* windata);
 
-#define STRIPE_WIDTH  32
 #define WIDTH         300
 #define IMAGE_SIZE    32
-#define IMAGE_PADDING 10
-#define SPACER_LEFT   30
+#define IMAGE_PADDING 24
 #define PIE_RADIUS    12
 #define PIE_WIDTH     (2 * PIE_RADIUS)
 #define PIE_HEIGHT    (2 * PIE_RADIUS)
-#define BODY_X_OFFSET (IMAGE_SIZE + 8)
-#define DEFAULT_ARROW_OFFSET  (SPACER_LEFT + 12)
-#define DEFAULT_ARROW_HEIGHT  14
-#define DEFAULT_ARROW_WIDTH   22
-#define DEFAULT_ARROW_SKEW    -6
+#define BODY_X_OFFSET (IMAGE_SIZE + IMAGE_PADDING)
 #define BACKGROUND_OPACITY    0.9
 #define GRADIENT_CENTER 0.7
 
@@ -464,6 +458,7 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_widget_set_halign (windata->main_hbox, GTK_ALIGN_START);
 	gtk_widget_set_valign (windata->main_hbox, GTK_ALIGN_START);
 	gtk_widget_set_margin_top (windata->main_hbox, 8);
+	gtk_widget_set_margin_bottom (windata->main_hbox, 8);
 	gtk_widget_set_margin_end (windata->main_hbox, 8);
 	gtk_widget_show (windata->main_hbox);
 	gtk_box_pack_start (GTK_BOX(main_vbox), windata->main_hbox, FALSE, FALSE, 0);
