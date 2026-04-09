@@ -5,8 +5,6 @@
 # 
 # Translators:
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
-# Temuri Doghonadze <temuri.doghonadze@gmail.com>, 2026
-# Transifex Bot <>, 2026
 # 
 msgid ""
 msgstr ""
@@ -14,7 +12,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Transifex Bot <>, 2026\n"
+"Last-Translator: Stefano Karapetsas <stefano@karapetsas.com>, 2021\n"
 "Language-Team: Georgian (https://app.transifex.com/mate/teams/13566/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -219,7 +217,7 @@ msgstr ""
 
 #: src/capplet/mate-notification-properties.ui:222
 msgid "General Options"
-msgstr "ზოგადი პარამეტრები"
+msgstr ""
 
 #: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"

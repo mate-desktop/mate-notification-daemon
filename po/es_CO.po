@@ -7,7 +7,6 @@
 # John Toro <johntoro@gmail.com>, 2021
 # Sergio Alejandro Bayona Becerra <sergioalejo@gmail.com>, 2021
 # Julian Borrero <julborre@gmail.com>, 2021
-# Transifex Bot <>, 2026
 # 
 msgid ""
 msgstr ""
@@ -15,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2023-09-02 17:27+0200\n"
 "PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Transifex Bot <>, 2026\n"
+"Last-Translator: Julian Borrero <julborre@gmail.com>, 2021\n"
 "Language-Team: Spanish (Colombia) (https://app.transifex.com/mate/teams/13566/es_CO/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
