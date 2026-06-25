@@ -1,0 +1,3 @@
+option('wayland', type : 'string', value : 'auto', description : 'wayland enabled')
+option('x11', type : 'string', value : 'auto', description : 'X11 enabled')
+option('in-process', type : 'boolean', value : false, description : 'in-process enabled')
