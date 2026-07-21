@@ -1943,25 +1943,22 @@ static gboolean notify_daemon_close_notification_handler(NotifyDaemonNotificatio
 
 static gboolean notify_daemon_get_capabilities( NotifyDaemonNotifications *object, GDBusMethodInvocation *invocation)
 {
-	GVariantBuilder *builder;
-	GVariant *value;
+	static const gchar *const capabilities[] = {
+		"actions",
+		"action-icons",
+		"body",
+		"body-hyperlinks",
+		"body-markup",
+		"icon-static",
+		"sound",
+		"persistence",
+		NULL
+	};
 
-	builder = g_variant_builder_new (G_VARIANT_TYPE ("as"));
-	g_variant_builder_add (builder, "s", "actions");
-	g_variant_builder_add (builder, "s", "action-icons");
-	g_variant_builder_add (builder, "s", "body");
-	g_variant_builder_add (builder, "s", "body-hyperlinks");
-	g_variant_builder_add (builder, "s", "body-markup");
-	g_variant_builder_add (builder, "s", "icon-static");
-	g_variant_builder_add (builder, "s", "sound");
-	g_variant_builder_add (builder, "s", "persistence");
-	value = g_variant_new ("as", builder);
-	g_variant_builder_unref (builder);
 	notify_daemon_notifications_complete_get_capabilities (
 			object,
 			invocation,
-			(const gchar* const *)g_variant_dup_strv (value, NULL));
-	g_variant_unref (value);
+			capabilities);
 	return TRUE;
 }
 
