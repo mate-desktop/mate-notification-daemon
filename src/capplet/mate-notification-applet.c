@@ -188,7 +188,8 @@ show_about (GtkAction              *action,
   (void) action;
   (void) applet;
 
-  gtk_show_about_dialog (NULL,
+  GtkWidget *about = g_object_new (GTK_TYPE_ABOUT_DIALOG,
+                         "program-name", _("Notification Status"),
                          "title", _("About Notification Status"),
                          "version", VERSION,
                          "copyright", _("Copyright \xc2\xa9 2021 MATE developers"),
@@ -197,6 +198,10 @@ show_about (GtkAction              *action,
                          "translator-credits", _("translator-credits"),
                          "logo_icon_name", "mate-notification-properties",
                          NULL);
+
+  g_signal_connect_swapped (about, "response",
+                            G_CALLBACK (gtk_widget_destroy), about);
+  gtk_widget_show (about);
 }
 
 static void
@@ -401,8 +406,8 @@ applet_main (MatePanelApplet *applet_widget)
 
 #ifndef ENABLE_IN_PROCESS
   g_set_application_name (_("Notification Status"));
-#endif
   gtk_window_set_default_icon_name ("mate-notification-properties");
+#endif
 
   applet = g_new (MateNotificationApplet, 1);
   applet->applet = applet_widget;
