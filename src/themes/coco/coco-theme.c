@@ -391,6 +391,13 @@ get_theme_info(char **theme_name,
 	*homepage = g_strdup("http://github.com/tatofoo/");
 }
 
+static void
+close_button_clicked_cb(GtkButton* button, GtkWidget* win)
+{
+	g_object_set_data(G_OBJECT(win), "_user_closed", GINT_TO_POINTER(1));
+	gtk_widget_destroy(win);
+}
+
 /* Create new notification */
 GtkWindow *
 create_notification(UrlClickedCb url_clicked)
@@ -398,6 +405,9 @@ create_notification(UrlClickedCb url_clicked)
 	GtkWidget *win;
 	GtkWidget *main_vbox;
 	GtkWidget *vbox;
+	GtkWidget *header_hbox;
+	GtkWidget *close_button;
+	GtkWidget *image;
 	AtkObject *atkobj;
 	WindowData *windata;
 	GdkVisual *visual;
@@ -481,9 +491,15 @@ create_notification(UrlClickedCb url_clicked)
 	gtk_widget_show (vbox);
 	gtk_box_pack_start (GTK_BOX (windata->main_hbox), vbox, TRUE, TRUE, 0);
 
+	header_hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
+	gtk_widget_set_margin_bottom(header_hbox, 6);
+	gtk_widget_show(header_hbox);
+	gtk_box_pack_start(GTK_BOX(vbox), header_hbox, FALSE, TRUE, 0);
+
 	windata->summary_label = gtk_label_new(NULL);
 	gtk_widget_show(windata->summary_label);
-	gtk_box_pack_start(GTK_BOX(vbox), windata->summary_label, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(header_hbox), windata->summary_label,
+				TRUE, TRUE, 0);
 	gtk_label_set_xalign (GTK_LABEL (windata->summary_label), 0.0);
 	gtk_label_set_yalign (GTK_LABEL (windata->summary_label), 0.0);
 	gtk_label_set_line_wrap(GTK_LABEL(windata->summary_label), TRUE);
@@ -491,6 +507,26 @@ create_notification(UrlClickedCb url_clicked)
 
 	atkobj = gtk_widget_get_accessible(windata->summary_label);
 	atk_object_set_description (atkobj, _("Notification summary text."));
+
+	/* Add the close button */
+	close_button = gtk_button_new();
+	gtk_widget_show(close_button);
+	gtk_box_pack_start(GTK_BOX(header_hbox), close_button, FALSE, FALSE, 0);
+	gtk_button_set_relief(GTK_BUTTON(close_button), GTK_RELIEF_NONE);
+	gtk_container_set_border_width(GTK_CONTAINER(close_button), 0);
+	gtk_widget_set_size_request(close_button, 24, 24);
+	g_signal_connect(G_OBJECT(close_button), "clicked",
+			 G_CALLBACK(close_button_clicked_cb), win);
+
+	atkobj = gtk_widget_get_accessible(close_button);
+	atk_action_set_description(ATK_ACTION(atkobj), 0,
+				   _("Closes the notification."));
+	atk_object_set_name(atkobj, "");
+	atk_object_set_description (atkobj, _("Closes the notification."));
+
+	image = gtk_image_new_from_icon_name ("window-close", GTK_ICON_SIZE_MENU);
+	gtk_widget_show(image);
+	gtk_container_add(GTK_CONTAINER(close_button), image);
 
 	windata->body_label = gtk_label_new(NULL);
 	gtk_box_pack_start(GTK_BOX(vbox), windata->body_label, FALSE, FALSE, 0);
