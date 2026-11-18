@@ -1,10 +1,6 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR MATE Desktop Environment team
 # This file is distributed under the same license as the mate-notification-daemon package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-# Translators:
-# 6a42dd6e7ca9a813693714b0d9aa1ad8, 2018
 # Henrik Mattsson-Mårn <h@reglage.net>, 2018
 # eckeman <eckeman@zoho.com>, 2018
 # Daniel Gullbransen, 2018
@@ -15,39 +11,44 @@
 # Kristoffer Grundström <lovaren@gmail.com>, 2020
 # Patrik Nilsson <asavartzeth@gmail.com>, 2021
 # Luna Jernberg <droidbittin@gmail.com>, 2021
-# Daniel Nylander <po@danielnylander.se>, 2025
-# 
+# Daniel Nylander <po@danielnylander.se>, 2025, 2026.
+#
+# Translators:
+# 6a42dd6e7ca9a813693714b0d9aa1ad8, 2018
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2023-09-02 17:27+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: Daniel Nylander <po@danielnylander.se>, 2025\n"
-"Language-Team: Swedish (https://app.transifex.com/mate/teams/13566/sv/)\n"
+"PO-Revision-Date: 2026-10-11 10:47+0000\n"
+"Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
+"Language-Team: Swedish <https://translate.fedoraproject.org/projects/mate-"
+"desktop/applications/mate-notification-daemon/sv/>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: sv\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.10.1\n"
 
 #: data/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
-msgstr "Popup-notifieringar"
+msgstr "Popupaviseringar"
 
 #: data/mate-notification-properties.desktop.in:4
 msgid "Set your popup notification preferences"
-msgstr "Ställ dina popup-notifikation inställningar"
+msgstr "Ange inställningarna för popupaviseringar"
 
 #. Translators: Search terms to find this application. Do NOT translate or
 #. localize the semicolons! The list MUST also end with a semicolon!
 #: data/mate-notification-properties.desktop.in:14
 msgid "MATE;Notification;Theme;"
-msgstr "MATE;Notification;Theme;"
+msgstr "MATE;Avisering;Tema;"
 
 #: data/org.mate.applets.MateNotificationApplet.desktop.in.in:6
 msgid "Mate Notification Applet Factory"
-msgstr "Mate notifieringsappletfabrik"
+msgstr "Fabrik för MATE-panelprogrammet Aviseringar"
 
 #: data/org.mate.applets.MateNotificationApplet.desktop.in.in:10
 #: src/capplet/mate-notification-applet.c:177
@@ -57,7 +58,7 @@ msgstr "Stör inte"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:5
 msgid "Popup location"
-msgstr "Popup-position"
+msgstr "Popupfönstrets position"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:6
 msgid ""
@@ -70,23 +71,23 @@ msgstr ""
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186
 msgid "Use Active Monitor"
-msgstr "Använd aktiv övervakare"
+msgstr "Använd aktiv bildskärm"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
-msgstr "Visa underrättelsen på den aktiva monitorn."
+msgstr "Visa aviseringen på den aktiva bildskärmen."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
-msgstr "Monitor"
+msgstr "Bildskärm"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:16
 msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr ""
-"Monitorn som ska visa underrättelsen. Tillåtna värden: -1 (visa på aktiva "
-"monitorer) och 0 till n - 1 där n står för antalet monitorer."
+"Bildskärmen som ska visa aviseringen. Tillåtna värden är -1, som visar på "
+"den aktiva bildskärmen, samt 0 till n - 1, där n är antalet bildskärmar."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
@@ -94,7 +95,7 @@ msgstr "Aktuellt tema"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:21
 msgid "The theme used when displaying notifications."
-msgstr "Temat som används för visning av notifieringar."
+msgstr "Temat som används för att visa aviseringar."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:25
 msgid "Sound Enabled"
@@ -102,15 +103,15 @@ msgstr "Ljud aktiverat"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:26
 msgid "Turns on and off sound support for notifications."
-msgstr "Slår på och av ljudstöd för notifieringar."
+msgstr "Aktiverar och inaktiverar ljudstöd för aviseringar."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:30
 msgid "Do not disturb"
-msgstr "Stör ej"
+msgstr "Stör inte"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:31
 msgid "When enabled, notifications are not shown."
-msgstr "När aktiverad kommer notifieringar inte att visas."
+msgstr "När detta är aktiverat visas inga aviseringar."
 
 #: src/capplet/mate-notification-applet.c:52
 msgid "_Preferences"
@@ -126,11 +127,11 @@ msgstr "Om Stör inte"
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
-msgstr "Copyright © 2021 MATE utvecklarna"
+msgstr "Copyright © 2021 MATE:s utvecklare"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
-msgstr "Aktivera stör inte-läget snabbt."
+msgstr "Aktivera läget Stör inte snabbt."
 
 #: src/capplet/mate-notification-applet.c:110
 msgid "translator-credits"
@@ -141,7 +142,7 @@ msgstr ""
 
 #: src/capplet/mate-notification-applet.c:197
 msgid "Notifications Enabled"
-msgstr "Notifieringar aktiverade"
+msgstr "Aviseringar aktiverade"
 
 #: src/capplet/mate-notification-applet.c:218
 msgid "_Do not disturb"
@@ -149,11 +150,11 @@ msgstr "Stör _inte"
 
 #: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
-msgstr "Aktivera/inaktivera stör inte-läge."
+msgstr "Aktivera eller inaktivera läget Stör inte."
 
 #: src/capplet/mate-notification-properties.c:327
 msgid "Coco"
-msgstr "Choklad"
+msgstr "Coco"
 
 #: src/capplet/mate-notification-properties.c:331
 msgid "Nodoka"
@@ -161,7 +162,7 @@ msgstr "Nodoka"
 
 #: src/capplet/mate-notification-properties.c:335
 msgid "Slider"
-msgstr "Draglist"
+msgstr "Reglage"
 
 #: src/capplet/mate-notification-properties.c:339
 msgid "Standard theme"
@@ -173,7 +174,7 @@ msgstr "Fel vid initiering av libmatenotify"
 
 #: src/capplet/mate-notification-properties.c:415
 msgid "Notification Test"
-msgstr "Notifieringstest"
+msgstr "Testavisering"
 
 #: src/capplet/mate-notification-properties.c:415
 msgid "Just a test"
@@ -182,7 +183,7 @@ msgstr "Bara ett test"
 #: src/capplet/mate-notification-properties.c:419
 #, c-format
 msgid "Error while displaying notification: %s"
-msgstr "Fel vid visning av notifiering: %s"
+msgstr "Fel när aviseringen visades: %s"
 
 #: src/capplet/mate-notification-properties.c:459
 #, c-format
@@ -231,7 +232,7 @@ msgstr "Längst ned till höger"
 
 #: src/capplet/mate-notification-properties.ui:201
 msgid "Enable Do Not Disturb"
-msgstr "Aktivera Stör ej"
+msgstr "Aktivera Stör inte"
 
 #: src/capplet/mate-notification-properties.ui:222
 msgid "General Options"
@@ -239,29 +240,29 @@ msgstr "Allmänna inställningar"
 
 #: src/daemon/daemon.c:1359
 msgid "Exceeded maximum number of notifications"
-msgstr "Översteg maximalt antal notifieringar"
+msgstr "Maximalt antal aviseringar har överskridits"
 
 #: src/daemon/daemon.c:1664
 #, c-format
 msgid "%u is not a valid notification ID"
-msgstr "%u är inte ett giltigt notifierings-id"
+msgstr "%u är inte en giltig aviseringsidentifierare"
 
 #: src/daemon/sound.c:37
 msgid "Notification"
-msgstr "Notifiering"
+msgstr "Avisering"
 
 #: src/themes/coco/coco-theme.c:461 src/themes/nodoka/nodoka-theme.c:815
 #: src/themes/slider/theme.c:417 src/themes/standard/theme.c:734
 msgid "Notification summary text."
-msgstr "Notifiering summeringstext."
+msgstr "Aviseringens sammanfattningstext."
 
 #: src/themes/coco/coco-theme.c:475 src/themes/nodoka/nodoka-theme.c:868
 #: src/themes/slider/theme.c:438 src/themes/standard/theme.c:786
 msgid "Notification body text."
-msgstr "Notifiering brödtext."
+msgstr "Aviseringens meddelandetext."
 
 #: src/themes/nodoka/nodoka-theme.c:829 src/themes/nodoka/nodoka-theme.c:831
 #: src/themes/slider/theme.c:399 src/themes/slider/theme.c:401
 #: src/themes/standard/theme.c:750 src/themes/standard/theme.c:752
 msgid "Closes the notification."
-msgstr "Stänger aviseringarna."
+msgstr "Stänger aviseringen."

@@ -1,28 +1,29 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR MATE Desktop Environment team
 # This file is distributed under the same license as the mate-notification-daemon package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
-# Translators:
 # Falu <info@falu.me>, 2018
 # Rezső Páder <rezso@rezso.net>, 2020
 # Stefano Karapetsas <stefano@karapetsas.com>, 2021
-# Balázs Meskó <meskobalazs@mailbox.org>, 2021
+# Balázs Meskó <meskobalazs@mailbox.org>, 2021, 2026.
 # László Varga, 2024
-# 
+#
+# Translators:
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: mate-notification-daemon 1.27.1\n"
 "Report-Msgid-Bugs-To: https://mate-desktop.org\n"
 "POT-Creation-Date: 2023-09-02 17:27+0200\n"
-"PO-Revision-Date: 2018-03-11 19:46+0000\n"
-"Last-Translator: László Varga, 2024\n"
-"Language-Team: Hungarian (https://app.transifex.com/mate/teams/13566/hu/)\n"
+"PO-Revision-Date: 2026-06-16 18:12+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@mailbox.org>\n"
+"Language-Team: Hungarian <https://translate.fedoraproject.org/projects/mate-"
+"desktop/mate-notification-daemon/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: hu\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.6.1\n"
 
 #: data/mate-notification-properties.desktop.in:3
 msgid "Popup Notifications"
@@ -57,9 +58,9 @@ msgid ""
 "Default popup location on the workspace for stack notifications. Allowed "
 "values: \"top_left\",\"top_right\",\"bottom_left\" and \"bottom_right\""
 msgstr ""
-"A munkaterületen felbukkanó veremértesítések felbukkanásának alapértelmezett"
-" helye. A lehetséges értékek: „top_left” (bal felső), top_right” (jobb "
-"felső), „bottom_left (bal alsó) és „bottom_right” (jobb alsó)."
+"A munkaterületen felbukkanó veremértesítések felbukkanásának alapértelmezett "
+"helye. A lehetséges értékek: „top_left” (bal felső), „top_right” (jobb felső)"
+", „bottom_left” (bal alsó) és „bottom_right” (jobb alsó)."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:10
 #: src/capplet/mate-notification-properties.ui:186
@@ -68,7 +69,7 @@ msgstr "Az aktív monitor használata"
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:11
 msgid "Display the notification on the active monitor."
-msgstr "Értesítés megjelenítése az aktív monitoron"
+msgstr "Értesítés megjelenítése az aktív monitoron."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:15
 msgid "Monitor"
@@ -79,8 +80,8 @@ msgid ""
 "Monitor to display the notification. Allowed values: -1 (display on active "
 "monitor) and 0 to n - 1 where n is the number of monitors."
 msgstr ""
-"A monitor, ahol az értesítés megjenik. Megengedett értékek: -1 (aktív "
-"monitor), és 0 - n-1, ahol 'n' a monitorok száma."
+"A monitor, ahol az értesítés megjelenik. Megengedett értékek: -1 (aktív "
+"monitor), és 0 és n-1 között, ahol „n” a monitorok száma."
 
 #: data/org.mate.NotificationDaemon.gschema.xml.in:20
 msgid "Current theme"
@@ -116,7 +117,7 @@ msgstr "_Névjegy"
 
 #: src/capplet/mate-notification-applet.c:105
 msgid "About Do Not Disturb"
-msgstr "A ne zavarjanak-ról"
+msgstr "A „Ne zavarjanak” névjegye"
 
 #: src/capplet/mate-notification-applet.c:107
 msgid "Copyright © 2021 MATE developers"
@@ -124,7 +125,7 @@ msgstr "Minden jog fenntartva © 2021 MATE fejlesztők"
 
 #: src/capplet/mate-notification-applet.c:108
 msgid "Activate the do not disturb mode quickly."
-msgstr "A ne zavarjanak funkció gyors akvitálása"
+msgstr "A ne zavarjanak funkció gyors aktiválása."
 
 #: src/capplet/mate-notification-applet.c:110
 msgid "translator-credits"
@@ -148,7 +149,7 @@ msgstr "_Ne zavarjanak"
 
 #: src/capplet/mate-notification-applet.c:219
 msgid "Enable/Disable do-not-disturb mode."
-msgstr "Ne zavarjanak mód engedélyezése/tiltása"
+msgstr "Ne zavarjanak mód engedélyezése/tiltása."
 
 #: src/capplet/mate-notification-properties.c:327
 msgid "Coco"
